@@ -1,0 +1,134 @@
+/* ------------------------------------------------------------ *\
+  Insta Feed
+\* ------------------------------------------------------------ */
+
+#instafeed.insta-feed {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  margin: 0 -0.8%;
+
+  a {
+    width: 18.4%;
+    margin: 0 0.8%;
+  }
+
+  .container {
+    width: 100% !important;
+    padding-top: 100% !important;
+  }
+
+  /* Mobile */
+
+  @media (max-width: #{$responsive-xs}) {
+    margin: 0 -1.32% -2.64%;
+
+    a {
+      width: 47.35%;
+      margin: 0 1.32% 2.64%;
+
+      &:nth-child(5n + 5) {
+        display: none;
+      }
+    }
+  }
+
+  @media only screen and (max-device-width: 480px) {
+    .container {
+      width: 100% !important;
+      height: auto !important;
+    }
+
+    img {
+      width: 100% !important;
+      height: 100% !important;
+    }
+  }
+}
+
+#instafeed .overlay,
+#instafeed .overlay::after,
+#instafeed img {
+  width:100%;
+  height:100%;
+  top:0;
+  left:0;
+}
+
+#instafeed .overlay::after,
+#instafeed .overlay::before {
+  content:' ';
+  position:absolute;
+}
+
+#instafeed {
+  text-align:center;
+}
+
+#instafeed a:hover,
+#instafeed a:focus {
+  opacity:1;
+}
+
+#instafeed a {
+  border:none;
+  position:static;
+}
+
+#instafeed a:after {
+  border:none;
+}
+
+#instafeed .container:hover .overlay {
+  display:block;
+}
+
+#instafeed img {
+  max-width:none;
+  object-fit:cover;
+  position:absolute;
+  bottom:0;
+  right:0;
+  margin:0 auto;
+}
+
+#instafeed .container {
+  display:inline-block;
+  position:relative;
+  vertical-align:top;
+  padding:0;
+  color:#fff;
+}
+
+#instafeed .overlay {
+  display:none;
+  position:absolute;
+  background-color:transparent;
+  bottom:0;
+  right:0;
+  margin:0 auto;
+}
+
+#instafeed .overlay::after {
+  background-color:#000;
+  opacity:.5;
+}
+
+#instafeed .overlay::before {
+  opacity:1;
+  background: url("{{ 'instagram-mini-white.png' | asset_url }}") center center no-repeat;
+  background-size:30px 30px;
+  z-index:100;
+  top:0;
+  left:0;
+  bottom:0;
+  right:0;
+}
+
+@media only screen and (max-device-width:480px) {
+  #instafeed .container {
+    width: 33% !important;
+    padding-top: 33% !important;
+  }
+}

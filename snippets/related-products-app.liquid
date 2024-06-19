@@ -1,0 +1,40 @@
+
+{% if shop.metafields.rp_app_settings.rp_status == 1 %}
+  <div id="related_products_app_html" data-currency="{{ cart.currency.symbol }}"></div>
+  {% assign related_rp_items = product.metafields.related_items %}
+  <noscript id="rp_app_items">
+    {{ related_rp_items | json }}
+  </noscript>
+  {%- capture addonsList -%}
+    {
+      {%- for item in related_rp_items -%}
+        {% if item[1] %}
+          {% assign handle = item[1].product_handle %}
+          {% assign addons = all_products[handle].metafields.mrp-product-addons %}
+          {% if addons != blank %}
+            ...{{- addons | json -}}
+            {% unless forloop.last == true %},{% endunless %}
+          {% endif %}
+        {% endif %}
+      {%- endfor -%}
+    }
+  {%- endcapture -%}
+
+  <script type="text/javascript">
+    var mrpProductsAddonsList = {{addonsList | strip_newlines }}
+    var mrpCustomization = {{ shop.metafields.mrp-customization | json }}
+  </script>
+
+  <noscript id="rp_app_settings">
+    {
+      "rp_lazyload": {{ shop.metafields.rp_app_settings.rp_lazyload }},
+      "rp_status": {{ shop.metafields.rp_app_settings.rp_status }},
+      "rp_titletext": {{ shop.metafields.rp_app_settings.rp_titletext | json }},
+      "currency": {
+        "symbol": {{ cart.currency.symbol | json }},
+        "iso_code": {{ cart.currency.iso_code | json }}
+      }
+    }
+  </noscript>
+{% endif %}
+

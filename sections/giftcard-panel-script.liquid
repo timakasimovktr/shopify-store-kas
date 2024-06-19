@@ -1,0 +1,58 @@
+<script>
+  window.addEventListener('load', function() {
+    var cart_item_count = "{{cart.item_count}}"
+    if (cart_item_count == 0){
+      $(document).on('click', '#update-message', function(e) {
+        var messageData = $('#giftMessage').val().trim();
+        var buttonMessage = $('#update-message');
+        var loaderAnimation = $('.lds-ring');
+        var spin = $('#save_spinner');
+   
+        
+        buttonMessage.addClass('disabled');
+        loaderAnimation.addClass('active');
+        spin.addClass('show')
+        $(".add_message_label").html("Your gift message is saved");
+        $("#action_btn").removeClass("hidden")
+        
+        $.ajax({
+          url: '/cart/update.js',
+          type: 'POST',
+          data: {
+            note: messageData
+          },
+          dataType: 'json',
+          success: function(result) {
+            jQuery('.counter__field').trigger('change');
+            setTimeout(() => {
+              loaderAnimation.removeClass('active');
+              buttonMessage.removeClass('disabled');
+              spin.removeClass('show')
+              jQuery('.cart__inner-giftmessage').removeClass('active');
+              document.getElementById('gift-card-message').value = messageData;
+            }, 100)
+          },
+          error: function(jqxhr, status, exception) {
+          }
+        });
+      });
+      $(document).on('click', '#gift-msg-delete', function(e) {
+        var delete_btn = $("#gift-msg-delete").addClass("mr-2")
+        var spinner = $("#spinner").removeClass("hidden")
+        $.ajax({
+          url: '/cart/update.js',
+          type: 'POST',
+          data: {
+            note: null
+          },
+          dataType: 'json',
+          success: function(result) {
+            jQuery('.counter__field').trigger('change');
+          },
+          error: function(jqxhr, status, exception) {
+          }
+        });
+      });
+    }
+  })
+</script>

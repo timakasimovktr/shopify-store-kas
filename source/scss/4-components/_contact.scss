@@ -1,0 +1,152 @@
+/* ------------------------------------------------------------ *\
+  Contacts
+\* ------------------------------------------------------------ */
+
+.contacts {
+  max-width: 404px;
+  margin: 34px auto 0;
+  text-align: center;
+
+  h6 {
+    margin-bottom: 16px;
+    font-size: 16px;
+    letter-spacing: 0.094em;
+    font-weight: 400;
+    color: $default-color;
+    text-transform: uppercase;
+  }
+
+  p {
+    margin-bottom: 22px;
+    font-size: 18px;
+    line-height: 1.44;
+    color: $default-color;
+    font-weight: 300;
+    letter-spacing: 0.028em;
+  }
+
+  /* Tablet Portrait */
+
+  @media (max-width: #{$responsive-sm}) {
+    padding: 0 20px;
+
+    p {
+      font-size: 14px;
+    }
+  }
+
+  /* Mobile */
+
+  @media (max-width: #{$responsive-xs}) {
+    max-width: none;
+    padding: 0;
+    margin: 9px 0 16px;
+
+    h6 {
+      margin-bottom: 19px;
+    }
+
+    p {
+      margin-bottom: 30px;
+      font-size: 14px;
+      line-height: 1.36;
+
+      br {
+        display: none;
+      }
+    }
+  }
+}
+
+/* ------------------------------------------------------------ *\
+  Contacts Default
+\* ------------------------------------------------------------ */
+
+.contacts-default {
+  width: 370px;
+  margin-left: 116px;
+
+  .contacts__title {
+    margin: 0 0 18px 39px;
+    font-family: $font-family-serif;
+    line-height: 1.25;
+    font-weight: 400;
+  }
+
+  .contacts__box {
+    padding: 27px 40px 34px;
+    border: 1px solid #8d8b8e;
+
+    h2 {
+      margin-bottom: 43px;
+      font-family: $font-family-serif;
+      line-height: 1.25;
+      font-weight: 400;
+    }
+  }
+
+  ul {
+    margin-left: 39px;
+  }
+
+  /* Small Desktop */
+
+  @media (max-width: #{$responsive-md}) {
+    max-width: calc(100% - 564px - 3%);
+    margin-left: 3%;
+  }
+
+  /* Tablet Portrait */
+
+  @media (max-width: #{$responsive-sm}) {
+    max-width: none;
+    width: 100%;
+    padding-top: 24px;
+    border-top: 1px solid #e1dfdf;
+    margin: 33px 0 0;
+    text-align: center;
+
+    .contacts__title,
+    ul {
+      margin-left: 0;
+    }
+
+    .contacts__box {
+      padding: 20px;
+    }
+
+    .contacts__box h2 {
+      font-size: 30px;
+    }
+  }
+
+  /* Mobile */
+
+  @media (max-width: #{$responsive-xs}) {
+    width: 100%;
+
+    .contacts__title,
+    ul {
+      text-align: center;
+    }
+
+    .contacts__box {
+      padding: 34px 25px 12px 25px;
+    }
+
+    .contacts__title,
+    .contacts__box h2 {
+      margin-bottom: 23px;
+      font-size: 24px;
+      line-height: 1.08;
+    }
+  }
+}
+
+.contacts p,
+.subscribe-simple .subscribe__btn__inner,
+.subscribe-simple .subscribe--desc,
+.section-posts[data-section-id="1531228438684"] .slider__slide-content,
+.section-collections .section__entry {
+	color: #333;
+}

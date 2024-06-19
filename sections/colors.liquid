@@ -1,0 +1,45 @@
+{%- assign _blocks = section.blocks -%}
+
+<!--
+  {%- assign colors_names = '' -%}
+  {%- for block in _blocks -%}
+    {%- assign current_block = block.settings -%}
+    {%- assign color_name = current_block.title | handle -%}
+    {%- assign colors_names = color_name | append: '@@@' -%}
+    {{- colors_names -}}
+  {%- endfor -%}-->
+
+<script>
+  window.productColors = {
+    {% for color in _blocks %}
+      '{{ color.settings.title | handle }}': '{{ color.settings.color }}'
+      {% unless forloop.last %}, {% endunless %}
+    {% endfor %}
+  };
+
+</script>
+
+{% schema %}
+{
+  "name": "Colors",
+  "blocks": [
+    {
+      "type": "color",
+      "name": "Color",
+      "settings": [
+        {
+          "type": "color",
+          "id": "color",
+          "label": "Color",
+          "default": "#000"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Color Name"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

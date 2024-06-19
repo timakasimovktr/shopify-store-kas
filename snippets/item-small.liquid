@@ -1,0 +1,45 @@
+<div class="item item--small">
+  {%- if current_block.image != blank -%}
+    {%- capture item_img_attribute -%}
+      class="item__image lazyload"
+      data-sizes="auto"
+      data-bgset="{{ current_block.image | img_url: '180x' }} 180w,{{ current_block.image | img_url: '360x' }} 360w,{{ current_block.image | img_url: '540x' }} 540w,{{ current_block.image | img_url: '720x' }} 720w,{{ current_block.image | img_url: '900x' }} 900w"
+    {%- endcapture -%}
+
+    {%- if current_block.button_url != blank -%}
+      <div {{ item_img_attribute }}>
+        <a href="{{current_block.button_url}}" class="item item--link-full">
+    {%- else -%}
+      <div {{ item_img_attribute }}>
+    {%- endif -%}
+
+      {%- if current_block.button_text != blank and current_block.button_url != blank -%}
+        <a  href="{{ current_block.button_url }}" class="btn hidden-xs">{{ current_block.button_text }}</a>
+      {%- endif -%}
+
+    {%- if current_block.button_url != blank -%}
+        </a>
+      </div>
+    {%- else -%}
+      </div>
+    {%- endif -%}
+  {%- endif -%}
+
+  <div class="item__content">
+    {%- if current_block.title != blank -%}
+      <h2 class="item__title">{{ current_block.title | newline_to_br }}</h2><!-- /.item__title -->
+    {%- endif -%}
+
+    {%- if current_block.subtitle != blank -%}
+      <h5 class="item__subtitle">{{ current_block.subtitle | newline_to_br }}</h5><!-- /.item__subtitle -->
+    {%- endif -%}
+
+    {%- if current_block.button_text != blank and current_block.button_url != blank -%}
+      <a href="{{current_block.button_url}}" class="btn btn--link visible-xs-inline-block">
+        {{ current_block.button_text }}
+
+        {%- include 'icons' with icon: 'arrow-right' -%}
+      </a>
+    {%- endif -%}
+  </div><!-- /.item__content -->
+</div><!-- /.item -->

@@ -1,0 +1,37 @@
+{%- assign _section = section.settings -%}
+<div class="intro-page {% unless intro_image != empty %} intro-collection--without-image {% endunless %}">
+  {%- if _section.image_mobile != blank -%}
+    <div class="intro__image visible-xs-block intro__mobile" style="background-image: url({{ _section.image_mobile | img_url: 'master' }});padding-bottom:calc(100% / {{ _section.image_mobile.aspect_ratio }});"></div><!-- /.intro__image -->
+  {%- endif -%}
+  {%- if _section.image != empty -%}
+    <div class="intro__image{% if _section.image_mobile != blank %} hidden-xs{% endif %} intro__desktop" style="background-image: url({{ _section.image | img_url: 'master' }});padding-bottom:calc(100% / {{ _section.image.aspect_ratio }});"></div><!-- /.intro__image -->
+  {%- endif -%}
+  <div class="intro__content--wrapper">
+    <div class="intro__content--inner">
+      <h1 class="intro__content--title difference-page-section-title">{{ page.title }}</h1>
+      <div class="intro__content hidden-xs">
+        {{ page.content }}
+      </div>
+    </div>
+  </div>
+</div>
+<div class="intro-page__content visible-xs-block">
+  {{ page.content }}
+</div>
+{% schema %}
+{
+  "name": " Page Intro Section",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_mobile",
+      "label": "Image mobile"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,79 @@
+{% assign vanity_colors_all = shop.metafields.sf_color_code.colors | newline_to_br | strip_newlines | replace: "<br />", "," %}
+{%- assign vanity_colors_all = vanity_colors_all | split: ',' | compact -%}
+{% assign new_vc_item_all = '' %}
+{% for _vanity_color in vanity_colors_all %}
+  {% assign _vanity_color_item = _vanity_color | split: '|' %}
+  {% assign _item_handle = _vanity_color_item[0] | handle %}
+  {% assign new_vc_item_all = new_vc_item_all | append: _item_handle | append: '|' | append: _vanity_color_item[1] | append: ',' %}
+{% endfor %}
+{%- assign vanity_colors_all = new_vc_item_all | split: ',' | compact -%}
+
+<section class="section-blocks">
+	<div class="shell">
+		<header class="section__head">
+			<h4 class="section__title">
+				{% if search.results != empty and search.performed %}
+					{{ 'general.search.results_for_html' | t: terms: search.terms }}
+				{% elsif search.results == empty and search.performed %}
+					{{ 'general.search.no_results_html' | t: terms: search.terms }}
+				{% endif %}
+			</h4><!-- /.section__title -->
+		</header><!-- /.section__head -->
+
+		<div class="section__body">
+			{%- if search.performed -%}
+				{% if search.results != empty and search.terms != "" %}
+					{% comment %}
+					{% paginate search.results by 24 %}
+						<div class="products" id="search-results">
+							{% for product in search.results %}
+								{% include 'product-item' with current_product: product, vanityColors: vanity_colors_all %}
+							{% endfor %}
+						</div><!-- /.products -->
+
+						{% include 'pagination' %}
+					{% endpaginate %}
+					{% endcomment %}
+
+					{% paginate search.results by 24 %}
+						<div class="products" id="search-results">
+							{%- assign terms = search.terms | split: ' ' -%}
+							{% for product in search.results %}
+								{% if product.object_type == 'product' %}
+									{%- assign showInList = true -%}
+									{%- for tag in product.tags -%}
+										{%- assign tagStr = tag | downcase -%}
+										{%- if tagStr contains 'bundlehide' -%}
+											{%- assign showInList = false -%}
+										{%- endif -%}
+									{%- endfor -%}
+										
+									{% if showInList %}
+										{% include 'product-item' with current_product: product, vanityColors: vanity_colors_all, searchTerms: terms %}
+									{% endif %}
+								{% endif %}
+							{% endfor %}
+						</div>
+						{% include 'pagination' %}
+					{% endpaginate %}
+				{%- else -%}
+					{%- if settings.search_collection != blank -%}
+						{%- assign _collection = collections[settings.search_collection] -%}
+
+						{% paginate _collection.products by settings.products_per_page %}
+							{%- if settings.message != blank -%}
+								<h5>{{ settings.message | newline_to_br }}</h5>
+							{%- endif -%}
+
+							<div class="products">
+								{%- for product in _collection.products -%}
+									{% include 'product-item' with current_product: product, vanityColors: vanity_colors_all %}
+								{%- endfor -%}
+							</div><!-- /.products -->
+						{% endpaginate %}
+					{%- endif -%}
+				{%- endif -%}
+			{%- endif -%}
+		</div><!-- /.section__body -->
+	</div><!-- /.shell -->
+</section><!-- /.section-blocks -->

@@ -1,0 +1,64 @@
+{%- assign _section = section.settings -%}
+<div class="fabrics">
+  <div class="shell">
+    <div class="fabrics--inner">
+      <h1 class="fabrics--title difference-page-section-title">
+        {{ _section.title }}
+      </h1>
+      <div class="fabrics--content">
+        {%- for block in section.blocks -%}
+          {%- assign _block = block.settings -%}
+          <div class="fabrics-item">
+            {%- if _block.image != blank -%}
+              <div class="fabrics-item--image">
+                <img src="{{ _block.image | img_url: '350x' }}" />
+              </div>
+            {%- endif -%}
+            {%- if _block.title != blank -%}
+              <div class="fabrics-item--title difference-page-section-title">{{ _block.title }}</div>
+            {%- endif -%}
+            {%- if _block.description != blank -%}
+              <div class="fabrics-item--description">{{ _block.description }}</div>
+            {%- endif -%}
+          </div>
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+</div>
+{% schema %}
+{
+  "name": "Bedding Fabrics",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Our Bedding Fabrics"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Item",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "textarea",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "richtext",
+          "id": "description",
+          "label": "Description"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

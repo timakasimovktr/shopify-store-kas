@@ -1,0 +1,11 @@
+{%- assign widget_links = linklists[menu_handle].links -%}
+
+{%- if widget_links.size > 0 -%}
+  <ul class="list-links">
+    {%- for link in widget_links -%}
+      <li {% if link.active %} class="current" {% endif %}>
+        <a href="{{ link.url }}">{{ link.title }}</a>
+      </li>
+    {%- endfor -%}
+  </ul><!-- /.list-links -->
+{%- endif -%}

@@ -1,0 +1,89 @@
+{%- assign _section = section.settings -%}
+{%- if _section.is_enable -%}
+  <div class="quote-slider">
+    {%- if section.blocks.size > 0 -%}
+      <div class="shell">
+        <div class="quote-slider--wrapper">
+          <div class="quote-slider--inner">
+            <div class="quote-slider--contents">
+              {%- for block in section.blocks -%}
+                {%- include 'quote-item', q_obj: block.settings, content: 'content' -%}
+              {%- endfor -%}
+            </div>
+            <div class="quote-slider--images">
+              {%- for block in section.blocks -%}
+                {%- include 'quote-item', q_obj: block.settings, content: 'image' -%}
+              {%- endfor -%}
+            </div>
+          </div>
+        </div>
+      </div>
+    {%- endif -%}
+  </div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Quote Slider",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "is_enable",
+      "label": "Is Enable/Disable",
+      "default": true
+    }
+  ],
+  "blocks": [
+    {
+      "type": "image",
+      "name": "Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "video",
+          "label": "Video Url",
+          "info": "MP4 file is recommended."
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "image_picker",
+          "id": "mobile_image",
+          "label": "Mobile Image"
+        },
+        {
+          "type": "text",
+          "id": "sub_title",
+          "label": "Sub Title",
+          "default": "This just in"
+        },
+        {
+          "type": "textarea",
+          "id": "title",
+          "label": "Title",
+          "default": "The Go-Everywhere Tote"
+        },
+        {
+          "type": "richtext",
+          "id": "detail",
+          "label": "Detail"
+        },
+        {
+          "type": "text",
+          "id": "btn_txt",
+          "label": "Button Text",
+          "default": "Shop beach bags"
+        },
+        {
+          "type": "url",
+          "id": "btn_url",
+          "label": "Button Url"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

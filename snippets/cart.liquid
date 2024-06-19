@@ -1,0 +1,71 @@
+<a href="#cart-inner" class="cart__link js-btn-expand">
+  <i class="ico-cart"></i>
+  <span class="cart_count"></span>
+</a>
+
+<input id="gift-card-message" type="hidden" value="{{ cart.note }}">
+
+<div class="cart-popup cart">
+  <div class="cart-popup__overlay cart-popup__opener cart_close"></div>
+  <div
+    class="cart-popup__slide"
+    data-setting-holiday-active="{{settings.holiday_is_active}}"
+    data-setting-trigger-prod="{{settings.holiday_trigger_product}}"
+    data-setting-gift-prod="{{all_products[settings.holiday_gift_product].variants[0].id}}"
+    data-setting-gift-price="{{all_products[settings.holiday_gift_product].variants[0].price}}"
+    data-setting-min-subtotal="{{settings.holiday_min_subtotal}}"
+    data-setting-gift-desc-text="{{settings.holiday_gift_desc_text}}"
+    data-setting-gift-desc-color="{{settings.holiday_gift_desc_color}}"
+    data-buyonegetone-active="{{settings.buyonegetone_is_active}}"
+    data-buyonegetone-collections-1="{{settings.buyonegetone_collections_1}}"
+    data-buyonegetone-gift-prod-1="{{all_products[settings.buyonegetone_gift_product_1].variants[0].id}}"
+    data-buyonegetone-collections-2="{{settings.buyonegetone_collections_2}}"
+    data-buyonegetone-gift-prod-2="{{all_products[settings.buyonegetone_gift_product_2].variants[0].id}}"
+    data-buyonegetone-collections-3="{{settings.buyonegetone_collections_3}}"
+    data-buyonegetone-gift-prod-3="{{all_products[settings.buyonegetone_gift_product_3].variants[0].id}}"
+    data-buyonegetone-gift-limit="{{settings.buyonegetone_gift_limit}}"
+    data-buyonegetone-gift-desc-text="{{settings.buyonegetone_gift_desc_text}}"
+    data-buyonegetone-gift-desc-color="{{settings.buyonegetone_gift_desc_color}}"
+  >
+    <div class="cart__inner" id="cart-inner">
+      <div class="cart__inner-head">
+        <div class="cart__inner-head-top">
+          <a href="#cart-inner" class="cart_close js-btn-expand">
+            <i class="ico-close"></i>
+          </a>
+          <h5 class="cart__inner-title">{{ 'cart.general.title' | t }}</h5>
+          <!-- /.cart__inner-title -->
+          <div href="#" class="cart__link">
+            <i class="ico-cart"></i>
+            <span></span>
+          </div>
+        </div>
+        <div class="cart__inner-head-bottom">
+          <h4 class="cart__inner-subtitle">Free U.S. Shipping + Returns Always</h4>
+        </div>
+      </div>
+      <!-- /.cart__inner-head -->
+      {%- include 'cart-products' -%}
+    </div>
+    <!-- /.cart__inner -->
+  </div>
+  <!-- /.cart -->
+</div>
+
+<style>
+  .open {
+    opacity: 0.5 !important;
+    pointer-events: auto !important;
+  }
+
+  .open-slide {
+    transform: translateX(0) !important;
+  }
+</style>
+
+<style>
+  .afterpay-paragraph {
+    text-align: start;
+    padding: 0 0 10px;
+  }
+</style>

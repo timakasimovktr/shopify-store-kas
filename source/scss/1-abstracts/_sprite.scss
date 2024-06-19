@@ -1,0 +1,51 @@
+/* ------------------------------------------------------------ *\
+	Sprite
+\* ------------------------------------------------------------ */
+
+.ico-arrow-up{ background: url("{{ 'ico-arrow-up.png' | asset_url }}") no-repeat 0 0; background-size: 100% 100%; width: 19px; height: 12px; display: inline-block; vertical-align: middle; font-size: 0px; }
+.ico-cart-white{ background: url("{{ 'ico-cart-white.png' | asset_url }}") no-repeat 0 0; background-size: 100% 100%; width: 20px; height: 17px; display: inline-block; vertical-align: middle; font-size: 0px; }
+.ico-cart{ background: url("{{ 'ico-cart.png' | asset_url }}") no-repeat 0 0; background-size: 100% 100%; width: 20px; height: 16px; display: inline-block; vertical-align: middle; font-size: 0px; }
+.ico-close{ background: url("{{ 'ico-close.png' | asset_url }}") no-repeat 0 0; background-size: 100% 100%; width: 21px; height: 21px; display: inline-block; vertical-align: middle; font-size: 0px; }
+.ico-envelope{ background: url("{{ 'ico-envelope.png' | asset_url }}") no-repeat 0 0; background-size: 100% 100%; width: 48px; height: 34px; display: inline-block; vertical-align: middle; font-size: 0px; }
+.ico-facebook-large{ background: url("{{ 'ico-facebook-large.png' | asset_url }}") no-repeat 0 0; background-size: 100% 100%; width: 27px; height: 27px; display: inline-block; vertical-align: middle; font-size: 0px; }
+.ico-facebook{ background: url("{{ 'ico-facebook.png' | asset_url }}") no-repeat 0 0; background-size: 100% 100%; width: 25px; height: 25px; display: inline-block; vertical-align: middle; font-size: 0px; }
+.ico-spotify{ background: url("{{ 'ico-spotify.png' | asset_url }}") no-repeat 0 0; background-size: 100% 100%; width: 25px; height: 25px; display: inline-block; vertical-align: middle; font-size: 0px; }
+.ico-spotify-large{ background: url("{{ 'ico-spotify.png' | asset_url }}") no-repeat 0 0; background-size: 100% 100%; width: 27px; height: 27px; display: inline-block; vertical-align: middle; font-size: 0px; }
+.ico-tiktok{ background: url("{{ 'ico-tiktok.png' | asset_url }}") no-repeat 0 0; background-size: 100% 100%; width: 25px; height: 25px; display: inline-block; vertical-align: middle; font-size: 0px; }
+.ico-tiktok-large{ background: url("{{ 'ico-tiktok.png' | asset_url }}") no-repeat 0 0; background-size: 100% 100%; width: 27px; height: 27px; display: inline-block; vertical-align: middle; font-size: 0px; }
+.ico-instagram-large{ background: url("{{ 'ico-instagram-large.png' | asset_url }}") no-repeat 0 0; background-size: 100% 100%; width: 27px; height: 27px; display: inline-block; vertical-align: middle; font-size: 0px; }
+.ico-instagram{ background: url("{{ 'ico-instagram.png' | asset_url }}") no-repeat 0 0; background-size: 100% 100%; width: 25px; height: 25px; display: inline-block; vertical-align: middle; font-size: 0px; }
+.ico-phone{ background: url("{{ 'ico-phone.png' | asset_url }}") no-repeat 0 0; background-size: 100% 100%; width: 22px; height: 38px; display: inline-block; vertical-align: middle; font-size: 0px; }
+.ico-pinterest-large{ background: url("{{ 'ico-pinterest-large.png' | asset_url }}") no-repeat 0 0; background-size: 100% 100%; width: 27px; height: 27px; display: inline-block; vertical-align: middle; font-size: 0px; }
+.ico-pinterest{ background: url("{{ 'ico-pinterest.png' | asset_url }}") no-repeat 0 0; background-size: 100% 100%; width: 25px; height: 25px; display: inline-block; vertical-align: middle; font-size: 0px; }
+.ico-play{ background: url("{{ 'ico-play.png' | asset_url }}") no-repeat 0 0; background-size: 100% 100%; width: 120px; height: 120px; display: inline-block; vertical-align: middle; font-size: 0px; }
+.ico-search-close{ background: url("{{ 'ico-search-close.png' | asset_url }}") no-repeat 0 0; background-size: 100% 100%; width: 19px; height: 19px; display: inline-block; vertical-align: middle; font-size: 0px; }
+.ico-search-large{ background: url("{{ 'ico-search-large.png' | asset_url }}") no-repeat 0 0; background-size: 100% 100%; width: 25px; height: 25px; display: inline-block; vertical-align: middle; font-size: 0px; }
+.ico-search-white{ background: url("{{ 'ico-search-white.png' | asset_url }}") no-repeat 0 0; background-size: 100% 100%; width: 17px; height: 16px; display: inline-block; vertical-align: middle; font-size: 0px; }
+.ico-search{ background: url("{{ 'ico-search.png' | asset_url }}") no-repeat 0 0; background-size: 100% 100%; width: 16px; height: 16px; display: inline-block; vertical-align: middle; font-size: 0px; }
+.ico-shop{ background: url("{{ 'ico-shop.png' | asset_url }}") no-repeat 0 0; background-size: 100% 100%; width: 42px; height: 36px; display: inline-block; vertical-align: middle; font-size: 0px; }
+.ico-twitter-large{ background: url("{{ 'ico-twitter-large.png' | asset_url }}") no-repeat 0 0; background-size: 100% 100%; width: 32px; height: 27px; display: inline-block; vertical-align: middle; font-size: 0px; }
+.ico-twitter{ background: url("{{ 'ico-twitter.png' | asset_url }}") no-repeat 0 0; background-size: 100% 100%; width: 21px; height: 18px; display: inline-block; vertical-align: middle; font-size: 0px; }
+.ico-zoom{ background: url("{{ 'ico-zoom.png' | asset_url }}") no-repeat 0 0; background-size: 100% 100%; width: 17px; height: 15px; display: inline-block; vertical-align: middle; font-size: 0px; }
+
+@media (-webkit-min-device-pixel-ratio: 2), (-o-min-device-pixel-ratio: 2/1), (min-resolution: 192dpi){
+	.ico-arrow-up{ background: url("{{ 'ico-arrow-up@2x.png' | asset_url }}") no-repeat 0 0; background-size: 100% 100%; width: 19px; height: 11.5px; display: inline-block; vertical-align: middle; font-size: 0px; }
+	.ico-cart{ background: url("{{ 'ico-cart@2x.png' | asset_url }}") no-repeat 0 0; background-size: 100% 100%; width: 19.5px; height: 16px; display: inline-block; vertical-align: middle; font-size: 0px; }
+	.ico-close{ background: url("{{ 'ico-close@2x.png' | asset_url }}") no-repeat 0 0; background-size: 100% 100%; width: 21px; height: 21px; display: inline-block; vertical-align: middle; font-size: 0px; }
+	.ico-envelope{ background: url("{{ 'ico-envelope@2x.png' | asset_url }}") no-repeat 0 0; background-size: 100% 100%; width: 47.5px; height: 34px; display: inline-block; vertical-align: middle; font-size: 0px; }
+	.ico-facebook-large{ background: url("{{ 'ico-facebook-large@2x.png' | asset_url }}") no-repeat 0 0; background-size: 100% 100%; width: 27px; height: 27px; display: inline-block; vertical-align: middle; font-size: 0px; }
+	.ico-facebook{ background: url("{{ 'ico-facebook@2x.png' | asset_url }}") no-repeat 0 0; background-size: 100% 100%; width: 25px; height: 25px; display: inline-block; vertical-align: middle; font-size: 0px; }
+	.ico-instagram-large{ background: url("{{ 'ico-instagram-large@2x.png' | asset_url }}") no-repeat 0 0; background-size: 100% 100%; width: 26px; height: 26px; display: inline-block; vertical-align: middle; font-size: 0px; }
+	.ico-instagram{ background: url("{{ 'ico-instagram@2x.png' | asset_url }}") no-repeat 0 0; background-size: 100% 100%; width: 25px; height: 25px; display: inline-block; vertical-align: middle; font-size: 0px; }
+	.ico-phone{ background: url("{{ 'ico-phone@2x.png' | asset_url }}") no-repeat 0 0; background-size: 100% 100%; width: 21.5px; height: 37.5px; display: inline-block; vertical-align: middle; font-size: 0px; }
+	.ico-pinterest-large{ background: url("{{ 'ico-pinterest-large@2x.png' | asset_url }}") no-repeat 0 0; background-size: 100% 100%; width: 27px; height: 27px; display: inline-block; vertical-align: middle; font-size: 0px; }
+	.ico-pinterest{ background: url("{{ 'ico-pinterest@2x.png' | asset_url }}") no-repeat 0 0; background-size: 100% 100%; width: 25px; height: 25px; display: inline-block; vertical-align: middle; font-size: 0px; }
+	.ico-play{ background: url("{{ 'ico-play@2x.png' | asset_url }}") no-repeat 0 0; background-size: 100% 100%; width: 120px; height: 120px; display: inline-block; vertical-align: middle; font-size: 0px; }
+	.ico-search-close{ background: url("{{ 'ico-search-close@2x.png' | asset_url }}") no-repeat 0 0; background-size: 100% 100%; width: 18.5px; height: 18.5px; display: inline-block; vertical-align: middle; font-size: 0px; }
+	.ico-search-large{ background: url("{{ 'ico-search-large@2x.png' | asset_url }}") no-repeat 0 0; background-size: 100% 100%; width: 25px; height: 25px; display: inline-block; vertical-align: middle; font-size: 0px; }
+	.ico-search{ background: url("{{ 'ico-search@2x.png' | asset_url }}") no-repeat 0 0; background-size: 100% 100%; width: 15.5px; height: 16px; display: inline-block; vertical-align: middle; font-size: 0px; }
+	.ico-shop{ background: url("{{ 'ico-shop@2x.png' | asset_url }}") no-repeat 0 0; background-size: 100% 100%; width: 41.5px; height: 35.5px; display: inline-block; vertical-align: middle; font-size: 0px; }
+	.ico-twitter-large{ background: url("{{ 'ico-twitter-large@2x.png' | asset_url }}") no-repeat 0 0; background-size: 100% 100%; width: 31.5px; height: 27px; display: inline-block; vertical-align: middle; font-size: 0px; }
+	.ico-twitter{ background: url("{{ 'ico-twitter@2x.png' | asset_url }}") no-repeat 0 0; background-size: 100% 100%; width: 20.5px; height: 17.5px; display: inline-block; vertical-align: middle; font-size: 0px; }
+	.ico-zoom{ background: url("{{ 'ico-zoom@2x.png' | asset_url }}") no-repeat 0 0; background-size: 100% 100%; width: 16.5px; height: 15px; display: inline-block; vertical-align: middle; font-size: 0px; }
+}

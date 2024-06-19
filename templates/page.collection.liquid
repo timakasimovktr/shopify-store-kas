@@ -1,0 +1,261 @@
+{%- assign collection_page = page.metafields.sf_collections.collection_page -%}
+{%- assign intro_image = page.metafields.sf_collections.intro_image -%}
+{%- assign index_fields = 0 -%}
+
+{% assign vanity_colors_all = shop.metafields.sf_color_code.colors | newline_to_br | strip_newlines | replace: "<br />", "," %}
+{%- assign vanity_colors_all = vanity_colors_all | split: ',' | compact -%}
+{% assign new_vc_item_all = '' %}
+{% for _vanity_color in vanity_colors_all %}
+  {% assign _vanity_color_item = _vanity_color | split: '|' %}
+  {% assign _item_handle = _vanity_color_item[0] | handle %}
+  {% assign new_vc_item_all = new_vc_item_all | append: _item_handle | append: '|' | append: _vanity_color_item[1] | append: ',' %}
+{% endfor %}
+{%- assign vanity_colors_all = new_vc_item_all | split: ',' | compact -%}
+
+{% assign title_color = page.metafields.sf_collections.title_color | default: '#ffffff' %}
+<div class="intro-collection {% unless intro_image %} intro-collection--without-image {% endunless %}">
+  {%- if intro_image -%}
+    <div class="intro__image lazyload" data-bg="{{ intro_image }}"></div><!-- /.intro__image -->
+
+    {%- assign index_fields = index_fields | plus: 1 -%}
+  {%- endif -%}
+
+  <div class="intro__content">
+    <h1 style="color: {{ title_color }}">{{ page.title }}</h1>
+  </div><!-- /.intro__content -->
+</div><!-- /.intro-collection -->
+
+{%- assign bar_content = page.metafields.sf_collections.bar -%}
+
+{%- if bar_content -%}
+  {%- assign index_fields = index_fields | plus: 1 -%}
+
+  <div class="bar">
+    {{ bar_content }}
+  </div><!-- /.bar -->
+{%- endif -%}
+
+{%- if page.metafields.sf_collections.size > index_fields -%}
+  {%- assign collection_fields = page.metafields.sf_collections -%}
+
+  <div class="collections">
+    <div class="shell">
+      {% comment %}
+        For the Page Navigation
+      {% endcomment %}
+      <div class="hidden-xs">
+        <div class="secondary-navigation" data-nav-desktop data-nav-url="{{ page.url }}"></div>
+      </div>
+      {% assign desktopNavigation = '' %}
+      <div class="page-navigation-wrapper visible-xs-block" data-nav-url="{{ page.url }}"></div>
+      {%- for index in (1..10) -%}
+
+        {%- assign inverse_elements = 'collection_' | append: index | append: '_inverse_elements' -%}
+        {%- assign inverse_elements = collection_fields[inverse_elements] -%}
+
+        {%- assign hide_image = 'collection_' | append: index | append: '_hide_image' -%}
+        {%- assign hide_image = collection_fields[hide_image] -%}
+
+        {%- assign background_image = 'collection_' | append: index | append: '_background_image' -%}
+        {%- assign background_image = collection_fields[background_image] -%}
+
+        {%- assign background_image_mobile = 'collection_' | append: index | append: '_image_mobile' -%}
+        {%- assign background_image_mobile = collection_fields[background_image_mobile] | strip -%}
+
+        {%- assign subtitle = 'collection_' | append: index | append: '_subtitle' -%}
+        {%- assign subtitle = collection_fields[subtitle] -%}
+
+        {%- assign button_title = 'collection_' | append: index | append: '_button_title' -%}
+        {%- assign button_title = collection_fields[button_title] -%}
+
+        {%- assign button_url = 'collection_' | append: index | append: '_buttons_url' -%}
+        {%- assign button_url = collection_fields[button_url] -%}
+
+        {% comment %}
+          Content Background Color
+        {% endcomment %}
+          {%- assign content_back_color = 'collection_' | append: index | append: '_cont_back_color' -%}
+          {%- assign content_back_color = collection_fields[content_back_color] -%}
+
+        {%- assign _title = 'collection_' | append: index | append: '_title' -%}
+        {%- assign content = 'collection_' | append: index | append: '_content' -%}
+        {%- assign _image = 'collection_' | append: index | append: '_image' -%}
+
+        {%- if collection_page != 1 -%}
+          {%- assign current_collection = 'collection_' | append: index | append: '_collection' -%}
+          {%- assign current_collection = collections[collection_fields[current_collection]] -%}
+
+          {%- if current_collection != empty -%}
+            {%- assign _products = current_collection.products -%}
+
+            {%- assign _title = collection_fields[_title] | default: current_collection.title -%}
+            {% assign desktopNavigation = desktopNavigation | append: '||' | append: _title | append: '--' | append: current_collection.handle | append: '::' | append: button_url %}
+
+            {%- assign content = collection_fields[content] | default: current_collection.description -%}
+
+            {%- assign current_collection_image = current_collection.image | img_url: '1024x', format: 'pjpg' -%}
+            {%- assign _image = collection_fields[_image] | default: current_collection_image -%}
+
+            <div class="collection {% if inverse_elements == 1 %} collection--inverse {% endif %}">
+
+              <h2 id="{{ current_collection.handle }}" class="collection__title visible-xs-block">{{ _title | newline_to_br }}</h2><!-- /.collection__title -->
+              
+              {%- if _image and hide_image != 1 -%}
+                <div class="collection__image lazyload hidden-xs" data-bg="{{ _image }}"></div><!-- /.collection__image -->
+                <div class="collection__image lazyload visible-xs-block" data-bg="{% if background_image_mobile != blank %}{{ background_image_mobile }}{% else %}{{ _image }}{% endif %}"></div><!-- /.collection__image -->
+              {%- endif -%}
+
+
+              <div class="collection__content"
+                {%- if content_back_color != blank -%}
+                  style="background-color: {{ content_back_color }}" 
+                {%- endif -%}
+              >
+                <div class="collection__entry">
+                  <h2 id="{{ current_collection.handle }}" class="collection__title hidden-xs">{{ _title | newline_to_br }}</h2><!-- /.collection__title -->
+
+                  {%- if subtitle != blank -%}
+                    <h3 class="collection__subtitle visible-xs-block">{{ subtitle }}</h3>
+                  {%- endif -%}
+
+                  {%- if content -%}
+                    {%- if content contains '<p>' -%}
+                      {{ content }}
+                    {%- else -%}
+                      <p>{{ content }}</p>
+                    {%- endif -%}
+                  {%- endif -%}
+
+                  {%- if button_title != blank and button_url != blank -%}
+                    <a  href="{{ button_url }}" class="btn btn--link hidden-xs">
+                      {{ button_title }}
+                      {%- include 'icons' with icon: 'arrow-right' -%}
+                    </a>
+                  {%- else -%}
+                    <a  href="{{ current_collection.url }}" class="btn btn--link hidden-xs">
+                      {{ 'collections.general.view' | t }} {{ _title }}
+
+                      {%- include 'icons' with icon: 'arrow-right' -%}
+                    </a>
+                  {%- endif -%}
+
+                </div><!-- /.collection__entry -->
+              </div><!-- /.collection__content -->
+
+              <div class="products collection__products">
+
+                {%- assign _display_limit = 3 -%}
+
+                {%- if _products.size < 5 -%}
+                  {%- assign _product_size = _products.size | divided_by: 2 -%}
+                  {%- assign _product_size_alt = _product_size | times: 2 -%}
+
+                  {%- if _products.size == _product_size_alt -%}
+                    {%- if _products.size > 3 -%}
+                      {%- assign _display_limit = _product_size_alt | minus: 1 -%}
+                    {%- else -%}
+                      {%- assign _display_limit = _product_size_alt -%}
+                    {%- endif -%}
+                  {%- else -%}
+                    {%- assign _display_limit = _products.size -%}
+                  {%- endif -%}
+                {%- endif -%}
+                {%- assign _product_index = 1 -%}
+
+                {%- for _product in _products limit: _display_limit -%}
+                  {%- include 'product-item-page' with hide_form_for_mobile: true, vanityColors: vanity_colors_all -%}
+                  {%- assign _product_index = _product_index | plus: 1 -%}
+                {%- endfor -%}
+
+                <!-- Last Item [ Desktop => Show More item ] -->
+                  {%- include 'product-item-page' with is_show_more_item: true, button_url: button_url -%}
+              </div><!-- /.products -->
+            </div><!-- /.collection -->
+          {%- endif -%}
+        {%- else -%}
+          {%- assign _title = collection_fields[_title] -%}
+          {%- assign content = collection_fields[content] -%}
+          {%- assign _image = collection_fields[_image] -%}
+
+          {%- if _title != blank -%}
+            {% assign desktopNavigation = desktopNavigation | append: '||' | append: _title | append: '--' | append: current_collection.handle | append: '::' | append: button_url %}
+
+            <div class="collection collection--page {% if inverse_elements == 1 %} collection--inverse {% endif %}{% if background_image == 1 %} collection--bg_image{% endif %}">
+              {%- if _image and hide_image != 1 -%}
+                {%- if background_image != 1 -%}
+                  <div class="collection__image" style="background-image: url({{ _image }});"></div><!-- /.collection__image -->
+                {%- else -%}
+                  <img src="{{ _image }}" alt="{{ _title }}" />
+                {%- endif -%}
+              {%- endif -%}
+
+              <div class="collection__content{% if hide_image == 1 %} collection__content--hide_image{% endif %}">
+                <div class="collection__entry">
+                  {%- if subtitle -%}
+                    {%- if hide_image == 1 or background_image == 1 -%}
+                      <h3 class="collection__subtitle">{{ subtitle }}</h3><!-- /.collection__subtitle -->
+                    {%- endif -%}
+                  {%- endif -%}
+                  <h2 class="collection__title">{{ _title | newline_to_br }}</h2><!-- /.collection__title -->
+
+                  {%- if content -%}
+                    {%- if content contains '<p>' -%}
+                      {{ content }}
+                    {%- else -%}
+                      <p>{{ content }}</p>
+                    {%- endif -%}
+                  {%- endif -%}
+
+                  {%- if button_title and button_url -%}
+                    <a  href="{{ button_url }}" class="btn{% if hide_image == 1 %} btn--white{% elsif background_image == 1 %} btn--link{% else %} hidden-xs btn--link{% endif %}">
+                      {{ button_title }}
+
+                      {%- include 'icons' with icon: 'arrow-right' -%}
+                    </a>
+                  {%- endif -%}
+                </div><!-- /.collection__entry -->
+              </div><!-- /.collection__content -->
+
+              {%- if button_title and button_url and hide_image != 1 and background_image != 1 -%}
+                <div class="collection__actions visible-xs-block">
+                  <a  href="{{ button_url }}" class="btn btn--link">
+                    {{ button_title }}
+
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28.41 16.49" preserveAspectRatio="none">
+                      <polygon class="cls-1" points="28.41 8.24 20.16 16.49 20.16 9.76 0 9.76 0 6.71 20.16 6.71 20.18 0 28.41 8.24"/>
+                    </svg>
+                  </a>
+                </div><!-- /.collection__actions -->
+              {%- endif -%}
+            </div><!-- /.collection -->
+
+          {%- endif -%}
+        {%- endif -%}
+      {%- endfor -%}
+    </div><!-- /.shell -->
+  </div><!-- /.collections -->
+{%- endif -%}
+
+<!--a href="#" class="scroll-to-top js-waypoint hidden-xs">
+  <i class="ico-arrow-up"></i>
+</a-->
+
+<script>
+  let html = '';
+  {%- assign desktopNavigationCollections = desktopNavigation | remove_first: '||' | split: '||' -%}
+
+  {% for collection in desktopNavigationCollections -%}
+  {%- assign _collection = collection | split: '::' -%}
+    {%- assign head = _collection[0] -%}
+    {%- assign link = _collection[1] -%}
+
+  {%- assign data = head | split: '--' -%}
+    {%- assign title = data[0] -%}
+    {% assign handle = data[1] %}
+
+    html += `<a  href="{{ link }}" data-mobile-link="{{ handle }}" data-image="">{{ title }}</a>`;
+  {%- endfor %}
+  if(document.querySelector('[data-nav-desktop]')) {
+    document.querySelector('[data-nav-desktop]').innerHTML = html
+  }
+</script>

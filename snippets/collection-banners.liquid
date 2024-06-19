@@ -1,0 +1,202 @@
+<div class="banners" style="display: none;">
+  {%- for index in (1..10) -%}
+    {%- assign banner_additional_class = 'banner_' | append: index | append: '_type' -%}
+    {%- assign banner_additional_class = collection_banners[banner_additional_class] -%}
+    {%- assign banner_additional_class = shop.metafields[banner_additional_class].option -%}
+
+    {%- assign banner_index = 'banner_' | append: index | append: '_insert_after_element' -%}
+    {%- assign banner_index = collection_banners[banner_index] -%}
+    
+    {% if banner_index == blank %}
+      {%- assign banner_index = 'banner_' | append: index | append: '_insert_after_element_' -%}
+      {%- assign banner_index = collection_banners[banner_index] -%}
+    {% endif %}
+
+    {%- assign banner_text_only = 'banner_' | append: index | append: '_text_only' -%}
+    {%- assign banner_text_only = collection_banners[banner_text_only] -%}
+
+    {%- assign banner_ribbon = 'banner_' | append: index | append: '_image___ribbon' -%}
+    {%- assign banner_ribbon = collection_banners[banner_ribbon] -%}
+
+    {%- assign banner_image = 'banner_' | append: index | append: '_image' -%}
+    {%- assign banner_image = collection_banners[banner_image] -%}
+
+    {%- assign banner_mobile_image = 'banner_' | append: index | append: '_mobile_image' -%}
+    {%- assign banner_mobile_image = collection_banners[banner_mobile_image] -%}
+
+    {%- assign banner_title = 'banner_' | append: index | append: '_title' -%}
+    {%- assign banner_title = collection_banners[banner_title] -%}
+
+    {%- assign banner_back_color = 'banner_' | append: index | append: '_background_color' -%}
+    {%- assign banner_back_color = collection_banners[banner_back_color] -%}
+
+    {%- assign banner_content_color = 'banner_' | append: index | append: '_content_color' -%}
+    {%- assign banner_content_color = collection_banners[banner_content_color] -%}
+
+    {%- assign banner_subtitle = 'banner_' | append: index | append: '_subtitle' -%}
+    {%- assign banner_subtitle = collection_banners[banner_subtitle] -%}
+
+    {%- assign banner_content = 'banner_' | append: index | append: '_content' -%}
+    {%- assign banner_content = collection_banners[banner_content] -%}
+
+    {%- assign banner_button_text = 'banner_' | append: index | append: '_button_text' -%}
+    {%- assign banner_button_text = collection_banners[banner_button_text] -%}
+
+    {%- assign banner_button_url = 'banner_' | append: index | append: '_button_url' -%}
+    {%- assign banner_button_url = collection_banners[banner_button_url] -%}
+
+    {%- if banner_button_url != blank -%}
+      {%- if banner_button_text == '' or banner_button_text == blank -%}
+        {%- assign content_clickable = true -%}
+      {%- else -%}
+        {%- assign content_clickable = false -%}
+      {%- endif -%}
+    {%- endif -%}
+
+    {%- assign banner_additional_wrapper_class = banner_additional_class -%}
+
+    {% if banner_additional_class == 'banner--large--secondary' %}
+      <div
+          {% if content_clickable == true %}
+            data-link="{{ banner_button_url }}"
+          {% endif %}
+
+          style="
+          {%- if banner_back_color != blank -%}
+            {%- if banner_back_color != '#000000' and banner_back_color != '#ffffff' -%}
+                border-color: {{ banner_back_color }};
+            {%- endif -%}
+              background-color: {{ banner_back_color }};
+          {%- endif -%}
+
+          {%- if banner_content_color != blank -%}
+              color: {{ banner_content_color }};
+          {%- endif -%}
+              "
+
+          class="banner banner--large {{ banner_additional_wrapper_class }} banner--text-only"
+          {%- if banner_index != nil -%} data-insert-after="{{ banner_index }}" {%- endif -%}
+      >
+        {%- if banner_button_url != blank -%}
+          <a href="{{ banner_button_url }}" title="Link to {{ banner_title }}" class="banner--clickable-full"></a>
+        {%- endif -%}
+
+        <div class="banner__inner banner__inner--text-only">
+
+          <div class="banner__content banner__content--text-only secondary">
+            {%- if banner_subtitle -%}
+              <p class="banner__subtitle secondary">{{ banner_subtitle }}</p><!-- /.banner__title -->
+            {%- endif -%}
+
+            {%- if banner_title -%}
+              <h2 class="banner__title secondary">{{ banner_title | newline_to_br }}</h2><!-- /.banner__title -->
+            {%- endif -%}
+
+            {%- if banner_content != blank -%}
+              <div class="banner__detail secondary">{{ banner_content | newline_to_br  }}</div>
+            {%- endif -%}
+
+            {%- if banner_button_url and banner_button_text -%}
+
+            <a href="{{ banner_button_url }}" title="Link to {{ banner_title }}" class="btn btn--line">
+              {{ banner_button_text }}
+            </a>
+
+            {%- comment -%}
+            Commented btn secondary for Julie to preview btn--line in this banner
+
+            <a href="{{ banner_button_url }}" title="Link to {{ banner_title }}" class="btn secondary" style="
+              {%- if banner_content_color != blank -%}
+                color: {{ banner_content_color }};
+                border: 1px solid {{ banner_content_color }};
+              {%- endif -%}
+                "
+            >
+              {{ banner_button_text }}
+            </a>
+            {%- endcomment -%}
+            {%- endif -%}
+          </div><!-- /.banner__content -->
+
+        </div><!-- /.banner__inner -->
+      </div>
+    {% else %}
+      <div
+      {% if content_clickable == true %}
+        data-link="{{ banner_button_url }}"
+      {% endif %}
+
+      style="
+        {%- if banner_back_color != blank -%}
+          {%- if banner_back_color != '#000000' and banner_back_color != '#ffffff' -%}
+            border-color: {{ banner_back_color }};
+          {%- endif -%}
+          background-color: {{ banner_back_color }};
+        {%- endif -%}
+
+        {%- if banner_content_color != blank -%}
+          color: {{ banner_content_color }};
+        {%- endif -%}
+        
+        {%- if banner_image -%}
+          {%- assign banner_additional_wrapper_class = banner_additional_class | append: ' none-border lazyload' -%}
+        {%- endif -%}
+      "
+      
+      data-bgset="{% if banner_text_only != 1 and banner_additional_class == 'banner--small' or banner_additional_class == 'banner--medium' or banner_additional_class == 'banner--large' %}{{ banner_image }}{% endif %}"
+
+      class="banner {{ banner_additional_wrapper_class }} {% if banner_text_only == 1 %}banner--text-only{% endif %}"
+      {%- if banner_index != nil -%} data-insert-after="{{ banner_index }}" {%- endif -%}
+    >
+
+      {%- if banner_button_url != blank -%}
+        <a href="{{ banner_button_url }}" title="Link to {{ banner_title }}" class="banner--clickable-full"></a>
+      {%- endif -%}
+
+      <div class="banner__inner {% if banner_text_only == 1 %}banner__inner--text-only{% endif %}">
+
+        {%- if banner_additional_class == 'banner--medium' or banner_additional_class == 'banner--large'  -%}
+          {%- if banner_image != blank -%}
+            <figure class="banner--image visible-xs-block">
+              {%- if banner_mobile_image != blank -%}
+                <img class="lazyload" data-src="{{ banner_mobile_image }}" alt="kassatex" />
+              {%- else -%}
+                <img class="lazyload" data-src="{{ banner_image }}" alt="kassatex" />
+              {%- endif -%}
+            </figure><!-- /.banner--image -->
+          {% else %}
+          {%- endif -%}
+
+        {%- endif -%}
+
+        {% comment %}{%- if banner_additional_class == 'banner--large' and banner_image != blank -%}
+          <figure class="banner--image">
+            <img src="{{ banner_image }}" alt="" />
+          </figure><!-- /.banner--image -->
+        {%- endif -%}{% endcomment %}
+
+        <div class="banner__content {% if banner_text_only == 1 %}banner__content--text-only{% endif %} ">
+          {%- if banner_subtitle -%}
+            <p class="banner__subtitle">{{ banner_subtitle }}</p><!-- /.banner__title -->
+          {%- endif -%}
+
+          {%- if banner_title -%}
+            <h2 class="banner__title">{{ banner_title | newline_to_br }}</h2><!-- /.banner__title -->
+          {%- endif -%}
+
+          {%- if banner_content != blank -%}
+            <div class="banner__detail">{{ banner_content | newline_to_br  }}</div>
+          {%- endif -%}
+
+          {%- if banner_button_url and banner_button_text -%}
+            <a href="{{ banner_button_url }}" title="Link to {{ banner_title }}" class="btn btn--line">
+              {{ banner_button_text }}
+            </a>
+          {%- endif -%}
+        </div><!-- /.banner__content -->
+
+      </div><!-- /.banner__inner -->
+    </div><!-- /.banner -->
+    {%endif%}
+  {%- endfor -%}
+</div><!-- /.banners -->

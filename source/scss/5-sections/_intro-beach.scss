@@ -1,0 +1,88 @@
+.intro-beach {
+
+}
+.intro-beach--inner {
+  position: relative;
+}
+
+.intro-beach--subtitle {
+  font-family: "effra", sans-serif;
+  font-size: 12px;
+  color: inherit;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: 400;
+  margin-bottom: 10px;
+}
+
+.intro-beach--title {
+  margin-bottom: 5px;
+  font-family: "Vanitas";
+  letter-spacing: .5px;
+  font-size: 48px;
+  line-height: 1.2;
+}
+
+.intro-beach--content {
+  position: absolute;
+  bottom: 45px;
+  color: #fff;
+  width: 495px;
+  .btn {
+    text-decoration: none;
+    color: currentColor;
+    border-color: currentColor;
+    margin-top: 30px;
+  }
+
+  &.intro-beach--content--align-left {
+    text-align: left;
+    left: 147px;
+  }
+  &.intro-beach--content--align-center {
+    text-align: center;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  &.intro-beach--content--align-right {
+    text-align: right;
+    right: 147px;
+  }
+}
+
+@media (max-width: $responsive-md) {
+  .intro-beach--content {
+    &.intro-beach--content--align-left {
+      left: 5vw;
+    }
+    &.intro-beach--content--align-center {
+    }
+    &.intro-beach--content--align-right {
+      right: 5vw;
+    }
+  }
+}
+
+
+@media (max-width: $responsive-xs) {
+  .intro-beach--content {
+    &, &.intro-beach--content--align-left, &.intro-beach--content--align-center, &.intro-beach--content--align-right {
+      position: relative;
+      color: $default-color !important;
+      padding: 20px 18px 40px;
+      border-bottom: 1px solid #e2e0e0;
+      left: auto;
+      right: auto;
+      bottom: auto;
+      width: 100%;
+      text-align: center;
+      transform: none;
+    }
+  }
+  .intro-beach--subtitle {
+    margin-bottom: 0;
+  }
+  .intro-beach--title {
+    font-size: 36px;
+  }
+}

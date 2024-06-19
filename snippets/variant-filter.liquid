@@ -1,0 +1,29 @@
+{%- assign filterNameHandle = filterName | split: ' - ' -%}
+<div class="form__row options-container">
+  <label class="form__label">{{ filterName | capitalize }}:</label>
+  <label class="form__label">{{ options[0] | split: "||" | first }}</label>
+	<div class="form__controls">
+    <ul class="list-radios-boxes">
+      {% for option in options %}
+        {%- assign optionNameToShow = option -%}
+        {%- assign productIdToRemove = '' -%}
+        {%- assign optionName = option | replace: ' ', '-' | split: "||" | first -%}
+        {% if option contains "||" %}
+          {%- assign optionNameToShow = option | split: "||" | first -%}
+          {%- assign optionArray = option | split: "||" -%}
+          {% if optionArray[1] contains "REMOVE" %}
+            {%- assign productIdToRemove = optionArray[1] | remove: "REMOVE::" -%}
+          {% endif %}
+        {% endif %}
+
+        <li>
+          <div class="radio">
+            <input type="radio" class="optionFilter {{ filterNameHandle | last }}" name="option{{ position }}" id="field-{{ filterName | handleize }}-{{ optionName | escape }}" value="{{ optionName | escape }}" data-text="{{ optionNameToShow | escape }}" {% if is_current_variant %} checked {% endif %} data-index="option{{ position }}" {% if productId %} data-product="{{ productId }}" {% endif %} {% if productIdToRemove != '' %} data-product-remove="{{ productIdToRemove }}" {% endif %} />
+
+            <label for="field-{{ filterName | handleize }}-{{ optionName | escape }}">{{ optionNameToShow | escape }}</label>
+          </div>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>

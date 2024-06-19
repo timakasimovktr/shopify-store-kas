@@ -1,0 +1,37 @@
+<aside class="section__aside">
+  <div class="widgets">
+    <div class="widget">
+      <h2 class="hidden-xs">Hi {{ customer.first_name }},</h2>
+
+      <a  href="#links" class="visible-xs-block js-btn-expand">
+        {% if template contains 'account' %}
+          {{ 'customer.general.my_profile' | t }}
+        {%- elsif template contains 'addresses' -%}
+          {{ 'customer.general.address_book' | t }}
+        {%- elsif template contains 'order' -%}
+          {{ 'customer.general.orders' | t }}
+        {% endif %}
+      </a>
+
+      <ul class="list-links-alt" id="links">
+        <li {% if template contains 'account' %}  class="current" {% endif %}>
+          <a href="/account">{{ 'customer.general.my_profile' | t }}</a>
+        </li>
+
+        <li {% if template contains 'addresses' %}  class="current" {% endif %}>
+          <a href="/account/addresses">{{ 'customer.general.address_book' | t }}</a>
+        </li>
+
+        <li {% if template contains 'order' %}  class="current" {% endif %}>
+          <a href="/pages/orders">{{ 'customer.general.orders' | t }}</a>
+        </li>
+
+        <li {% if template contains 'rewards' %}  class="current" {% endif %}>
+          <a href="/pages/rewards">My Rewards</a>
+        </li>
+      </ul><!-- /.list-links-alt -->
+
+      <a  href="/account/logout" class="widget__link">{{ 'layout.customer.log_out' | t }}</a>
+    </div><!-- /.widget -->
+  </div><!-- /.widgets -->
+</aside><!-- /.section__aside -->

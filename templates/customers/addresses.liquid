@@ -1,0 +1,151 @@
+<section class="section-default">
+  <div class="shell">
+    <div class="section__inner section__inner--alt">
+      {%- include 'account-aside' -%}
+
+      <div class="section__content">
+        {% paginate customer.addresses by 5 %}
+          <div class="addresses">
+            <div class="accordions">
+              {% for address in customer.addresses %}
+                {% assign first_name = address.first_name %}
+                {% assign last_name = address.last_name %}
+                {% assign company = address.company %}
+                {% assign street = address.street %}
+                {% assign city = address.city %}
+                {% assign province_code = address.province_code %}
+                {% assign zip = address.zip %}
+                {% assign country = address.country %}
+                {% assign phone = address.phone %}
+                {% capture default %}{% if address.id == customer.default_address.id %}true{% endif %}{% endcapture %}
+                {% assign class = '' %}
+
+                {% if default != blank %}
+                  {% assign class = class | append: ' ' | append: 'default' %}
+                {% endif %}
+
+                <div class="accordion-section{{ class }}">
+                  <div class="accordion-head">
+                    <div class="accordion-head-inner">
+                      <p>{{ first_name | capitalize }} {{last_name | capitalize }}</p>
+
+                      <address>
+                        {%- if company != blank -%}
+                          {{ company }}
+
+                          <br />
+                        {%- endif -%}
+
+                        {%- if street != blank -%}
+                          {{ street }},&nbsp;
+
+                          {%- if city != blank -%}
+                            {{ city }}
+                          {%- endif -%}
+
+                          {%- if province_code != blank -%}
+                            {{ province_code }}
+                          {%- endif -%}
+
+                          {%- if zip != blank -%}
+                            {{ zip }}
+                          {%- endif -%}
+
+                          <br />
+                        {%- else -%}
+                          {%- if city != blank -%}
+                            {{ city }}
+                          {%- endif -%}
+
+                          {%- if province_code != blank -%}
+                            {{ province_code }}
+                          {%- endif -%}
+
+                          {%- if zip != blank -%}
+                            {{ zip }}
+                          {%- endif -%}
+
+                          <br />
+                        {%- endif -%}
+
+                          {% if country != blank %}
+                            {{ country }}
+
+                            <br />
+                          {% endif %}
+
+                          {% if phone != blank %}
+                              {{ phone }}
+
+                              <br />
+                          {% endif %}
+                      </address>
+                    </div><!-- /.accordion-head-inner -->
+
+                    <div class="accordion-head-actions">
+                      <a href="#address_form_{{address.id}}" class="btn btn--block js-default-address {% if default != blank %} is-active {% endif %}">{{ 'customer.addresses.default' | t }}</a>
+
+                      <a href="#" class="btn btn--block" onclick="Shopify.CustomerAddress.toggleForm({{address.id}}); return false">Edit</a>
+                    </div><!-- /.accordion-head-actions -->
+                  </div><!-- /.accordion-head -->
+
+                  <div class="accordion-body">
+                    {% assign form_class = 'form form--default form--edit-address '  | append : 'edit-address-' | append : address.id %}
+
+                    {% form 'customer_address', address, class: form_class  %}
+                      {% assign idx = form.id %}
+
+                      {% if form.errors %}
+                        <div class="form__notice">
+                          {{ form.errors | default_errors }}
+                        </div><!-- /.form__notice -->
+                      {% endif %}
+
+                      <div class="form__body">
+                        {% include 'form-address-body' %}
+                      </div><!-- /.form__body -->
+
+                      <div class="form__actions">
+                        <input type="submit" class="form__btn btn" value="{{ 'customer.addresses.update' | t }}" >
+
+                        <a href="#" class="btn form__btn cancel">{{ 'customer.addresses.cancel' | t }}</a>
+
+                        <a href="#" class="btn btn--solid form__btn" onclick="Shopify.CustomerAddress.destroy({{address.id}}, &quot;Are you sure you wish to delete this address?&quot;); return false">Delete</a>
+                      </div><!-- /.form__actions -->
+                    {% endform %}
+                  </div><!-- /.accordion-body -->
+                </div><!-- /.accordion-section -->
+              {% endfor %}
+            </div><!-- /.accordions -->
+
+            <a href="#" class="btn btn-new-adress">{{ 'customer.addresses.add_new' | t }}</a>
+
+            {% assign form_class = 'form form--default form--add-address' %}
+
+            {% form 'customer_address', customer.new_address, class: form_class  %}
+              {% assign idx = form.id %}
+
+              {% if form.errors %}
+                <div class="form__notice">
+                  {{ form.errors | default_errors }}
+                </div><!-- /.form__notice -->
+              {% endif %}
+
+              <div class="form__body">
+                {% include 'form-address-body' %}
+              </div><!-- /.form__body -->
+
+              <div class="form__actions clear">
+                <input type="submit" class="form__btn btn" value="{{ 'customer.addresses.add' | t }}" >
+
+                <a href="#" class="form__btn btn cancel">{{ 'customer.addresses.cancel' | t }}</a>
+              </div><!-- /.form__actions -->
+            {% endform %}
+
+            {% include 'pagination', label: true, prev_next : true, pager: true %}
+          </div><!-- /.addresses -->
+        {% endpaginate %}
+      </div><!-- /.section__content -->
+    </div><!-- /.section__inner -->
+  </div><!-- /.shell -->
+</section><!-- /.section-default -->

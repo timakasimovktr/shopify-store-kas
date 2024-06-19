@@ -1,0 +1,24 @@
+{% comment %}
+  Using Formspree
+{% endcomment %}
+
+<section class="section-default">
+  <div class="shell">
+    <div class="section__inner">
+      <div class="page__head">
+        <h2>{{ page.title }}</h2>
+        <p>{{ page.content }}</p>
+      </div>
+
+      <div class="section__cols">
+        <div class="section__col">
+          {%- section 'interio-form-setting' -%}
+        </div><!-- /.section__col -->
+
+        <div class="section__col">
+          {%- section 'interio-widgets' -%}
+        </div><!-- /.section__col -->
+      </div><!-- /.section__cols -->
+    </div><!-- /.section__inner -->
+  </div><!-- /.shell -->
+</section><!-- /.section-default -->

@@ -1,0 +1,67 @@
+{%- assign _section = section.settings -%}
+{%- if _section.is_enable -%}
+  <div class="everywhere-tote">
+    <div class="shell">
+      <div class="everywhere-tote--inner">
+        {%- include 'quote-item', q_obj: _section -%}
+      </div>
+    </div>
+  </div>
+{%- endif -%}
+{% schema %}
+{
+  "name": "EveryWhere Tote",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "is_enable",
+      "label": "Is Enable/Disable",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "video",
+      "label": "Video Url",
+      "info": "MP4 file is recommended."
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_image",
+      "label": "Mobile Image"
+    },
+    {
+      "type": "text",
+      "id": "sub_title",
+      "label": "Sub Title",
+      "default": "This just in"
+    },
+    {
+      "type": "textarea",
+      "id": "title",
+      "label": "Title",
+      "default": "The Go-Everywhere Tote"
+    },
+    {
+      "type": "richtext",
+      "id": "detail",
+      "label": "Detail"
+    },
+    {
+      "type": "text",
+      "id": "btn_txt",
+      "label": "Button Text",
+      "default": "Shop beach bags"
+    },
+    {
+      "type": "url",
+      "id": "btn_url",
+      "label": "Button Url"
+    }
+  ]
+}
+{% endschema %}

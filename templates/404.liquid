@@ -1,0 +1,26 @@
+<section class="section-error">
+  {%- if settings.error_image != blank -%}
+    <div class="lazyload section__image hidden-xs" data-bgset="{{ settings.error_image | img_url: '2880x' }}"></div><!-- /.section__image -->
+  {%- endif -%}
+
+
+  <div class="shell">
+    <div class="section__content">
+      {%- if settings.error_title != blank -%}
+        <h1>{{ settings.error_title | newline_to_br }}</h1>
+      {%- endif -%}
+
+      {%- if settings.error_content != blank -%}
+        <p>{{ settings.error_content | newline_to_br }}</p>
+      {%- endif -%}
+
+      {%- if settings.error_btn_text != blank and settings.error_btn_url != blank -%}
+        <a   href="{{ settings.error_btn_url }}" class="btn btn--link">
+          {{ settings.error_btn_text }}
+
+          {%- include 'icons' with icon: 'arrow-right' -%}
+        </a>
+      {%- endif -%}
+    </div><!-- /.section__content -->
+  </div><!-- /.shell -->
+</section><!-- /.section-error -->

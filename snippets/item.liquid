@@ -1,0 +1,27 @@
+<div class="item">
+  {%- if current_block.button_url != blank -%}
+    <a href="{{current_block.button_url}}">
+  {%- endif -%}
+    <div class="item__content">
+      {%- if current_block.title != blank -%}
+        <h2 class="item__title">{{ current_block.title | newline_to_br }}</h2><!-- /.item__title -->
+      {%- endif -%}
+
+      {%- if current_block.subtitle != blank -%}
+        <h4 class="item__subtitle">{{ current_block.subtitle | newline_to_br }}</h4><!-- /.item__subtitle -->
+      {%- endif -%}
+    </div><!-- /.item__content -->
+
+    {%- if current_block.image != blank -%}
+      <div class="item__image lazyload" data-sizes="auto" data-bgset="{{ current_block.image | img_url: '180x' }} 180w,{{ current_block.image | img_url: '360x' }} 360w,{{ current_block.image | img_url: '540x' }} 540w,{{ current_block.image | img_url: '720x' }} 720w,{{ current_block.image | img_url: '900x' }} 900w,{{ current_block.image | img_url: '1080x' }} 1080w,{{ current_block.image | img_url: '1296x' }} 1296w,{{ current_block.image | img_url: '1512x' }} 1512w"></div><!-- /.item__image -->
+    {%- endif -%}
+
+    {%- if current_block.button_text != blank -%}
+      <span class="item__content visible-xs-block">
+        <span class="btn btn--block">{{ current_block.button_text }}</span>
+      </span>
+    {%- endif -%}
+  {%- if current_block.button_url != blank -%}
+    </a>
+  {%- endif -%}
+</div><!-- /.item -->

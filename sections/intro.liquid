@@ -1,0 +1,175 @@
+{%- assign _section = section.settings -%}
+{%- assign _blocks = section.blocks -%}
+
+<div class="intro">
+  {%- if _section.video == blank and _blocks.size > 0 -%}
+    <div class="slider">
+      <div class="slider__clip">
+        <div class="slider__slides js-slider">
+          {%- for block in _blocks -%}
+            {%- assign current_block = block.settings -%}
+            {%- assign _block_style = "" -%}
+            {%- if _section.color != blank -%}
+              {%- assign _block_style = "style='color: " | append: _section.color | append: "'" -%}
+            {%- endif -%}
+            <div class="slider__slide" {{ _block_style }}>
+              {%- if current_block.link != blank -%}
+                <a href="{{ current_block.link }}" class="slider__slide-link">
+              {%- endif -%}
+              {%- if current_block.image != blank -%}
+                {% if current_block.is_progressive_img %}
+                  <div class="slider__slide-image lazyload {% if current_block.image_mobile != blank %} hidden-xs {% endif %}" data-sizes="auto" data-bgset="{{ current_block.image | img_url: '1024x', format: 'pjpg' }} 1024w, {{ current_block.image | img_url: '1600x', format: 'pjpg' }} 1600w, {{ current_block.image | img_url: '2048x', format: 'pjpg' }} 2048w"></div><!-- /.slider__slide-image -->
+                {% else %}
+                  <div class="slider__slide-image lazyload {% if current_block.image_mobile != blank %} hidden-xs {% endif %}" data-sizes="auto" data-bgset="{{ current_block.image | img_url: '1024x' }} 1024w, {{ current_block.image | img_url: '1600x' }} 1600w, {{ current_block.image | img_url: '2048x' }} 2048w"></div><!-- /.slider__slide-image -->
+                {% endif %}
+              {%- endif -%}
+              {%- if current_block.image_mobile != blank -%}
+                {% if current_block.is_progressive_img %}
+                  <div class="lazyload slider__slide-image visible-xs-block" data-bgset="{{ current_block.image_mobile | img_url: '768x', format: 'pjpg' }}"></div><!-- /.slider__slide-image -->
+                {% else %}
+                  <div class="lazyload slider__slide-image visible-xs-block" data-bgset="{{ current_block.image_mobile | img_url: '768x' }}"></div><!-- /.slider__slide-image -->
+                {%- endif -%}
+              {%- endif -%}
+              <div class="slider__slide-content {{ current_block.align_content }}">
+                {%- if current_block.subtitle != blank -%}
+                  <h6>{{ current_block.subtitle | newline_to_br }}</h6>
+                {%- endif -%}
+                {%- if current_block.title != blank -%}
+                  <h1>{{ current_block.title | newline_to_br }}</h1>
+                {%- endif -%}
+                {%- if current_block.description != blank -%}
+                  <h6>{{ current_block.description | newline_to_br }}</h6>
+                {%- endif -%}
+                {%- if current_block.button_text != blank and current_block.button_url != blank -%}
+                  <a href="{{ current_block.button_url }}" class="btn btn--link slider__slide-btn">
+                    {{ current_block.button_text }}
+                    {%- include 'icons' with icon: 'arrow-right' -%}
+                  </a>
+                {%- endif -%}
+              </div><!-- /.slider__slide-content -->
+              {%- if current_block.link != blank -%}
+                </a><!-- /.slider__slide -->
+              {%- endif -%}
+            </div><!-- /.slider__slide -->
+          {%- endfor -%}
+        </div><!-- /.slider__slides -->
+      </div><!-- /.slider__clip -->
+    </div><!-- /.slider -->
+  {%- endif -%}
+  
+  {% if _section.video != blank %}
+    <video id="intro-video" src="{{_section.video}}" autoplay loop playsinline {% if _section.is_muted %}muted{% endif %}></video>
+  {% endif %}
+</div><!-- /.intro -->
+
+{% schema %}
+{
+  "name": "Intro",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Video Property"
+    },
+    {
+      "type": "checkbox",
+      "id": "is_muted",
+      "label": "Muted video",
+      "default": false
+    },
+    {
+      "type": "url",
+      "id": "video",
+      "label": "Video File URL"
+    },
+    {
+      "type": "header",
+      "content": "General Style"
+    },
+    {
+      "type": "color",
+      "id": "color",
+      "label": "Content Color",
+      "default": "#55565a"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "Slide",
+      "settings": [
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        },
+        {
+          "type": "select",
+          "id": "align_content",
+          "label": "Aligned content",
+          "options": [
+              {
+                "value": "slider__slide-content--alignleft",
+                "label": "Aligned left"
+              },
+              {
+                "value": "slider__slide-content--aligncenter",
+                "label": "Aligned center"
+              },
+              {
+                "value": "slider__slide-content--alignright",
+                "label": "Aligned right"
+              }
+            ],
+            "default": "slider__slide-content--alignleft"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_mobile",
+          "label": "Image mobile"
+        },
+        {
+          "type": "checkbox",
+          "id": "is_progressive_img",
+          "label": "Progressive image",
+          "default": false
+        },
+        {
+          "type": "textarea",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "textarea",
+          "id": "subtitle",
+          "label": "Subtitle"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description"
+        },
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "Button text"
+        },
+        {
+          "type": "url",
+          "id": "button_url",
+          "label": "Button URL"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Intro"
+    }
+  ]
+}
+{% endschema %}

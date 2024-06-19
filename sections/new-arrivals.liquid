@@ -1,0 +1,122 @@
+{%- assign _section = section.settings -%}
+{%- assign _blocks = section.blocks -%}
+
+
+{%- if _blocks.size > 0 -%}
+  {%- comment -%} Style of Section {%- endcomment -%}
+      {%- if _section.color != blank -%}
+        <style type="text/css">
+          .section-new-products[data-section-id="{{ section.id }}"] .items .item--small .item__title,
+          .section-new-products[data-section-id="{{ section.id }}"] .items .item--small .item__subtitle,
+          .section-new-products[data-section-id="{{ section.id }}"] .items .item--small .btn--link,
+          .section-new-products[data-section-id="{{ section.id }}"] .btn,
+          .section-new-products[data-section-id="{{ section.id }}"] .items .item:not(.item--small) .item__title,
+          .section-new-products[data-section-id="{{ section.id }}"] .items .item:not(.item--small) .item__subtitle
+           {
+            color: {{ _section.color }};
+          }
+        </style>
+      {%- endif -%}
+  <section class="section-new-products" data-section-id="{{ section.id }}">
+    <div class="section__inner">
+      <div class="items">
+        {%- for block in _blocks -%}
+          {%- assign current_block = block.settings -%}
+
+          {%- if block.type == 'item' -%}
+            {%- include 'item' -%}
+          {%- elsif block.type == 'item-small' -%}
+            {%- include 'item-small' -%}
+          {%- endif -%}
+        {%- endfor -%}
+      </div><!-- /.items -->
+    </div><!-- /.section__inner -->
+  </section><!-- /.section-new-products -->
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "New Arrivals",
+  "settings": [
+    {
+      "type": "header",
+      "content": "General Style"
+    },
+    {
+      "type": "color",
+      "id": "color",
+      "label": "Content Color",
+      "default": "#636363"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Item",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "textarea",
+          "id": "subtitle",
+          "label": "Subtitle"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "Button text"
+        },
+        {
+          "type": "url",
+          "id": "button_url",
+          "label": "Button URL"
+        }
+      ]
+    },
+    {
+      "type": "item-small",
+      "name": "Item small",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "textarea",
+          "id": "subtitle",
+          "label": "Subtitle"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "Button text"
+        },
+        {
+          "type": "url",
+          "id": "button_url",
+          "label": "Button URL"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "New Arrivals"
+    }
+  ]
+}
+{% endschema %}

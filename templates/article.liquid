@@ -1,0 +1,13 @@
+<article class="article">
+	<div class="shell">
+		<div class="article__inner">
+			<h1 class="article__title">{{ article.title }}</h1><!-- /.article__title -->
+
+			{% if article.image %}
+				<img src="{{ article.image | img_url: '1024x' }}" alt="" />
+			{% endif %}
+
+			{{ article.content }}
+		</div><!-- /.article__inner -->
+	</div><!-- /.shell -->
+</article><!-- /.article -->

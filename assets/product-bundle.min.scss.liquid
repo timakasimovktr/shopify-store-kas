@@ -1,0 +1,68 @@
+.btn-add-bundle {
+  &.loading {
+  	& > i {
+      display: inline-block !important;
+    }
+  }
+  & > i.fa {
+    display: none;
+  	transition: all 0.5s;
+  }
+}
+
+.bundle-container {
+  .products-container {
+    display: none;
+    .product {
+      margin-left: 50px;
+    }
+  }
+  
+  .btn-show-items{
+    cursor: pointer;
+    img {
+      display: inline-block;
+      transition: transform 0.3s linear;
+      &.open {
+        transform: rotate(-180deg);
+        transition: transform 0.3s linear;
+      }
+    }
+  }
+  
+  .btn-remove-bundle {
+    .ico-close {
+      width: 15px;
+      height: 15px;
+      position: absolute;
+      top: 6px;
+      right: 0;
+    }
+  }
+  
+  .bundle-counter {
+    & > small {
+      font-size: 14px;
+      line-height: 1.3;
+      font-weight: 400;
+      letter-spacing: .02em;
+    }
+  }
+  
+  .mainBundle {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin: 0 20px 21px 20px;
+    position: relative;
+  }
+}
+
+#cart-inner {
+  .cart__inner-body {
+    .section-cart, .shell, #shopify-section-instagram {
+      display: none !important;
+    }
+  }
+}

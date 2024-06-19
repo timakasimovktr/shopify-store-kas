@@ -1,0 +1,16 @@
+{% case item_for_check %}
+	{% when '1' %}
+		{% assign grid_item_width = '' %}
+	{% when '2' %}
+		{% assign grid_item_width = 'large--one-half medium--one-half' %}
+	{% when '3' %}
+		{% assign grid_item_width = 'large--one-third medium--one-half' %}
+	{% when '4' %}
+		{% assign grid_item_width = 'large--one-quarter medium--one-third small--one-half' %}
+	{% when '5' %}
+		{% assign grid_item_width = 'large--one-fifth medium--one-third small--one-half' %}
+	{% when '6' %}
+		{% assign grid_item_width = 'large--one-sixth medium--one-third small--one-half' %}
+	{% else %}
+		{% assign grid_item_width = 'large--one-quarter medium--one-third small--one-half' %}
+{% endcase %}

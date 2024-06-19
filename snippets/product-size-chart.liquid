@@ -1,0 +1,131 @@
+{% assign namespace = current_collection.metafields.sf_banners.size_guide_order_1 %}        
+{% assign size_guide_order_1 = shop.metafields[namespace].guide %}
+{% assign namespace = current_collection.metafields.sf_banners.size_guide_order_2 %}        
+{% assign size_guide_order_2 = shop.metafields[namespace].guide %}
+{% assign namespace = current_collection.metafields.sf_banners.size_guide_order_3 %}        
+{% assign size_guide_order_3 = shop.metafields[namespace].guide %}
+
+{% if size_guide_order_1 == blank %}
+  {% assign size_guide_order_1 = 'Size Chart' %}
+  {% assign size_guide_order_2 = 'Pillow Guide' %}
+  {% assign size_guide_order_3 = 'Bedding Guide' %}
+{% endif %}
+
+{% assign productType = product.type | downcase %}
+{% assign size_guide_option1_array = 'sheets|bundle|duvet|' | split: '|' %}
+{% assign size_guide_option2_array = 'shams|' | split: '|' %}
+{% assign size_guide_option3_array = '' | split: '|' %}
+{% assign activeTabIndex = -1 %}
+
+{%- assign available_sizes = available_sizes | reverse -%}
+
+{%- if _available_sizes != '' -%}
+  {%- assign _available_sizes_arr = _available_sizes | split: '@@@' -%}
+  {%- for available_size in available_sizes -%}
+    {%- assign alreadyAdded = false -%}
+    {%- for _size in _available_sizes_arr -%}
+      {%- if available_size == _size -%}
+        {%- assign alreadyAdded = true -%}
+      {%- endif -%}
+    {%- endfor -%}
+    {%- if alreadyAdded == false -%}
+      {%- assign _available_sizes = _available_sizes | append: available_size | append: '@@@' -%}
+    {%- endif -%}
+  {%- endfor -%}
+  {%- assign available_sizes = _available_sizes | split: '@@@' | compact -%}
+{%- endif -%}
+
+{%- for size in available_sizes -%}
+  {% if size_guide_option1_array contains productType and forloop.index == 1 %}
+    {% assign activeTabIndex = forloop.index %}
+  {% endif %}
+
+  {% if size_guide_option2_array contains productType and forloop.index == 2 %}
+    {% assign activeTabIndex = forloop.index %}
+  {% endif %}
+
+  {% if size_guide_option3_array contains productType and forloop.index == 3 %}
+    {% assign activeTabIndex = forloop.index %}
+  {% endif %}
+{% endfor %}
+
+{% if activeTabIndex == -1 %}
+  {% assign activeTabIndex = 1 %}
+{% endif %}
+
+
+<div class="popup" id="popup">
+  <div class="popup__bg js-close-popup"></div>
+
+  <div class="popup__inner">
+    <a  href="#" class="popup__close js-close-popup">
+      <i class="ico-close hidden-xs"></i>
+
+      <span class="visible-xs-block">&larr;</span>
+    </a>
+
+    <h2 class="popup__title">{{ 'products.general.size_guide' | t }}</h2>
+
+    <div class="tabs-sizes" data-product-type="{{product.type}}">
+      <div class="tabs__head">
+        <span class="tabs__dropdown visible-xs-block">
+          {{ pages[available_sizes[0]].title }}
+        </span>
+
+        <nav class="tabs__nav">
+          <ul>
+            {%- for size in available_sizes -%}
+              {%- assign current_page = pages[size] -%}
+
+              <li {% if forloop.index == activeTabIndex %} class="current" {% endif %} data-size-name="{{ size | downcase }}">
+                <a href="#tab{{forloop.index}}">{{ current_page.title }}</a>
+              </li>
+            {%- endfor -%}
+          </ul>
+        </nav>
+      </div>
+
+      <div class="tabs__body">
+        {%- for size in available_sizes -%}
+          {%- assign current_page = pages[size] -%}
+          {%- assign additional_class = '' -%}
+
+          {%- if current_page.template_suffix contains 'size' -%}
+            {%- assign additional_class = 'tab--sizes' -%}
+          {%- elsif current_page.template_suffix contains 'guide' -%}
+            {%- assign additional_class = 'tab--guide' -%}
+          {%- elsif current_page.template_suffix contains 'pillow' -%}
+            {%- assign additional_class = 'tab--pillow' -%}
+          {%- endif -%}
+          
+          {% if forloop.index == activeTabIndex %}
+            {%- assign additional_class = additional_class | append: ' current' -%}
+          {% endif %}
+
+          <div class="tab {{ additional_class }}" id="tab{{forloop.index}}">
+            {%- if current_page.template_suffix contains 'size' -%}
+              {%- assign popup_image = product.metafields.sf_popup_information.image -%}
+              {%- assign popup_caption = product.metafields.sf_popup_information.caption_image -%}
+
+              {%- if popup_image -%}
+                <figure class="tab__image">
+                  <img class="lazyload" data-src="{{ popup_image }}" alt="kassatex" />
+
+                  <figcaption>{{ popup_caption | newline_to_br }}</figcaption>
+                </figure>
+              {%- endif -%}
+
+              {{ current_page.content }}
+            {%- elsif current_page.template_suffix contains 'guide' -%}
+              {% assign contents = current_page.metafields.sf_guide.contents %}
+              {{ contents }}
+            {%- elsif current_page.template_suffix contains 'pillow' -%}
+              {% assign contents = current_page.metafields.sf_guide.contents %}
+              {{ contents }}
+            {%- endif -%}
+          </div>
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+</div>

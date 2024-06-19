@@ -1,0 +1,34 @@
+{% assign title_video = product.metafields.sf_video.title %}
+{% assign content_video = product.metafields.sf_video.content %}
+{% assign image_video = product.metafields.sf_video.image %}
+{% assign video_url = product.metafields.sf_video.video_url %}
+
+{%- if video_url -%}
+  <section class="section-video">
+    <div class="shell">
+      {%- if title_video or content_video -%}
+        <header class="section__head">
+          {%- if title_video -%}
+            <h6 class="section__title">{{ title_video | newline_to_br }}</h6><!-- /.section__title -->
+          {%- endif -%}
+
+          <p>{{ content_video | newline_to_br }}</p>
+        </header><!-- /.section__head -->
+      {%- endif -%}
+
+      <div class="section__body">
+         <div class="video-holder video-holder--alt section__video">
+          <div class="video-holder__image js-play-btn" style="background-image: url({%- if image_video -%} {{ image_video }} {%- else -%} {{ 'slide-1.jpg' | asset_url }} {%- endif -%});">
+            <span class="btn-play">
+              <i class="ico-play"></i>
+            </span>
+          </div><!-- /.video-holder__image -->
+
+          <video id="product_video" loop controls>
+            <source src="{{ video_url }}" type="video/mp4"></source>
+          </video>
+        </div><!-- /.video-holder -->
+      </div><!-- /.section__body -->
+    </div><!-- /.shell -->
+  </section><!-- /.section-video -->
+{%- endif -%}

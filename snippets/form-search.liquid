@@ -1,0 +1,18 @@
+<div class="search" id="search">
+  <div class="shell">
+    <form action="/search" method="get" class="form-search" role="search">
+      <label for="q" class="hidden">Search</label>
+
+      <input type="search"  name="q" value="{{ search.terms | escape }}" placeholder="{{ 'general.search.placeholder' | t }}" class="search__field" />
+      <input type="hidden" name="type" value="product" />
+
+      <button type="submit" class="search__btn">
+        <i class="ico-search-large"></i>
+      </button>
+
+      <a  href="#search" class="search__close js-btn-expand">
+        <i class="ico-search-close"></i>
+      </a>
+    </form>
+  </div><!-- /.shell -->
+</div><!-- /.search -->

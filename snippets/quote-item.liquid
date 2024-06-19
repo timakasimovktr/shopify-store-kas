@@ -1,0 +1,46 @@
+<div class="quote-item">
+  <div class="quote-item--inner">
+    {%- if content != 'image' -%}
+      <div class="quote-item--content">
+        {%- if q_obj.sub_title != blank -%}
+          <div class="quote-item--subtitle">{{ q_obj.sub_title }}</div>
+        {%- endif -%}
+
+        {%- if q_obj.title != blank -%}
+          <div class="quote-item--title">{{ q_obj.title }}</div>
+        {%- endif -%}
+
+        {%- if q_obj.detail != blank -%}
+          <div class="quote-item--detail">{{ q_obj.detail }}</div>
+        {%- endif -%}
+
+        {%- if q_obj.btn_url != blank and q_obj.btn_txt != blank -%}
+          <a  href="{{ q_obj.btn_url }}" class="btn btn--link">
+            {{ q_obj.btn_txt }}
+            {%- include 'icons' with icon: 'arrow-right' -%}
+          </a>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+    {%- if content != 'content' -%}
+      {%- if q_obj.video != blank -%}
+        <div class="video-holder video-holder--alt quote-item--video">
+          <video muted loop id="video-holder__video" autoplay loop>
+            <source src="{{ q_obj.video }}" type="video/mp4"></source>
+          </video>
+        </div><!-- /.video-holder -->
+      {%- else -%}
+        {%- if q_obj.image != blank or q_obj.mobile_image != blank -%}
+          <div class="quote-item--image no-touchable">
+            <img 
+              class="lazyload full-width"
+              data-srcset="{% include 'bgsets', img: q_obj.image, mobile_img: q_obj.mobile_image %}"
+              data-sizes="auto"
+              src="{{ q_obj.image | img_url: '100x' }}"
+            />
+          </div>
+        {%- endif -%}
+      {%- endif -%}
+    {%- endif -%}
+  </div>
+</div>

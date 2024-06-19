@@ -1,0 +1,47 @@
+<div class="blog clear">
+	<div class="content">
+		<h1 class="page-title">{{ blog.title }}</h1>
+		{% assign per_page = 5 %}
+		{% assign setting_per_page = settings.posts_per_page | plus: 0 %}
+		{% if setting_per_page > 0 %}
+			{% assign per_page = settings.posts_per_page %}
+		{% endif %}
+		
+		
+		{% paginate blog.articles by per_page %}
+			<div class="articles grid-articles">
+				{% for article in blog.articles %}
+					{% include 'grid-classes', item_for_check: settings.grid_num_blog %}
+					<article class="article {{grid_item_width}}">
+						<header class="article-head">
+							{% if article.image %}
+								<a  href="{{ article.url }}">
+									<span class="lazyload image" data-bgset="url({{ article.image | img_url: '1024x1024'  }})"></span>
+								</a>
+							{% endif %}
+
+							<h4 class="article-title"><a href="{{ article.url }}">{{ article.title }}</a> </h4><!-- /.article-title -->
+							
+							<div class="article-meta">
+								{% assign published_at = article.published_at | date: format: 'short' %}
+								{{ 'blogs.article.posted_on_date' | t: date: published_at }}
+
+								{% if article.comments_enabled? %}, 
+									{{ 'blogs.comments.comments_with_count' | t: count: article.comments_count }}
+								{% endif %}
+							</div><!-- /.article-meta -->
+						</header><!-- /.article-head -->
+						
+						<div class="article-body">
+							<div class="article-entry">
+								{{ article.excerpt_or_content }}
+							</div><!-- /.article-entry -->
+						</div><!-- /.article-body -->
+					</article><!-- /.article -->
+				{% endfor %}
+			</div><!-- /.articles -->
+
+			{% include 'pagination' %}
+		{% endpaginate %}
+	</div><!-- /.content -->
+</div><!-- /.blog -->

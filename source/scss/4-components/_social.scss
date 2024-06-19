@@ -1,0 +1,45 @@
+/* ------------------------------------------------------------ *\
+  Socials
+\* ------------------------------------------------------------ */
+
+.socials {
+  ul {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+    align-items: center;
+    list-style: none outside none;
+    margin: 0 -8px;
+  }
+
+  li {
+    margin: 0 8px;
+  }
+
+  a {
+    display: block;
+    font-size: 0;
+    line-height: 1;
+    transition: opacity 0.3s;
+
+    &:hover {
+      opacity: 0.6;
+    }
+  }
+
+  /* Tablet Portrait */
+
+  @media (max-width: #{$responsive-sm}) {
+    ul {
+      justify-content: center;
+    }
+  }
+
+  /* Mobile */
+
+  @media (max-width: #{$responsive-xs}) {
+    li {
+      margin: 0 17px;
+    }
+  }
+}

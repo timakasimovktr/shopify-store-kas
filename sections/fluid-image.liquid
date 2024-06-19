@@ -1,0 +1,104 @@
+{%- assign _section = section.settings -%}
+
+{%- if _section.image != blank -%}
+{%- comment -%} Style of Section {%- endcomment -%}
+  {%- if _section.color != blank -%}
+    <style type="text/css">
+      .section-fluid[data-section-id="{{ section.id }}"] .btn--line,
+      .section-fluid[data-section-id="{{ section.id }}"] .section__subtitle,
+      .section-fluid[data-section-id="{{ section.id }}"] .section__title
+       {
+        color: {{ _section.color }};
+      }
+    </style>
+  {%- endif -%}
+<section class="section-fluid" data-section-id="{{ section.id }}">
+
+  {%- capture section_image_attrs -%}
+    class="section__image lazyload" data-sizes="auto" data-bgset="{{ _section.image | img_url: '540x' }} 540w,{{ _section.image | img_url: '900x' }} 900w, {{ _section.image | img_url: '1600x' }} 1600w,{{ _section.image | img_url: '2048x' }} 2048w"
+  {%- endcapture -%}
+
+  {%- if _section.button_url != blank -%}
+    <a href="{{ _section.button_url }}" {{ section_image_attrs }}></a><!-- /.section__image -->
+  {%- else -%}
+    <div {{ section_image_attrs }} ></div><!-- /.section__image -->
+  {%- endif -%}
+
+  
+
+  <div class="section__content">
+
+    {%- if _section.button_url != blank -%}
+      <a href="{{ _section.button_url }}">
+    {%- endif -%}
+
+      {%- if _section.subtitle != blank -%}
+        <h5 class="section__subtitle">{{ _section.subtitle | newline_to_br }}</h5><!-- /.section__subtitle -->
+      {%- endif -%}
+
+      {%- if _section.title != blank -%}
+        <h2 class="section__title">{{ _section.title | newline_to_br }}</h2><!-- /.section__title -->
+      {%- endif -%}
+
+    {%- if _section.button_url != blank -%}
+      </a>
+    {%- endif -%}
+
+    {%- if _section.button_text != blank and _section.button_url != blank -%}
+      <a href="{{_section.button_url}}" class="btn btn--line hidden-xs">{{ _section.button_text }}</a>
+    {%- endif -%}
+  </div><!-- /.section__content -->
+
+  {%- if _section.button_text != blank and _section.button_url != blank -%}
+    <a href="{{_section.button_url}}" class="btn btn--line section__btn visible-xs-inline-block">{{ _section.button_text }}</a>
+  {%- endif -%}
+</section><!-- /.section-fluid -->
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Fluid image",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "textarea",
+      "id": "title",
+      "label": "Title"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Subtitle"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button text"
+    },
+    {
+      "type": "url",
+      "id": "button_url",
+      "label": "Button URL"
+    },
+    {
+      "type": "header",
+      "content": "General Style"
+    },
+    {
+      "type": "color",
+      "id": "color",
+      "label": "Content Color",
+      "default": "#FFFFFF"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Fluid image"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,40 @@
+/* ------------------------------------------------------------ *\
+  Gift Box
+\* ------------------------------------------------------------ */
+
+.gift-box {
+  max-width: 370px;
+  padding: 26px 20px 30px;
+  text-align: center;
+  width: 100%;
+
+  &-has {
+    border: 1px solid #8d8b8e;
+  }
+
+  h6 {
+    margin-bottom: 8px;
+    font-size: 16px;
+    line-height: 1.31;
+    color: $default-color;
+    letter-spacing: 0.09em;
+    font-weight: 400;
+    text-transform: uppercase;
+  }
+
+  p {
+    margin: 25px 0;
+    font-size: 14px;
+    line-height: 1.29;
+    font-weight: 400;
+    letter-spacing: 0.035em;
+  }
+
+  /* Tablet Portrait */
+
+  @media (max-width: #{$responsive-sm}) {
+    max-width: 100%;
+    width: 100%;
+    margin-bottom: 15px;
+  }
+}

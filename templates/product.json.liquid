@@ -1,0 +1,61 @@
+{% layout none %}
+
+{%- comment -%} --------------- Begin URL Params --------------- {%- endcomment -%}
+{%- capture contentForQuerystring -%}{{ content_for_header }}{%- endcapture -%}
+{%- assign page_url = contentForQuerystring | split:'"pageurl":"' | last | split:'"' | first | split:'.myshopify.com' | last |   replace:'\/','/' |    replace:'%20',' ' |    replace:'\u0026','&'  -%}
+{%- assign param_page = '' -%}
+{%- for i in (1..1) -%}
+	{%- unless page_url contains "?" -%}{% break %}{%- endunless -%}
+	{%- assign query_string = page_url | split:'?' | last -%}
+	{%- assign qry_parts= query_string | split:'&' -%}
+	{%- for part in qry_parts -%}
+		{%- assign key_and_value = part | split:'=' -%}
+		{%- if key_and_value.size > 1 -%}
+
+    	{%- comment -%} Assign here custom url params {%- endcomment -%}
+			{% case key_and_value[0] %}
+				{% when 'productHandles' %}
+					{%- assign urlParamProductHandles = key_and_value[1] -%}
+				{% when 'variantIds' %}
+					{%- assign urlParamVariantIds = key_and_value[1] -%}
+			{% endcase %}
+
+		{%- endif -%}
+	{%- endfor -%}
+{%- endfor -%}
+{%- comment -%} --------------- End URL Params --------------- {%- endcomment -%}
+
+{% assign productHandles = urlParamProductHandles | split: '~' %}
+{% assign variantIds = urlParamVariantIds | split: '~' %}
+
+{% assign productVariantsLoopIndex = value %}
+{% assign atLeastOneMatch = false %}
+{
+  "variants": [
+    {% for productHandle in productHandles%}
+			{% assign productVariantsLoopIndex = forloop.index | minus: 1 %}
+      {% assign product = all_products[productHandle] %}
+			{% assign targetVariantId = variantIds[productVariantsLoopIndex] | plus: 0 %}
+			{% assign fetchedVariantId = 0 %}
+			
+			{%- comment -%} Check if target variant has stock matching with product.variant from shoipify {%- endcomment -%}
+			{% for fetchedVariant in product.variants %}
+				{% assign fetchedVariantId = fetchedVariant.id | plus: 0 %}
+
+				{% if fetchedVariantId == targetVariantId %}
+					{% if atLeastOneMatch %},{% endif %}{
+						"productId": "{{ product.id }}",
+						"variantId": "{{ fetchedVariant.id }}",
+						"available": {{ fetchedVariant.available }},
+						"stock": {{ fetchedVariant.inventory_quantity }},
+						"tags": {{ product.tags | json}}
+					}
+
+					{% assign atLeastOneMatch = true %}
+					{% break %}
+				{% endif %}
+			{% endfor %}
+
+    {% endfor %}
+  ]
+}

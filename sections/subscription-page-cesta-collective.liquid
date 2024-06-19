@@ -1,0 +1,80 @@
+
+<div id="main-content">
+  <div class="first-column">
+    <div class="img-container"></div>
+  </div>
+  <div class="second-column">
+    <img src="{{ section.settings.secondary_image | img_url: '300x300' }}" alt="Join the list">
+    <h2 class="title">{{ section.settings.title }}</h2>
+    <p>{{ section.settings.description }}</p>
+
+    <div class="subscribe-simple">
+      <form action="//manage.kmail-lists.com/ajax/subscriptions/subscribe" method="POST" novalidate="novalidate" id="subscription-signup" class="form-subscribe" autocomplete="off" data-vfib="0">
+        <input type="hidden" name="g" value="{{ section.settings.klaviyo_form_subscription_id }}">
+        
+        <input type="email" name="email" value="" placeholder="Enter Your Email Address" class="subscribe__field">
+        <button type="submit" class="subscribe__btn subscribe__btn klaviyo_submit_button">
+          <div class="subscribe__btn__inner">
+            {%- include 'icons' with icon: 'arrow-right' -%}
+          </div>
+        </button>
+        <p class="subscription-msg hidden"></p>
+      </form>
+      
+      <small>By clicking "submit" you agree to receive emails from Kassatex and accept our <a href="/pages/terms-and-conditions">Terms & Conditions</a> and <a href="/pages/privacy-policy">Privacy Policy</a></small>
+    </div>
+  </div>
+</div>
+
+<style>
+  #main-content .first-column .img-container {
+    background-image: url({{ section.settings.main_image_mobile | img_url: '1200x500' }});
+  }
+
+  @media screen and (min-width: 1024px) {
+    #main-content .first-column .img-container {
+      background-image: url({{ section.settings.main_image | img_url: '1500x1500' }});
+    }
+  }
+</style>
+
+{% schema %}
+  {
+    "name": "Cesta Collective",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "main_image",
+        "label": "Main image"
+      },
+      {
+        "type": "image_picker",
+        "id": "main_image_mobile",
+        "label": "Main image - Mobile"
+      },
+      {
+        "type": "image_picker",
+        "id": "secondary_image",
+        "label": "Secondary image"
+      },
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Title",
+        "default": "Join the List"
+      },
+      {
+        "type": "textarea",
+        "id": "description",
+        "label": "Description",
+        "default": "Be the first to hear about our exclusive collaboration with Cesta Collective by signing up for Kassatex emails."
+      },
+      {
+        "type": "text",
+        "id": "klaviyo_form_subscription_id",
+        "label": "Klaviyo Form Subscription ID"
+      }
+    ]
+  }
+  {% endschema %}
+  

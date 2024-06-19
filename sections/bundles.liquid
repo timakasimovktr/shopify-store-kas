@@ -1,0 +1,71 @@
+{%- assign _section = section.settings -%}
+{%- assign _blocks = section.blocks -%}
+
+{%- assign bundleProducts = '' -%}
+{%- if _blocks.size > 0 -%}
+  {%- for block in _blocks -%}
+    {%- assign current_block = block.settings -%}
+
+    {%- if current_block.product != blank -%}
+      {%- assign current_product = all_products[current_block.product] -%}
+
+      {%- assign bundle_image = current_product.images[0].src | img_url: '100x100', crop: 'center' -%}
+      {%- assign bundleProducts = bundleProducts | append: current_product.title | append: '@@' | append: bundle_image | append: '@@' -%}
+
+      {% comment %}bundled product{% endcomment %}
+      {%- assign included_product_handles = '' -%}
+      {%- if current_product.metafields.sf_included_products.size > 0 -%}
+        {%- for i in (1..8) -%}
+          {%- assign included_product_string = 'product_' | append: i | append: '_product' -%}
+          {%- assign included_product = current_product.metafields.sf_included_products[included_product_string] -%}
+
+          {%- if included_product != blank -%}
+            {%- assign included_product_handles =  included_product_handles | append: included_product | append: ',' -%}
+          {%- endif -%}
+        {%- endfor -%}
+      {%- endif -%}
+      {%- if included_product_handles != '' -%}
+        {%- assign included_product_handles = included_product_handles | split: ',' | compact | join: ',' -%}
+      {%- endif -%}
+
+      {%- assign bundleProducts = bundleProducts | append: included_product_handles | append: '###' -%}
+
+    {%- endif -%}
+  {%- endfor -%}
+
+  {%- if bundleProducts != '' -%}
+    {%- assign bundleProducts = bundleProducts | split: '###' | compact | join: '###' -%}
+  {%- endif -%}
+{%- endif -%}
+
+<script type="text/javascript">
+  var _cart_bundleProductsStr = "{{bundleProducts}}";
+  var _cart_bundleProductsData = [];
+  if(_cart_bundleProductsStr != '') {
+    _cart_bundleProductsData = _cart_bundleProductsStr.split('###');
+  }
+</script>
+
+{% schema %}
+{
+  "name": "Bundle Products",
+  "blocks": [
+    {
+      "type": "bundle",
+      "name": "Bundle",
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Product"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Bundle Products"
+    }
+  ]
+}
+{% endschema %}

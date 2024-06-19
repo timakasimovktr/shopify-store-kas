@@ -1,0 +1,192 @@
+{%- if is_show_more_item -%}
+  <div class="product show-more-item visible-xs-inline-block">
+    <figure class="product__image">
+      {%- assign _more_url = "{{ current_collection.url }}" -%}
+      {%- if button_url != blank -%}
+        {%- assign _more_url = button_url -%}
+      {%- endif -%}
+
+      <a  href="{{ _more_url }}">
+        <div class="product__image-inner">
+          <span>
+            Shop All
+            {%- include 'icons' with icon: 'arrow-right' -%}
+          </span>
+        </div>
+      </a>
+    </figure>
+  </div>
+{%- else -%}
+  {%- if related_products -%}
+    {%- assign current_product = _product -%}
+  {%- else -%}
+    {%- assign current_product = _product | default: product -%}
+  {%- endif -%}
+
+  {%- assign current_collection = collection | default: current_product.collections[0] -%}
+
+  {%- assign isAccessories = false -%}
+  {%- if current_product.template_suffix == 'accessories' -%}
+    {%- assign isAccessories = true -%}
+  {%- endif -%}
+
+  {%- assign has_diabledhover_tag = false -%}
+  {%- if current_product.tags.size > 0 -%}
+    {%- for tag in current_product.tags -%}
+      {%- if tag == 'plp:disabledhover' -%}
+        {%- assign has_diabledhover_tag = true -%}
+      {%- endif -%}
+    {%- endfor -%}
+  {%- endif -%}
+
+  {%- assign variant_url = '' -%}
+  {%- assign option_image = "" -%}
+  {%- assign option_image_index = 0 -%}
+  {%- assign has_color_option = false -%}
+  {% for option in current_product.options_with_values %}
+    {% assign option_name = option.name | handle %}
+
+    {% if option_name == 'color' %}
+      {%- assign has_color_option = true -%}
+      {% for value in option.values %}
+        {% assign value_handle = value | handle %}
+
+        {%- for image in current_product.images -%}
+          {%- assign image_alt_handle = image.alt | handle -%}
+          {%- if image_alt_handle == value_handle and option_image_index == 0 -%}
+            {%- assign option_image = image -%}
+            {%- assign option_image_index = 1 -%}
+          {%- endif -%}
+
+          {%- if forloop.last and option_image_index == 0 -%}
+            {%- assign option_image = image -%}
+          {%- endif -%}
+        {%- endfor -%}
+
+        {%- for _variant in _product.variants -%}
+          {%- for option in _variant.options -%}
+            {%- assign option_handle = option | handle -%}
+
+            {%- if option_handle == value_handle -%}
+              {%- assign variant_url = _variant.url | within: current_collection -%}
+            {%- endif -%}
+          {%- endfor -%}
+        {%- endfor -%}
+      {% endfor %}
+    {% endif %}
+  {% endfor %}
+
+  {%- if variant_url == "" -%}
+    {%- assign variant_url = current_product.url | within: current_collection -%}
+  {%- endif -%}
+
+  {%- assign searched_option_value = '' -%}
+
+  <div class="product {{additionalClasses}} {% if hide_on_mobile == true %} hidden-xs{% endif %}" data-index="{{ loopIndex }}" data-size='{{ productSizes }}' data-weight="{{ productWeights }}" data-fabric="{{ productFabrics }}" data-material="{{ productMaterials }}" data-style="{{ current_product.type }}" style="order:{{productIndex}}" data-template="{{ current_product.template_suffix }}">
+    <figure class="product__image">
+      <a  href="{{ current_product.url }}">
+        {% comment %}{%- if current_product.tags.size > 0 -%}
+          {%- assign product_tags_string = current_product.tags | join: ',' -%}
+
+          {%- if product_tags_string contains 'badge:' -%}
+            {%- assign badges = '' -%}
+            {%- for tag in current_product.tags -%}
+              {%- if tag contains 'badge:' -%}
+                {%- capture badges_html -%}
+                  {% if forloop.index > 1 and forloop.index != forloop.last %}, {% endif %} {{ tag | replace: 'badge:', '' }}
+                {%- endcapture -%}
+
+                {%- assign badges = badges | append: badges_html -%}
+              {%- endif -%}
+            {%- endfor -%}
+
+            <span class="product__badges">{{badges}}</span>
+          {%- endif -%}
+
+        {%- endif -%}{% endcomment %}
+
+
+        {% comment %}check if search term{% endcomment %}
+        {%- if searchTerms != blank -%}
+          {%- if has_color_option -%}
+            {%- assign searched_option_image = '' -%}
+
+            {% for searchTerm in searchTerms %}
+              {% assign searchTerm_handle = searchTerm | handle %}
+              {% for option in current_product.options_with_values %}
+                {% assign option_name = option.name | handle %}
+
+                {% if option_name == 'color' %}
+                  {% for value in option.values %}
+                    {%- assign value_handle = value | handle -%}
+
+                    {%- for image in current_product.images -%}
+                      {%- assign image_alt_handle = image.alt | handle -%}
+                      {%- if image_alt_handle == value_handle -%}
+                        {%- if value_handle contains searchTerm_handle -%}
+                          {%- assign searched_option_image = image -%}
+                          {%- assign searched_option_value = value -%}
+                        {%- endif -%}
+                      {%- endif -%}
+                    {%- endfor -%}
+                  {% endfor %}
+                {% endif %}
+              {% endfor %}
+            {% endfor %}
+
+            {% if searched_option_image != '' and isAccessories == false %}
+              <div class="product__image-inner product__image-inner--first lazyload {% if has_diabledhover_tag %}product__image-inner--disabled{% endif %}" data-expand="-20" data-sizes="auto" data-bg="{{ searched_option_image.src | img_url: '480x', format: 'pjpg' }} 480w" data-original-image="url({{ current_product.images[0].src | img_url: '480x', format: 'pjpg' }})"></div>
+            {% else %}
+              <div class="product__image-inner product__image-inner--first lazyload {% if has_diabledhover_tag %}product__image-inner--disabled{% endif %}" data-expand="-20" data-sizes="auto" data-bg="{{ current_product.images[0].src | img_url: '480x', format: 'pjpg' }} 480w"></div>
+            {% endif %}
+          {%- else -%}
+            <div class="product__image-inner product__image-inner--first lazyload {% if has_diabledhover_tag %}product__image-inner--disabled{% endif %}" data-expand="-20" data-sizes="auto" data-bg="{{ current_product.images[0].src | img_url: '480x', format: 'pjpg' }} 480w"></div>
+          {%- endif -%}
+        {%- else -%}
+          {%- if current_product.images[0] != blank -%}
+            <div class="product__image-inner product__image-inner--first lazyload {% if has_diabledhover_tag %}product__image-inner--disabled{% endif %}" data-expand="-20" data-bgset="{{ current_product.images[0].src | img_url: '480x', format: 'pjpg' }}"></div>
+          {%- endif -%}
+        {%- endif -%}
+
+        {%- if current_product.images[1] != blank -%}
+          {%- assign option_image = current_product.images[1].src -%}
+        {%- endif -%}
+
+        {%if has_diabledhover_tag == false %}
+          {%- if option_image != "" -%}
+            <div class="product__image-inner  product__image-inner--origin lazyload" data-expand="-20" data-sizes="auto" data-bgset="{{ option_image | img_url: '480x', format: 'pjpg' }} 480w"></div>
+
+            <div class="product__image-inner product__image-inner--hover"></div>
+          {%- endif -%}
+        {%- endif -%}
+      </a>
+      {% comment %}
+      {% assign quick_add_hide_box = collection.metafields.sf_banners.quick_add_hide_box %}
+      {% if quick_add_hide_box != 1 %}
+        <a href="#" class="btn btn--quick product__btn js-expand-form">{{ 'collections.general.quick_add' | t }}</a>
+        {%- include 'form-add-simple' with hide_for_mobile: hide_form_for_mobile, vanityColors: vanityColors -%}
+      {% endif %}
+      {% endcomment %}
+    </figure><!-- /.product__image -->
+
+    <div class="product__content">
+      <div class="product__content--header">
+        <h4 class="product__title">{{ current_product.title }}</h4><!-- /.product__title -->
+
+        <p class="product__price">
+            {%- if current_product.price_min < current_product.price_max -%}
+              {{ current_product.price_min | money }} - {{ current_product.price_max | money }}
+            {%- else -%}
+              {{ current_product.price_min | money }}
+            {%- endif -%}
+        </p><!-- /.product__price -->
+      </div>
+
+      <div class="{%- if isAccessories -%}hidden{%- endif -%}">
+        {%- include 'colors-link' with _product: current_product, vanityColors: vanityColors, searchedOptionValue: searched_option_value -%}
+      </div>
+    </div><!-- /.product__content -->
+    <!-- Meta Reviews on PDP -->
+    {% render 'yotpo-meta-reviews' current_product: current_product %}
+  </div><!-- /.product -->
+{%- endif -%}

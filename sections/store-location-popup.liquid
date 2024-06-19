@@ -1,0 +1,163 @@
+{%- assign _section = section.settings -%}
+{%- assign api_url = _section.api_url -%}
+{%- assign access_token = _section.access_token -%}
+{%- assign access_token_param = '' -%}
+{%- if access_token != blank -%}
+  {%- assign access_token_param = '?token=' | append: access_token -%}
+{%- endif -%}
+
+{% comment %}
+<section class="section-store-location-popup">
+
+  <a class="section__overlay__close">
+    <svg class="" height="36" viewBox="0 0 36 36" width="36"><path d="M19.414 18l4.243 4.243a1 1 0 0 1-1.414 1.414L18 19.414l-4.243 4.243a1 1 0 0 1-1.414-1.414L16.586 18l-4.243-4.243a1 1 0 0 1 1.414-1.414L18 16.586l4.243-4.243a1 1 0 0 1 1.414 1.414L19.414 18z" fill-rule="evenodd"></path></svg>
+  </a>
+
+  <div class="section__content">
+    {%- if _section.title != blank -%}
+      <h2 class="section__title">{{ _section.title | newline_to_br }}</h2><!-- /.section__title -->
+    {%- endif -%}
+
+    {%- if _section.subtitle != blank -%}
+      <p class="section__subtitle">{{ _section.subtitle | newline_to_br }}</p><!-- /.section__subtitle -->
+    {%- endif -%}
+
+    {%- if _section.address != blank -%}
+      <h4 class="section__address">{{ _section.address | newline_to_br }}</h4><!-- /.section__subtitle -->
+    {%- endif -%}
+
+    {%- if _section.more_info != blank and _section.button_url != blank -%}
+      <a href="{{ _section.button_url }}" target="_blank" class="section__more">
+        {{ _section.more_info }}
+      </a>
+    {%- endif -%}
+  </div><!-- /.section__content -->
+
+</section><!-- /.section-image -->
+
+<script type="text/javascript">
+    window.ip_info_api_url = "{{ api_url }}{{ access_token_param }}";
+</script>
+{% endcomment %}
+
+
+{% comment %}
+
+
+    var showCookie = getCookie('geo_located');
+    let domain = window.location.host;
+
+    if(showCookie == null  ){
+      var requestUrl = window.ip_info_api_url;
+      $.ajax({
+          url: requestUrl,
+          type: 'GET',
+          dataType: 'json',
+          success: function(response){    
+              var country_code = response.country;
+              var city_code = response.city;
+              if(city_code == 'New York') {
+                $('.section-store-location-popup').addClass('active');
+              }
+          },
+          error: function(err){
+              console.log("Request failed, error= " + err.responseText);
+          }
+      });
+    }
+
+    $('.section-store-location-popup .section__overlay__close').click(function(){
+      $('.section-store-location-popup').removeClass('active');
+      setCookie('geo_located', true, 7);
+    });
+
+    function inArray(needle, haystack) {
+        var length = haystack.length;
+        for(var i = 0; i < length; i++) {
+            if(haystack[i] == needle) return true;
+        }
+        return false;
+    }
+    function setCookie(name,value,days) {
+        var expires = "";
+        if (days) {
+            var date = new Date();
+            date.setTime(date.getTime() + (days*24*60*60*1000));
+            expires = "; expires=" + date.toUTCString();
+        }
+        document.cookie = name + "=" + (value || "")  + expires + "; path=/";
+    }
+    function getCookie(name) {
+        var nameEQ = name + "=";
+        var ca = document.cookie.split(';');
+        for(var i=0;i < ca.length;i++) {
+            var c = ca[i];
+            while (c.charAt(0)==' ') c = c.substring(1,c.length);
+            if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+        }
+        return null;
+    }
+    function eraseCookie(name) {
+        document.cookie = name+'=; Max-Age=-99999999;';
+    }
+    function getParameterByName(name, url) {
+        if (!url) url = window.location.href;
+        name = name.replace(/[\[\]]/g, '\\$&');
+        var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+            results = regex.exec(url);
+        if (!results) return null;
+        if (!results[2]) return '';
+        return decodeURIComponent(results[2].replace(/\+/g, ' '));
+    }
+
+{% endcomment %}
+
+{% schema %}
+{
+  "name": "Store Location Popup",
+  "settings": [
+    {
+        "type": "text",
+        "id": "api_url",
+        "label": "API URL",
+        "info": "Enter IP DATA URL"
+    },
+    {
+        "type": "text",
+        "id": "access_token",
+        "label": "Access Token",
+        "info": "Enter your access token if paid account"
+    },
+    {
+      "type": "textarea",
+      "id": "title",
+      "label": "Title"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Subtitle"
+    },
+    {
+      "type": "textarea",
+      "id": "address",
+      "label": "Store Address"
+    },
+    {
+      "type": "text",
+      "id": "more_info",
+      "label": "Link Title"
+    },
+    {
+      "type": "url",
+      "id": "button_url",
+      "label": "Button URL"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Store Location Popup"
+    }
+  ]
+}
+{% endschema %}

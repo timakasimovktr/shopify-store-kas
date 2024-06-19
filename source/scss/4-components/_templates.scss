@@ -1,0 +1,14 @@
+.template-about {
+  .header.header--fixed {
+    background-color: transparent;
+    .grey-logo {
+      display: inline-block;
+    }
+    .white-logo {
+      display: none;
+    }
+    &.is-fixed {
+      background-color: #fff;
+    }
+  }
+}

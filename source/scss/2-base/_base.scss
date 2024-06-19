@@ -1,0 +1,136 @@
+/* ------------------------------------------------------------ *\
+  Base
+\* ------------------------------------------------------------ */
+
+:root {
+  scroll-behavior: smooth;
+}
+body {
+  min-width: 320px;
+  background: #fff;
+  font-family: $font-family-sans-serif;
+  font-size: $font-size-base;
+  line-height: $line-height-base;
+  color: $default-color;
+  font-weight: 400;
+  opacity: 1 !important;
+}
+a {
+  color: inherit;
+  text-decoration: underline;
+
+  &:hover,
+  &[href^='tel'] {
+    text-decoration: none;
+  }
+}
+
+h1 {
+  font-size: 48px;
+  line-height: 1.21;
+}
+
+h2 {
+  font-size: 36px;
+}
+
+h3 {
+  font-size: 30px;
+}
+
+h4 {
+  font-size: 24px;
+}
+
+h5 {
+  font-size: 18px;
+}
+
+h6 {
+  font-size: 14px;
+}
+
+/* Tablet Portrait */
+
+@media (max-width: #{$responsive-sm}) {
+  h1 {
+    font-size: 36px;
+  }
+
+  h2 {
+    font-size: 30px;
+  }
+
+  h3 {
+    font-size: 24px;
+  }
+
+  h4 {
+    font-size: 20px;
+  }
+}
+
+/* Mobile */
+
+@media (max-width: #{$responsive-xs}) {
+  h1 {
+    font-size: 32px;
+    line-height: 1.31;
+  }
+
+  h2 {
+    font-size: 26px;
+  }
+}
+
+.half-width {
+  width: 50%;
+}
+.full-width {
+  width: 100%;
+}
+.full-height {
+  height: 100%;
+}
+  
+.no-touchable {
+  &, img {
+    user-drag: none; 
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+  }
+}
+
+.background-cover {
+  background-size: cover;
+}
+
+.shell {
+  max-width: $shell-max-width + $shell-gutter * 2;
+  padding-right: $shell-gutter;
+  padding-left: $shell-gutter;
+  margin: auto;
+
+  &--fluid {
+    max-width: none;
+  }
+
+  /* Mobile */
+
+  @media (max-width: #{$responsive-xs}) {
+    padding: 0 18px;
+  }
+}
+
+.wrapper {
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  min-height: 100vh;
+}

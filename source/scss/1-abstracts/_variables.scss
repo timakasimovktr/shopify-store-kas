@@ -1,0 +1,32 @@
+/* ------------------------------------------------------------ *\
+  Variables
+\* ------------------------------------------------------------ */
+
+$font-family-sans-serif: 'effra', sans-serif;
+$font-family-serif: 'effra', sans-serif;
+$font-family-vanitas: 'Vanitas';
+
+$font-size-base: 18px;
+$line-height-base: 1.44;
+
+$shell-max-width: 1380px;
+$shell-gutter: 30px;
+
+$responsive-xxs: 374px;
+$responsive-xs: 767px;
+$responsive-sm: 1023px;
+$responsive-pad: 1024px;
+$responsive-md: 1439px;
+
+$mobile-small: '(max-width: #{$responsive-xxs}) ';
+$mobile: '(max-width: #{$responsive-xs}) ';
+$tablet-portrait: '(max-width: #{$responsive-sm}) ';
+$small-desktop: '(max-width: #{$responsive-md}) ';
+$retina: '(min-resolution: 2dppx) ';
+
+$default-color: #636363;
+
+// Usage
+// @media #{$small-desktop}
+
+$contrast-color: #55565A;

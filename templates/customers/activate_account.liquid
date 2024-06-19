@@ -1,0 +1,41 @@
+<section class="section-default template-interio_design">
+	<div class="shell">
+		<div class="section__inner">
+
+			<div class="page__head">
+				<h2>{{ 'customer.activate_account.title' | t }}</h2>
+				<p>{{ 'customer.activate_account.subtext' | t }}</p>
+			</div>
+
+			{% form 'activate_customer_password', class: 'form form-default  form__center form-contacts' %}
+				{% capture error %}{% if form.errors contains "email" %}error{% endif %}{% endcapture %}
+
+				{% if form.errors %}
+					<div class="form__notice error">
+						{{ form.errors | default_errors }}
+					</div><!-- /.form__notice -->
+				{% endif %}
+
+				<div class="form__body">
+					<div class="form__row">
+						<label for="field-customer-password" class="form__label" hidden>{{ 'customer.activate_account.password' | t }}</label>
+
+						<input type="password" value="" name="customer[password]" id="field-customer-password" class="field" placeholder="{{ 'customer.activate_account.password' | t }}" >
+					</div><!-- /.form__row -->
+
+					<div class="form__row">
+						<label for="field-customer-password-confirm" class="form__label" hidden>{{ 'customer.activate_account.password_confirm' | t }}</label>
+
+						<input type="password" value="" name="customer[password_confirmation]" id="field-customer-password-confirm" class="field" placeholder="{{ 'customer.activate_account.password_confirm' | t }}">
+					</div><!-- /.form__row -->
+				</div><!-- /.form__body -->
+
+				<div class="form__actions clear">
+					<input type="submit" class="form__btn btn btn--block" value="{{ 'customer.login.sign_in' | t }}">
+					<!--input type="submit" class="btn" value="{{ 'customer.activate_account.submit' | t }}"-->
+				</div><!-- /.form__actions -->
+			{% endform %}
+		</div><!-- /.section__inner -->
+	</div><!-- /.shell -->
+</section><!-- /.section-default -->
+

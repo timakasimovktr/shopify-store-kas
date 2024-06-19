@@ -1,0 +1,14 @@
+<div id="subscription-page">
+  <article class="article">
+    <div class="shell">
+      <div class="article__inner">
+        {% if page.handle contains 'erin-gates' %}
+          {% section 'subscription-page-erin-gates' %}
+        {% elsif page.handle contains 'cesta-collective' %}
+          {% section 'subscription-page-cesta-collective' %}
+        {% endif %}
+      </div><!-- /.article__inner -->
+    </div><!-- /.shell -->
+  </article><!-- /.article -->
+</div>
+<script src="{{ 'subscription-page.js'  | asset_url }}" defer></script>

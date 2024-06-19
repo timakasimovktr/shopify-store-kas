@@ -1,0 +1,105 @@
+{%- assign _section = section.settings -%}
+
+{%- comment -%} Style of Section {%- endcomment -%}
+  {%- if _section.color != blank -%}
+    <style type="text/css">
+      .section-image[data-section-id="{{ section.id }}"] .section__title,
+      .section-image[data-section-id="{{ section.id }}"] .section__subtitle,
+      .section-image[data-section-id="{{ section.id }}"] .btn--link
+       {
+        color: {{ _section.color }};
+      }
+    </style>
+  {%- endif -%}
+<section class="section-image" data-section-id="{{ section.id }}">
+  <div class="shell">
+    <div class="section__inner {% if _section.inverse_elements %} section__inner--inverse {% endif %}">
+      {% comment %}{%- if _section.title != blank -%}
+        <div class="section__content visible-xs-block">
+          <h2 class="section__title">{{ _section.title | newline_to_br }}</h2><!-- /.section__title -->
+        </div><!-- /.section__content -->
+      {%- endif -%}{% endcomment %}
+
+      {%- if _section.image != blank -%}
+        <figure class="section__image">
+          {%- if _section.button_url != blank -%}
+            <a class="full_view_link" href="{{ _section.button_url }}"></a>
+          {%- endif -%}
+          <img class="lazyload" data-src="{{ _section.image | img_url: '570x' }}" alt="" />
+        </figure><!-- /.section__image -->
+      {%- endif -%}
+
+      <div class="section__content">
+        {%- if _section.title != blank -%}
+          <h2 class="section__title">{{ _section.title | newline_to_br }}</h2><!-- /.section__title -->
+        {%- endif -%}
+
+        {%- if _section.subtitle != blank -%}
+          <h4 class="section__subtitle">{{ _section.subtitle | newline_to_br }}</h4><!-- /.section__subtitle -->
+        {%- endif -%}
+
+        {%- if _section.button_text != blank and _section.button_url != blank -%}
+          <a href="{{ _section.button_url }}" class="btn btn--link">
+            {{ _section.button_text }}
+
+            {%- include 'icons' with icon: 'arrow-right' -%}
+          </a>
+        {%- endif -%}
+      </div><!-- /.section__content -->
+    </div><!-- /.section__inner -->
+  </div><!-- /.shell -->
+</section><!-- /.section-image -->
+
+{% schema %}
+{
+  "name": "Single image",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "inverse_elements",
+      "label": "Inverse elements",
+      "default": false
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "textarea",
+      "id": "title",
+      "label": "Title"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Subtitle"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button text"
+    },
+    {
+      "type": "url",
+      "id": "button_url",
+      "label": "Button URL"
+    },
+    {
+      "type": "header",
+      "content": "General Style"
+    },
+    {
+      "type": "color",
+      "id": "color",
+      "label": "Content Color",
+      "default": "#636363"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Single image"
+    }
+  ]
+}
+{% endschema %}

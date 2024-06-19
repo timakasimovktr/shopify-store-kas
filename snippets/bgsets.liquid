@@ -1,0 +1,19 @@
+{%- assign dataWidths = "180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 1950, 2100, 2260, 2450, 2700, 3000, 3350, 3750, 4100" | split: ', ' -%}
+{%- if img != blank or mobile_img != blank -%}
+  {%- for dataWidth in dataWidths -%}{% assign img_width = img.width | plus: 0 %}{%- assign int_dataWidth = dataWidth | plus: 0 -%}{%- if img_width > int_dataWidth -%}{% assign imageFilter = int_dataWidth | append: 'x' %}
+  {%- if mobile_img != blank and int_dataWidth < 768 -%}
+    {{ mobile_img | img_url: imageFilter }} {{ int_dataWidth }}w,
+  {%- else -%}
+    {{ img | img_url: imageFilter }} {{ int_dataWidth }}w,
+  {%- endif -%}
+    {%- else -%}
+      ,
+      {%- break -%}
+    {%- endif -%}
+  {%- endfor -%}
+  {%- if mobile_img != blank and img.width < 768 -%}
+    {{ mobile_img | img_url: imageFilter }} {{ int_dataWidth }}w,
+  {%- else -%}
+  	{{ img | img_url: 'master' }} {{ img.width }}w
+  {%- endif -%}
+{%- endif -%}

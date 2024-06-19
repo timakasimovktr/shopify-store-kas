@@ -1,0 +1,81 @@
+  <div class="form__cols">
+    <div class="form__col">
+      <div class="form__row">
+        <label for="field-first-name-{{ idx }}" class="form__label" hidden >{{ 'customer.addresses.first_name' | t }}</label>
+
+        <input type="text" id="field-first-name-{{ idx }}" class="field" name="address[first_name]" value="{{form.first_name}}" autocapitalize="words" placeholder="{{ 'customer.addresses.first_name' | t }}" required />
+      </div><!-- /.form__row -->
+    </div><!-- /.form__col -->
+
+    <div class="form__col">
+      <div class="form__row">
+        <label for="field-last-name-{{ idx }}" class="form__label" hidden >{{ 'customer.addresses.last_name' | t }}</label>
+
+        <input type="text" id="field-last-name-{{ idx }}" class="field" name="address[last_name]" value="{{form.last_name}}" autocapitalize="words" placeholder="{{ 'customer.addresses.last_name' | t }}" required />
+      </div><!-- /.form__row -->
+    </div><!-- /.form__col -->
+  </div><!-- /.form__cols -->
+
+  <div class="form__row field-row-company">
+    <label for="field-company-{{ idx }}" class="form__label" hidden >{{ 'customer.addresses.company' | t }}</label>
+
+    <input type="text" id="field-company-{{ idx }}" class="field" name="address[company]" value="{{form.company}}" autocapitalize="words" placeholder="{{ 'customer.addresses.company' | t }}" />
+  </div><!-- /.form__row -->
+
+  <div class="form__row field-row-address1">
+    <label for="field-address-{{ idx }}" class="form__label" hidden >{{ 'customer.addresses.address1' | t }}</label>
+
+    <input type="text" id="field-address-{{ idx }}" class="field" name="address[address1]" value="{{form.address1}}" autocapitalize="words" placeholder="{{ 'customer.addresses.address1' | t }}" required />
+  </div><!-- /.form__row -->
+
+  <div class="form__row field-row-address2">
+    <label for="field-address2-{{ idx }}" class="form__label" hidden >{{ 'customer.addresses.address2' | t }}</label>
+
+    <input type="text" id="field-address2-{{ idx }}" class="field" name="address[address2]" value="{{form.address2}}" autocapitalize="words" placeholder="{{ 'customer.addresses.address2' | t }}" />
+  </div><!-- /.form__row -->
+
+  <div class="form__row field-row-city">
+    <label for="field-city-{{ idx }}" class="form__label" hidden >{{ 'customer.addresses.city' | t }}</label>
+
+    <input type="text" id="field-city-{{ idx }}" class="field" name="address[city]" value="{{form.city}}" autocapitalize="words" placeholder="{{ 'customer.addresses.city' | t }}" required />
+  </div><!-- /.form__row -->
+
+  <div class="form__row field-row-country field-select">
+    <label for="field-country-{{ idx }}" class="form__label" hidden >{{ 'customer.addresses.country' | t }}</label>
+
+    <div class="select">
+      <select id="field-country-{{ idx }}" name="address[country]" data-default="{{form.country}}" required>{{ country_option_tags }}</select>
+    </div><!-- /.select -->
+  </div><!-- /.form__row -->
+
+  <div id="form-row-province-{{ idx }}" class="form__row field-row-province field-select" style="display: none;">
+    <label for="field-province-{{ idx }}" class="form__label" hidden >{{ 'customer.addresses.province' | t }}</label>
+
+    <div class="select">
+      <select id="field-province-{{ idx }}" name="address[province]" data-default="{{form.province}}" required></select>
+    </div><!-- /.select -->
+  </div><!-- /.form__row -->
+
+  <script>
+    new Shopify.CountryProvinceSelector('field-country-{{ idx }}', 'field-province-{{ idx }}', { hideElement: 'form-row-province-{{ idx }}'});
+  </script>
+
+  <div class="form__row field-row-zip">
+    <label for="field-zip-{{ idx }}" class="form__label" hidden >{{ 'customer.addresses.zip' | t }}</label>
+
+    <input type="text" id="field-zip-{{ idx }}" class="field" name="address[zip]" value="{{form.zip}}" autocapitalize="characters" placeholder="{{ 'customer.addresses.zip' | t }}" required />
+  </div><!-- /.form__row -->
+
+  <div class="form__row field-row-phone">
+    <label for="field-phone-{{ idx }}" class="form__label" hidden >{{ 'customer.addresses.phone' | t }}</label>
+
+    <input type="tel" id="field-phone-{{ idx }}" class="field" name="address[phone]" value="{{form.phone}}" placeholder="{{ 'customer.addresses.phone' | t }}" />
+  </div><!-- /.form__row -->
+
+  <div class="form-row">
+    <div class="checkbox">
+      {{ form.set_as_default_checkbox }}
+
+      <label for="address_default_address_{{ idx }}" class="inline">{{ 'customer.addresses.set_default' | t }}</label>
+    </div><!-- /.checkbox -->
+  </div><!-- /.form__row -->

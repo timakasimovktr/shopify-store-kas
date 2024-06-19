@@ -1,0 +1,60 @@
+<div class="article wishlist-article">
+  <div class="shell">
+    <div class="article__inner">
+      <h1 class="article__title">My Wishlist</h1>
+
+      <div class="wishlist-header">
+        {% if customer == nil %}
+          <span class="wishlist-account"><a href="/account">Create an Account</a> or <a href="/account">Sign In</a> to save your Wishlist</span>
+        {% endif %}
+        
+        <span class="wishlist-icon share-email">
+          {% render 'icon-wishlist-email' %}
+        </span>
+        <span class="wishlist-icon share-facebook">
+          {% render 'icon-wishlist-facebook' %}
+        </span>
+      </div>
+
+      <hr><br>
+      
+      <div id="wishlist-items-container" style="display:none"></div>
+      <p id="empty-wishlist-message" style="display:none">Start designing your dream home! <a  title="Sign In" href="https://kassatex.com/account">Sign in</a> to save and access your wishlist from anywhere.</p>
+
+      <div id="email-information">
+        <p>Share your Wishlist via email</p>
+        <input id="input-to-email" type="text" class="field" placeholder="To Email *">
+        <label for="input-to-email" id="input-to-email-error" class="share-error" style="display:none">Enter a valid email</label>
+        <button id="btn-social-email-share" class="btn btn--solid">Share My Wishlist</button>
+        <p style="display: none;" id="social-email-share-result"></p>
+      </div>
+    </div>
+  </div>  
+</div>
+
+<div class="container-klaviyo-modal" style="display: none;">
+  <div class="fade-in">
+    <div id="klaviyo-bis-modal">
+      <div class="" id="container">
+        <button type="button" class="close klaviyo-bis-close" data-dismiss="modal">×</button>
+        <h3 class="modal-title">Strada Embroidered Percale Flat Sheet</h3>
+        <p class="description">Register to receive a notification when all the items of this bundle comes back in stock.</p>
+        <select class="product-names selectpicker form-control input-lg"></select>
+        <form action="#" class="form-horizontal clearfix">
+          <div class="form-group">
+            <div class="col-sm-12">
+              <input type="email" id="email" placeholder="Email" class="form-control input-lg" value="">
+            </div>
+          </div>
+          <div class="control-group clearfix submit-container">
+            <button type="button" class="btn js-notify-btn">Notify me when available</button>
+          </div>
+          <div id="error_message" class="error_message alert alert-danger"></div>
+          <div id="completed_message" class="completed_message alert alert-success">You're in! We'll let you know when it's back. <a href="#" class="klaviyo-bis-close">Close</a>
+          </div>
+        </form>
+        <p class="small-print"></p>
+      </div>
+    </div>
+  </div>
+</div>

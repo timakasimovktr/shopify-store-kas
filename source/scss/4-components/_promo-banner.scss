@@ -1,0 +1,64 @@
+.promo-banner {
+  position: relative;
+  background-size: cover !important;
+  background: rgb(222, 221, 221) no-repeat center;
+  width: 100%;
+  color: black;
+  
+  &, &__content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+  }
+  &__content {
+    transform: translateY(-25%);
+  }
+
+  &__title {
+    font-weight: 500;
+    letter-spacing: .5px;
+    font-family: Vanitas;
+    font-size: 60px;
+    text-transform: capitalize;
+  }
+
+  &__subtitle {
+    font-size: 1.15rem;
+    font-weight: 300;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+  }
+
+  &__link {
+    border: 1px solid #000;
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: 300;
+    text-decoration: none;
+    color: #000;
+    text-transform: uppercase;
+    transition: 0.3s linear;
+
+    &.mobile {
+      position: absolute;
+      bottom: 25px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    &:hover {
+      background: none;
+      opacity: 0.6;
+    }
+  }
+
+  @media screen and (max-width: 750px) {
+    padding: 10rem 0;
+
+    &__title { font-size: 2rem; }
+    &__subtitle { font-size: 0.9rem; }
+    &__link { font-size: 12px; }
+  }
+}

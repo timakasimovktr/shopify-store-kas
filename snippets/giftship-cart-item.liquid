@@ -1,0 +1,40 @@
+
+{% assign item = line_item | default: item %}
+
+{%- assign giftship_price = item.price -%}
+
+{% if item.properties._gs_bundle_prices and item.properties._gs_bundle_ids != null and item.product.type != "GIST_HIDDEN_PRODUCT" %}
+
+  {% assign additionalCost = 0 %}
+
+  {% for price in item.properties._gs_bundle_prices %}
+
+	{% if price != null and price != "" %}
+
+		{% assign additionalCost = additionalCost | plus: price %}
+
+	{% endif %}
+
+  {% endfor %}
+
+  {% assign item.price = item.price | plus: additionalCost %}
+
+  {%- assign giftship_price = item.price | plus: additionalCost -%}
+
+{% endif %}
+
+{% if item.properties._gs_bundle_discount %}
+
+  {% assign giftship_price = giftship_price | minus: item.properties._gs_bundle_discount %}
+
+{% endif %}
+
+
+{%- assign giftship_line_price = giftship_price | times: item.quantity -%}
+
+{% if item.properties._gs_bundle_item == 'true' %}
+{% continue %}
+{% endif %}
+
+
+    

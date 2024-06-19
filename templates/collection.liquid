@@ -1,0 +1,504 @@
+<style>
+  .intro-collection--without-image {
+    min-height: initial;
+    background-color: white;
+    padding: 0;
+  }
+  @media screen and (min-width: 768px){
+    .intro-collection--without-image {
+      margin-top: 4rem;
+    }
+  }
+  .intro-collection--without-image .intro__content {
+    padding: 2em 0 2em;
+  }
+  @media screen and (min-width: 768px){
+    .intro-collection--without-image .intro__content {
+      padding-top: 1em;
+    }
+  }
+  .text-only-description {
+    font-family: effra, sans-serif;
+    font-weight: 300;
+    font-size: 18px!important;
+    letter-spacing: .03em;
+  }
+  @media screen and (max-width: 768px){
+    .text-only-description {
+      display: none;
+    }
+  }
+  @media screen and (min-width: 768px){
+    .text-only-description {
+      font-size: .75em;
+      max-width: 750px;
+    }
+  } 
+  </style>
+{% assign intro_text_only = collection.metafields.sf_banners.banner_1_text_only %}
+  
+  {% assign products_per_page = settings.products_per_page %}
+  {% assign all_per_page = 200 %}
+  {%- assign collection_image = '' -%}
+  
+  {%- if intro_text_only != 1 and collection.image != blank -%}
+    {%- assign collection_image = collection.image | img_url: '2048x', format: 'pjpg' -%}
+  {%- endif -%}
+  
+  {%- assign intro_image = collection.metafields.sf_collection_bar.intro_image | default: collection_image -%}
+  
+  {%- assign intro_class_attr = 'intro-collection' -%}
+  {% if intro_text_only == 1 or intro_image == empty %}
+    {%- assign intro_class_attr = intro_class_attr | append: ' intro-collection--without-image' -%}
+  {% endif %}
+  
+  <div class="{{ intro_class_attr }}">
+  
+    {%- if intro_text_only != 1 and intro_image != empty -%}
+      <div class="lazyload intro__image" data-bgset="{{ intro_image }}"></div><!-- /.intro__image -->
+    {%- endif -%}
+  
+    {%- assign collection_title_color = collection.metafields.sf_collection_bar.title_color | default: '#000000' -%}
+  
+    <div class="intro__content"> 
+      <h1 style="color: {{ collection_title_color }}">{{ collection.title }}</h1>
+      {% if intro_text_only == 1 %}
+      <h2 class="text-only-description" style="color: {{ collection_title_color }}">{{ collection.description }}</h2>
+      {% endif %}
+    </div><!-- /.intro__content -->
+  
+  </div><!-- /.intro-collection -->
+  {% assign collection_bar = collection.metafields.sf_collection_bar.bar %}
+  
+  {%- if collection_bar -%}
+    <div class="bar">
+      {{ collection_bar }}
+    </div><!-- /.bar -->
+  {%- endif -%}
+  
+  {% assign show_color = collection.metafields.sf_banners.filter_options_colors %}
+  {% assign show_size = collection.metafields.sf_banners.filter_options_size %}
+  {% assign show_weight = collection.metafields.sf_banners.filter_options_weight %}
+  {% assign show_fabric = collection.metafields.sf_banners.filter_options_fabric %}
+  {% assign show_material = collection.metafields.sf_banners.filter_options_material %}
+  {% assign show_style = collection.metafields.sf_banners.filter_options_style %}
+  
+  {% assign master_colors_list = "" %}
+  {% assign vanity_colors_list = "" %}
+  {% for i in (1..10) %} 
+    {% assign prefix = 'filter_by_colors_master_color' | append: i %}
+    {% assign namespace = collection.metafields.sf_banners[prefix] %}   
+    {% assign title = shop.metafields[namespace].title %}   
+    {% assign master_color = shop.metafields[namespace].master_color %}     
+    {% assign vanity_colors = shop.metafields[namespace].vanity_colors | newline_to_br | strip_newlines | replace: "<br />", "||" %}
+    {% if master_color and vanity_colors  %}
+      {% assign master_colors_list = master_colors_list | append: title | append: '|' | append: master_color | append: ',' %}
+      {% assign vanity_colors_list = vanity_colors_list | append: vanity_colors | append: ',' %}
+    {% endif %}
+  {% endfor %}
+  
+  {% for i in (2..7) %}
+    {% assign prefix = 'filter_by_colors_master_colo_' | append: i %}
+    {% assign namespace = collection.metafields.sf_banners[prefix] %}   
+    {% assign title = shop.metafields[namespace].title %}   
+    {% assign master_color = shop.metafields[namespace].master_color %}     
+    {% assign vanity_colors = shop.metafields[namespace].vanity_colors | newline_to_br | strip_newlines | replace: "<br />", "||" %}
+    {% if master_color and vanity_colors  %}
+      {% assign master_colors_list = master_colors_list | append: title | append: '|' | append: master_color | append: ',' %}
+      {% assign vanity_colors_list = vanity_colors_list | append: vanity_colors | append: ',' %}
+    {% endif %}
+  {% endfor %}
+  
+  {%- assign master_colors_list = master_colors_list | split: ',' | compact | join: '","' -%}
+  {%- assign vanity_colors_list = vanity_colors_list | split: ',' | compact -%}
+  {% assign vanity_colors_list_new = '' %}
+  {% for vc in vanity_colors_list %}
+    {% assign vc_items = vc | split: '||' %}
+    {% assign new_vc_item = '' %}
+    {% for item in vc_items %}
+      {% assign _items = item | split: '|' %}
+      {% assign _item_handle = _items[0] | handle %}
+      {% assign new_vc_item = new_vc_item | append: _item_handle | append: '|' | append: _items[1] | append: '||' %}
+    {% endfor %}
+    {%- assign new_vc_item = new_vc_item | split: '||' | compact | join: '||' -%}
+    {% assign vanity_colors_list_new = vanity_colors_list_new | append: new_vc_item | append: ',' %}
+  {% endfor %}
+  {%- assign vanity_colors_list = vanity_colors_list_new | split: ',' | compact | join: '","' -%}
+  
+  {% assign vanity_colors_all = shop.metafields.sf_color_code.colors | newline_to_br | strip_newlines | replace: "<br />", "," %}
+  {%- assign vanity_colors_all = vanity_colors_all | split: ',' | compact -%}
+  {% assign new_vc_item_all = '' %}
+  {% for _vanity_color in vanity_colors_all %}
+    {% assign _vanity_color_item = _vanity_color | split: '|' %}
+    {% assign _item_handle = _vanity_color_item[0] | handle %}
+    {% assign new_vc_item_all = new_vc_item_all | append: _item_handle | append: '|' | append: _vanity_color_item[1] | append: ',' %}
+  {% endfor %}
+  {%- assign vanity_colors_all = new_vc_item_all | split: ',' | compact -%}
+  
+  {% paginate collection.products by all_per_page %}
+    {%- if paginate.current_page == 1 -%}
+      {%- assign collection_banners = collection.metafields.sf_banners -%}
+  
+      {%- if collection_banners.size > 0 -%}
+        {%- include 'collection-banners' -%}
+      {%- endif -%}
+    {%- endif -%}
+  
+    {% comment %}{%- assign productSizes = "" | split: "," -%}{% endcomment %}
+    {%- assign productSizes = "" -%}
+    {%- assign productTypes = "" -%}
+  
+    {%- assign productWeights = "" -%}
+    {%- assign productFabrics = "" -%}
+    {%- assign productMaterials = "" -%}
+    {%- for product in collection.products -%}
+      
+      {%- assign showInList = true -%}
+  {% comment %}
+      {%- for tag in product.tags -%}
+        {%- assign tagStr = tag | downcase -%}
+        {%- if tagStr contains 'bundlehide' -%}
+          {%- assign showInList = false -%}
+        {%- endif -%}
+      {%- endfor -%}
+  {% endcomment %}
+  
+  {% assign product_tags = product.tags | join ' ' | downcase %}
+    {%- if product_tags contains 'bundlehide' -%}
+      {%- assign showInList = false -%}
+      {%- endif -%}
+  
+      {%- if showInList -%}
+  
+        {% comment %} Start size values {% endcomment %}
+          {%- comment -%}
+            {% for product_option in product.options_with_values %}
+              {% assign option_name = product_option.name | downcase %}
+              {% if option_name == "size" %}
+                {%- assign productSizes = productSizes | concat: product_option.values | compact | uniq -%}
+              {% endif %}
+            {% endfor %}
+          {%- endcomment -%}
+        {% comment %} End size values {% endcomment %}
+  
+        {% comment %} Start product type {% endcomment %}
+        {%- assign productTypes = productTypes | append: product.type | append: ',' -%}
+        {% comment %} End product type {% endcomment %}
+  
+        {%- for tag in product.tags -%}
+          {% comment %} Start size {% endcomment %}
+          {%- if tag contains 'size:' -%}
+            {%- assign _tag = tag | split: "size:" | last -%}
+            {%- assign _tag = _tag | split: ":" | first -%}
+            {%- assign productSizes = productSizes | append: _tag | append: ',' -%}
+          {%- endif -%}
+          {% comment %} End size {% endcomment %}
+  
+          {% comment %} Start weight {% endcomment %}
+          {%- if tag contains 'weight:' -%}
+            {%- assign productWeights = productWeights | append: tag | append: ',' -%}
+          {%- endif -%}
+          {% comment %} End weight {% endcomment %}
+  
+          {% comment %} Start fabric {% endcomment %}
+          {%- if tag contains 'fabric:' -%}
+            {%- assign productFabrics = productFabrics | append: tag | append: ',' -%}
+          {%- endif -%}
+          {% comment %} End fabric {% endcomment %}
+  
+          {% comment %} Start material {% endcomment %}
+          {%- if tag contains 'material:' -%}
+            {%- assign productMaterials = productMaterials | append: tag | append: ',' -%}
+          {%- endif -%}
+          {% comment %} End material {% endcomment %}
+        {%- endfor -%}
+      {%- endif -%}
+    {%- endfor -%}
+    {% comment %}{%- assign productSizes = productSizes | compact | uniq -%}{% endcomment %}
+    {%- assign productSizes = productSizes | split: "," | compact | uniq -%}
+    {%- assign productTypes = productTypes | split: "," | compact | uniq -%}
+  
+    {%- assign productWeights = productWeights | split: "," | compact | uniq -%}
+    {%- assign productFabrics = productFabrics | split: "," | compact | uniq -%}
+    {%- assign productMaterials = productMaterials | split: "," | compact | uniq -%}
+  
+    <section class="section-collections banners-adjust">
+        <div class="shell">
+          <div class="section__body">
+            {%- if intro_text_only != 1 and collection.description != blank -%}
+              <div class="section__entry">
+                {{ collection.description | newline_to_br }}
+              </div><!-- /.section__entry -->
+            {%- endif -%}
+  
+            {%- assign noFilter = true -%}
+            {% if show_color == 1 and master_colors_list != "" %}
+              {%- assign noFilter = false -%}
+            {% endif %}
+            {% if show_size == 1 and productSizes.size > 0 %}
+              {%- assign noFilter = false -%}
+            {% endif %}
+            {% if show_weight == 1 and productWeights.size > 0 %}
+              {%- assign noFilter = false -%}
+            {% endif %}
+            {% if show_fabric == 1 and productFabrics.size > 0 %}
+              {%- assign noFilter = false -%}
+            {% endif %}
+            {% if show_material == 1 and productMaterials.size > 0 %}
+              {%- assign noFilter = false -%}
+            {% endif %}
+            {% if show_style == 1 and productTypes.size > 0 %}
+              {%- assign noFilter = false -%}
+            {% endif %}
+  
+            <div class="collection-toolbar">
+              <div class="collection-toolbar__rows">
+                <div class="collection-toolbar__row collection-toolbar__row--types">
+                  <div class="collection-toolbar__label hidden-xs{% if noFilter %} nonvisibled{% endif %}">filter</div>
+                  <div class="collection-toolbar__action collection-toolbar__action--mobile{% if noFilter %} nonvisibled{% endif %}">
+                    <button class="collection-toolbar__filter collection-toolbar__filter--filter" data-type="filter">Filter</button>
+                  </div>
+                  <div class="collection-toolbar__options">
+                    <ul class="collection-toolbar__list">
+                      {% if show_color == 1 and master_colors_list != "" %}
+                        <li class="collection-toolbar__list-item"><button class="collection-toolbar__filter" data-type="color">color</button></li>
+                      {% endif %}
+                      {% if show_size == 1 and productSizes.size > 0 %}
+                        {%- if collection.handle == "bath-accessories" -%}
+                          {%- assign isInteractImages = true -%}
+                        {%- endif -%}
+                        <li class="collection-toolbar__list-item">
+                          <button
+                            class="collection-toolbar__filter"
+                            data-type="size"
+                            {% if isInteractImages %}
+                              data-interact-image="true"
+                            {% endif %}
+                          >size</button>
+                        </li>
+                      {% endif %}
+                      {% if show_weight == 1 and productWeights.size > 0 %}
+                        <li class="collection-toolbar__list-item"><button class="collection-toolbar__filter" data-type="weight">weight</button></li>
+                      {% endif %}
+                      {% if show_fabric == 1 and productFabrics.size > 0 %}
+                        <li class="collection-toolbar__list-item"><button class="collection-toolbar__filter" data-type="fabric">fabric</button></li>
+                      {% endif %}
+                      {% if show_material == 1 and productMaterials.size > 0 %}
+                        <li class="collection-toolbar__list-item"><button class="collection-toolbar__filter" data-type="material">material</button></li>
+                      {% endif %}
+                      {% if show_style == 1 and productTypes.size > 0 %}
+                        <li class="collection-toolbar__list-item"><button class="collection-toolbar__filter" data-type="style">style</button></li>
+                      {% endif %}
+                    </ul>
+                  </div>
+                  <div class="collection-toolbar__action collection-toolbar__action--desktop">
+                    <button class="collection-toolbar__filter collection-toolbar__filter--sort" data-type="sort">Sort</button>
+                  </div>
+                  <div class="collection-toolbar__action collection-toolbar__action--mobile">
+                    <button class="collection-toolbar__filter collection-toolbar__filter--filter" data-type="sort">Sort</button>
+                  </div>
+                </div>
+  
+                <div class="collection-toolbar__row collection-toolbar__row--values">
+                  <div class="collection-toolbar__label"></div>
+                  <div class="collection-toolbar__options"></div>
+                  <div class="collection-toolbar__action collection-toolbar__action--desktop">
+                    <button class="collection-toolbar__filter collection-toolbar__cancel">Cancel</button>
+                  </div>
+                </div>
+              </div>
+  
+              <div class="collection-toolbar__overlay">
+                <button class="collection-toolbar__overlay__close">
+                  <svg class="" height="36" viewBox="0 0 36 36" width="36"><path d="M19.414 18l4.243 4.243a1 1 0 0 1-1.414 1.414L18 19.414l-4.243 4.243a1 1 0 0 1-1.414-1.414L16.586 18l-4.243-4.243a1 1 0 0 1 1.414-1.414L18 16.586l4.243-4.243a1 1 0 0 1 1.414 1.414L19.414 18z" fill-rule="evenodd"></path></svg>
+                </button>
+                <h3 class="collection-toolbar__overlay__title collection-toolbar__overlay--filter">Filter</h3>
+                <h3 class="collection-toolbar__overlay__title collection-toolbar__overlay--sort">Sort</h3>
+                <div class="collection-toolbar__overlay__rows">
+                  {% if master_colors_list != "" %}
+                  <div class="collection-toolbar__overlay__row collection-toolbar__overlay--filter">
+                    <h4 class="collection-toolbar__overlay__label">Color</h4>
+                    <div class="collection-toolbar__list">
+                      <div class="buttons-images">
+                      {% assign master_colors = master_colors_list | split: '","' | compact %}
+                      {% for mc in master_colors %}
+                        {% assign _mc_vals = mc | split: '|' %}
+                        <button class="buttons-images__button" style="background-color:{{ _mc_vals[1] }}" data-value="{{ _mc_vals[0] }}"></button>
+                      {% endfor %}
+                      </div>
+                    </div>
+                  </div>
+                  {% endif %}
+  
+                  {% if productSizes.size > 0 %}
+                  <div class="collection-toolbar__overlay__row collection-toolbar__overlay--filter">
+                    <h4 class="collection-toolbar__overlay__label">Size</h4>
+                    <ul class="collection-toolbar__list collection-toolbar__list--values">
+                      {% for _size in productSizes %}
+                        <li class="collection-toolbar__list-item"><button class="collection-toolbar__filter" data-value='{{ _size }}'>{{ _size | split: 'size:' | last }}</button></li>
+                      {% endfor %}
+                    </ul>
+                  </div>
+                  {% endif %}
+  
+                  {% if productWeights.size > 0 %}
+                  <div class="collection-toolbar__overlay__row collection-toolbar__overlay--filter">
+                    <h4 class="collection-toolbar__overlay__label">Weight</h4>
+                    <ul class="collection-toolbar__list collection-toolbar__list--values">
+                      {% for _weight in productWeights %}
+                        {%- assign _weightStrs = _weight | split: ':' -%}
+                        <li class="collection-toolbar__list-item"><button class="collection-toolbar__filter" data-value="{{ _weight }}">{{ _weightStrs[1] }}</button></li>
+                      {% endfor %}
+                    </ul>
+                  </div>
+                  {% endif %}
+  
+                  {% if productFabrics.size > 0 %}
+                  <div class="collection-toolbar__overlay__row collection-toolbar__overlay--filter">
+                    <h4 class="collection-toolbar__overlay__label">Fabric</h4>
+                    <ul class="collection-toolbar__list collection-toolbar__list--values">
+                      {% for _fabric in productFabrics %}
+                        {%- assign _fabricStrs = _fabric | split: ':' -%}
+                        <li class="collection-toolbar__list-item"><button class="collection-toolbar__filter" data-value="{{ _fabric }}">{{ _fabricStrs[1] }}</button></li>
+                      {% endfor %}
+                    </ul>
+                  </div>
+                  {% endif %}
+  
+                  {% if productMaterials.size > 0 %}
+                  <div class="collection-toolbar__overlay__row collection-toolbar__overlay--filter">
+                    <h4 class="collection-toolbar__overlay__label">Material</h4>
+                    <ul class="collection-toolbar__list collection-toolbar__list--values">
+                      {% for _material in productMaterials %}
+                        {%- assign _materialStrs = _material | split: ':' -%}
+                        <li class="collection-toolbar__list-item"><button class="collection-toolbar__filter" data-value="{{ _material }}">{{ _materialStrs[1] }}</button></li>
+                      {% endfor %}
+                    </ul>
+                  </div>
+                  {% endif %}
+  
+                  {% if productTypes.size > 0 %}
+                  <div class="collection-toolbar__overlay__row collection-toolbar__overlay--filter">
+                    <h4 class="collection-toolbar__overlay__label">Style</h4>
+                    <ul class="collection-toolbar__list collection-toolbar__list--values">
+                      {% for _style in productTypes %}
+                        <li class="collection-toolbar__list-item"><button class="collection-toolbar__filter" data-value="{{ _style }}">{{ _style }}</button></li>
+                      {% endfor %}
+                    </ul>
+                  </div>
+                  {% endif %}
+  
+                  <div class="collection-toolbar__overlay__row collection-toolbar__overlay--sort">
+                    <h4 class="collection-toolbar__overlay__label">Sort</h4>
+                    <ul class="collection-toolbar__list collection-toolbar__list--sort">
+                      <li class="collection-toolbar__list-item"><button class="collection-toolbar__filter collection-toolbar__filter--on" data-value="newest">Newest</button></li>
+                      <li class="collection-toolbar__list-item"><button class="collection-toolbar__filter" data-value="price ($-$$)">Price ($-$$)</button></li>
+                    </ul>
+                  </div>
+                  <div class="collection-toolbar__overlay__row collection-toolbar__overlay__row--actions">
+                    <button class="collection-toolbar__filter collection-toolbar__filter--reverse">Apply</button>
+                    <button class="collection-toolbar__filter">Clear</button>
+                  </div>
+                </div>
+              </div>
+  
+            </div><!-- /.filter -->
+  
+            <div id="pre-load-products">
+              <svg width="70px"  height="70px"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid" class="lds-eclipse" style="background: rgba(0, 0, 0, 0) none repeat scroll 0% 0%;"><path ng-attr-d="{{config.pathCmd}}" ng-attr-fill="{{config.color}}" stroke="none" d="M10 50A40 40 0 0 0 90 50A40 45 0 0 1 10 50" fill="#8d8b8e"><animateTransform attributeName="transform" type="rotate" calcMode="linear" values="0 50 52.5;360 50 52.5" keyTimes="0;1" dur="2s" begin="0s" repeatCount="indefinite"></animateTransform></path></svg>
+            </div>
+  
+            <div class="products nonvisibled">
+              {%- assign productIndex = 0 -%}
+              {%- for product in collection.products -%}
+  
+                {%- assign showInList = true -%}
+                {%- for tag in product.tags -%}
+                  {%- assign tagStr = tag | downcase -%}
+                  {%- if tagStr contains 'bundlehide' -%}
+                    {%- assign showInList = false -%}
+                  {%- endif -%}
+                {%- endfor -%}
+  
+                {%- if showInList -%}
+                  {% assign product_sizes = '' %}
+                  {% comment %}
+                    {% for product_option in product.options_with_values %}
+                      {% assign option_name = product_option.name | downcase %}
+                      {% if option_name == "size" %}
+                        {% assign product_sizes = product_option.values | join: ',' %}
+                      {% endif %}
+                    {% endfor %}
+                  {% endcomment %}
+  
+                  {% assign product_weights = '' %}
+                  {% assign product_fabrics = '' %}
+                  {% assign product_materials = '' %}
+                  {%- for tag in product.tags -%}
+                    {% comment %} Start weight {% endcomment %}
+                    {%- if tag contains 'weight:' -%}
+                      {%- assign product_weights = product_weights | append: tag | append: ',' -%}
+                    {%- endif -%}
+                    {% comment %} End weight {% endcomment %}
+  
+                    {% comment %} Start size {% endcomment %}
+                    {%- if tag contains 'size:' -%}
+                      {%- assign _tag = tag | split: "size:" | last -%}
+                      {%- assign _tag = _tag | split: ":" | first -%}
+                      {%- assign product_sizes = product_sizes | append: _tag | append: ',' -%}
+                    {%- endif -%}
+                    {% comment %} End size {% endcomment %}
+  
+                    {% comment %} Start fabric {% endcomment %}
+                    {%- if tag contains 'fabric:' -%}
+                      {%- assign product_fabrics = product_fabrics | append: tag | append: ',' -%}
+                    {%- endif -%}
+                    {% comment %} End fabric {% endcomment %}
+  
+                    {% comment %} Start material {% endcomment %}
+                    {%- if tag contains 'material:' -%}
+                      {%- assign product_materials = product_materials | append: tag | append: ',' -%}
+                    {%- endif -%}
+                    {% comment %} End material {% endcomment %}
+                  {%- endfor -%}
+  
+                  {%- assign product_sizes = product_sizes | split: ',' | compact | uniq | join: ',' -%}
+                  {%- assign product_weights = product_weights | split: ',' | compact | uniq | join: ',' -%}
+                  {%- assign product_fabrics = product_fabrics | split: ',' | compact | uniq | join: ',' -%}
+                  {%- assign product_materials = product_materials | split: ',' | compact | uniq | join: ',' -%}
+  
+                  {%- assign productIndex = productIndex | plus: 1 -%}
+                  {%- include 'product-item-in-plp' with current_product: product, loopIndex: forloop.index, vanityColors: vanity_colors_all, productSizes: product_sizes, productWeights: product_weights, productFabrics: product_fabrics, productMaterials: product_materials, productIndex: productIndex -%}
+                {%- endif -%}
+              {%- endfor -%}
+  
+              {% comment %}            
+              {%- for product in collection.products -%}
+                {%- if product.available -%}
+                  {%- assign loopIndex = forloop.index -%}
+                  {%- for variant in product.variants -%}
+                    {%- include 'product-variant' with current_variant: variant, current_product: product, loopIndex: loopIndex -%}
+                  {%- endfor -%}
+                {%- endif -%}
+              {%- endfor -%}
+              {% endcomment %}
+  
+            </div><!-- /.products -->
+          </div><!-- /.section__body -->
+        </div><!-- /.shell -->
+    </section><!-- /.section-collections -->
+  
+    {% include 'pagination' %}
+  {% endpaginate %}
+  
+  <script type="text/javascript">
+    var options_by_color = ["{{ master_colors_list }}"];
+    var vanity_colors_list = ["{{ vanity_colors_list }}"];
+    var options_by_size = ['{{ productSizes | join: "','" }}'];
+    var options_by_weight = ["{{ productWeights | join: '","' }}"];
+    var options_by_fabric = ["{{ productFabrics | join: '","' }}"];
+    var options_by_material = ["{{ productMaterials | join: '","' }}"];
+    var options_by_style = ["{{ productTypes | join: '","' }}"];
+    var options_by_sort = ["newest", "price ($-$$)"];
+  </script>
+  

@@ -1,0 +1,13 @@
+{%- assign intro_image = page.metafields.sf_collections.intro_image -%}
+
+<article class="article" style="padding:0">
+	<div>
+		<img class="lazyload" src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==
+" data-src="{{ intro_image }}" height="282px">
+	</div>
+	<div class="article__inner" style="text-align:center">
+		<h1 class="article__title" style="margin-bottom:20px;margin-top:3rem">{{ page.title }}</h1>
+		{{ page.content }}
+		<a href="{{page.metafields.sf_basic.image}}" target="_blank" data-url="{{page.metafields.sf_basic.image}}" class="btn btn--solid form__btn" style="margin-top:20px">JOIN NOW</a>
+	</div>
+</article>

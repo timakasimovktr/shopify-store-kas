@@ -1,0 +1,110 @@
+{%- assign _section = section.settings -%}
+{%- assign _blocks = section.blocks -%}
+
+{%- if _blocks.size > 0 -%}
+  {%- comment -%} Style of Section {%- endcomment -%}
+    {%- if _section.color != blank -%}
+      <style type="text/css">
+        .section-posts[data-section-id="{{ section.id }}"] .slider__slide-content
+         {
+          color: {{ _section.color }};
+        }
+      </style>
+    {%- endif -%}
+  <section class="section-posts" data-section-id="{{ section.id }}">
+    <div class="slider-posts">
+      <div class="slider__clip">
+        <div class="slider__slides js-slider-center">
+          {%- for block in _blocks -%}
+            {%- assign _block = block.settings -%}
+            {%- assign open_type = _block.article_url_url_type -%}
+
+            <div class="slider__slide">
+              <a  href="{{ _block.article_url }}" {% if open_type == "1" %}target="_blank"{% endif %}>
+                <div class="slider__slide-content">
+                  {% if _block.blog_title != blank %}
+                    <h6>{{ _block.blog_title }}</h6>
+                  {% endif %}
+
+                  <h2>{{ _block.article_title }}</h2>
+
+                  <p>{{ _block.article_excerpt }}</p>
+                </div><!-- /.slider__slide-content -->
+
+                {%- if _block.article_image != blank -%}
+                  <div class="slider__slide-image lazyload" data-sizes="auto" data-bgset="{{ _block.article_image | img_url: '680x' }} 680w"></div><!-- /.slider__slide-image -->
+                {%- endif -%}
+              </a>
+            </div><!-- /.slider__slide -->
+          {%- endfor -%}
+        </div><!-- /.slider__slides -->
+      </div><!-- /.slider__clip -->
+    </div><!-- /.slider-posts -->
+  </section><!-- /.section-posts -->
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Slider posts",
+  "max_blocks": 3,
+  "settings": [
+    {
+      "type": "header",
+      "content": "General Style"
+    },
+    {
+      "type": "color",
+      "id": "color",
+      "label": "Content Color",
+      "default": "#636363"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "post",
+      "name": "Post",
+      "settings": [
+        {
+          "type": "text",
+          "id": "blog_title",
+          "label": "Blog Title"
+        },
+        {
+          "type": "text",
+          "id": "article_title",
+          "label": "Article Title"
+        },
+        {
+          "type": "url",
+          "id": "article_url",
+          "label": "Article URL"
+        },
+        {
+           "type": "select",
+           "id": "article_url_url_type",
+           "options": [
+              { "value": "1", "label": "New tab"},
+              { "value": "0", "label": "Self"}
+           ],
+           "label": "Open URL"
+        },
+        {
+          "type": "textarea",
+          "id": "article_excerpt",
+          "label": "Excerpt"
+        },
+        {
+          "type": "image_picker",
+          "id": "article_image",
+          "label": "Image"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Slider posts"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,169 @@
+<style>
+.btn--link {
+  margin-left: 0;
+  max-width: none;
+  display: inline-block;
+  width: auto;
+  padding-right: 18px;
+  font-size: 18px;
+  font-weight: 300;
+}
+@media (max-width: 767px){
+  .btn--link {
+    font-size: 16px;
+    margin: 0;
+    text-transform: capitalize;
+    max-width: none;
+    display: inline-block;
+    width: auto;
+    padding-right: 18px;
+    font-weight: 300;
+  }
+}
+</style>
+
+<div class="section-image section-showroom-inner">
+    <div class="shell">
+      <div class="section__inner">
+        <div class="section__image section__image-standard">
+            {% if section.settings.imageUrl %}
+              <img class="feature-row__image lazyload" data-src="{{section.settings.imageUrl | img_url: '680x'}}"/>
+            {% else %}
+            <div class="video-holder video-holder--alt section__video">
+                <video muted autoplay playsinline loop id="product_video">
+                    <source src="{{section.settings.videoUrl}}" type="video/mp4"></source>
+                </video>
+            </div>
+            {% endif %}
+        </div>
+        
+        <div class="section__content section__content-standard">
+            {% if section.settings.title != blank %}
+              <h2 class="section__title">{{section.settings.title}}</h2>
+            {% endif %}
+
+            {% if section.settings.address_label != blank %}
+              <p class="font-lighter">{{section.settings.address_label}}</p>
+            {% endif %}
+
+            {% if section.settings.mailing_address != blank %}
+              <p>{{section.settings.mailing_address}}</p>
+            {% endif %}
+
+            {% if section.settings.btn_arrow_url != blank %}
+            <a  href="{{section.settings.btn_arrow_url}}" class="btn btn--link mt-6">
+              {{section.settings.btn_arrow_text}}
+              <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="408px" height="408px" viewBox="0 0 408 408" style="enable-background:new 0 0 408 408;" xml:space="preserve">
+                <g>
+                  <g id="arrow-forward">
+                    <polygon points="204,0 168.3,35.7 311.1,178.5 0,178.5 0,229.5 311.1,229.5 168.3,372.3 204,408 408,204"></polygon>
+                  </g>
+                </g>
+              </svg>
+            </a>
+            {% endif %}
+        </div>
+
+
+      </div>
+    </div>
+</div>
+
+{% stylesheet %}
+.mt-6 {
+  margin-top: 2rem!important;
+}
+
+.section__image.section__image-standard {
+  min-height: auto!important;
+}
+
+.font-lighter {
+  color: #636363;
+  text-decoration: none;
+}
+
+.map-container {
+  margin-top: 10px;
+}
+
+@media screen and (min-width: 769px) {
+  .map-container {
+    max-width: 235px;
+    display: block;
+  }
+
+  .section__content-standard {
+    padding-left: 1.5rem;
+  }
+}
+
+@media screen and (min-width: 769px) {
+  .section-showroom-inner {
+    padding-top: 6rem;
+    padding-bottom: 5rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .section-showroom-inner {
+    padding-top: 2rem!important;
+    padding-bottom: 1rem!important;
+  }
+}
+
+
+
+
+{% endstylesheet %}
+
+
+{% schema %}
+{
+  "name": "Our Showroom",
+  "class": "section-our-showroom",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Our Showroom"
+    },
+    {
+      "type": "text",
+      "id": "address_label",
+      "label": "Address Label",
+      "default": "Located At"
+    },
+    {
+      "type": "text",
+      "id": "mailing_address",
+      "label": "Location"
+    },
+    {
+      "id": "imageUrl",
+      "type": "image_picker",
+      "label": {
+        "en": "Image"
+      }
+    },
+    {
+      "id": "videoUrl",
+      "type": "text",
+      "label": "Video URL",
+      "default": "https://cdn.shopify.com/s/files/1/0067/4870/0741/files/video-test_60sec_larger.mp4?v=1596481073"
+    },
+    {
+      "id": "btn_arrow_text",
+      "type": "text",
+      "label": "Button Text",
+      "default": "Click me"
+    },
+    {
+      "id": "btn_arrow_url",
+      "type": "text",
+      "label": "Button URL"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,124 @@
+{%- assign _section = section.settings -%}
+{%- comment -%} Style of Section {%- endcomment -%}
+  {%- if _section.color != blank -%}
+    <style type="text/css">
+      .section-single-collection[data-section-id="{{ section.id }}"] .section__title,
+      .section-single-collection[data-section-id="{{ section.id }}"] .section__subtitle,
+      .section-single-collection[data-section-id="{{ section.id }}"] .btn--link
+       {
+        color: {{ _section.color }};
+      }
+    </style>
+  {%- endif -%}
+<section class="section-single-collection" data-section-id="{{ section.id }}">
+  <div class="shell">
+    <div class="section__inner {% if _section.inverse_elements %} section__inner--inverse {% endif %}">
+      <div class="section__content">
+        {%- if _section.title != blank -%}
+          <h2 class="section__title">{{ _section.title | newline_to_br }}</h2><!-- /.section__title -->
+        {%- endif -%}
+
+        {%- if _section.subtitle != blank -%}
+          <h4 class="section__subtitle">{{ _section.subtitle | newline_to_br }}</h4><!-- /.section__subtitle -->
+        {%- endif -%}
+
+        {%- if _section.button_text != blank and _section.button_url != blank -%}
+          <a  href="{{_section.button_url}}" class="btn btn--link">
+            {{ _section.button_text }}
+
+            {%- include 'icons' with icon: 'arrow-right' -%}
+          </a>
+        {%- endif -%}
+      </div><!-- /.section__content -->
+
+      {%- if _section.image_large != blank -%}
+
+        {%- capture section_image_large_attrs -%}
+          class="section__image lazyload" data-sizes="auto" data-bgset="{{ _section.image_large | img_url: '300x' }} 300w, {{ _section.image_large | img_url: '400x' }} 400w, {{ _section.image_large | img_url: '500x' }} 500w, {{ _section.image_large | img_url: '600x' }} 600w"
+        {%- endcapture -%}
+        {%- if _section.button_url != blank -%}
+          <div {{ section_image_large_attrs }}>
+            <a class="full_view_link" href="{{ _section.button_url }}"></a>
+          </div><!-- /.section__image -->
+        {%- else -%}
+          <div {{ section_image_large_attrs }}></div><!-- /.section__image -->
+        {%- endif -%}
+
+      {%- endif -%}
+
+      {%- if _section.image_small != blank -%}
+
+        {%- capture section_image_small_attrs -%}
+          class="section__image section__image--small hidden-xs" style="background-image: url({{ _section.image_small | img_url: '400x' }});"
+        {%- endcapture -%}
+        
+        {%- if _section.button_url != blank -%}
+          <a href="{{ _section.button_url }}" {{ section_image_small_attrs }}></a><!-- /.section__image section__image-/-small -->
+        {%- else -%}
+          <div {{ section_image_small_attrs }}></div><!-- /.section__image section__image-/-small -->
+        {%- endif -%}
+
+        <div ></div><!-- /.section__image section__image-/-small -->
+      {%- endif -%}
+    </div><!-- /.section__inner -->
+  </div><!-- /.shell -->
+</section><!-- /.section-single-collection -->
+
+{% schema %}
+{
+  "name": "Single collection",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "inverse_elements",
+      "label": "Inverse elements",
+      "default": false
+    },
+    {
+      "type": "image_picker",
+      "id": "image_large",
+      "label": "Image large"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_small",
+      "label": "Image small"
+    },
+    {
+      "type": "textarea",
+      "id": "title",
+      "label": "Title"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Subtitle"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button text"
+    },
+    {
+      "type": "url",
+      "id": "button_url",
+      "label": "Button URL"
+    },
+    {
+      "type": "header",
+      "content": "General Style"
+    },
+    {
+      "type": "color",
+      "id": "color",
+      "label": "Content Color",
+      "default": "#636363"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Single collection"
+    }
+  ]
+}
+{% endschema %}

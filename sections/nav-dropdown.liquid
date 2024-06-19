@@ -1,0 +1,107 @@
+<!--
+  {%- assign _blocks = section.blocks -%}
+
+  {%- if _blocks.size > 0 -%}
+    {%- for block in _blocks -%}
+      {%- assign current_block = block.settings -%}
+
+      {%- assign link_handle = current_block.link_handle -%}
+      {%- assign nav_1 = current_block.nav_1 -%}
+      {%- assign nav_2 = current_block.nav_2 -%}
+      {%- assign nav_3 = current_block.nav_3 -%}
+      {%- assign nav_4 = current_block.nav_4 -%}
+      {%- assign box_link = current_block.box_link -%}
+      {%- assign box_title = current_block.box_title -%}
+      {%- assign box_content = current_block.box_content -%}
+      {%- assign box_thumbnail = '' -%}
+      {%- assign _image = '' -%}
+      {%- assign box_image = '' -%}
+
+      {%- if current_block.image != blank -%}
+        {%- assign _image = current_block.image | img_url: '1126x' -%}
+      {%- endif -%}
+
+      {%- if current_block.box_image != blank -%}
+        {%- assign box_image = current_block.box_image | img_url: '80x' -%}
+      {%- endif -%}
+
+      {%- if current_block.box_thumbnail != blank -%}
+        {%- assign box_thumbnail = current_block.box_thumbnail | img_url: '300x' -%}
+      {%- endif -%}
+
+      {%- assign dropdown = 'linkHandle:' | append: link_handle | append: '||' | append: 'largeImage:' | append: _image | append: '||' | append: 'nav-1:' | append: nav_1 | append: '||' | append: 'nav-2:' | append: nav_2 | append: '||' | append: 'nav-3:' | append: nav_3 | append: '||' | append: 'nav-4:' | append: nav_4 | append: '||' | append: 'boxLink:' | append: box_link | append: '||' | append: 'boxImage:' | append: box_image | append: '||' | append: 'boxTitle:' | append: box_title | append: '||' | append: 'boxContent:' | append: box_content | append: '||' | append: 'boxThumbnail:' | append: box_thumbnail | append: '@@' -%}
+
+      {{ dropdown }}
+    {%- endfor -%}
+  {%- endif -%}
+-->
+
+{% schema %}
+{
+  "name": "Nav",
+  "blocks": [
+    {
+      "type": "nav-dropdown",
+      "name": "Nav Dropdown",
+      "settings": [
+        {
+          "type": "text",
+          "id": "link_handle",
+          "label": "Link handle"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "link_list",
+          "id": "nav_1",
+          "label": "Col 1 nav 1"
+        },
+        {
+          "type": "link_list",
+          "id": "nav_2",
+          "label": "Col 2 nav 1"
+        },
+        {
+          "type": "link_list",
+          "id": "nav_3",
+          "label": "Col 1 nav 2"
+        },
+        {
+          "type": "link_list",
+          "id": "nav_4",
+          "label": "Col 2 nav 2"
+        },
+        {
+          "type": "url",
+          "id": "box_link",
+          "label": "Box link"
+        },
+        {
+          "type": "image_picker",
+          "id": "box_thumbnail",
+          "label": "Box Thumbnail",
+          "info": "If this is set, below image, title, content should be disabled."
+        },
+        {
+          "type": "image_picker",
+          "id": "box_image",
+          "label": "Box image"
+        },
+        {
+          "type": "textarea",
+          "id": "box_title",
+          "label": "Box title"
+        },
+        {
+          "type": "textarea",
+          "id": "box_content",
+          "label": "Box Content"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

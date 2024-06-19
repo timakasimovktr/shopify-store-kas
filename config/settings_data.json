@@ -1,0 +1,4935 @@
+{
+  "current": {
+    "bar_text": "<strong>Free U.S. Ground Shipping + Free Returns<\/strong><a href=\"https:\/\/kassatex.com\/pages\/shipping\" target=\"_blank\" rel=\"noopener noreferrer\"> Details<\/a>",
+    "logo": "shopify:\/\/shop_images\/logo_d2d1dc3f-9ca2-440a-94a6-67a63f6bc7f8.png",
+    "logo_type": "grey",
+    "nav": "",
+    "toggle_full_bleed": false,
+    "blog_link": "https:\/\/blog.kassatex.com\/",
+    "favicon": "",
+    "box_title_1": "Wholesale Account",
+    "box_btn_text_1": "SIGN IN OR REGISTER",
+    "box_btn_url_1": "https:\/\/b2b.kassatex.com\/customer\/account\/login\/",
+    "box_title_2": "Hospitality Account",
+    "box_btn_text_2": "CONTACT US",
+    "box_btn_url_2": "https:\/\/kassatex.com\/pages\/hospitality",
+    "title_desktop": "Get to Know Us Better",
+    "subscribe_description": "Join our mailing list and enjoy 15% off your first order.",
+    "title_mobile": "join our mailing list!",
+    "footer_subscribe_subtitle": "",
+    "embed_form": "PzEqni",
+    "is_included_currency_selector": true,
+    "title_currency_selector": "Currencies",
+    "available_currencies": "USD, GBP, Local",
+    "title_1": "Customer care",
+    "widget_1": "footer-widget-1",
+    "title_2": "Company information",
+    "widget_2": "footer-widget-2",
+    "title_3": "For the trade",
+    "widget_3": "footer-widget-3",
+    "contact_title": "Need a hand?",
+    "contact_content": "We’re available by email (contact@kassatex.com), phone (1.877.258.5177), and chat Monday to Friday, 9 a.m.–5 p.m. ET.\n\nPlease leave us a message:",
+    "contact_phone": "1.877.258.5177",
+    "contact_phone_title": "Call",
+    "contact_email": "contact@kassatex.com",
+    "contact_email_title": "Email",
+    "contact_link": "https:\/\/calendly.com\/kassatexny\/design-studio-appointment",
+    "contact_link_title": "Visit",
+    "footer_nav": "",
+    "copyright": "&copy; 2022 KASSATEX.COM.",
+    "disclaimer_content": "<p>Our website uses cookies and third-party services to analyze website behavior, personalize your experience, and send targeted advertising.<br>By continuing to use this site you agree to their use. To learn more read our&nbsp;<a href=\"\/pages\/privacy-policy\" title=\"Privacy Policy\">Privacy Policy<\/a>.<\/p>",
+    "message": "Shop our best sellers:",
+    "search_collection": "dev-test",
+    "gift_product": "gift-box",
+    "gift_title": "Are you buying a gift?",
+    "gift_content": "<p>Based on the items in your cart we recommend [gift-counts] gift boxes. <a href=\"\/pages\/gift-box\" title=\"Gift Box\">Learn More.<\/a><\/p>",
+    "gift_content_no_point": "<p><a href=\"\/pages\/gift-box\" title=\"Gift Box\">Learn More.<\/a><\/p>",
+    "gift_btn": "ADD A GIFT BOX",
+    "gift_points": "10",
+    "discount_price": "0",
+    "is_out_handle": true,
+    "cart_out_message": "Current stock limit reached.",
+    "cart_out_color": "",
+    "is_remain_stock_handle": false,
+    "cart_remain_message": "",
+    "cart_remain_color": "",
+    "holiday_is_active": false,
+    "holiday_gift_product": "",
+    "holiday_min_subtotal": "300",
+    "holiday_gift_desc_text": "Enjoy your free gift!",
+    "holiday_gift_desc_color": "#9f3730",
+    "buyonegetone_is_active": false,
+    "buyonegetone_collections_1": "261439553601",
+    "buyonegetone_gift_product_1": "mesh-laundry-bag",
+    "buyonegetone_collections_2": "",
+    "buyonegetone_gift_product_2": "",
+    "buyonegetone_collections_3": "",
+    "buyonegetone_gift_product_3": "",
+    "buyonegetone_gift_limit": 1,
+    "buyonegetone_gift_desc_text": "Enjoy your free gift!",
+    "buyonegetone_gift_desc_color": "#646464",
+    "error_image": "shopify:\/\/shop_images\/error-image.jpg",
+    "error_title": "Oops… We can’t find that page!",
+    "error_content": "Maybe you’ll be able to find something else thats even better!",
+    "error_btn_text": "back to home",
+    "error_btn_url": "\/",
+    "related_products": 3,
+    "select_options": "Designer trade inquiries\nDesigner trade inquiries1\nDesigner trade inquiries2\nDesigner trade inquiries3\nDesigner trade inquiries4\nDesigner trade inquiries5",
+    "products_per_page": "12",
+    "social_fa-facebook": "https:\/\/www.facebook.com\/kassatexnewyork",
+    "social_fa-pinterest": "https:\/\/www.pinterest.com\/kassatex\/",
+    "social_fa-instagram": "https:\/\/www.instagram.com\/kassatexnewyork\/",
+    "gift_card_logo": "shopify:\/\/shop_images\/Kassatex_NY-Transparent.png",
+    "gift_card_title": "Here's your gift card!",
+    "gift_card_image": "shopify:\/\/shop_images\/Gift-Card.jpg",
+    "gift_card_instructions": "Use this code to redeem your gift card.",
+    "customizer_message": "Please note monogrammed items cannot be exchanged or returned and will require additional time to process.",
+    "checkout_header_image": "",
+    "checkout_logo_image": "shopify:\/\/shop_images\/logo_d2d1dc3f-9ca2-440a-94a6-67a63f6bc7f8.png",
+    "checkout_logo_position": "left",
+    "checkout_logo_size": "medium",
+    "checkout_body_background_image": "",
+    "checkout_body_background_color": "#fff",
+    "checkout_input_background_color_mode": "white",
+    "checkout_sidebar_background_image": "",
+    "checkout_sidebar_background_color": "#fafafa",
+    "checkout_heading_font": "Helvetica Neue",
+    "checkout_body_font": "Helvetica Neue",
+    "checkout_accent_color": "#1990c6",
+    "checkout_button_color": "#1990c6",
+    "checkout_error_color": "#ff6d6d",
+    "social_fa-twitter": "https:\/\/twitter.com\/kassatex",
+    "collection_products_per_page": "12",
+    "social_fa-youtube": "5",
+    "social_fa-rss": "6",
+    "social_fa-tumblr": "7",
+    "social_fa-google-plus": "8",
+    "social_fa-snapchat": "9",
+    "social_fa-linkedin": "10",
+    "show_in_header": true,
+    "show_in_footer": true,
+    "bg_color": "#ffffff",
+    "custom_bg_color": false,
+    "body-custom": "",
+    "btn_main_color": "#bbbbbb",
+    "btn_main_hover": "#a2a2a2",
+    "btn_text_color": "#000",
+    "headings_color": "#000",
+    "owl_carousel": true,
+    "magnific_popup": true,
+    "utility_bg_color": "#000000",
+    "utility_text_color": "#ffffff",
+    "cart_options": "icon_with_qunatity",
+    "show_cart_text_at": "main_nav_section",
+    "logo_size": "medium",
+    "logo_max_size": "200px",
+    "footer_quicklinks_linklist": "footer",
+    "product_quantity_enable": true,
+    "product_lightbox": true,
+    "products_slider": false,
+    "slider_animation": "fade",
+    "product_slider_type": "dots",
+    "show_related_products": true,
+    "related_title": "Other fine products",
+    "related_grid_num": "5",
+    "related_grid_row": "1",
+    "variants_listing": "radio",
+    "collections_show_sold_out_circle": false,
+    "collections_sort_enable": false,
+    "pagination_limit": "10",
+    "related_grid_num_collection": "4",
+    "cart_notes": false,
+    "social_facebook": "#face",
+    "social_twitter": "#tw",
+    "social_instagram": "#in",
+    "social_pinterest": "#pin",
+    "social_youtube": "#you",
+    "social_rss": "#rss",
+    "social_tumblr": "#tumb",
+    "social_google_plus": "#go",
+    "social_snap_chat": "#snap",
+    "social_linkedin": "#linkedi",
+    "social_sharing_products": false,
+    "social_sharing_blog": false,
+    "share_id": "",
+    "share_type": "none",
+    "share_fblike": false,
+    "share_facebook": false,
+    "share_twitter": false,
+    "share_pinterest": false,
+    "share_linkedin": false,
+    "share_googleplus": false,
+    "share_email": false,
+    "share_sharethis": false,
+    "product_image_zoom_type": "lightbox",
+    "product_related_enable": true,
+    "home_section_1": "",
+    "home_section_2": "",
+    "home_section_3": "",
+    "home_section_4": "",
+    "favicon_enable": false,
+    "logo_use_image": false,
+    "checkout_use_storefront_logo": false,
+    "sections": {
+      "nav-dropdown": {
+        "type": "nav-dropdown",
+        "blocks": {
+          "1573481360484": {
+            "type": "nav-dropdown",
+            "settings": {
+              "link_handle": "gifts",
+              "nav_1": "gift-1",
+              "nav_2": "gift-2",
+              "nav_3": "",
+              "nav_4": "",
+              "box_link": "",
+              "box_title": "",
+              "box_content": ""
+            }
+          },
+          "1531135179525": {
+            "type": "nav-dropdown",
+            "settings": {
+              "link_handle": "bath",
+              "nav_1": "bath",
+              "nav_2": "bath-2",
+              "nav_3": "",
+              "nav_4": "",
+              "box_link": "shopify:\/\/products\/chairish-towels",
+              "box_title": "",
+              "box_content": ""
+            }
+          },
+          "1531141239401": {
+            "type": "nav-dropdown",
+            "settings": {
+              "link_handle": "bedding",
+              "image": "shopify:\/\/shop_images\/bedding_062020.jpg",
+              "nav_1": "bedding-1",
+              "nav_2": "bedding-2",
+              "nav_3": "",
+              "nav_4": "",
+              "box_link": "shopify:\/\/collections\/brushed-flannel-bamboo",
+              "box_title": "",
+              "box_content": ""
+            }
+          },
+          "1534276301164": {
+            "type": "nav-dropdown",
+            "settings": {
+              "link_handle": "decor",
+              "nav_1": "decor-1",
+              "nav_2": "decor-2",
+              "nav_3": "",
+              "nav_4": "",
+              "box_link": "shopify:\/\/collections\/kitchen",
+              "box_title": "",
+              "box_content": ""
+            }
+          },
+          "1534427094906": {
+            "type": "nav-dropdown",
+            "settings": {
+              "link_handle": "wear",
+              "image": "shopify:\/\/shop_images\/wear_102020mn_2.jpg",
+              "nav_1": "wear-1",
+              "nav_2": "wear-2",
+              "nav_3": "",
+              "nav_4": "",
+              "box_link": "shopify:\/\/products\/the-alpaca-robe",
+              "box_title": "",
+              "box_content": ""
+            }
+          },
+          "1534427337287": {
+            "type": "nav-dropdown",
+            "settings": {
+              "link_handle": "beach-1",
+              "nav_1": "beach-1",
+              "nav_2": "beach-2",
+              "nav_3": "",
+              "nav_4": "",
+              "box_link": "shopify:\/\/pages\/mia-moretti-x-kassatex",
+              "box_title": "",
+              "box_content": ""
+            }
+          },
+          "1567013283714": {
+            "type": "nav-dropdown",
+            "settings": {
+              "link_handle": "hotel",
+              "nav_1": "hotel-1",
+              "nav_2": "hotel-2",
+              "nav_3": "",
+              "nav_4": "",
+              "box_link": "shopify:\/\/collections\/1-hotel-x-kassatex",
+              "box_title": "",
+              "box_content": ""
+            }
+          },
+          "4ad65808-6009-4c3e-980d-b19efd48e7c4": {
+            "type": "nav-dropdown",
+            "settings": {
+              "link_handle": "at-home-edit",
+              "image": "shopify:\/\/shop_images\/at-home-edit.jpg",
+              "nav_1": "edit-1",
+              "nav_2": "edit-2",
+              "nav_3": "",
+              "nav_4": "",
+              "box_link": "shopify:\/\/collections\/organize-with-neat-method",
+              "box_title": "",
+              "box_content": ""
+            }
+          },
+          "5b94a8f0-9553-471f-b524-7df16bed52e6": {
+            "type": "nav-dropdown",
+            "settings": {
+              "link_handle": "",
+              "nav_1": "edit-1",
+              "nav_2": "",
+              "nav_3": "",
+              "nav_4": "",
+              "box_link": "",
+              "box_title": "",
+              "box_content": ""
+            }
+          },
+          "6cfb1d9f-dc61-44ee-9731-a3d9f05d42f9": {
+            "type": "nav-dropdown",
+            "settings": {
+              "link_handle": "collaborations",
+              "nav_1": "",
+              "nav_2": "",
+              "nav_3": "",
+              "nav_4": "",
+              "box_link": "shopify:\/\/collections\/jennifer-fisher-for-kassatex",
+              "box_title": "",
+              "box_content": ""
+            }
+          }
+        },
+        "block_order": [
+          "1573481360484",
+          "1531135179525",
+          "1531141239401",
+          "1534276301164",
+          "1534427094906",
+          "1534427337287",
+          "1567013283714",
+          "4ad65808-6009-4c3e-980d-b19efd48e7c4",
+          "5b94a8f0-9553-471f-b524-7df16bed52e6",
+          "6cfb1d9f-dc61-44ee-9731-a3d9f05d42f9"
+        ],
+        "settings": {
+        }
+      },
+      "1531148491794": {
+        "type": "intro",
+        "blocks": {
+          "1551376069402": {
+            "type": "slide",
+            "settings": {
+              "link": "",
+              "align_content": "slider__slide-content--alignright",
+              "image": "shopify:\/\/shop_images\/homepage-main.jpg",
+              "is_progressive_img": true,
+              "title": "Kassatex Hospitality",
+              "subtitle": "",
+              "description": "Luxury bed and bath products for hotels, resorts, and spas.",
+              "button_text": "",
+              "button_url": "shopify:\/\/products\/the-quilted-flannel-housecoat"
+            }
+          }
+        },
+        "block_order": [
+          "1551376069402"
+        ],
+        "settings": {
+          "is_muted": false,
+          "video": "",
+          "color": "#646464"
+        }
+      },
+      "1531205064886": {
+        "type": "single-image",
+        "settings": {
+          "inverse_elements": false,
+          "image": "shopify:\/\/shop_images\/Mayfair_HighRes.jpg",
+          "title": "New Product Alert: \nMayfaire",
+          "subtitle": "Crafted from 100% long staple cotton, this plush collection will elevate the everyday.",
+          "button_text": "Shop Now",
+          "button_url": "shopify:\/\/collections\/brushed-flannel-bamboo",
+          "color": "#333333"
+        }
+      },
+      "1531207330410": {
+        "type": "fluid-image",
+        "settings": {
+          "image": "shopify:\/\/shop_images\/KAS_Aman_Bath-Acc_3241_HighRes.jpg",
+          "title": "Countertop Sets",
+          "subtitle": "<strong>Vanity Upgrade<\/strong>",
+          "button_text": "<strong>Shop Now<\/strong>",
+          "button_url": "shopify:\/\/collections\/throw-blankets",
+          "color": "#333333"
+        }
+      },
+      "1531207748782": {
+        "type": "single-collection",
+        "disabled": true,
+        "settings": {
+          "inverse_elements": false,
+          "title": "Hostess Gifts",
+          "subtitle": "The perfect way to say\n'thank you' to your \nhost this holiday season.",
+          "button_text": "Shop Now",
+          "button_url": "shopify:\/\/collections\/hostess-gifts",
+          "color": "#000000"
+        }
+      },
+      "1531211598260": {
+        "type": "best-sellers",
+        "disabled": true,
+        "blocks": {
+          "84266058-126a-4a14-8f8d-d0950efc9579": {
+            "type": "tab",
+            "settings": {
+              "tab_title": "",
+              "tab_product_1": "relaxed-flannel-robe",
+              "tab_product_2": "the-quilted-flannel-housecoat",
+              "tab_product_3": "provence-hooded-terry-robe"
+            }
+          },
+          "1531211842329": {
+            "type": "tab",
+            "disabled": true,
+            "settings": {
+              "tab_title": "Games",
+              "tab_product_1": "checkers-game-set",
+              "tab_product_2": "2-deck-playing-card-set",
+              "tab_product_3": "domino-set"
+            }
+          },
+          "017b0b21-b4a0-4872-8cc2-5e870603c2b5": {
+            "type": "tab",
+            "disabled": true,
+            "settings": {
+              "tab_title": "Throwbeds",
+              "tab_product_1": "mini-in-majorca-blue",
+              "tab_product_2": "mini-in-harbour-island-charcoal",
+              "tab_product_3": "mini-in-toulouse-blue"
+            }
+          },
+          "e4c58c39-b8d7-4290-859e-c9a920ceac73": {
+            "type": "tab",
+            "disabled": true,
+            "settings": {
+              "tab_title": "Coverups",
+              "tab_product_1": "holbox-linen-caftan",
+              "tab_product_2": "the-linen-duster",
+              "tab_product_3": "holbox-linen-robe"
+            }
+          }
+        },
+        "block_order": [
+          "84266058-126a-4a14-8f8d-d0950efc9579",
+          "1531211842329",
+          "017b0b21-b4a0-4872-8cc2-5e870603c2b5",
+          "e4c58c39-b8d7-4290-859e-c9a920ceac73"
+        ],
+        "settings": {
+          "title": "New Arrivals: Bathrobes",
+          "color": "#333333"
+        }
+      },
+      "colors": {
+        "type": "colors",
+        "blocks": {
+          "1531215725853": {
+            "type": "color",
+            "settings": {
+              "color": "#f0e1bf",
+              "title": "Beige"
+            }
+          },
+          "1531215747019": {
+            "type": "color",
+            "settings": {
+              "color": "#acaaa7",
+              "title": "Grey"
+            }
+          },
+          "1531215765828": {
+            "type": "color",
+            "settings": {
+              "color": "#dddddd",
+              "title": "Light"
+            }
+          },
+          "1532459720491": {
+            "type": "color",
+            "settings": {
+              "color": "#09ea21",
+              "title": "coral (sardinia)"
+            }
+          },
+          "1536345653837": {
+            "type": "color",
+            "settings": {
+              "color": "#cfc08b",
+              "title": "Taupe"
+            }
+          },
+          "1537368477147": {
+            "type": "color",
+            "settings": {
+              "color": "#ea0928",
+              "title": "Marble Tan"
+            }
+          }
+        },
+        "block_order": [
+          "1531215725853",
+          "1531215747019",
+          "1531215765828",
+          "1532459720491",
+          "1536345653837",
+          "1537368477147"
+        ],
+        "settings": {
+        }
+      },
+      "1531228438684": {
+        "type": "posts-slider",
+        "disabled": true,
+        "blocks": {
+          "1531228444728": {
+            "type": "post",
+            "settings": {
+              "blog_title": "Lifestyle",
+              "article_title": "Holiday Season Essentials",
+              "article_url": "https:\/\/blog.kassatex.com\/lifestyle\/how-chairishs-co-founder-celebrates-the-holiday-season\/",
+              "article_url_url_type": "1",
+              "article_excerpt": "with Chairish's co-founder Anna Brockway"
+            }
+          },
+          "1531228450152": {
+            "type": "post",
+            "settings": {
+              "blog_title": "News",
+              "article_title": "Introducing CNick Designs Longboards",
+              "article_url": "https:\/\/blog.kassatex.com\/news\/introducing-cnick-designs-artisanal-longboards\/",
+              "article_url_url_type": "1",
+              "article_excerpt": "The ultimate gift for your favorite boarder"
+            }
+          },
+          "1531228454335": {
+            "type": "post",
+            "settings": {
+              "blog_title": "Design",
+              "article_title": "Guest Room Redress",
+              "article_url": "https:\/\/blog.kassatex.com\/design\/guest-room-redress-with-elizabeth-bolognino",
+              "article_url_url_type": "1",
+              "article_excerpt": "with Elizabeth Bolognino"
+            }
+          }
+        },
+        "block_order": [
+          "1531228444728",
+          "1531228450152",
+          "1531228454335"
+        ],
+        "settings": {
+          "color": "#636363"
+        }
+      },
+      "1531229457957": {
+        "type": "subscribe",
+        "disabled": true,
+        "settings": {
+          "title": "Sign up for \nour mailing list!",
+          "subtitle": "Receive exclusive offers and be the first to know what is new at Kassatex",
+          "image": "shopify:\/\/shop_images\/paradis-decorative-pillows_2.jpg",
+          "embed_form": "Cm2WBk"
+        }
+      },
+      "instagram": {
+        "type": "instagram",
+        "settings": {
+          "title": "@KASSATEXNEWYORK",
+          "subtitle": "Follow us on Instagram for the latest trends and chic ideas for how to style your Kassatex collections."
+        }
+      },
+      "education": {
+        "type": "education",
+        "blocks": {
+          "1531402241384": {
+            "type": "block",
+            "settings": {
+              "title": "Sateen",
+              "image": "shopify:\/\/shop_images\/Vicenza-Sheet-Sets_About-Our-Fabrics.jpg",
+              "content": "Feels like sliding into your favorite pair of pajamas",
+              "item_1": "<p><strong>LOOK&nbsp;<\/strong>slight sheen<\/p>",
+              "item_2": "<p><strong>FEEL<\/strong>&nbsp;smooth and silky<\/p>",
+              "item_3": "",
+              "item_4": "<p><strong>MADE FROM&nbsp;<\/strong>100% cotton or cotton \/ bamboo blend<\/p>",
+              "button_text": "SHOP SATEEN",
+              "button_url": "shopify:\/\/collections\/sateen-bedding"
+            }
+          },
+          "1531402469969": {
+            "type": "block",
+            "settings": {
+              "title": "Percale",
+              "image": "shopify:\/\/shop_images\/percale-fabric-5.jpg",
+              "content": "Perfectly worn in and crisp like a tailored Oxford shirt",
+              "item_1": "<p><strong>LOOK<\/strong>&nbsp;matte<\/p>",
+              "item_2": "<p><strong>FEEL&nbsp;<\/strong>soft and crisp&nbsp;<\/p>",
+              "item_3": "",
+              "item_4": "<p><strong>MADE FROM <\/strong>cotton \/ eucalyptus blend&nbsp;<\/p>",
+              "button_text": "Shop Percale",
+              "button_url": "shopify:\/\/collections\/percale-bedding"
+            }
+          },
+          "1531402519209": {
+            "type": "block",
+            "settings": {
+              "title": "Linen",
+              "image": "shopify:\/\/shop_images\/linen-fabric.jpg",
+              "content": "Breathable and lightweight, just like your go-to summer shirt",
+              "item_1": "<p><strong>LOOK <\/strong>casual, lived-in<\/p>",
+              "item_2": "<p><strong>FEEL<\/strong>&nbsp;soft and slightly textured<\/p>",
+              "item_3": "",
+              "item_4": "<p><strong>MADE FROM <\/strong>linen \/ bamboo blend<\/p>",
+              "button_text": "Shop linen",
+              "button_url": "shopify:\/\/collections\/linen-bedding"
+            }
+          }
+        },
+        "block_order": [
+          "1531402241384",
+          "1531402469969",
+          "1531402519209"
+        ],
+        "settings": {
+          "title": "About our fabrics"
+        }
+      },
+      "press": {
+        "type": "press",
+        "blocks": {
+          "d259b8d3-814c-4b9b-b491-f4b74eca0b95": {
+            "type": "press",
+            "settings": {
+              "title": "Apartment Therapy",
+              "content": "\"These ultra-soft bamboo flannel sheets keep me so warm and cozy, I (almost!) don’t need my heat on\"",
+              "meta": "October 2022",
+              "url": "https:\/\/www.apartmenttherapy.com\/kassatex-flannel-sheets-set-review-37145304"
+            }
+          },
+          "992d74c1-2aac-4e43-a0a5-b14e7027c78e": {
+            "type": "press",
+            "settings": {
+              "title": "Better Homes & Gardens",
+              "content": "\"If you want the plush look and feel of a down pillow without compromising on structure or support, consider this one by Kassatex. It’s filled with lofty 650-fill-power European white goose down, giving it a “full, comfy, marshmallow-like feel,” according to our tester.\"",
+              "meta": "October 2022",
+              "url": "https:\/\/www.bhg.com\/best-down-pillows-6740340#toc-best-goose-down-kassatex-european-white-goose-down-pillows"
+            }
+          },
+          "63ee4b89-5018-4b33-bb5a-76e3ad038d95": {
+            "type": "press",
+            "settings": {
+              "title": "Real Simple",
+              "content": "\"Our top pick is the Kassatex European White Goose Down Pillow for its great balance of fluff and support\"",
+              "meta": "September 2022",
+              "url": "https:\/\/www.realsimple.com\/home-organizing\/decorating\/decorating-bedroom\/best-down-pillows"
+            }
+          },
+          "c18c5130-6b13-46be-b291-33c4775326ba": {
+            "type": "press",
+            "settings": {
+              "title": "Apartment Therapy",
+              "content": "\"Strengthened by its blend of eco-conscious materials, the luxurious Kyoto bamboo bath towel from Kassatex offers both the durability and lower carbon footprint of bamboo and the softness of cotton.\"",
+              "meta": "August 2022",
+              "url": "https:\/\/www.apartmenttherapy.com\/best-bath-towels-2-261440"
+            }
+          },
+          "6a3b7b9b-0b36-4854-8630-4be85c9e0802": {
+            "type": "press",
+            "settings": {
+              "title": "Cosmopolitan",
+              "content": "\"I am obsessed with these towels,\" one tester writes. \"The softness, the absorbency, the texture. They are PERFECTION.\"",
+              "meta": "July 2022",
+              "url": "https:\/\/www.cosmopolitan.com\/lifestyle\/g40655579\/best-turkish-towels\/"
+            }
+          },
+          "c408590c-054b-4042-8d8c-18a1ee40285e": {
+            "type": "press",
+            "settings": {
+              "title": "The Strategist",
+              "content": "\"Because you will certainly need to bring some wine with you from winery to picnic to hotel, do it with this three-bottle carrying tote I made with Kassatex.\" - Mia Moretti",
+              "meta": "June 2022",
+              "url": "https:\/\/nymag.com\/strategist\/article\/mexicos-valle-de-guadalupe-itinerary-things-to-do.html"
+            }
+          },
+          "3f79350e-e40f-411e-89e3-d74873f6be0a": {
+            "type": "press",
+            "settings": {
+              "title": "PureWow",
+              "content": "\"Introducing Jennifer Fisher for Kassatex...From a slinky jacquard duvet and sham set to a cozy cuffed pajama top with piping details, every item carries an air of understated elegance that’s crisp, cozy and deliciously soft.\"",
+              "meta": "June 2022",
+              "url": "https:\/\/www.purewow.com\/news\/jennifer-fisher-kassatex-launch"
+            }
+          },
+          "7aa93990-507e-4611-ac35-563e930628b3": {
+            "type": "press",
+            "settings": {
+              "title": "Real Simple",
+              "content": "\"We were immediately struck by how luxurious and soft the Kassatex towel felt. The minimalist block pattern is also nice, and it comes in five soft and neutral hues.\"",
+              "meta": "May 2022",
+              "url": "https:\/\/www.realsimple.com\/home-organizing\/decorating\/outdoor-living\/best-beach-towels"
+            }
+          },
+          "9eed6002-6d8b-48a2-a89a-d37600553926": {
+            "type": "press",
+            "settings": {
+              "title": "The Spruce",
+              "content": "\"Turkish cotton brings a level of luxuriousness to your average beach towel, and the Kassatex beach towel is the epitome of luxury.\"",
+              "meta": "May 2022",
+              "url": "https:\/\/www.thespruce.com\/best-beach-towels-4155096#toc-best-turkish-kassatex-block-pareo-fouta-beach-towels"
+            }
+          },
+          "fff2b849-3ea1-4311-ba44-32384455cd0d": {
+            "type": "press",
+            "settings": {
+              "title": "The Strategist",
+              "content": "\"The bamboo in the Kassatex sheets offsets the slight crispness of linen, adding a smooth softness and making them drape over you like a gentle swaddle.\"",
+              "meta": "May 2022",
+              "url": "https:\/\/nymag.com\/strategist\/article\/best-linen-bed-sheets-review.html"
+            }
+          },
+          "2b7cc2ed-3a08-454c-918d-d76c9d29b960": {
+            "type": "press",
+            "settings": {
+              "title": "Apartment Therapy",
+              "content": "\"Every time I climb into bed it’s like these sheets envelop me with silky, cooling goodness\"",
+              "meta": "April 2022",
+              "url": "https:\/\/www.apartmenttherapy.com\/kassatex-bamboo-sateen-sheets-review-april-2022-37061686"
+            }
+          },
+          "ef664178-7bc0-483f-b1e7-38d8edede57f": {
+            "type": "press",
+            "settings": {
+              "title": "Allure",
+              "content": "\"If Goldilocks is your kindred spirit, this is the towel for you, because the Aegean cotton's medium-weight heft is not too heavy, and not too light: It's <em>just <\/em>right.\"",
+              "meta": "April 2022",
+              "url": "https:\/\/www.allure.com\/gallery\/best-softest-bath-towels"
+            }
+          },
+          "7fceadb9-7198-4682-b20f-77cb635631d1": {
+            "type": "press",
+            "settings": {
+              "title": "Apartment Therapy",
+              "content": "“I’m not lying when I say these are the prettiest bath towels I’ve come across, ever... These are classic, luxe-looking, and can take your bathroom routine to the next level.”",
+              "meta": "April 2022",
+              "url": "https:\/\/www.apartmenttherapy.com\/kassatex-and-charish-bath-towel-collaboration-april-2022-37059968"
+            }
+          },
+          "7dc3cd4f-201a-4aa2-bd4e-d62fc10fbbf3": {
+            "type": "press",
+            "settings": {
+              "title": "Better Homes & Gardens",
+              "content": "\"Turkish towels are an extremely popular style of beach towel because of how absorbent, durable, and lightweight they can be, and the Kassatex Block Pareo beach towel is no exception.\"",
+              "meta": "April 2022",
+              "url": "https:\/\/www.bhg.com\/homekeeping\/laundry-linens\/best-beach-towels\/"
+            }
+          },
+          "40ea4234-0df3-4903-9590-5da92bf3f989": {
+            "type": "press",
+            "settings": {
+              "title": "Apartment Therapy",
+              "content": "\"If you’re looking for a robe that’s exactly like one you’d find neatly folded in a luxe spa just waiting for you after a treatment, you should add to cart now.\"",
+              "meta": "January 2022",
+              "url": "https:\/\/www.apartmenttherapy.com\/kassatex-spa-luxury-robe-review-37021383"
+            }
+          },
+          "b31245bc-51e2-48f9-8d2d-cb458952353f": {
+            "type": "press",
+            "settings": {
+              "title": "Apartment Therapy",
+              "content": "\"Right away, I could tell that the construction of the towels were something special. Made from 100 percent long-staple cotton, the towels are super plush and the fibers are quite dense. Kassatex definitely didn’t skimp on the details here.\"",
+              "meta": "December 2021",
+              "url": "https:\/\/www.apartmenttherapy.com\/kassatex-signature-towel-review-37017099"
+            }
+          },
+          "34774222-8bef-4073-8f7c-7e01fff55047": {
+            "type": "press",
+            "settings": {
+              "title": "Apartment Therapy",
+              "content": "The Assisi towel by editor-fave linens brand Kassatex is not only striking, with white hanger loop stitches woven atop a subtle background color creating a unique pebble pattern, but it’s near indecently soft, too.",
+              "meta": "December 2021",
+              "url": "https:\/\/www.apartmenttherapy.com\/kassatex-assisi-hand-bath-towel-review-37012648"
+            }
+          },
+          "d2e80a72-b7c9-4498-96ed-f7f5ba910fee": {
+            "type": "press",
+            "settings": {
+              "title": "Insider",
+              "content": "\"Kassatex's Atelier Towels are the densest and most absorbent of all the towels we tried. They remain soft after several washes, and the hanging loops are a thoughtful touch. \"",
+              "meta": "November 2021",
+              "url": "https:\/\/www.insider.com\/guides\/home\/best-towels"
+            }
+          },
+          "979de111-1dd1-42c3-9f9f-61ab3b6f870b": {
+            "type": "press",
+            "settings": {
+              "title": "Apartment Therapy",
+              "content": "\"These durable towels have a minimalist look that blends into virtually any kitchen aesthetic, and they come in three chic colorways. They’re also pretty enough to leave out on the dinner table or next to your charcuterie spread.\"",
+              "meta": "October 2021",
+              "url": "https:\/\/www.apartmenttherapy.com\/kassatex-newbury-kitchen-towels-review-36994551"
+            }
+          },
+          "4de60d5d-e9e5-481e-afa1-22339cf56c0b": {
+            "type": "press",
+            "settings": {
+              "title": "Shape",
+              "content": "\"The different shape of this beach bag makes it really fun. While you might miss a top zip, the open-top on this straw beach bag will allow you to fit more in it.\"",
+              "meta": "August 2021",
+              "url": "https:\/\/www.shape.com\/lifestyle\/fashion\/best-beach-bags"
+            }
+          },
+          "03129b9c-b6c1-4daa-af7f-85d3445186cb": {
+            "type": "press",
+            "settings": {
+              "title": "GQ",
+              "content": "The Kassatex linen sheets are actually a linen blend, made with 40% bamboo. If you aren't a blazing inferno of a sleeper, but still sleep on the warmer side, these sheets offer a good balance of breathability and coziness.",
+              "meta": "July 2021",
+              "url": "https:\/\/www.gq.com\/story\/best-sheets-for-hot-sleepers"
+            }
+          },
+          "c14d8516-f4c1-4a03-a8dc-4de180ad3c21": {
+            "type": "press",
+            "settings": {
+              "title": "Shape",
+              "content": "\"This best beach towel style is airy and ideal to wrap around your body on those sticky, hot beachside evenings. It also folds very flat, making it a great piece to pack with you for a weekend getaway or fit into your stuffed suitcase for a tropical resort vacation.\"",
+              "meta": "July 2021",
+              "url": "https:\/\/www.shape.com\/lifestyle\/fashion\/best-beach-towels"
+            }
+          },
+          "60d90e6f-ada9-4d0b-a5d7-322e3c022052": {
+            "type": "press",
+            "settings": {
+              "title": "Apartment Therapy",
+              "content": "\"We're loving the reversible look of the Maui towels which is inspired by endless summer sunsets in Hawaii. One side of the towel features smooth velour while the other side is decked out in plush, absorbent terry.\"",
+              "meta": "July 2021",
+              "url": "https:\/\/www.apartmenttherapy.com\/new-product-launches-home-36949779"
+            }
+          },
+          "ec65c7d4-2a6a-4606-b993-9054cd534d24": {
+            "type": "press",
+            "settings": {
+              "title": "Domino",
+              "content": "\"In Mia Moretti’s new collaboration with Kassatex, the DJ and author of Low Touch Economy, a collection of poems, designed a collection of woven wonders, from totes to baskets, that are all delightfully multipurpose.\"",
+              "meta": "June 2021",
+              "url": "https:\/\/www.domino.com\/content\/mia-moretti-kassatex-collection\/"
+            }
+          },
+          "18983f30-dfc2-4e2e-a081-817da4b26805": {
+            "type": "press",
+            "settings": {
+              "title": "MyDomaine",
+              "content": "\"I've been searching for a beach towel that's the perfect balance of oversized, soft, and thick, and Kassatex's Amalfi Beach Towel checks all the boxes.\"",
+              "meta": "June 2021",
+              "url": "https:\/\/www.mydomaine.com\/keeping-tabs-beach-essentials-5186971"
+            }
+          },
+          "49660701-37fe-446c-910c-f2e8e6aa8e11": {
+            "type": "press",
+            "settings": {
+              "title": "Thrillist",
+              "content": "\"With these Kassatex Ibiza towels, you get the best of both worlds. Made from long-staple cotton, they’re a perfect compromise weightwise, and the chic stripes won’t fade in the wash thanks to the eco-melange dye, making them a favorite of hotels.\"",
+              "meta": "June 2021",
+              "url": "https:\/\/www.thrillist.com\/shopping\/nation\/best-beach-gear-2021-beach-essentials-what-to-buy"
+            }
+          },
+          "4b24e33c-e2a4-40aa-a6b2-475af3652774": {
+            "type": "press",
+            "settings": {
+              "title": "Robb Report",
+              "content": "\"All three sizes feature a waffle texture that enhances Turkish cotton’s natural absorption and drying ability, and the long-staple material used in them will feel soft and plush for a long time.\"",
+              "meta": "May 2021",
+              "url": "https:\/\/robbreport.com\/lifestyle\/product-recommendations\/best-turkish-towels-amazon-2912205\/"
+            }
+          },
+          "fda85e6a-2d1c-4506-8fa0-c0b58838a99e": {
+            "type": "press",
+            "settings": {
+              "title": "Apartment Therapy",
+              "content": "\"I’ve been using the Kyoto towels for nearly three months, and they’re honestly the only ones I reach for now. Besides loving how they feel, I also appreciate their higher quality.\"",
+              "meta": "May 2021",
+              "url": "https:\/\/www.apartmenttherapy.com\/kassatex-kyoto-bamboo-towels-review-36922571"
+            }
+          },
+          "97061b59-3de0-488e-bad4-07ee02d44a5b": {
+            "type": "press",
+            "settings": {
+              "title": "Bloomberg",
+              "content": "\"For those who can’t decide between terry and velour, the Maui beach towel from Kassatex offers the best of both worlds—terry on one side, velour on the other. Choose from a combination of gray and yellow or blue and orange.\"",
+              "meta": "May 2021",
+              "url": "https:\/\/www.bloomberg.com\/news\/articles\/2021-05-18\/terrycloth-remains-worthwhile-indulgence-in-best-beach-towels"
+            }
+          },
+          "8e090bee-5ce8-4aa7-b963-6ff0458744ed": {
+            "type": "press",
+            "settings": {
+              "title": "Business Insider",
+              "content": "\"Kassatex's Atelier Towels are the most dense and absorbent of all the towels we tried. They remain soft after several washes, and the hanging loops are a thoughtful touch.\"",
+              "meta": "May 2021",
+              "url": "https:\/\/www.businessinsider.com\/best-towels"
+            }
+          },
+          "33056f69-bcdc-4c67-aa85-4925c499ffef": {
+            "type": "press",
+            "settings": {
+              "title": "Apartment Therapy",
+              "content": "“They are soft, airy, and lightweight... Unlike other linen sheets that can take a few washes to achieve a soft texture, these were soft from the moment I pulled them out of the package.\"",
+              "meta": "May 2021",
+              "url": "https:\/\/www.apartmenttherapy.com\/best-quality-cotton-linen-sheets-annual-guide-2015-222228"
+            }
+          },
+          "b18fdb02-fed4-4067-baba-0f07b7b41934": {
+            "type": "press",
+            "settings": {
+              "title": "Business Insider",
+              "content": "\"When first moving out on their own, grads are going to need bath towels... The Kassatex Atelier is the top pick in our guide to the best bath towels because it's the most absorbent model our testers tried.\"",
+              "meta": "May 2021",
+              "url": "https:\/\/www.businessinsider.com\/best-graduation-gift-ideas#a-bath-towel-set-7"
+            }
+          },
+          "d40a9f48-1546-430b-8852-2a503aea7876": {
+            "type": "press",
+            "settings": {
+              "title": "Travel + Leisure",
+              "content": "\"This beautiful cotton towel is lightweight, quick-drying, and will fit in any beach bag. We love the striped print and the fringe details on both ends.\"",
+              "meta": "April 2021",
+              "url": "https:\/\/www.travelandleisure.com\/style\/travel-accessories\/beach-bag-packing-checklist?slide=764a151d-0170-41d0-83c2-f47abcdbe3c0#764a151d-0170-41d0-83c2-f47abcdbe3c0"
+            }
+          },
+          "97c2b3b4-66c9-4956-bdbf-e1103dc42c78": {
+            "type": "press",
+            "settings": {
+              "title": "The Strategist",
+              "content": "“Very high-quality fabric, extremely comfortable, and easily washable, too.”",
+              "meta": "February 2021",
+              "url": "https:\/\/nymag.com\/strategist\/article\/best-down-pillows.html"
+            }
+          },
+          "222e777b-002d-41e0-9199-04f97a530688": {
+            "type": "press",
+            "settings": {
+              "title": "Fast Company",
+              "content": "\"For anyone who has seriously considered buying the hotel bathrobe: Kassatex’s white Turkish cotton terry robe is timeless and comes in three color options for contrast piping.\"",
+              "meta": "January 2021",
+              "url": "https:\/\/www.fastcompany.com\/90592156\/best-bathrobes"
+            }
+          },
+          "1531404941235": {
+            "type": "press",
+            "settings": {
+              "title": "Apartment Therapy",
+              "content": "\"Kassatex has been in business for over 20 years, so the brand knows a thing or two about making the perfect towel. With dozens (yes, dozens!) of styles and materials to choose from, Kassatex truly has a towel for everyone.\"",
+              "meta": "August 2020",
+              "url": "https:\/\/www.apartmenttherapy.com\/bath-towels-with-loops-36804988"
+            }
+          },
+          "1539358341208": {
+            "type": "press",
+            "settings": {
+              "title": "The Daily Front Row",
+              "content": "\"The East End’s most-wanted interior brand.\"",
+              "meta": "July 2020",
+              "url": "https:\/\/fashionweekdaily.com\/kassatex-interior-decor-brand\/"
+            }
+          },
+          "1539358236035": {
+            "type": "press",
+            "settings": {
+              "title": "Guest of a Guest",
+              "content": "\"Veronica Beard and Kassatex have partnered to create the ultimate working-from-home summer statement piece - the Walter Blazer.\"",
+              "meta": "July 2020",
+              "url": "https:\/\/guestofaguest.com\/hamptons\/fashion\/taking-your-zooms-poolside-this-blazer-robe"
+            }
+          },
+          "1531404640121": {
+            "type": "press",
+            "settings": {
+              "title": "Apartment Therapy",
+              "content": "\"Kassatex’s sheets manage to be soft and substantial, combining all the best benefits of both linen and bamboo.\"",
+              "meta": "June 2020",
+              "url": "https:\/\/www.apartmenttherapy.com\/kassatex-linen-sheets-review-36768761"
+            }
+          },
+          "1531404744130": {
+            "type": "press",
+            "settings": {
+              "title": "GQ",
+              "content": "\"The sheets are weightless and airy and seem to perfectly float over you.\"",
+              "meta": "June 2019",
+              "url": "https:\/\/www.gq.com\/story\/gq-staffers-review-linen-sheets"
+            }
+          },
+          "1531404833835": {
+            "type": "press",
+            "settings": {
+              "title": "Vogue",
+              "content": "\"And perhaps the icing on the cake was that all of these new wares from the New York–based brand—available in a slew of solid and striped colorways that can be easily mixed.\"",
+              "meta": "May 2019",
+              "url": "https:\/\/www.vogue.com\/article\/kassatex-linen-launch-mothers-day-luncheon"
+            }
+          }
+        },
+        "block_order": [
+          "d259b8d3-814c-4b9b-b491-f4b74eca0b95",
+          "992d74c1-2aac-4e43-a0a5-b14e7027c78e",
+          "63ee4b89-5018-4b33-bb5a-76e3ad038d95",
+          "c18c5130-6b13-46be-b291-33c4775326ba",
+          "6a3b7b9b-0b36-4854-8630-4be85c9e0802",
+          "c408590c-054b-4042-8d8c-18a1ee40285e",
+          "3f79350e-e40f-411e-89e3-d74873f6be0a",
+          "7aa93990-507e-4611-ac35-563e930628b3",
+          "9eed6002-6d8b-48a2-a89a-d37600553926",
+          "fff2b849-3ea1-4311-ba44-32384455cd0d",
+          "2b7cc2ed-3a08-454c-918d-d76c9d29b960",
+          "ef664178-7bc0-483f-b1e7-38d8edede57f",
+          "7fceadb9-7198-4682-b20f-77cb635631d1",
+          "7dc3cd4f-201a-4aa2-bd4e-d62fc10fbbf3",
+          "40ea4234-0df3-4903-9590-5da92bf3f989",
+          "b31245bc-51e2-48f9-8d2d-cb458952353f",
+          "34774222-8bef-4073-8f7c-7e01fff55047",
+          "d2e80a72-b7c9-4498-96ed-f7f5ba910fee",
+          "979de111-1dd1-42c3-9f9f-61ab3b6f870b",
+          "4de60d5d-e9e5-481e-afa1-22339cf56c0b",
+          "03129b9c-b6c1-4daa-af7f-85d3445186cb",
+          "c14d8516-f4c1-4a03-a8dc-4de180ad3c21",
+          "60d90e6f-ada9-4d0b-a5d7-322e3c022052",
+          "ec65c7d4-2a6a-4606-b993-9054cd534d24",
+          "18983f30-dfc2-4e2e-a081-817da4b26805",
+          "49660701-37fe-446c-910c-f2e8e6aa8e11",
+          "4b24e33c-e2a4-40aa-a6b2-475af3652774",
+          "fda85e6a-2d1c-4506-8fa0-c0b58838a99e",
+          "97061b59-3de0-488e-bad4-07ee02d44a5b",
+          "8e090bee-5ce8-4aa7-b963-6ff0458744ed",
+          "33056f69-bcdc-4c67-aa85-4925c499ffef",
+          "b18fdb02-fed4-4067-baba-0f07b7b41934",
+          "d40a9f48-1546-430b-8852-2a503aea7876",
+          "97c2b3b4-66c9-4956-bdbf-e1103dc42c78",
+          "222e777b-002d-41e0-9199-04f97a530688",
+          "1531404941235",
+          "1539358341208",
+          "1539358236035",
+          "1531404640121",
+          "1531404744130",
+          "1531404833835"
+        ],
+        "settings": {
+          "title": "Press",
+          "subtitle": "For Press and Media inquiries please contact us at press@kassatex.com"
+        }
+      },
+      "1532627590509": {
+        "type": "new-arrivals",
+        "disabled": true,
+        "settings": {
+          "color": "#636363"
+        }
+      },
+      "1532627625471": {
+        "type": "single-collection",
+        "disabled": true,
+        "settings": {
+          "inverse_elements": true,
+          "title": "Lounge in Style",
+          "subtitle": "With a modern, seersucker stripe and plush fleece lining, our Classic Seersucker Robe is as stylish as it is comforting.",
+          "button_text": "Shop Now",
+          "button_url": "shopify:\/\/products\/boudoir-robe",
+          "color": "#636363"
+        }
+      },
+      "1532630872162": {
+        "type": "single-image",
+        "settings": {
+          "inverse_elements": true,
+          "image": "shopify:\/\/shop_images\/KAS_Bed_Bamboo_Duvet_Profile.jpg",
+          "title": "Build A Bed They Will Remember",
+          "subtitle": "Discover our signature fabrics and best selling down and down alternative collections.",
+          "button_text": "Shop Bedding",
+          "button_url": "shopify:\/\/products\/essentials-stacked-jewelry-tray",
+          "color": "#333333"
+        }
+      },
+      "1532631046272": {
+        "type": "fluid-image",
+        "disabled": true,
+        "settings": {
+          "title": "Stylize Your Vanity",
+          "subtitle": "",
+          "button_text": "<strong>Shop Now<\/strong>",
+          "button_url": "shopify:\/\/products\/alabaster-bath-accessories",
+          "color": "#333333"
+        }
+      },
+      "1533045841521": {
+        "type": "new-arrivals",
+        "disabled": true,
+        "blocks": {
+          "1533045859495": {
+            "type": "item",
+            "settings": {
+              "title": "Back in Stock!",
+              "subtitle": "Shop The Farmer's Market Tote",
+              "button_text": "Shop Now",
+              "button_url": "shopify:\/\/collections\/justaddkassatex"
+            }
+          },
+          "1533045910039": {
+            "type": "item-small",
+            "settings": {
+              "title": "Mia Moretti x Kassatex",
+              "subtitle": "",
+              "button_text": "Shop  Everyday Essentials",
+              "button_url": "shopify:\/\/pages\/mia-moretti-x-kassatex"
+            }
+          }
+        },
+        "block_order": [
+          "1533045859495",
+          "1533045910039"
+        ],
+        "settings": {
+          "color": "#000000"
+        }
+      },
+      "about": {
+        "type": "about",
+        "settings": {
+          "image": "shopify:\/\/shop_images\/About-Us_Ernesto-and-Miro-Khoudari.jpg",
+          "blockquote": "“Our passion for \ntextiles is the driving force behind our success.  Our inspiration is our customers.”",
+          "text_col_1": "<em>About Our Brand<\/em>\nFounded in 1999, Kassatex was created with the vision of providing consumers with bed and bath collections that offer casual, affordable luxury. With headquarters located in the heart of Manhattan's Garment District, Kassatex is surrounded by the latest trends set against a backdrop of timeless, classic New York style. This unique mix influences everything we do in our collections. Like New York, Kassatex is modern with old world values. We are committed to helping our customers make a statement by escaping the ordinary.",
+          "text_col_2": "Excellence in luxury and superior comfort for the home is the heart and soul of Kassatex. We invite you to indulge in the sensual and the exceptional, with products and accessories of unparalleled quality for your bed and bath. We only use the finest yarns, including a selection of products that are environmentally friendly, while altogether providing a touch of elegance for the ultimate experience in home comfort.\n\n<em>Social Responsibility<\/em>\nWe are proud to partner with The Red Cross and their affiliate partners  to support the victims of natural disasters. The products that are returned are donated to the families in need of essential items like bedding and towels. Our hope is that this sends a sense of comfort and home that is lost when their lives are altered.",
+          "video_show_video": false,
+          "video": "https:\/\/www.youtube.com\/watch?v=Xfhhns9vHes"
+        }
+      },
+      "contact": {
+        "type": "contact",
+        "blocks": {
+          "1535740183651": {
+            "type": "tab",
+            "settings": {
+              "text": "Designer Trade"
+            }
+          },
+          "1535740187084": {
+            "type": "tab",
+            "settings": {
+              "text": "Wholesale"
+            }
+          },
+          "1535740199139": {
+            "type": "tab",
+            "settings": {
+              "text": "Hospitality"
+            }
+          },
+          "1537217254632": {
+            "type": "tab",
+            "settings": {
+              "text": "Kassatex.com Orders"
+            }
+          }
+        },
+        "block_order": [
+          "1535740183651",
+          "1535740187084",
+          "1535740199139",
+          "1537217254632"
+        ],
+        "settings": {
+          "show_more_information": true,
+          "title_1": "Still need help?",
+          "list_contacts": "<ul>\n<li>Customer service<br><a href=\"tel:18772585177\">1.877.258.5177<\/a>\n<\/li>\n<li>Wholesale orders<br><a href=\"tel:2126865533\">212.686.5533<\/a>\n<\/li>\n<li>Hospitality orders<br><a href=\"tel:18558488804\">+1 855.848.8804<\/a>\n<\/li>\n<\/ul>",
+          "title_2": "Want help from a design expert?",
+          "link_text": "Book an appointment",
+          "link": "https:\/\/calendly.com\/kassatexny\/45min\/10-16-2018?back=1"
+        }
+      },
+      "customizer": {
+        "type": "customizer",
+        "settings": {
+        }
+      },
+      "interio-widgets": {
+        "type": "interio-widgets",
+        "blocks": {
+          "1537454334039": {
+            "type": "widget",
+            "settings": {
+              "title": "",
+              "subtitle": "Catalog",
+              "image": "shopify:\/\/shop_images\/hospitality-accessories-catalog.jpg",
+              "description": "Follow us on Instagram for the latest trends and chic ideas for how to style your Kassatex collections.",
+              "button_text": "Download",
+              "button_url": "https:\/\/cdn.shopify.com\/s\/files\/1\/0002\/9910\/6314\/files\/Kassatex_Spring_Summer_2020_Catalog.pdf?v=1600266524",
+              "open_url_type": "1"
+            }
+          },
+          "1537454380575": {
+            "type": "widget",
+            "settings": {
+              "title": "",
+              "subtitle": "In NYC? Visit our showroom",
+              "image": "shopify:\/\/shop_images\/showroom-appointment.jpg",
+              "description": "",
+              "button_text": "schedule an appointment",
+              "button_url": "https:\/\/calendly.com\/kassatexny\/design-studio-appointment",
+              "open_url_type": "1"
+            }
+          }
+        },
+        "block_order": [
+          "1537454334039",
+          "1537454380575"
+        ],
+        "settings": {
+        }
+      },
+      "interio-form-setting": {
+        "type": "interio-form-setting",
+        "settings": {
+          "apikey": "004bfad5938c966aba17",
+          "confirm_title": "Thank You",
+          "confirm_desc": "Thank you for signing up, a customers service representative will be in touch."
+        }
+      },
+      "form-hospitality": {
+        "type": "form-hospitality",
+        "settings": {
+          "subject": "Hospitality"
+        }
+      },
+      "hospitality-widgets": {
+        "type": "hospitality-widgets",
+        "blocks": {
+          "1560192579075": {
+            "type": "widget",
+            "settings": {
+              "title": "",
+              "subtitle": "Hotel Collection Catalog",
+              "image": "shopify:\/\/shop_images\/Kassatex_2021_Hospitality-Catalog.jpg",
+              "description": "",
+              "button_text": "Download",
+              "button_url": "https:\/\/cdn.shopify.com\/s\/files\/1\/0002\/9910\/6314\/files\/Kassatex_2021_Hospitality_Catalog.pdf",
+              "open_url_type": "1"
+            }
+          }
+        },
+        "block_order": [
+          "1560192579075"
+        ],
+        "settings": {
+        }
+      },
+      "robots": {
+        "type": "robots",
+        "blocks": {
+          "1539191690286": {
+            "type": "product",
+            "settings": {
+              "exclude_product": "strada-embroidered-percale-fitted-sheet"
+            }
+          },
+          "1539191749333": {
+            "type": "product",
+            "settings": {
+              "exclude_product": "strada-embroidered-percale-flat-sheet"
+            }
+          },
+          "1539191770447": {
+            "type": "product",
+            "settings": {
+              "exclude_product": "cartagena-sheet-set"
+            }
+          },
+          "1539191798652": {
+            "type": "product",
+            "settings": {
+              "exclude_product": "cartagena-linen-stitch-fitted-sheet"
+            }
+          },
+          "1539191812748": {
+            "type": "product",
+            "settings": {
+              "exclude_product": "catena-embroidered-flat-sheet"
+            }
+          },
+          "1539191828284": {
+            "type": "product",
+            "settings": {
+              "exclude_product": "catena-embroidered-fitted-sheet"
+            }
+          },
+          "1539191839274": {
+            "type": "product",
+            "settings": {
+              "exclude_product": "cartagena-linen-stitch-sham-1"
+            }
+          },
+          "1539191863308": {
+            "type": "product",
+            "settings": {
+              "exclude_product": "cartagena-linen-stitch-sham-2"
+            }
+          },
+          "1539191873419": {
+            "type": "product",
+            "settings": {
+              "exclude_product": "lafayette-sham-1"
+            }
+          },
+          "1539191914171": {
+            "type": "product",
+            "settings": {
+              "exclude_product": "lafayette-shams"
+            }
+          },
+          "1539191927226": {
+            "type": "product",
+            "settings": {
+              "exclude_product": "madrid-blanket-and-shams-madrid-euro-sham"
+            }
+          },
+          "1539191935515": {
+            "type": "product",
+            "settings": {
+              "exclude_product": "madrid-sham-2"
+            }
+          },
+          "1539191944021": {
+            "type": "product",
+            "settings": {
+              "exclude_product": "paradis-coverlet-paradis-sham"
+            }
+          },
+          "1539191960174": {
+            "type": "product",
+            "settings": {
+              "exclude_product": "paradis-sham-2"
+            }
+          },
+          "1539192060629": {
+            "type": "product",
+            "settings": {
+              "exclude_product": "paradis-quilted-pillow-cover"
+            }
+          },
+          "1539191972605": {
+            "type": "product",
+            "settings": {
+              "exclude_product": "valencia-fringed-sham-1"
+            }
+          },
+          "1539191980790": {
+            "type": "product",
+            "settings": {
+              "exclude_product": "valencia-fringed-sham-2"
+            }
+          },
+          "1539192078805": {
+            "type": "product",
+            "settings": {
+              "exclude_product": "venice-garment-washed-striped-bedding-venice-lumbar"
+            }
+          },
+          "1539191989061": {
+            "type": "product",
+            "settings": {
+              "exclude_product": "racing-stripe-pillow-cover"
+            }
+          },
+          "1539192009766": {
+            "type": "product",
+            "settings": {
+              "exclude_product": "granada-pillow-cover"
+            }
+          },
+          "1539192021991": {
+            "type": "product",
+            "settings": {
+              "exclude_product": "coleman-pillow-cover"
+            }
+          },
+          "1539192036189": {
+            "type": "product",
+            "settings": {
+              "exclude_product": "cascada-pillow-cover"
+            }
+          },
+          "1539192049039": {
+            "type": "product",
+            "settings": {
+              "exclude_product": "madrid-pillow-cover"
+            }
+          },
+          "1540419270821": {
+            "type": "product",
+            "settings": {
+              "exclude_product": "biarritz-double-flanged-linen-bedding-biarritz-boudoir"
+            }
+          },
+          "1540419344771": {
+            "type": "product",
+            "settings": {
+              "exclude_product": "biarritz-double-flanged-linen-fitted-sheet"
+            }
+          },
+          "1540419396315": {
+            "type": "product",
+            "settings": {
+              "exclude_product": "biarritz-double-flanged-linen-flat-sheet"
+            }
+          },
+          "1540419441634": {
+            "type": "product",
+            "settings": {
+              "exclude_product": "biarritz-double-flanged-linen-sham-1"
+            }
+          },
+          "1540419469121": {
+            "type": "product",
+            "settings": {
+              "exclude_product": "biarritz-double-flanged-linen-sham-2"
+            }
+          },
+          "1552327048530": {
+            "type": "product",
+            "settings": {
+              "exclude_product": "salerno-fitted-sheet"
+            }
+          },
+          "1552327061369": {
+            "type": "product",
+            "settings": {
+              "exclude_product": "salerno-flat-sheet"
+            }
+          },
+          "1552327503269": {
+            "type": "product",
+            "settings": {
+              "exclude_product": "vicenza-sateen-italian-fitted-sheet"
+            }
+          },
+          "1552327517824": {
+            "type": "product",
+            "settings": {
+              "exclude_product": "vicenza-sateen-italian-flat-sheet"
+            }
+          },
+          "1552327702214": {
+            "type": "product",
+            "settings": {
+              "exclude_product": "vicenza-sateen-italian-sham-1"
+            }
+          },
+          "1552327749263": {
+            "type": "product",
+            "settings": {
+              "exclude_product": "vicenza-sateen-italian-sham-2"
+            }
+          },
+          "1540418472235": {
+            "type": "product",
+            "settings": {
+              "exclude_product": "monogramming-fee"
+            }
+          },
+          "1539203967260": {
+            "type": "page",
+            "settings": {
+              "exclude_product": "alexandra-robe-size-chart"
+            }
+          },
+          "1539209666003": {
+            "type": "page",
+            "settings": {
+              "exclude_product": "bamboo-size-chart"
+            }
+          },
+          "1539209844172": {
+            "type": "page",
+            "settings": {
+              "exclude_product": "boyfriend-shirt-size-chart"
+            }
+          },
+          "1539209860827": {
+            "type": "page",
+            "settings": {
+              "exclude_product": "cartagena-size-chart"
+            }
+          },
+          "1539209868076": {
+            "type": "page",
+            "settings": {
+              "exclude_product": "daniela-robe-size-chart"
+            }
+          },
+          "1539293955533": {
+            "type": "page",
+            "settings": {
+              "exclude_product": "eucalyptus-percale-size-chart"
+            }
+          },
+          "1539209882554": {
+            "type": "page",
+            "settings": {
+              "exclude_product": "greenwich-robe-size-chart"
+            }
+          },
+          "1540581304581": {
+            "type": "page",
+            "settings": {
+              "exclude_product": "hospitality-bedding-size-chart"
+            }
+          },
+          "1539209896940": {
+            "type": "page",
+            "settings": {
+              "exclude_product": "hospitality-robe-size-chart"
+            }
+          },
+          "1539209907292": {
+            "type": "page",
+            "settings": {
+              "exclude_product": "letto-size-chart"
+            }
+          },
+          "1539209920428": {
+            "type": "page",
+            "settings": {
+              "exclude_product": "linen-robe-size-chart"
+            }
+          },
+          "1539209931323": {
+            "type": "page",
+            "settings": {
+              "exclude_product": "linen-bamboo-size-chart"
+            }
+          },
+          "1539209957963": {
+            "type": "page",
+            "settings": {
+              "exclude_product": "mens-linen-robe-size-chart"
+            }
+          },
+          "1539209968813": {
+            "type": "page",
+            "settings": {
+              "exclude_product": "mid-length-robe-size-chart"
+            }
+          },
+          "1539209979932": {
+            "type": "page",
+            "settings": {
+              "exclude_product": "one-size-robe-size-chart"
+            }
+          },
+          "1539209992421": {
+            "type": "page",
+            "settings": {
+              "exclude_product": "pajama-size-chart"
+            }
+          },
+          "1540581399142": {
+            "type": "page",
+            "settings": {
+              "exclude_product": "robe-size-chart"
+            }
+          },
+          "1540581422815": {
+            "type": "page",
+            "settings": {
+              "exclude_product": "size-chart"
+            }
+          },
+          "1540581461375": {
+            "type": "page",
+            "settings": {
+              "exclude_product": ""
+            }
+          },
+          "1540581485838": {
+            "type": "page",
+            "settings": {
+              "exclude_product": "valencia-size-chart"
+            }
+          },
+          "1539209948651": {
+            "type": "page",
+            "settings": {
+              "exclude_product": "washed-percale-size-chart"
+            }
+          },
+          "1540581150057": {
+            "type": "page",
+            "settings": {
+              "exclude_product": "gift-box"
+            }
+          },
+          "1547744591694": {
+            "type": "page",
+            "settings": {
+              "exclude_product": "salerno-size-chart"
+            }
+          },
+          "1552327936217": {
+            "type": "product",
+            "settings": {
+              "exclude_product": "emilia-percale-italian-fitted-sheet"
+            }
+          },
+          "1552327950195": {
+            "type": "product",
+            "settings": {
+              "exclude_product": "emilia-percale-italian-flat-sheet"
+            }
+          },
+          "1552327959553": {
+            "type": "product",
+            "settings": {
+              "exclude_product": "emilia-percale-italian-sham-1"
+            }
+          },
+          "1552327969979": {
+            "type": "product",
+            "settings": {
+              "exclude_product": "emilia-percale-italian-sham-2"
+            }
+          },
+          "1563397534722": {
+            "type": "product",
+            "settings": {
+              "exclude_product": "linen-bamboo-fitted-sheet"
+            }
+          },
+          "1563397550975": {
+            "type": "product",
+            "settings": {
+              "exclude_product": "linen-bamboo-flat-sheet"
+            }
+          },
+          "1573487677187": {
+            "type": "product",
+            "settings": {
+              "exclude_product": "sullivan-ribbed-hand-towels-1"
+            }
+          },
+          "1573487700512": {
+            "type": "product",
+            "settings": {
+              "exclude_product": "sullivan-ribbed-hand-towels-2"
+            }
+          },
+          "1573487720461": {
+            "type": "product",
+            "settings": {
+              "exclude_product": "sullivan-ribbed-hand-towels-3"
+            }
+          },
+          "1573487729775": {
+            "type": "product",
+            "settings": {
+              "exclude_product": "peshtemal-hand-towels-1"
+            }
+          },
+          "1573487738641": {
+            "type": "product",
+            "settings": {
+              "exclude_product": "peshtemal-hand-towels-2"
+            }
+          },
+          "1573487754821": {
+            "type": "product",
+            "settings": {
+              "exclude_product": "peshtemal-hand-towels-3"
+            }
+          },
+          "1573487770442": {
+            "type": "product",
+            "settings": {
+              "exclude_product": "antico-hand-towels-1"
+            }
+          },
+          "1573487786042": {
+            "type": "product",
+            "settings": {
+              "exclude_product": "antico-hand-towels-2"
+            }
+          },
+          "1573487795035": {
+            "type": "product",
+            "settings": {
+              "exclude_product": "antico-hand-towels-3"
+            }
+          },
+          "1573487825954": {
+            "type": "page",
+            "settings": {
+              "exclude_product": "turkish-cotton-robe-size-chart"
+            }
+          },
+          "1573487893823": {
+            "type": "page",
+            "settings": {
+              "exclude_product": "waffle-weave-size-chart"
+            }
+          },
+          "1573487924892": {
+            "type": "page",
+            "settings": {
+              "exclude_product": "velour-size-chart"
+            }
+          },
+          "1573487941810": {
+            "type": "page",
+            "settings": {
+              "exclude_product": "peshtemal-size-chart"
+            }
+          },
+          "1573487953881": {
+            "type": "page",
+            "settings": {
+              "exclude_product": "marlow-robe-size-chart"
+            }
+          },
+          "1576170449173": {
+            "type": "page",
+            "settings": {
+              "exclude_product": "hunting-season-x-kassatex-sweepstakes-official-rules"
+            }
+          },
+          "1582743478950": {
+            "type": "page",
+            "settings": {
+              "exclude_product": "the-best-sellers-giveaway-official-rules"
+            }
+          },
+          "1586289136443": {
+            "type": "page",
+            "settings": {
+              "exclude_product": "1-hotel-robe-size-chart"
+            }
+          },
+          "d57f5515-956a-40f7-9734-ecca9f5575a0": {
+            "type": "page",
+            "settings": {
+              "exclude_product": "bandier-alpaca-robe-size-chart"
+            }
+          },
+          "e299b2e1-3177-4044-8a18-8b32435e9b39": {
+            "type": "page",
+            "settings": {
+              "exclude_product": "the-shaya-robe-size-chart"
+            }
+          },
+          "d315773a-660a-484c-9647-62b806a3195f": {
+            "type": "product",
+            "settings": {
+              "exclude_product": "mesh-laundry-bag"
+            }
+          },
+          "2fabaddc-f7e5-41ca-a227-3edf213bf174": {
+            "type": "page",
+            "settings": {
+              "exclude_product": "the-shaya-robe-size-chart"
+            }
+          },
+          "211294b8-1a32-4de1-9b1f-29e15ea1d9f2": {
+            "type": "page",
+            "settings": {
+              "exclude_product": "bamboo-flannel-size-chart"
+            }
+          },
+          "710bb955-d4a9-46c8-b257-9799648e9ee0": {
+            "type": "page",
+            "settings": {
+              "exclude_product": "the-linen-duster-size-chart"
+            }
+          },
+          "9c145168-8229-49db-b389-153eceeb6276": {
+            "type": "page",
+            "settings": {
+              "exclude_product": "the-defined-dish-robe-size-chart"
+            }
+          },
+          "aa9efbf7-6701-4e42-bbb2-614ef15f72a4": {
+            "type": "page",
+            "settings": {
+              "exclude_product": "holbox-linen-robe-size-chart"
+            }
+          },
+          "534b2254-ea93-44d7-9d56-f71fbf50ca3e": {
+            "type": "page",
+            "settings": {
+              "exclude_product": "holbox-linen-caftan-size-chart"
+            }
+          },
+          "5105d163-b4cd-4b0b-966d-c99710f3e412": {
+            "type": "product",
+            "settings": {
+              "exclude_product": "chairish-bath-towel"
+            }
+          },
+          "f3257d96-d9cd-44ff-9b4c-9afd09e5e787": {
+            "type": "product",
+            "settings": {
+              "exclude_product": "chairish-hand-towel"
+            }
+          },
+          "ca3d11f3-9aba-4ecc-b0dc-afbc4da92712": {
+            "type": "product",
+            "settings": {
+              "exclude_product": "chairish-washcloth"
+            }
+          },
+          "658070c0-811e-4017-a3ed-d03b5c7d37f8": {
+            "type": "page",
+            "settings": {
+              "exclude_product": "seersucker-size-chart"
+            }
+          },
+          "3fb2795f-1177-48f7-b174-f39dbb72443d": {
+            "type": "product",
+            "settings": {
+              "exclude_product": "dopp-kit"
+            }
+          },
+          "fdb2d604-a41e-4463-8af8-e4a313f6a86d": {
+            "type": "page",
+            "settings": {
+              "exclude_product": "the-fluff-size-chart"
+            }
+          },
+          "b1520b73-1744-450d-a49c-1746c9300280": {
+            "type": "page",
+            "settings": {
+              "exclude_product": "wear-me-always-size-chart"
+            }
+          },
+          "4110a021-c378-4ec9-bd07-21312e010f7b": {
+            "type": "page",
+            "settings": {
+              "exclude_product": "flannel-size-chart"
+            }
+          },
+          "4389389e-4bab-4f72-9688-e0ce997892bf": {
+            "type": "page",
+            "settings": {
+              "exclude_product": "slinky-robe-size-chart"
+            }
+          }
+        },
+        "block_order": [
+          "1539191690286",
+          "1539191749333",
+          "1539191770447",
+          "1539191798652",
+          "1539191812748",
+          "1539191828284",
+          "1539191839274",
+          "1539191863308",
+          "1539191873419",
+          "1539191914171",
+          "1539191927226",
+          "1539191935515",
+          "1539191944021",
+          "1539191960174",
+          "1539192060629",
+          "1539191972605",
+          "1539191980790",
+          "1539192078805",
+          "1539191989061",
+          "1539192009766",
+          "1539192021991",
+          "1539192036189",
+          "1539192049039",
+          "1540419270821",
+          "1540419344771",
+          "1540419396315",
+          "1540419441634",
+          "1540419469121",
+          "1552327048530",
+          "1552327061369",
+          "1552327503269",
+          "1552327517824",
+          "1552327702214",
+          "1552327749263",
+          "1540418472235",
+          "1539203967260",
+          "1539209666003",
+          "1539209844172",
+          "1539209860827",
+          "1539209868076",
+          "1539293955533",
+          "1539209882554",
+          "1540581304581",
+          "1539209896940",
+          "1539209907292",
+          "1539209920428",
+          "1539209931323",
+          "1539209957963",
+          "1539209968813",
+          "1539209979932",
+          "1539209992421",
+          "1540581399142",
+          "1540581422815",
+          "1540581461375",
+          "1540581485838",
+          "1539209948651",
+          "1540581150057",
+          "1547744591694",
+          "1552327936217",
+          "1552327950195",
+          "1552327959553",
+          "1552327969979",
+          "1563397534722",
+          "1563397550975",
+          "1573487677187",
+          "1573487700512",
+          "1573487720461",
+          "1573487729775",
+          "1573487738641",
+          "1573487754821",
+          "1573487770442",
+          "1573487786042",
+          "1573487795035",
+          "1573487825954",
+          "1573487893823",
+          "1573487924892",
+          "1573487941810",
+          "1573487953881",
+          "1576170449173",
+          "1582743478950",
+          "1586289136443",
+          "d57f5515-956a-40f7-9734-ecca9f5575a0",
+          "e299b2e1-3177-4044-8a18-8b32435e9b39",
+          "d315773a-660a-484c-9647-62b806a3195f",
+          "2fabaddc-f7e5-41ca-a227-3edf213bf174",
+          "211294b8-1a32-4de1-9b1f-29e15ea1d9f2",
+          "710bb955-d4a9-46c8-b257-9799648e9ee0",
+          "9c145168-8229-49db-b389-153eceeb6276",
+          "aa9efbf7-6701-4e42-bbb2-614ef15f72a4",
+          "534b2254-ea93-44d7-9d56-f71fbf50ca3e",
+          "5105d163-b4cd-4b0b-966d-c99710f3e412",
+          "f3257d96-d9cd-44ff-9b4c-9afd09e5e787",
+          "ca3d11f3-9aba-4ecc-b0dc-afbc4da92712",
+          "658070c0-811e-4017-a3ed-d03b5c7d37f8",
+          "3fb2795f-1177-48f7-b174-f39dbb72443d",
+          "fdb2d604-a41e-4463-8af8-e4a313f6a86d",
+          "b1520b73-1744-450d-a49c-1746c9300280",
+          "4110a021-c378-4ec9-bd07-21312e010f7b",
+          "4389389e-4bab-4f72-9688-e0ce997892bf"
+        ],
+        "settings": {
+        }
+      },
+      "bundles": {
+        "type": "bundles",
+        "blocks": {
+          "1539910248837": {
+            "type": "bundle",
+            "settings": {
+              "product": "strada-embroidered-percale-sheet-set"
+            }
+          },
+          "1539910304634": {
+            "type": "bundle",
+            "settings": {
+              "product": "cartagena-linen-stitch-sheet-set"
+            }
+          },
+          "1539910337689": {
+            "type": "bundle",
+            "settings": {
+              "product": "catena-embroidered-percale-sheet-set"
+            }
+          },
+          "1539910356482": {
+            "type": "bundle",
+            "settings": {
+              "product": "biarritz-double-flanged-linen-sheet-set"
+            }
+          },
+          "1539910386339": {
+            "type": "bundle",
+            "settings": {
+              "product": "cartagena-linen-stitch-sham-set-of-2"
+            }
+          },
+          "1539910408869": {
+            "type": "bundle",
+            "settings": {
+              "product": "lafayette-shams-1"
+            }
+          },
+          "1539910428826": {
+            "type": "bundle",
+            "settings": {
+              "product": "madrid-shams"
+            }
+          },
+          "1539910441569": {
+            "type": "bundle",
+            "settings": {
+              "product": "paradis-quilted-shams"
+            }
+          },
+          "1539910456649": {
+            "type": "bundle",
+            "settings": {
+              "product": "valencia-fringed-sham-set-of-2"
+            }
+          },
+          "1539910472771": {
+            "type": "bundle",
+            "settings": {
+              "product": "biarritz-double-flanged-linen-sham-set-of-2"
+            }
+          }
+        },
+        "block_order": [
+          "1539910248837",
+          "1539910304634",
+          "1539910337689",
+          "1539910356482",
+          "1539910386339",
+          "1539910408869",
+          "1539910428826",
+          "1539910441569",
+          "1539910456649",
+          "1539910472771"
+        ],
+        "settings": {
+        }
+      },
+      "return-policy": {
+        "type": "return-policy",
+        "blocks": {
+          "1541602705151": {
+            "type": "item",
+            "settings": {
+              "title": ""
+            }
+          },
+          "1541602738953": {
+            "type": "item",
+            "settings": {
+              "title": ""
+            }
+          }
+        },
+        "block_order": [
+          "1541602705151",
+          "1541602738953"
+        ],
+        "settings": {
+          "note": "",
+          "button_text": "Make A Return",
+          "button_url": "https:\/\/kassatex.com\/apps\/returns",
+          "open_url_type": "1"
+        }
+      },
+      "1542667186792": {
+        "type": "best-sellers",
+        "blocks": {
+          "5ea65f27-0188-442e-bca0-4d90df686e03": {
+            "type": "tab",
+            "settings": {
+              "tab_title": "",
+              "tab_product_1": "montecito-bath-accessories",
+              "tab_product_2": "signature-towels",
+              "tab_product_3": "athens-bath-rugs"
+            }
+          },
+          "fd5748d2-0ce9-4c8a-b207-40e0d5292f97": {
+            "type": "tab",
+            "settings": {
+              "tab_title": "",
+              "tab_product_1": "",
+              "tab_product_2": "",
+              "tab_product_3": ""
+            }
+          }
+        },
+        "block_order": [
+          "5ea65f27-0188-442e-bca0-4d90df686e03",
+          "fd5748d2-0ce9-4c8a-b207-40e0d5292f97"
+        ],
+        "settings": {
+          "title": "Shop Best Sellers",
+          "color": "#333333"
+        }
+      },
+      "1542667492237": {
+        "type": "single-image",
+        "disabled": true,
+        "settings": {
+          "inverse_elements": false,
+          "title": "Summer Sleepwear",
+          "subtitle": "Shop soft and airy pj sets in new hues for the season.",
+          "button_text": "Shop Now",
+          "button_url": "shopify:\/\/products\/eberjey-gisele-short-pj-set",
+          "color": "#636363"
+        }
+      },
+      "1542667915217": {
+        "type": "fluid-image",
+        "disabled": true,
+        "settings": {
+          "image": "shopify:\/\/shop_images\/coverelts-and-quilts-2.jpg",
+          "title": "Luxe Layers",
+          "subtitle": "keep cozy",
+          "button_text": "Shop Now",
+          "button_url": "shopify:\/\/collections\/coverlets",
+          "color": "#ffffff"
+        }
+      },
+      "store-location-popup": {
+        "type": "store-location-popup",
+        "settings": {
+          "api_url": "",
+          "access_token": "",
+          "title": "In New York?\nWe're Here Too!",
+          "subtitle": "Shop with our design experts.",
+          "address": "295 5th Ave,\nNew York, NY 10016",
+          "more_info": "Schedule Now",
+          "button_url": "https:\/\/calendly.com\/kassatexny\/design-studio-appointment"
+        }
+      },
+      "intro-page": {
+        "type": "intro-page",
+        "settings": {
+          "image": "shopify:\/\/shop_images\/kassatex-difference_3.jpg",
+          "image_mobile": "shopify:\/\/shop_images\/kassatex-difference_m-4.jpg"
+        }
+      },
+      "bedding-fabrics": {
+        "type": "bedding-fabrics",
+        "blocks": {
+          "1554848280544": {
+            "type": "item",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/cable-embroidered-percale-sham-set-of-2.jpg",
+              "title": "<a href=\"https:\/\/kassatex.com\/collections\/percale-bedding\" target=\"_blank\" rel=\"noopener noreferrer\">Percale<\/a>",
+              "description": "<p>Our eucalyptus percale blends Tencel Lyocell fibers with cotton for an incredibly soft feel that absorbs moisture to keep you cool. Maybe that&#x27;s why its our #1 best seller.<\/p>"
+            }
+          },
+          "1554848294167": {
+            "type": "item",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/vicenza-sateen-sham-set-of-2.jpg",
+              "title": "<a href=\"https:\/\/kassatex.com\/collections\/sateen-bedding\" target=\"_blank\" rel=\"noopener noreferrer\">Sateen<\/a>",
+              "description": "<p>A unique combination of rayon from bamboo and long staple cotton fibers that produces a soft, extremely lustrous feel. Our sateen is silky to the touch with a slight sheen.<\/p>"
+            }
+          },
+          "1554848306392": {
+            "type": "item",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/bamboo-linen-sham-set-of-2.jpg",
+              "title": "<a href=\"https:\/\/kassatex.com\/collections\/linen-bedding\" target=\"_blank\" rel=\"noopener noreferrer\">Linen<\/a>",
+              "description": "<p>A proprietary blend combining all the things you love about linen along with the benefits of a bamboo blend, making it softer than cotton, super absorbent and naturally antimicrobial.<\/p>"
+            }
+          }
+        },
+        "block_order": [
+          "1554848280544",
+          "1554848294167",
+          "1554848306392"
+        ],
+        "settings": {
+          "title": "Our Bedding Fabrics"
+        }
+      },
+      "bundle-image-content": {
+        "type": "bundle-image-content",
+        "blocks": {
+          "1554848565102": {
+            "type": "item",
+            "settings": {
+              "is_inverse": false,
+              "image": "shopify:\/\/shop_images\/1.jpg",
+              "title": "Innovation & Design",
+              "subtitle": "",
+              "description": "Each of our textile mills is Oeko-Tex Certified, which means our fabrics are guaranteed free of harmful chemicals. We push for the highest standards in social compliance and maintain the most environmentally friendly, sustainable practices available. Because we've been in business for over three generations, our family has long lasting relationships with specialized fabric mills worldwide, ensuring the best product is made by us and delivered to you.",
+              "button_text": ""
+            }
+          },
+          "1554848450310": {
+            "type": "item",
+            "settings": {
+              "is_inverse": true,
+              "image": "shopify:\/\/shop_images\/2.jpg",
+              "title": "Our guarantee",
+              "subtitle": "60-day Trial",
+              "description": "Because we believe in the unparalleled quality of our bedding and its superior comfort and style, we offer a 60-day no questions asked return policy on all of our bedding collections. We know you'll love sleeping in our sheets as much as we love making them.",
+              "button_text": "Learn More",
+              "button_url": "shopify:\/\/pages\/return-policy"
+            }
+          }
+        },
+        "block_order": [
+          "1554848565102",
+          "1554848450310"
+        ],
+        "settings": {
+        }
+      },
+      "best-sellers": {
+        "type": "best-sellers",
+        "blocks": {
+          "1554848629015": {
+            "type": "tab",
+            "settings": {
+              "tab_title": "Percale",
+              "tab_product_1": "salerno-percale-duvet",
+              "tab_product_2": "lorimer-garment-washed-percale-duvet",
+              "tab_product_3": "strada-embroidered-percale-duvet"
+            }
+          },
+          "1554848681586": {
+            "type": "tab",
+            "settings": {
+              "tab_title": "Sateen",
+              "tab_product_1": "bamboo-sateen-sheet-set",
+              "tab_product_2": "bamboo-sateen-duvet",
+              "tab_product_3": "bamboo-sateen-sham-set-of-2"
+            }
+          },
+          "1554848734146": {
+            "type": "tab",
+            "settings": {
+              "tab_title": "Linen",
+              "tab_product_1": "linen-bamboo-duvet",
+              "tab_product_2": "linen-bamboo-sheet-set",
+              "tab_product_3": "linen-bamboo-pillowcase-set-of-2"
+            }
+          }
+        },
+        "block_order": [
+          "1554848629015",
+          "1554848681586",
+          "1554848734146"
+        ],
+        "settings": {
+          "title": "SHOP BY FABRIC",
+          "color": "#636363"
+        }
+      },
+      "popup-promotion": {
+        "type": "popup-promotion",
+        "settings": {
+          "popup_enabled": false,
+          "image": "shopify:\/\/shop_images\/kassatex-bedding_newsletter-signup.jpg",
+          "detail": "<p>Welcome to our world of fine linens and stylish home decor.<\/p>",
+          "title": "Enjoy 10% Off",
+          "subtitle": "Enter your email below",
+          "embed_form": "Cm2WBk",
+          "placeholder_text": "Enter your email",
+          "embed_form_btn_text": "Shop with 10% Off",
+          "cancel_btn_text": "No Thanks",
+          "result_subheader": "Thank You!",
+          "result_header": "Enjoy Your Code:",
+          "result_code": "WELCOME10",
+          "result_btn_text": "Keep Shopping",
+          "result_btn_url": "http:\/\/kassatex.com",
+          "result_in_announcement": "<p>Enjoy <em><strong>10%<\/strong><\/em> off your order<\/p>"
+        }
+      },
+      "1556027246028": {
+        "type": "new-arrivals",
+        "disabled": true,
+        "blocks": {
+          "1556027260296": {
+            "type": "item",
+            "settings": {
+              "title": "Prep-Time Perfection",
+              "subtitle": "with our Spa Hair Towel Wrap",
+              "button_text": "Shop Now",
+              "button_url": "shopify:\/\/products\/faux-fur-blanket"
+            }
+          },
+          "1556027373920": {
+            "type": "item-small",
+            "settings": {
+              "title": "Tie it all Together",
+              "subtitle": "with our new French Terry Wrap",
+              "button_text": "Shop Now",
+              "button_url": "shopify:\/\/products\/faux-fur-slippers"
+            }
+          }
+        },
+        "block_order": [
+          "1556027260296",
+          "1556027373920"
+        ],
+        "settings": {
+          "color": "#000000"
+        }
+      },
+      "intro-beach-bag-2": {
+        "type": "intro-beach-bag-2",
+        "settings": {
+          "is_enable": true,
+          "color": "#333333",
+          "align_content": "intro-beach--content--align-left",
+          "back_image": "shopify:\/\/shop_images\/valentines-day-gift-guide_lp-0421_1021.jpg",
+          "mobile_back_img": "shopify:\/\/shop_images\/valentines-day-gift-guide_lp-0421_1021_m.jpg",
+          "sub_title": "",
+          "title": "",
+          "btn_txt": ""
+        }
+      },
+      "our-favorites-2": {
+        "type": "our-favorites-2",
+        "blocks": {
+          "80bec154-ff22-438f-912e-240445773ed5": {
+            "type": "product",
+            "settings": {
+              "product_item": "be-mine-cocktail-napkin-set-of-4"
+            }
+          },
+          "07b5635e-dcd3-4b5d-964e-79185ffa433b": {
+            "type": "product",
+            "settings": {
+              "product_item": "brentwood-cotton-wool-throw"
+            }
+          },
+          "1556749446662": {
+            "type": "product",
+            "settings": {
+              "product_item": "peshtemal-turkish-robes"
+            }
+          },
+          "1556749478340": {
+            "type": "product",
+            "settings": {
+              "product_item": "kids-spa-robe"
+            }
+          },
+          "1556749462254": {
+            "type": "product",
+            "settings": {
+              "product_item": "leopard-turban"
+            }
+          },
+          "2347e0a1-9617-4635-926a-152d64f9c25e": {
+            "type": "product",
+            "settings": {
+              "product_item": "waffle-weave-robe"
+            }
+          }
+        },
+        "block_order": [
+          "80bec154-ff22-438f-912e-240445773ed5",
+          "07b5635e-dcd3-4b5d-964e-79185ffa433b",
+          "1556749446662",
+          "1556749478340",
+          "1556749462254",
+          "2347e0a1-9617-4635-926a-152d64f9c25e"
+        ],
+        "settings": {
+          "is_enable": true,
+          "title": "Which Kassatex Couple Are You?",
+          "btn_txt": ""
+        }
+      },
+      "common-reviews-2": {
+        "type": "common-reviews-2",
+        "blocks": {
+          "1556749502889": {
+            "type": "product",
+            "settings": {
+              "product_item": "kyoto-bamboo-towels",
+              "count": 1
+            }
+          }
+        },
+        "block_order": [
+          "1556749502889"
+        ],
+        "settings": {
+          "is_enable": false,
+          "title": "What Our Customers Have to Say"
+        }
+      },
+      "bundle-image-tutorial-2": {
+        "type": "bundle-image-tutorial-2",
+        "blocks": {
+          "7c2177d9-9d4d-46fd-8f9d-ef0a5a1264fa": {
+            "type": "item",
+            "settings": {
+              "is_inverse": false,
+              "video": "",
+              "image": "shopify:\/\/shop_images\/valentines-day-gift-guide_the-newlyweds.jpg",
+              "title": "The Newlyweds",
+              "description": "Even if it wasn't the year you had dreamed, celebrate your first Valentine's and get in the mood by creating the ultimate spa night with plush Kyoto towels.",
+              "button_text": "Shop Now",
+              "button_url": "shopify:\/\/products\/kyoto-bamboo-towels"
+            }
+          },
+          "c5626e3d-0d21-40bd-b43f-9ca555616c5f": {
+            "type": "item",
+            "settings": {
+              "is_inverse": true,
+              "video": "",
+              "image": "shopify:\/\/shop_images\/valentines-cocktail-napkin-set.jpg",
+              "title": "The Former Bottle Service Couple",
+              "description": "Relive your past life full of late nights. Grab a bottle, bucket of ice, tray of snacks, and turn your living room into your former nightclub haunt.",
+              "button_text": "Shop Now",
+              "button_url": "shopify:\/\/products\/be-mine-cocktail-napkin-set-of-4"
+            }
+          },
+          "70a90854-ba9a-4a98-b55e-e111b6e501a2": {
+            "type": "item",
+            "settings": {
+              "is_inverse": false,
+              "video": "",
+              "image": "shopify:\/\/shop_images\/valentines-day-gift-guide_the-late-night-couch-potatoes.gif",
+              "title": "The Couch Potato Couple",
+              "description": "Love is when you don't have to share the favorite blanket of the house, you buy two.",
+              "button_text": "Shop Throws",
+              "button_url": "shopify:\/\/collections\/throw-blankets"
+            }
+          },
+          "30bbcb83-8da3-48db-8a1d-a8d169bba895": {
+            "type": "item",
+            "settings": {
+              "is_inverse": true,
+              "video": "",
+              "image": "shopify:\/\/shop_images\/valentines-day-gift-guide_the-family.jpg",
+              "title": "The Kiddies",
+              "description": "Surprise the kids with matching robes and a slumber party with Mom and Dad!",
+              "button_text": "Shop Now",
+              "button_url": "shopify:\/\/products\/hotel-kimono-waffle-robes"
+            }
+          },
+          "1556749609058": {
+            "type": "item",
+            "settings": {
+              "is_inverse": false,
+              "video": "",
+              "image": "shopify:\/\/shop_images\/robegif.gif",
+              "title": "The Sweet Talkers",
+              "description": "Let the direction of the evening be known ahead of time with customized robes.",
+              "button_text": "Shop Robes",
+              "button_url": "shopify:\/\/collections\/robes"
+            }
+          },
+          "cec2ec06-b296-44e4-a198-4e8d487a173c": {
+            "type": "item",
+            "settings": {
+              "is_inverse": true,
+              "video": "",
+              "image": "shopify:\/\/shop_images\/valentines-day-gift-guide_self-care-guru_638bf063-ff82-4dc9-af3a-0c6cd50b6c91.jpg",
+              "title": "The Self-Care Guru",
+              "description": "Me Time is the best way to celebrate Valentine’s Day. Soak the day away, and get wrapped up in our dreamy “Chrissy Teigen-approved” Waffle Weave robe.",
+              "button_text": "Shop Now",
+              "button_url": "shopify:\/\/products\/waffle-weave-robe"
+            }
+          }
+        },
+        "block_order": [
+          "7c2177d9-9d4d-46fd-8f9d-ef0a5a1264fa",
+          "c5626e3d-0d21-40bd-b43f-9ca555616c5f",
+          "70a90854-ba9a-4a98-b55e-e111b6e501a2",
+          "30bbcb83-8da3-48db-8a1d-a8d169bba895",
+          "1556749609058",
+          "cec2ec06-b296-44e4-a198-4e8d487a173c"
+        ],
+        "settings": {
+          "is_enable": true
+        }
+      },
+      "quote-slider-2": {
+        "type": "quote-slider-2",
+        "blocks": {
+          "1556749708286": {
+            "type": "image",
+            "settings": {
+              "video": "",
+              "image": "shopify:\/\/shop_images\/on-the-blog_kassatex_couples.jpg",
+              "sub_title": "On the Blog",
+              "title": "Our favorite couples and how they celebrate",
+              "detail": "",
+              "btn_txt": "Read More",
+              "btn_url": "https:\/\/blog.kassatex.com\/lifestyle\/kassatex-couples-2021\/"
+            }
+          }
+        },
+        "block_order": [
+          "1556749708286"
+        ],
+        "settings": {
+          "is_enable": true
+        }
+      },
+      "everywhere-tote-2": {
+        "type": "everywhere-tote-2",
+        "settings": {
+          "is_enable": false,
+          "video": "",
+          "sub_title": "On the Blog",
+          "title": "",
+          "detail": "",
+          "btn_txt": ""
+        }
+      },
+      "intro-beach-bag": {
+        "type": "intro-beach-bag",
+        "settings": {
+          "is_enable": true,
+          "color": "#646464",
+          "align_content": "intro-beach--content--align-right",
+          "back_image": "shopify:\/\/shop_images\/Shop-Beach-Bags.jpg",
+          "mobile_back_img": "shopify:\/\/shop_images\/Shop-Beach-Bags_m.jpg",
+          "sub_title": "This just in",
+          "title": "Beach Bags\nHandcrafted in Colombia",
+          "btn_txt": "learn more",
+          "btn_url": "#shop-beach-bags-btn"
+        }
+      },
+      "our-favorites": {
+        "type": "our-favorites",
+        "blocks": {
+          "1556750556460": {
+            "type": "product",
+            "settings": {
+              "product_item": "minka-beach-bag"
+            }
+          },
+          "1556750545422": {
+            "type": "product",
+            "settings": {
+              "product_item": "rosario-beach-bag"
+            }
+          },
+          "1556750535276": {
+            "type": "product",
+            "settings": {
+              "product_item": "palomino-beach-bag"
+            }
+          },
+          "1556750522449": {
+            "type": "product",
+            "settings": {
+              "product_item": ""
+            }
+          },
+          "1556750566368": {
+            "type": "product",
+            "settings": {
+              "product_item": ""
+            }
+          }
+        },
+        "block_order": [
+          "1556750556460",
+          "1556750545422",
+          "1556750535276",
+          "1556750522449",
+          "1556750566368"
+        ],
+        "settings": {
+          "is_enable": true,
+          "title": "Our Favorites",
+          "btn_txt": "Shop All Beach Bags",
+          "btn_url": "shopify:\/\/collections\/beach-bags"
+        }
+      },
+      "common-reviews": {
+        "type": "common-reviews",
+        "blocks": {
+          "1556750595346": {
+            "type": "product",
+            "settings": {
+              "product_item": "minka-beach-bag-grey",
+              "count": 1
+            }
+          },
+          "1556750602994": {
+            "type": "product",
+            "settings": {
+              "product_item": "hotel-waffle-terry-robes",
+              "count": 1
+            }
+          },
+          "1556750619844": {
+            "type": "product",
+            "settings": {
+              "product_item": "kyoto-bamboo-towels",
+              "count": 1
+            }
+          }
+        },
+        "block_order": [
+          "1556750595346",
+          "1556750602994",
+          "1556750619844"
+        ],
+        "settings": {
+          "is_enable": false,
+          "title": "What Our Customers Have to Say"
+        }
+      },
+      "bundle-image-tutorial": {
+        "type": "bundle-image-tutorial",
+        "blocks": {
+          "1556750643472": {
+            "type": "item",
+            "settings": {
+              "is_inverse": true,
+              "video": "",
+              "image": "shopify:\/\/shop_images\/Going-Home-Giving-Back.jpg",
+              "title": "Going Home and\nGiving Back",
+              "description": "Born in Colombia, our founders believe in giving back to a community close to their hearts. By handcrafting these bags from the country's native fique plant, we are proud to preserve an old-world technique while providing financial security for 40 female heads of household.",
+              "button_text": "Shop Beach Bags",
+              "button_url": "shopify:\/\/collections\/beach-bags"
+            }
+          },
+          "1556750677684": {
+            "type": "item",
+            "settings": {
+              "is_inverse": false,
+              "video": "",
+              "image": "shopify:\/\/shop_images\/Rosario-Beach-Bags_2.jpg",
+              "title": "From Our Blog",
+              "description": "Oleema and Kalani Miller of Mikoh swimwear show us around Hawaii with our Rosario beach bag in tow.",
+              "button_text": "Shop the Story",
+              "button_url": "https:\/\/blog.kassatex.com\/explore\/explore-hawaii-with-mikohs-oleema-and-kalani-miller\/"
+            }
+          }
+        },
+        "block_order": [
+          "1556750643472",
+          "1556750677684"
+        ],
+        "settings": {
+          "is_enable": true
+        }
+      },
+      "quote-slider": {
+        "type": "quote-slider",
+        "blocks": {
+          "1556750727631": {
+            "type": "image",
+            "settings": {
+              "video": "",
+              "image": "shopify:\/\/shop_images\/5_Beach-Bags_Image-Carousel.jpg",
+              "sub_title": "",
+              "title": "“The Go-Everywhere Tote”",
+              "detail": "<p>Lightweight and packable but built to last-finally, fashion meets function in an essential summer beach bag.<\/p>",
+              "btn_txt": "Shop beach bags",
+              "btn_url": "#"
+            }
+          }
+        },
+        "block_order": [
+          "1556750727631"
+        ],
+        "settings": {
+          "is_enable": false
+        }
+      },
+      "everywhere-tote": {
+        "type": "everywhere-tote",
+        "settings": {
+          "is_enable": true,
+          "video": "https:\/\/cdn.shopify.com\/s\/files\/1\/0002\/9910\/6314\/files\/Kassatex_Miami.mp4?4588",
+          "image": "shopify:\/\/shop_images\/Kassatex-Miami_766bc875-84ae-4578-b5e6-947060280a38.gif",
+          "sub_title": "",
+          "title": "The Go-Everywhere Tote",
+          "detail": "<p>Lightweight and packable but built to last &mdash; fashion meets function in an essential summer beach bag.<\/p>",
+          "btn_txt": "Shop Rosario",
+          "btn_url": "shopify:\/\/products\/rosario-beach-bag-black"
+        }
+      },
+      "intro-beach-bag-4": {
+        "type": "intro-beach-bag-4",
+        "settings": {
+          "is_enable": true,
+          "color": "#333333",
+          "align_content": "intro-beach--content--align-center",
+          "back_image": "shopify:\/\/shop_images\/Veronica-Beard-Kassatex_Collection-Banner_2.jpg",
+          "mobile_back_img": "shopify:\/\/shop_images\/Veronica-Beard_mobile_4.jpg",
+          "sub_title": "",
+          "title": "",
+          "btn_txt": "Learn More",
+          "btn_url": "#shop-veronica-beard-btn"
+        }
+      },
+      "our-favorites-4": {
+        "type": "our-favorites-4",
+        "blocks": {
+          "1559129918680": {
+            "type": "product",
+            "settings": {
+              "product_item": "good-catch-beach-towel"
+            }
+          },
+          "1559129944824": {
+            "type": "product",
+            "settings": {
+              "product_item": "leopard-turban"
+            }
+          },
+          "1559129954385": {
+            "type": "product",
+            "settings": {
+              "product_item": "the-walter-blazer"
+            }
+          },
+          "1559129971929": {
+            "type": "product",
+            "settings": {
+              "product_item": "overboard-tote-bag"
+            }
+          },
+          "1559129982889": {
+            "type": "product",
+            "settings": {
+              "product_item": "leopard-pouch"
+            }
+          },
+          "1559129994239": {
+            "type": "product",
+            "settings": {
+              "product_item": "on-the-rocks-beach-towel"
+            }
+          },
+          "1565971494627": {
+            "type": "product",
+            "settings": {
+              "product_item": ""
+            }
+          },
+          "1565971504699": {
+            "type": "product",
+            "settings": {
+              "product_item": ""
+            }
+          }
+        },
+        "block_order": [
+          "1559129918680",
+          "1559129944824",
+          "1559129954385",
+          "1559129971929",
+          "1559129982889",
+          "1559129994239",
+          "1565971494627",
+          "1565971504699"
+        ],
+        "settings": {
+          "is_enable": true,
+          "title": "Summer Capsule Collection",
+          "btn_txt": "Shop Now",
+          "btn_url": "shopify:\/\/collections\/veronica-beard-x-kassatex"
+        }
+      },
+      "common-reviews-4": {
+        "type": "common-reviews-4",
+        "settings": {
+          "is_enable": false,
+          "title": "What Our Customers Have to Say"
+        }
+      },
+      "bundle-image-tutorial-4": {
+        "type": "bundle-image-tutorial-4",
+        "blocks": {
+          "1559130011017": {
+            "type": "item",
+            "settings": {
+              "is_inverse": false,
+              "video": "",
+              "image": "shopify:\/\/shop_images\/LP_Veronica-Beard-Kassatex_Just-A-Splash.jpg",
+              "title": "Just A Splash",
+              "description": "From tongue-in-cheek velour beach towels to a terry blazer that can be monogrammed in gold embroidery and leopard-printed terry accessories, the Veronica Beard x Kassatex capsule collection celebrates one-of-a-kind summer style.",
+              "button_text": "Shop Now",
+              "button_url": "shopify:\/\/collections\/veronica-beard-x-kassatex"
+            }
+          },
+          "1559130069817": {
+            "type": "item",
+            "settings": {
+              "is_inverse": true,
+              "video": "",
+              "image": "shopify:\/\/shop_images\/LP_Veronica-Beard-Kassatex_Going-Overboard.jpg",
+              "title": "",
+              "description": "<p>For their limited edition collection with Kassatex, designers Veronica Swanson Beard and Veronica Miele Beard found inspiration in the extreme summer fashion from the 1987 film <em>Overboard<\/em>, starring Goldie Hawn.<\/p>\n<p>The designers had fun putting together their vision of the ultimate summer pieces from towel to turban, but it's the toweling blazer that has the pair most excited for vacation dressing. \"The terry blazer coverup is the babe at the beach piece you need this summer!\" says Veronica Swanson Beard. We think Goldie Hawn's character, Joanna Stayton, would agree.<\/p>\n<p>\"Working with the Veronicas was an incredible opportunity for us to create a fun collection that brought out a different sensibility and playfulness for Kassatex. And what could be better than a leopard terry turban and channeling your inner Goldie Hawn? Nothing!\" says Alexandra Khoudari of Kassatex.<\/p><p><\/p>",
+              "button_text": "",
+              "button_url": ""
+            }
+          }
+        },
+        "block_order": [
+          "1559130011017",
+          "1559130069817"
+        ],
+        "settings": {
+          "is_enable": true
+        }
+      },
+      "quote-slider-4": {
+        "type": "quote-slider-4",
+        "blocks": {
+          "1559315457287": {
+            "type": "image",
+            "settings": {
+              "video": "",
+              "image": "shopify:\/\/shop_images\/VB-Kassatex-Event_1.jpg",
+              "mobile_image": "shopify:\/\/shop_images\/VB-Kassatex-Event_1.jpg",
+              "sub_title": "",
+              "title": "The Launch Event",
+              "detail": "<p>Veronica Miele Beard, Veronica Swanson Beard, and our very own Ernesto and Alexandra Khoudari hosted a lunch at 1Hotel Brooklyn Bridge to kick off the launch of Veronica Beard x Kassatex.<\/p>",
+              "btn_txt": "Learn More",
+              "btn_url": "https:\/\/blog.kassatex.com\/news\/veronica-beard-x-kassatex\/"
+            }
+          },
+          "1559315679690": {
+            "type": "image",
+            "settings": {
+              "video": "",
+              "image": "shopify:\/\/shop_images\/VB-Kassatex-Event_2.jpg",
+              "mobile_image": "shopify:\/\/shop_images\/VB-Kassatex-Event_2.jpg",
+              "sub_title": "",
+              "title": "The Launch Event",
+              "detail": "<p>Veronica Miele Beard, Veronica Swanson Beard, and our very own Ernesto and Alexandra Khoudari hosted a lunch at 1Hotel Brooklyn Bridge to kick off the launch of Veronica Beard x Kassatex.<\/p>",
+              "btn_txt": "Learn More",
+              "btn_url": "https:\/\/blog.kassatex.com\/news\/veronica-beard-x-kassatex\/"
+            }
+          },
+          "1559315723106": {
+            "type": "image",
+            "settings": {
+              "video": "",
+              "image": "shopify:\/\/shop_images\/VB-Kassatex-Event_3.jpg",
+              "mobile_image": "shopify:\/\/shop_images\/VB-Kassatex-Event_3.jpg",
+              "sub_title": "",
+              "title": "The Launch Event",
+              "detail": "<p>Veronica Miele Beard, Veronica Swanson Beard, and our very own Ernesto and Alexandra Khoudari hosted a lunch at 1Hotel Brooklyn Bridge to kick off the launch of Veronica Beard x Kassatex.<\/p>",
+              "btn_txt": "Learn More",
+              "btn_url": "https:\/\/blog.kassatex.com\/news\/veronica-beard-x-kassatex\/"
+            }
+          },
+          "1559315763825": {
+            "type": "image",
+            "settings": {
+              "video": "",
+              "image": "shopify:\/\/shop_images\/VB-Kassatex-Event_4.jpg",
+              "mobile_image": "shopify:\/\/shop_images\/VB-Kassatex-Event_4.jpg",
+              "sub_title": "",
+              "title": "The Launch Event",
+              "detail": "<p>Veronica Miele Beard, Veronica Swanson Beard, and our very own Ernesto and Alexandra Khoudari hosted a lunch at 1Hotel Brooklyn Bridge to kick off the launch of Veronica Beard x Kassatex.<\/p>",
+              "btn_txt": "Learn More",
+              "btn_url": "https:\/\/blog.kassatex.com\/news\/veronica-beard-x-kassatex\/"
+            }
+          },
+          "1559315802761": {
+            "type": "image",
+            "settings": {
+              "video": "",
+              "image": "shopify:\/\/shop_images\/VB-Kassatex-Event_5.jpg",
+              "mobile_image": "shopify:\/\/shop_images\/VB-Kassatex-Event_5.jpg",
+              "sub_title": "",
+              "title": "The Launch Event",
+              "detail": "<p>Veronica Miele Beard, Veronica Swanson Beard, and our very own Ernesto and Alexandra Khoudari hosted a lunch at 1Hotel Brooklyn Bridge to kick off the launch of Veronica Beard x Kassatex.<\/p>",
+              "btn_txt": "Learn More",
+              "btn_url": "https:\/\/blog.kassatex.com\/news\/veronica-beard-x-kassatex\/"
+            }
+          }
+        },
+        "block_order": [
+          "1559315457287",
+          "1559315679690",
+          "1559315723106",
+          "1559315763825",
+          "1559315802761"
+        ],
+        "settings": {
+          "is_enable": true
+        }
+      },
+      "everywhere-tote-4": {
+        "type": "everywhere-tote-4",
+        "settings": {
+          "is_enable": false,
+          "video": "",
+          "image": "",
+          "mobile_image": "",
+          "sub_title": "This just in",
+          "title": "The Go-Everywhere Tote",
+          "detail": "",
+          "btn_txt": "Shop beach bags",
+          "btn_url": ""
+        }
+      },
+      "intro-beach-bag-3": {
+        "type": "intro-beach-bag-3",
+        "settings": {
+          "is_enable": true,
+          "color": "#333333",
+          "align_content": "intro-beach--content--align-right",
+          "back_image": "shopify:\/\/shop_images\/linen-bamboo-bedding_lp2020.jpg",
+          "mobile_back_img": "shopify:\/\/shop_images\/linen-bamboo-bedding_lp2020_m.jpg",
+          "sub_title": "Soft & Airy",
+          "title": "Linen-Bamboo\nBedding",
+          "btn_txt": "Learn More",
+          "btn_url": "#shopify-section-bundle-image-tutorial-3"
+        }
+      },
+      "our-favorites-3": {
+        "type": "our-favorites-3",
+        "settings": {
+          "is_enable": true,
+          "title": "",
+          "btn_txt": "shop beach bags",
+          "btn_url": ""
+        }
+      },
+      "common-reviews-3": {
+        "type": "common-reviews-3",
+        "blocks": {
+          "1563467302025": {
+            "type": "product",
+            "settings": {
+              "product_item": "linen-bamboo-duvet",
+              "count": 1
+            }
+          },
+          "1578338983307": {
+            "type": "product",
+            "settings": {
+              "product_item": "linen-bamboo-sheet-set",
+              "count": 1
+            }
+          }
+        },
+        "block_order": [
+          "1563467302025",
+          "1578338983307"
+        ],
+        "settings": {
+          "is_enable": false,
+          "title": "What Our Customers Have to Say"
+        }
+      },
+      "bundle-image-tutorial-3": {
+        "type": "bundle-image-tutorial-3",
+        "blocks": {
+          "1563467422801": {
+            "type": "item",
+            "settings": {
+              "is_inverse": true,
+              "video": "https:\/\/cdn.shopify.com\/s\/files\/1\/0002\/9910\/6314\/files\/kassatex-linen-bamboo-fabric.mp4?24264",
+              "image": "shopify:\/\/shop_images\/kassatex-linen-bamboo-fabric_m.gif",
+              "title": "A groundbreaking update to your favorite linen sheets.",
+              "description": "We added soft bamboo to our signature linen fabric in a proprietary blend that you won't find anywhere else. It's all the airy goodness of linen but with a cloud-like feel. Quite frankly, the perfect breezy, light summer sheet set.",
+              "button_text": "Shop Sheets",
+              "button_url": "shopify:\/\/products\/linen-bamboo-sheet-set"
+            }
+          },
+          "1563467708330": {
+            "type": "item",
+            "settings": {
+              "is_inverse": false,
+              "video": "",
+              "image": "shopify:\/\/shop_images\/relax-in-linen_linen-bamboo-bathrobes.jpg",
+              "title": "Relax in Linen",
+              "description": "We were so obsessed with the super softness of our linen blend that we made it into a collection of airy robes. Perfect for summer getaways and warmer climates.",
+              "button_text": "Shop Now",
+              "button_url": "shopify:\/\/products\/women-s-linen-bamboo-robes"
+            }
+          }
+        },
+        "block_order": [
+          "1563467422801",
+          "1563467708330"
+        ],
+        "settings": {
+          "is_enable": true
+        }
+      },
+      "quote-slider-3": {
+        "type": "quote-slider-3",
+        "blocks": {
+          "1563467983322": {
+            "type": "image",
+            "settings": {
+              "video": "",
+              "image": "shopify:\/\/shop_images\/mikoh-linen-bedding_1.jpg",
+              "mobile_image": "shopify:\/\/shop_images\/mikoh-linen-bedding_1.jpg",
+              "sub_title": "",
+              "title": "How It's Styled",
+              "detail": "<p>From their Hawaii home, Mikoh swimwear founders Oleema and Kalani Miller unwind and relax in our linen bedding.<\/p>",
+              "btn_txt": "Read More",
+              "btn_url": "https:\/\/blog.kassatex.com\/explore\/explore-hawaii-with-mikohs-oleema-and-kalani-miller\/"
+            }
+          },
+          "1563468049597": {
+            "type": "image",
+            "settings": {
+              "video": "",
+              "image": "shopify:\/\/shop_images\/mikoh-linen-bedding_2.jpg",
+              "mobile_image": "shopify:\/\/shop_images\/mikoh-linen-bedding_2.jpg",
+              "sub_title": "",
+              "title": "How It's Styled",
+              "detail": "<p>From their Hawaii home, Mikoh swimwear founders Oleema and Kalani Miller unwind and relax in our linen bedding.<\/p>",
+              "btn_txt": "Read More",
+              "btn_url": "https:\/\/blog.kassatex.com\/explore\/explore-hawaii-with-mikohs-oleema-and-kalani-miller\/"
+            }
+          },
+          "1563468111726": {
+            "type": "image",
+            "settings": {
+              "video": "",
+              "image": "shopify:\/\/shop_images\/mikoh-linen-bedding_3.jpg",
+              "mobile_image": "shopify:\/\/shop_images\/mikoh-linen-bedding_3.jpg",
+              "sub_title": "",
+              "title": "How It's Styled",
+              "detail": "<p>From their Hawaii home, Mikoh swimwear founders Oleema and Kalani Miller unwind and relax in our linen bedding.<\/p>",
+              "btn_txt": "Read More",
+              "btn_url": "https:\/\/blog.kassatex.com\/explore\/explore-hawaii-with-mikohs-oleema-and-kalani-miller\/"
+            }
+          }
+        },
+        "block_order": [
+          "1563467983322",
+          "1563468049597",
+          "1563468111726"
+        ],
+        "settings": {
+          "is_enable": true
+        }
+      },
+      "everywhere-tote-3": {
+        "type": "everywhere-tote-3",
+        "settings": {
+          "is_enable": false,
+          "video": "",
+          "image": "",
+          "mobile_image": "",
+          "sub_title": "This just in",
+          "title": "The Go-Everywhere Tote",
+          "detail": "",
+          "btn_txt": "Shop beach bags",
+          "btn_url": ""
+        }
+      },
+      "intro-beach-bag-5": {
+        "type": "intro-beach-bag-5",
+        "settings": {
+          "is_enable": true,
+          "color": "#333333",
+          "align_content": "intro-beach--content--align-right",
+          "back_image": "shopify:\/\/shop_images\/kassatex-hospitality-offerings.jpg",
+          "mobile_back_img": "shopify:\/\/shop_images\/kassatex-hospitality-offerings_m.jpg",
+          "sub_title": "",
+          "title": "Our Hospitality Offerings",
+          "btn_txt": "",
+          "btn_url": ""
+        }
+      },
+      "our-favorites-5": {
+        "type": "our-favorites-5",
+        "blocks": {
+          "1567007627392": {
+            "type": "product",
+            "settings": {
+              "product_item": "300-thread-count-sateen-collection"
+            }
+          },
+          "1567007640216": {
+            "type": "product",
+            "settings": {
+              "product_item": "sublime-organic-towels"
+            }
+          },
+          "1567007653666": {
+            "type": "product",
+            "settings": {
+              "product_item": "alabaster-bath-accessories"
+            }
+          },
+          "1567007666420": {
+            "type": "product",
+            "settings": {
+              "product_item": "nile-gold-bath-accessories"
+            }
+          },
+          "1567007674732": {
+            "type": "product",
+            "settings": {
+              "product_item": "spa-luxury-robe-diamond-bathrobe"
+            }
+          },
+          "1567007689020": {
+            "type": "product",
+            "settings": {
+              "product_item": "signature-towels"
+            }
+          },
+          "1567007698687": {
+            "type": "product",
+            "settings": {
+              "product_item": "cabana-hotel-pool-towels"
+            }
+          },
+          "1567007709785": {
+            "type": "product",
+            "settings": {
+              "product_item": "ibiza-hotel-pool-towels"
+            }
+          },
+          "1567007718049": {
+            "type": "product",
+            "settings": {
+              "product_item": "malibu-hotel-pool-towels"
+            }
+          }
+        },
+        "block_order": [
+          "1567007627392",
+          "1567007640216",
+          "1567007653666",
+          "1567007666420",
+          "1567007674732",
+          "1567007689020",
+          "1567007698687",
+          "1567007709785",
+          "1567007718049"
+        ],
+        "settings": {
+          "is_enable": true,
+          "title": "Quick Ship Favorites",
+          "btn_txt": "Shop All Collections",
+          "btn_url": "shopify:\/\/pages\/hotel"
+        }
+      },
+      "common-reviews-5": {
+        "type": "common-reviews-5",
+        "settings": {
+          "is_enable": false,
+          "title": "What Our Customers Have to Say"
+        }
+      },
+      "bundle-image-tutorial-5": {
+        "type": "bundle-image-tutorial-5",
+        "blocks": {
+          "1567007792013": {
+            "type": "item",
+            "settings": {
+              "is_inverse": false,
+              "video": "",
+              "image": "shopify:\/\/shop_images\/marble-brass-bath-accessories-overhead.jpg",
+              "title": "Made to Order",
+              "description": "Designed exclusively for hotel clients, our custom offering is highly flexible. We source materials from all over the world to produce quality products with a signature vision.",
+              "button_text": "Contact us",
+              "button_url": "shopify:\/\/pages\/hospitality"
+            }
+          },
+          "1567008137102": {
+            "type": "item",
+            "settings": {
+              "is_inverse": true,
+              "video": "",
+              "image": "shopify:\/\/shop_images\/0001.jpg",
+              "title": "Hospitality Offerings",
+              "description": "View our hotel catalog which includes Kassatex classic hospitality styles.",
+              "button_text": "View Catalog",
+              "button_url": "https:\/\/cdn.shopify.com\/s\/files\/1\/0002\/9910\/6314\/files\/Kassatex_2021_Hospitality_Catalog.pdf?v=1615240021"
+            }
+          },
+          "1567008308382": {
+            "type": "item",
+            "settings": {
+              "is_inverse": false,
+              "video": "",
+              "image": "shopify:\/\/shop_images\/Hospitality-Bath-Accessories.jpg",
+              "title": "Bath Accessory Sets",
+              "description": "Crafted from the finest materials and available in a variety of styles, from ultra modern to timeless classic, our impeccably designed accessory collections are the perfect accents to any bathroom.",
+              "button_text": "Shop Now",
+              "button_url": "shopify:\/\/collections\/bath-accessories"
+            }
+          }
+        },
+        "block_order": [
+          "1567007792013",
+          "1567008137102",
+          "1567008308382"
+        ],
+        "settings": {
+          "is_enable": true
+        }
+      },
+      "quote-slider-5": {
+        "type": "quote-slider-5",
+        "blocks": {
+          "1567008491493": {
+            "type": "image",
+            "settings": {
+              "video": "",
+              "image": "shopify:\/\/shop_images\/1-hotel-brooklyn-bridge-bedroom.jpg",
+              "mobile_image": "shopify:\/\/shop_images\/1-hotel-brooklyn-bridge-bedroom.jpg",
+              "sub_title": "Luxury hotel partners include:",
+              "title": "1 Hotel Brooklyn Bridge",
+              "detail": "",
+              "btn_txt": "",
+              "btn_url": ""
+            }
+          },
+          "1567008545222": {
+            "type": "image",
+            "settings": {
+              "video": "",
+              "image": "shopify:\/\/shop_images\/1-hotel-central-park-bedroom.jpg",
+              "mobile_image": "shopify:\/\/shop_images\/1-hotel-central-park-bedroom.jpg",
+              "sub_title": "Luxury hotel partners include:",
+              "title": "1 Hotel Central Park",
+              "detail": "",
+              "btn_txt": "",
+              "btn_url": ""
+            }
+          },
+          "1567008574456": {
+            "type": "image",
+            "settings": {
+              "video": "",
+              "image": "shopify:\/\/shop_images\/1-hotel-south-beach-bedroom.jpg",
+              "mobile_image": "shopify:\/\/shop_images\/1-hotel-south-beach-bedroom.jpg",
+              "sub_title": "Luxury hotel partners include:",
+              "title": "1 Hotel South Beach",
+              "detail": "",
+              "btn_txt": "",
+              "btn_url": ""
+            }
+          },
+          "1567008612631": {
+            "type": "image",
+            "settings": {
+              "video": "",
+              "image": "shopify:\/\/shop_images\/1-hotel-west-hollywood-bedroom.jpg",
+              "mobile_image": "shopify:\/\/shop_images\/1-hotel-west-hollywood-bedroom.jpg",
+              "sub_title": "Luxury hotel partners include:",
+              "title": "1 Hotel West Hollywood",
+              "detail": "",
+              "btn_txt": "Shop beach bags",
+              "btn_url": ""
+            }
+          },
+          "1567008766121": {
+            "type": "image",
+            "settings": {
+              "video": "",
+              "image": "shopify:\/\/shop_images\/montage-laguna-beach-hotel-bathroom.jpg",
+              "mobile_image": "shopify:\/\/shop_images\/montage-laguna-beach-hotel-bathroom.jpg",
+              "sub_title": "Luxury hotel partners include:",
+              "title": "Montage Laguna Beach",
+              "detail": "",
+              "btn_txt": "",
+              "btn_url": ""
+            }
+          },
+          "1567011419924": {
+            "type": "image",
+            "settings": {
+              "video": "",
+              "image": "shopify:\/\/shop_images\/the-surrey-hotel-bathroom.jpg",
+              "mobile_image": "shopify:\/\/shop_images\/the-surrey-hotel-bathroom.jpg",
+              "sub_title": "Luxury hotel partners include:",
+              "title": "The Surrey",
+              "detail": "",
+              "btn_txt": "",
+              "btn_url": ""
+            }
+          },
+          "1567022194805": {
+            "type": "image",
+            "settings": {
+              "video": "",
+              "image": "shopify:\/\/shop_images\/mandarin-oriental-kuala-lumpur-2019-suite-presidential-bathroom.jpg",
+              "mobile_image": "shopify:\/\/shop_images\/mandarin-oriental-kuala-lumpur-2019-suite-presidential-bathroom.jpg",
+              "sub_title": "Luxury hotel partners include:",
+              "title": "Mandarin Oriental Kuala Lumpur",
+              "detail": "",
+              "btn_txt": "",
+              "btn_url": ""
+            }
+          },
+          "1567022410126": {
+            "type": "image",
+            "settings": {
+              "video": "",
+              "image": "shopify:\/\/shop_images\/milan-mandarin-oriental.jpg",
+              "mobile_image": "shopify:\/\/shop_images\/milan-mandarin-oriental.jpg",
+              "sub_title": "Luxury hotel partners include:",
+              "title": "Mandarin Oriental Milan",
+              "detail": "",
+              "btn_txt": "",
+              "btn_url": ""
+            }
+          },
+          "1567022500660": {
+            "type": "image",
+            "settings": {
+              "video": "",
+              "image": "shopify:\/\/shop_images\/casa-malca-entrance.jpg",
+              "mobile_image": "shopify:\/\/shop_images\/casa-malca-entrance.jpg",
+              "sub_title": "Luxury hotel partners include:",
+              "title": "Casa Malca - Tulum, Mexico",
+              "detail": "",
+              "btn_txt": "",
+              "btn_url": ""
+            }
+          }
+        },
+        "block_order": [
+          "1567008491493",
+          "1567008545222",
+          "1567008574456",
+          "1567008612631",
+          "1567008766121",
+          "1567011419924",
+          "1567022194805",
+          "1567022410126",
+          "1567022500660"
+        ],
+        "settings": {
+          "is_enable": true
+        }
+      },
+      "everywhere-tote-5": {
+        "type": "everywhere-tote-5",
+        "settings": {
+          "is_enable": false,
+          "video": "",
+          "sub_title": "This just in",
+          "title": "The Go-Everywhere Tote",
+          "detail": "",
+          "btn_txt": "Shop beach bags",
+          "btn_url": ""
+        }
+      },
+      "intro-beach-bag-7": {
+        "type": "intro-beach-bag-7",
+        "settings": {
+          "is_enable": true,
+          "color": "#ffffff",
+          "align_content": "intro-beach--content--align-left",
+          "back_image": "shopify:\/\/shop_images\/kassatex-holiday-gift-guide_lp.jpg",
+          "mobile_back_img": "shopify:\/\/shop_images\/kassatex-holiday-gift-guide_lpm.jpg",
+          "sub_title": "",
+          "title": "Holiday Gift Guide",
+          "btn_txt": "",
+          "btn_url": ""
+        }
+      },
+      "our-favorites-7": {
+        "type": "our-favorites-7",
+        "blocks": {
+          "1573484852094": {
+            "type": "product",
+            "settings": {
+              "product_item": "turkish-cotton-piped-robe"
+            }
+          },
+          "1573484899966": {
+            "type": "product",
+            "settings": {
+              "product_item": "daniela-bamboo-pajama-set"
+            }
+          },
+          "1573484909695": {
+            "type": "product",
+            "settings": {
+              "product_item": "cable-knit-alpaca-throw"
+            }
+          },
+          "1573484922851": {
+            "type": "product",
+            "settings": {
+              "product_item": "linen-cocktail-napkins-set-of-4"
+            }
+          },
+          "1573484933100": {
+            "type": "product",
+            "settings": {
+              "product_item": "peshtemal-turkish-hand-towels-set-of-3"
+            }
+          },
+          "1573484946219": {
+            "type": "product",
+            "settings": {
+              "product_item": "sullivan-ribbed-hand-towels-set-of-3"
+            }
+          },
+          "1573484960135": {
+            "type": "product",
+            "settings": {
+              "product_item": "lorimer-garment-washed-percale-duvet"
+            }
+          },
+          "1573484975414": {
+            "type": "product",
+            "settings": {
+              "product_item": "lima-alpaca-throw"
+            }
+          },
+          "1573484986819": {
+            "type": "product",
+            "settings": {
+              "product_item": "bamboo-sateen-duvet"
+            }
+          }
+        },
+        "block_order": [
+          "1573484852094",
+          "1573484899966",
+          "1573484909695",
+          "1573484922851",
+          "1573484933100",
+          "1573484946219",
+          "1573484960135",
+          "1573484975414",
+          "1573484986819"
+        ],
+        "settings": {
+          "is_enable": true,
+          "title": "Our Favorites",
+          "btn_txt": "",
+          "btn_url": ""
+        }
+      },
+      "common-reviews-7": {
+        "type": "common-reviews-7",
+        "settings": {
+          "is_enable": false,
+          "title": "What Our Customers Have to Say"
+        }
+      },
+      "bundle-image-tutorial-7": {
+        "type": "bundle-image-tutorial-7",
+        "blocks": {
+          "1573485190974": {
+            "type": "item",
+            "settings": {
+              "is_inverse": false,
+              "video": "",
+              "image": "shopify:\/\/shop_images\/holiday-gift-guide_gifts-below-200.jpg",
+              "title": "Gifts Under $200",
+              "description": "From the perfect set of cozy striped pajamas to the world's most snuggly robes, keep it simple (but always stylish) when you shop our edited list of great gifts.",
+              "button_text": "Shop Now",
+              "button_url": "shopify:\/\/collections\/gifts-under-200-1"
+            }
+          }
+        },
+        "block_order": [
+          "1573485190974"
+        ],
+        "settings": {
+          "is_enable": true
+        }
+      },
+      "quote-slider-7": {
+        "type": "quote-slider-7",
+        "blocks": {
+          "1573485234663": {
+            "type": "image",
+            "settings": {
+              "video": "",
+              "image": "shopify:\/\/shop_images\/for-the-hosstess_lp.jpg",
+              "mobile_image": "shopify:\/\/shop_images\/for-the-hosstess_lp.jpg",
+              "sub_title": "Gifts for everyone on your list",
+              "title": "For the Hostess",
+              "detail": "<p>Beautiful gifts for the one who entertains in style<\/p>",
+              "btn_txt": "Shop Now",
+              "btn_url": "shopify:\/\/collections\/gifts-by-recipient"
+            }
+          },
+          "1573485291021": {
+            "type": "image",
+            "settings": {
+              "video": "",
+              "image": "shopify:\/\/shop_images\/for-the-jetsetter_lp.jpg",
+              "mobile_image": "shopify:\/\/shop_images\/for-the-jetsetter_lp.jpg",
+              "sub_title": "Gifts for everyone on your list",
+              "title": "For The Jetsetter",
+              "detail": "<p>What to buy the friend who's always on the go<\/p>",
+              "btn_txt": "Shop Now",
+              "btn_url": "shopify:\/\/collections\/gifts-by-recipient"
+            }
+          },
+          "1573485374214": {
+            "type": "image",
+            "settings": {
+              "video": "",
+              "image": "shopify:\/\/shop_images\/for-the-family_lp.jpg",
+              "mobile_image": "shopify:\/\/shop_images\/for-the-family_lp.jpg",
+              "sub_title": "Gifts for everyone on your list",
+              "title": "For the Family",
+              "detail": "<p>Matching collections for you and your little one<\/p>",
+              "btn_txt": "Shop Now",
+              "btn_url": "shopify:\/\/collections\/gifts-by-recipient"
+            }
+          }
+        },
+        "block_order": [
+          "1573485234663",
+          "1573485291021",
+          "1573485374214"
+        ],
+        "settings": {
+          "is_enable": true
+        }
+      },
+      "everywhere-tote-7": {
+        "type": "everywhere-tote-7",
+        "settings": {
+          "is_enable": true,
+          "video": "",
+          "image": "shopify:\/\/shop_images\/hunting-season-x-kassatex_lp.jpg",
+          "mobile_image": "shopify:\/\/shop_images\/hunting-season-x-kassatex_lp.jpg",
+          "sub_title": "Limited Edition",
+          "title": "Hunting Season x Kassatex",
+          "detail": "",
+          "btn_txt": "Shop The Travel Set",
+          "btn_url": "shopify:\/\/products\/the-comfort-kit"
+        }
+      },
+      "giftcard-message": {
+        "type": "giftcard-message",
+        "settings": {
+        }
+      },
+      "giftcard-panel": {
+        "type": "giftcard-panel",
+        "settings": {
+        }
+      },
+      "stylist-intro": {
+        "type": "stylist-intro",
+        "settings": {
+          "image": "shopify:\/\/shop_images\/The-Design-Studio_e003687e-8a8b-4969-bf0a-1a39369530e5.jpg",
+          "subtitle": "",
+          "title": "The Design Studio",
+          "content": "A Private Shopping Experience at Kassatex"
+        }
+      },
+      "stylist-our-showroom": {
+        "type": "stylist-our-showroom",
+        "settings": {
+          "title": "The Location",
+          "address_label": "",
+          "mailing_address": "330 Fifth Avenue, Floor 11 <br> New York, NY 10001",
+          "imageUrl": "",
+          "videoUrl": "https:\/\/cdn.shopify.com\/s\/files\/1\/0067\/4870\/0741\/files\/video-test_60sec_larger.mp4?v=1596481073",
+          "btn_arrow_text": "",
+          "btn_arrow_url": ""
+        }
+      },
+      "stylist-appointment": {
+        "type": "stylist-appointment",
+        "settings": {
+          "background_color": "#dedddd",
+          "title": "Schedule An Appointment",
+          "content": "<p>Experience our vast home collection and schedule your private and customized one-on-one design consultation in our new Design Studio. Our in-house stylists will seamlessly help bring your vision to life.<\/p>",
+          "calendlyUrl": "https:\/\/calendly.com\/kassatexny\/design-studio-appointment",
+          "btn_arrow_text": "",
+          "btn_arrow_url": ""
+        }
+      },
+      "stylist-slider": {
+        "type": "stylist-slider",
+        "blocks": {
+          "1599607871802": {
+            "type": "image",
+            "settings": {
+              "video": "",
+              "image": "shopify:\/\/shop_images\/Stylist-Page_Designer_1.jpg",
+              "mobile_image": "shopify:\/\/shop_images\/Stylist-Page_Designer_1.jpg",
+              "sub_title": "",
+              "title": "What Designers Are Saying",
+              "detail": "<p>\"I adore the Tripoli bath accessories. The mixed marbles add depth and interest.\" - Young Huh<\/p>",
+              "btn_txt": "",
+              "btn_url": ""
+            }
+          },
+          "1599607757724": {
+            "type": "image",
+            "settings": {
+              "video": "",
+              "image": "shopify:\/\/shop_images\/Stylist-Page_Designer_4.jpg",
+              "mobile_image": "shopify:\/\/shop_images\/Stylist-Page_Designer_4.jpg",
+              "sub_title": "",
+              "title": "What Designers Are Saying",
+              "detail": "<p>\"I think the Lafayette coverlet is the ideal weight and texture on a bed.&rdquo; - Sara Gilbane<\/p>",
+              "btn_txt": "",
+              "btn_url": ""
+            }
+          },
+          "1599684907276": {
+            "type": "image",
+            "settings": {
+              "video": "",
+              "image": "shopify:\/\/shop_images\/Stylist-Page_Designer_2.jpg",
+              "mobile_image": "shopify:\/\/shop_images\/Stylist-Page_Designer_2.jpg",
+              "sub_title": "",
+              "title": "What Designers Are Saying",
+              "detail": "<p>\"The Salerno percale collection is a go-to for luxurious sheeting.\" - MA Allen<\/p>",
+              "btn_txt": "",
+              "btn_url": ""
+            }
+          },
+          "1599685093985": {
+            "type": "image",
+            "settings": {
+              "video": "",
+              "image": "shopify:\/\/shop_images\/TDS_Mark-Cunningham.jpg",
+              "mobile_image": "shopify:\/\/shop_images\/TDS_Mark-Cunningham.jpg",
+              "sub_title": "",
+              "title": "What Designers Are Saying",
+              "detail": "<p>\"Love them [Mateo Ribbed Towels] in solid white!\" - Mark Cunningham<\/p>",
+              "btn_txt": "",
+              "btn_url": ""
+            }
+          }
+        },
+        "block_order": [
+          "1599607871802",
+          "1599607757724",
+          "1599684907276",
+          "1599685093985"
+        ],
+        "settings": {
+          "is_enable": true
+        }
+      },
+      "1600261539356": {
+        "type": "rich-text",
+        "disabled": true,
+        "settings": {
+          "section_title": "\"These Ultra-Soft Bamboo Flannel Sheets Keep Me So Warm and Cozy, I (Almost!) Don’t Need My Heat On\" - Apartment Therapy",
+          "text": ""
+        }
+      },
+      "student-discount": {
+        "type": "student-discount",
+        "settings": {
+          "image": "shopify:\/\/shop_images\/kassatex_student-beans_02.jpg",
+          "discount_title": "20% Student Discount",
+          "discount_subtitle": "Online at Kassatex New York",
+          "text_1": "Unlock 20% student discount at Kassatex New York with Student Beans.",
+          "text_2": "Use our Kassatex New York student discount code at the checkout to enjoy 20% off your order.",
+          "text_3": "Simply register with Student Beants to verify your student status and get your student discount today!",
+          "btn_link": "",
+          "student_discout_img": "shopify:\/\/shop_images\/StudentBeansLogo.png"
+        }
+      },
+      "intro-optional-content": {
+        "type": "intro-optional-content",
+        "settings": {
+          "upper_description": "",
+          "title": "Custom Offerings",
+          "subtitle": "Discover how Kassatex can design one-of-a-kind products for your lifestyle brand.",
+          "padding_bottom": true
+        }
+      },
+      "our-favorites-15": {
+        "type": "our-favorites-15",
+        "blocks": {
+          "1602515846171": {
+            "type": "product",
+            "settings": {
+              "product_item": "linen-cocktail-napkins-set-of-4"
+            }
+          },
+          "1602515864859": {
+            "type": "product",
+            "settings": {
+              "product_item": "linen-placemats-set-of-2"
+            }
+          },
+          "1602515879890": {
+            "type": "product",
+            "settings": {
+              "product_item": "linen-napkins-set-of-2"
+            }
+          }
+        },
+        "block_order": [
+          "1602515846171",
+          "1602515864859",
+          "1602515879890"
+        ],
+        "settings": {
+          "is_enable": false,
+          "title": "",
+          "btn_txt": "Shop All Tabletop"
+        }
+      },
+      "bundle-image-tutorial-15": {
+        "type": "bundle-image-tutorial-15",
+        "blocks": {
+          "1a4f4522-dd1c-44c8-a159-139f88560c0d": {
+            "type": "item",
+            "settings": {
+              "is_inverse": true,
+              "video": "",
+              "image": "shopify:\/\/shop_images\/co_Chrissy_Teigen_01.jpg",
+              "title": "Chrissy Teigen x Kassatex",
+              "description": "Cravings by Chrissy Teigen introduces CHILL. From a bright floral and silky fur-trimmed robe, to an ethereal and airy linen robe collection, Chrissy designed a collection of robes, slippers, and accessories for every chill moment at home.",
+              "button_text": "Shop Now",
+              "button_url": "https:\/\/cravingsbychrissyteigen.com\/chill\/"
+            }
+          },
+          "1602515921456": {
+            "type": "item",
+            "settings": {
+              "is_inverse": false,
+              "video": "",
+              "image": "shopify:\/\/shop_images\/co_Loveshack-Fancy-x-Kassatex.jpg",
+              "title": "LoveShackFancy\nx Kassatex",
+              "description": "Designed with signature LoveShackFancy prints and crafted with our remarkably soft terry and linen, we teamed up with this whimsical fashion brand to create a summer collection of beautiful beach towels and table linens.",
+              "button_text": "Learn More",
+              "button_url": "https:\/\/blog.kassatex.com\/news\/loveshackfancy-x-kassatex\/"
+            }
+          },
+          "1602516115383": {
+            "type": "item",
+            "settings": {
+              "is_inverse": true,
+              "video": "",
+              "image": "shopify:\/\/shop_images\/CO_Hunting-Season-x-Kassatex_The-Comfort-Kit_3.jpg",
+              "title": "Hunting Season\nx Kassatex",
+              "description": "In collaboration with Hunting Season, we created an exclusive comfort kit that's perfect to give (or keep for yourself).",
+              "button_text": "Shop Now",
+              "button_url": "shopify:\/\/products\/the-comfort-kit"
+            }
+          },
+          "1602516091975": {
+            "type": "item",
+            "settings": {
+              "is_inverse": false,
+              "video": "",
+              "image": "shopify:\/\/shop_images\/co_Peloton-x-Kassatex.jpg",
+              "title": "Peloton \nx Kassatex",
+              "description": "We teamed up with our favorite home fitness brand, Peloton, and created the ultimate gifts for every member in the house to enjoy on the bike and off.",
+              "button_text": "Learn More",
+              "button_url": "https:\/\/blog.kassatex.com\/news\/kassatex-x-peloton\/"
+            }
+          },
+          "1602795311994": {
+            "type": "item",
+            "settings": {
+              "is_inverse": true,
+              "video": "",
+              "image": "shopify:\/\/shop_images\/Veronica-Beard-x-Kassatex_2.jpg",
+              "title": "Veronica Beard\nx Kassatex",
+              "description": "Blending the best from Kassatex and Veronica Beard, we created a capsule collection that included a terry blazer, plush velour beach towels, a terry dopp kit, and turban that were inspired by the Goldie Hawn classic <em>Overboard<\/em>.",
+              "button_text": "Shop Now",
+              "button_url": "shopify:\/\/collections\/veronica-beard-x-kassatex"
+            }
+          }
+        },
+        "block_order": [
+          "1a4f4522-dd1c-44c8-a159-139f88560c0d",
+          "1602515921456",
+          "1602516115383",
+          "1602516091975",
+          "1602795311994"
+        ],
+        "settings": {
+          "is_enable": true
+        }
+      },
+      "quote-slider-15": {
+        "type": "quote-slider-15",
+        "blocks": {
+          "1602516199700": {
+            "type": "image",
+            "settings": {
+              "video": "",
+              "sub_title": "",
+              "title": "Want to Collaborate?",
+              "detail": "<p>Send a message to pd@kassatex.com for more information<\/p>",
+              "btn_txt": ""
+            }
+          }
+        },
+        "block_order": [
+          "1602516199700"
+        ],
+        "settings": {
+          "is_enable": true
+        }
+      },
+      "intro-beach-bag-12": {
+        "type": "intro-beach-bag-12",
+        "settings": {
+          "is_enable": true,
+          "color": "#ffffff",
+          "align_content": "intro-beach--content--align-left",
+          "back_image": "shopify:\/\/shop_images\/ChairishxKassatex_lp01.jpg",
+          "mobile_back_img": "shopify:\/\/shop_images\/ChairishxKassatex_lp01.jpg",
+          "sub_title": "",
+          "title": "",
+          "btn_txt": "",
+          "btn_url": "https:\/\/kassatex.com\/products\/chairish-towels"
+        }
+      },
+      "our-favorites-12": {
+        "type": "our-favorites-12",
+        "blocks": {
+          "7adbc0bc-3c39-42c8-9040-33d9f2122ef2": {
+            "type": "product",
+            "settings": {
+              "product_item": "chairish-towels"
+            }
+          },
+          "6ec916d8-b49b-48b5-8474-0c0e01986365": {
+            "type": "product",
+            "settings": {
+              "product_item": "chairish-towel-bundle"
+            }
+          },
+          "437116e8-5301-4dab-9d82-836321d73f1d": {
+            "type": "product",
+            "settings": {
+              "product_item": "chairish-bath-mats"
+            }
+          }
+        },
+        "block_order": [
+          "7adbc0bc-3c39-42c8-9040-33d9f2122ef2",
+          "6ec916d8-b49b-48b5-8474-0c0e01986365",
+          "437116e8-5301-4dab-9d82-836321d73f1d"
+        ],
+        "settings": {
+          "is_enable": true,
+          "title": "Shop the Exclusive Collection",
+          "btn_txt": "shop beach bags",
+          "btn_url": ""
+        }
+      },
+      "common-reviews-12": {
+        "type": "common-reviews-12",
+        "blocks": {
+          "1b00d464-fb1e-452e-a4a7-0a657b6f7cfa": {
+            "type": "product",
+            "settings": {
+              "product_item": "",
+              "count": 1
+            }
+          }
+        },
+        "block_order": [
+          "1b00d464-fb1e-452e-a4a7-0a657b6f7cfa"
+        ],
+        "settings": {
+          "is_enable": false,
+          "title": "What Our Customers Have to Say"
+        }
+      },
+      "bundle-image-tutorial-12": {
+        "type": "bundle-image-tutorial-12",
+        "blocks": {
+          "7e55aeeb-d193-4232-b47b-fc07ce099d57": {
+            "type": "item",
+            "settings": {
+              "is_inverse": false,
+              "video": "",
+              "image": "shopify:\/\/shop_images\/Chairish_Bathmats_lp01.jpg",
+              "title": "About the Collaboration",
+              "description": "We teamed up with Chairish to bring you a collection made from our signature materials, designed in Chairish-inspired colors and whimsical design details.",
+              "button_text": "Shop Now",
+              "button_url": "shopify:\/\/products\/chairish-towels"
+            }
+          },
+          "b165f1d5-8093-49b5-92b9-6a5206d0364b": {
+            "type": "item",
+            "settings": {
+              "is_inverse": true,
+              "video": "",
+              "image": "shopify:\/\/shop_images\/ChairishTowelBundles_lp02.gif",
+              "title": "The Towel Bundle",
+              "description": "Inspired by the whimsy, ornate, and colorful products found on Chairish, we're celebrating cottagecore style all in one perfect towel bundle.",
+              "button_text": "Shop the Bundle",
+              "button_url": "shopify:\/\/products\/chairish-towel-bundle"
+            }
+          },
+          "77c21a45-9f59-45d0-9f2c-b0281f95a0fc": {
+            "type": "item",
+            "settings": {
+              "is_inverse": true,
+              "video": "",
+              "image": "shopify:\/\/shop_images\/ChairishBathTowels_lp03.jpg",
+              "title": "All in the Details",
+              "description": "Crafted from 100% Airsmooth Low Twist cotton, each towel and bathmat is adorned with a loop that truly shows off the beautiful scalloped detail. All available to be embroidered for the ultimate gran-millennial bath story.",
+              "button_text": "Learn More",
+              "button_url": "https:\/\/blog.kassatex.com\/news\/chairish-x-kassatex"
+            }
+          }
+        },
+        "block_order": [
+          "7e55aeeb-d193-4232-b47b-fc07ce099d57",
+          "b165f1d5-8093-49b5-92b9-6a5206d0364b",
+          "77c21a45-9f59-45d0-9f2c-b0281f95a0fc"
+        ],
+        "settings": {
+          "is_enable": true
+        }
+      },
+      "quote-slider-12": {
+        "type": "quote-slider-12",
+        "blocks": {
+          "4051175c-b2ee-49f6-95c6-c582a25560e6": {
+            "type": "image",
+            "settings": {
+              "video": "",
+              "sub_title": "",
+              "title": "Chairish x Kassatex",
+              "detail": "<p><em>“I’m not lying when I say these are the prettiest bath towels I’ve come across, ever... These are classic, luxe-looking, and can take your bathroom routine to the next level.” <br\/><\/em><br\/><\/p><p>- <a href=\"https:\/\/www.apartmenttherapy.com\/kassatex-and-charish-bath-towel-collaboration-april-2022-37059968\" target=\"_blank\" title=\"Apartment Therapy\"> Apartment Therapy<\/a><\/p>",
+              "btn_txt": "",
+              "btn_url": ""
+            }
+          }
+        },
+        "block_order": [
+          "4051175c-b2ee-49f6-95c6-c582a25560e6"
+        ],
+        "settings": {
+          "is_enable": true
+        }
+      },
+      "everywhere-tote-12": {
+        "type": "everywhere-tote-12",
+        "settings": {
+          "is_enable": false,
+          "video": "",
+          "image": "shopify:\/\/shop_images\/on-the-blog_carly-cushnie_gift-guide.jpg",
+          "mobile_image": "shopify:\/\/shop_images\/on-the-blog_carly-cushnie_gift-guide.jpg",
+          "sub_title": "On the Blog",
+          "title": "Between the Sheets",
+          "detail": "",
+          "btn_txt": "Read Now",
+          "btn_url": "https:\/\/blog.kassatex.com\/lifestyle\/between-the-sheets-carly-cushnie-and-oscar-cantu"
+        }
+      },
+      "intro-beach-bag-10": {
+        "type": "intro-beach-bag-10",
+        "settings": {
+          "is_enable": true,
+          "color": "#ffffff",
+          "align_content": "intro-beach--content--align-left",
+          "back_image": "shopify:\/\/shop_images\/nyakio-grieco-gift-guide_2020.jpg",
+          "mobile_back_img": "shopify:\/\/shop_images\/nyakio-grieco-gift-guide_2020.jpg",
+          "sub_title": "Beauty Entrepreneur",
+          "title": "Nyakio Grieco's\nHoliday Gift Guide",
+          "btn_txt": ""
+        }
+      },
+      "our-favorites-10": {
+        "type": "our-favorites-10",
+        "blocks": {
+          "53e9bb60-55e1-480f-8b74-31e822661a46": {
+            "type": "product",
+            "settings": {
+              "product_item": "rummikub-game-set"
+            }
+          },
+          "50686a0b-805c-476a-9ef1-735e47186cb8": {
+            "type": "product",
+            "settings": {
+              "product_item": "domino-set"
+            }
+          },
+          "a1d7c1c4-9f5b-468f-95d1-7c8e983befee": {
+            "type": "product",
+            "settings": {
+              "product_item": "2-deck-playing-card-set"
+            }
+          }
+        },
+        "block_order": [
+          "53e9bb60-55e1-480f-8b74-31e822661a46",
+          "50686a0b-805c-476a-9ef1-735e47186cb8",
+          "a1d7c1c4-9f5b-468f-95d1-7c8e983befee"
+        ],
+        "settings": {
+          "is_enable": true,
+          "title": "Family Game Night",
+          "btn_txt": ""
+        }
+      },
+      "common-reviews-10": {
+        "type": "common-reviews-10",
+        "settings": {
+          "is_enable": false,
+          "title": "What Our Customers Have to Say"
+        }
+      },
+      "bundle-image-tutorial-10": {
+        "type": "bundle-image-tutorial-10",
+        "blocks": {
+          "689344d0-b51e-40e9-84a9-8b3a1e2ce252": {
+            "type": "item",
+            "settings": {
+              "is_inverse": false,
+              "video": "",
+              "image": "shopify:\/\/shop_images\/nyakio-grieco-gift-guide_boudoir-throw-blanket.gif",
+              "title": "Boudoir Throw Blanket",
+              "description": "The exclusive holiday throw blanket from our collaboration with designer Sara Gilbane.",
+              "button_text": "Shop Now",
+              "button_url": "shopify:\/\/products\/boudoir-throw-blanket"
+            }
+          },
+          "ba9979c5-cc86-4532-bda8-32602ed52dae": {
+            "type": "item",
+            "settings": {
+              "is_inverse": true,
+              "video": "",
+              "image": "shopify:\/\/shop_images\/nyakio_grieco-gift-guide_kids-hooded-robes_2.jpg",
+              "title": "Kid's Hooded Robes",
+              "description": "Snuggly robes, personalized for your little ones.",
+              "button_text": "Shop Now",
+              "button_url": "shopify:\/\/products\/kids-hooded-robe"
+            }
+          },
+          "fbee74b8-1604-4897-bae2-bcc78c4ecb48": {
+            "type": "item",
+            "settings": {
+              "is_inverse": false,
+              "video": "",
+              "image": "shopify:\/\/shop_images\/nyakio_grieco-gift-guide_eberjey-pajama-set.jpg",
+              "title": "Eberjey Long Sleeve & Short PJ Set",
+              "description": "Newly arrived and perfect for holiday gifting.",
+              "button_text": "Shop Now",
+              "button_url": "shopify:\/\/products\/eberjey-gisele-long-sleeve-and-short-pj-set"
+            }
+          }
+        },
+        "block_order": [
+          "689344d0-b51e-40e9-84a9-8b3a1e2ce252",
+          "ba9979c5-cc86-4532-bda8-32602ed52dae",
+          "fbee74b8-1604-4897-bae2-bcc78c4ecb48"
+        ],
+        "settings": {
+          "is_enable": true
+        }
+      },
+      "quote-slider-10": {
+        "type": "quote-slider-10",
+        "blocks": {
+          "db20cfc6-d399-44b6-a9e2-e4040d64e473": {
+            "type": "image",
+            "settings": {
+              "video": "",
+              "sub_title": "",
+              "title": "About Nyakio's Gift Selects",
+              "detail": "<p>&quot;Kassatex is my go to for gifting! While we’re all spending a little more time at home, make it chic, cozy and fun!&quot;<\/p>",
+              "btn_txt": "Shop beach bags"
+            }
+          }
+        },
+        "block_order": [
+          "db20cfc6-d399-44b6-a9e2-e4040d64e473"
+        ],
+        "settings": {
+          "is_enable": true
+        }
+      },
+      "everywhere-tote-10": {
+        "type": "everywhere-tote-10",
+        "settings": {
+          "is_enable": true,
+          "video": "",
+          "image": "shopify:\/\/shop_images\/on-the-blog-nyakio-grieco_gift-guide-2020.jpg",
+          "sub_title": "On the Blog",
+          "title": "Between the Sheets",
+          "detail": "",
+          "btn_txt": "Read Now",
+          "btn_url": "https:\/\/blog.kassatex.com\/lifestyle\/between-the-sheets-nyakio-grieco"
+        }
+      },
+      "intro-beach-bag-11": {
+        "type": "intro-beach-bag-11",
+        "settings": {
+          "is_enable": true,
+          "color": "#ffffff",
+          "align_content": "intro-beach--content--align-center",
+          "back_image": "",
+          "mobile_back_img": "",
+          "sub_title": "This just in",
+          "title": "",
+          "btn_txt": "learn more",
+          "btn_url": ""
+        }
+      },
+      "our-favorites-11": {
+        "type": "our-favorites-11",
+        "settings": {
+          "is_enable": true,
+          "title": "",
+          "btn_txt": "shop beach bags",
+          "btn_url": ""
+        }
+      },
+      "common-reviews-11": {
+        "type": "common-reviews-11",
+        "settings": {
+          "is_enable": true,
+          "title": "What Our Customers Have to Say"
+        }
+      },
+      "bundle-image-tutorial-11": {
+        "type": "bundle-image-tutorial-11",
+        "settings": {
+          "is_enable": true
+        }
+      },
+      "quote-slider-11": {
+        "type": "quote-slider-11",
+        "settings": {
+          "is_enable": true
+        }
+      },
+      "everywhere-tote-11": {
+        "type": "everywhere-tote-11",
+        "settings": {
+          "is_enable": true,
+          "video": "",
+          "image": "",
+          "mobile_image": "",
+          "sub_title": "",
+          "title": "2020 Gift Guide",
+          "detail": "",
+          "btn_txt": "Shop beach bags",
+          "btn_url": ""
+        }
+      },
+      "intro-beach-bag-8": {
+        "type": "intro-beach-bag-8",
+        "settings": {
+          "is_enable": true,
+          "color": "#333333",
+          "align_content": "intro-beach--content--align-left",
+          "back_image": "shopify:\/\/shop_images\/CHAIRISH_MAIN_2400x1400_f97055e8-847c-45f9-b656-1eab4fe55ae0.jpg",
+          "mobile_back_img": "shopify:\/\/shop_images\/CHAIRISH_MAIN_2400x1400_f97055e8-847c-45f9-b656-1eab4fe55ae0.jpg",
+          "sub_title": "",
+          "title": "",
+          "btn_txt": "",
+          "btn_url": ""
+        }
+      },
+      "our-favorites-8": {
+        "type": "our-favorites-8",
+        "blocks": {
+          "9ef2822d-84a1-4a18-9aa6-6a850f5a51b3": {
+            "type": "product",
+            "settings": {
+              "product_item": "chairish-bath-towels"
+            }
+          },
+          "4fef287c-3526-42e3-9246-f4f14fd367a1": {
+            "type": "product",
+            "settings": {
+              "product_item": "chairish-bath-towel-bundle"
+            }
+          },
+          "8f0fa7da-f7e2-4f51-8749-3acaf99e1fe2": {
+            "type": "product",
+            "settings": {
+              "product_item": "chairish-bathmat"
+            }
+          }
+        },
+        "block_order": [
+          "9ef2822d-84a1-4a18-9aa6-6a850f5a51b3",
+          "4fef287c-3526-42e3-9246-f4f14fd367a1",
+          "8f0fa7da-f7e2-4f51-8749-3acaf99e1fe2"
+        ],
+        "settings": {
+          "is_enable": true,
+          "title": "Shop the Collection in All New Colors",
+          "btn_txt": "",
+          "btn_url": ""
+        }
+      },
+      "common-reviews-8": {
+        "type": "common-reviews-8",
+        "settings": {
+          "is_enable": false,
+          "title": "What Our Customers Have to Say"
+        }
+      },
+      "bundle-image-tutorial-8": {
+        "type": "bundle-image-tutorial-8",
+        "blocks": {
+          "96d6bf71-0a09-4967-aebe-68d8d92ba248": {
+            "type": "item",
+            "settings": {
+              "is_inverse": false,
+              "video": "",
+              "image": "shopify:\/\/shop_images\/Chairish-Towels_2023_02.jpg",
+              "title": "About the Collaboration",
+              "description": "We teamed up with Chairish to bring you a collection made from our signature materials, designed in Chairish-inspired colors and whimsical design details.",
+              "button_text": "Shop Now",
+              "button_url": "shopify:\/\/products\/farmers-market-tote"
+            }
+          },
+          "94f9022b-0656-4b8f-bb5c-4552d97a2420": {
+            "type": "item",
+            "settings": {
+              "is_inverse": true,
+              "video": "",
+              "image": "shopify:\/\/shop_images\/BLOCK_BUNDLE.gif",
+              "title": "The Towel Bundle",
+              "description": "Inspired by the whimsy, ornate, and colorful products found on Chairish, we're celebrating cottagecore style all in one perfect towel bundle.",
+              "button_text": "Shop Now",
+              "button_url": "shopify:\/\/products\/la-casa-nesting-baskets"
+            }
+          },
+          "0ebade9b-53af-4483-8dcf-067904205049": {
+            "type": "item",
+            "settings": {
+              "is_inverse": false,
+              "video": "",
+              "image": "shopify:\/\/shop_images\/BLOCK_ALL-THE-DETAILS.jpg",
+              "title": "All in the Details",
+              "description": "Crafted from 100% Airsmooth Low Twist cotton, each towel and bathmat is adorned with a loop that truly shows off the beautiful scalloped detail. All available to be embroidered for the ultimate gran-millennial bath story.",
+              "button_text": "Shop Now",
+              "button_url": "shopify:\/\/products\/borsa-di-vino"
+            }
+          }
+        },
+        "block_order": [
+          "96d6bf71-0a09-4967-aebe-68d8d92ba248",
+          "94f9022b-0656-4b8f-bb5c-4552d97a2420",
+          "0ebade9b-53af-4483-8dcf-067904205049"
+        ],
+        "settings": {
+          "is_enable": true
+        }
+      },
+      "quote-slider-8": {
+        "type": "quote-slider-8",
+        "blocks": {
+          "b65d7ee5-c7eb-4b85-9e6b-53b99df46dc7": {
+            "type": "image",
+            "settings": {
+              "video": "",
+              "image": "shopify:\/\/shop_images\/IN-THE-PRESS_2000x2000_1.jpg",
+              "mobile_image": "shopify:\/\/shop_images\/IN-THE-PRESS_2000x2000_1.jpg",
+              "sub_title": "",
+              "title": "In the Press",
+              "detail": "<p>\"I’m not lying when I say these are the prettiest bath towels I’ve come across, ever...These are classic, luxe-looking, and can take your bathroom routine to the next level.\"<br\/><\/p><p>- <a href=\"\/collections\/sara-gilbane-x-kassatex\" title=\"Sara Gilbane x Kassatex\">Apartment Therapy<\/a><\/p>",
+              "btn_txt": "",
+              "btn_url": ""
+            }
+          },
+          "afa478f0-db44-4225-bb33-28f6e5d3f160": {
+            "type": "image",
+            "settings": {
+              "video": "",
+              "image": "shopify:\/\/shop_images\/IN-THE-PRESS_2000x2000_2.jpg",
+              "mobile_image": "shopify:\/\/shop_images\/IN-THE-PRESS_2000x2000_2.jpg",
+              "sub_title": "",
+              "title": "In the Press",
+              "detail": "<p>\"Add a touch of whimsy to your bathroom with this darling collab from Chairish and the textile gurus at Kassatex. Inspired by the beautifully ornate, colorful, and one-of-a-kind products found on Chairish, each scalloped edge towel is especially perfect for anyone looking to create an unexpected cottagecore moment while washing up.\"<br\/><\/p><p>- <a href=\"\/collections\/sara-gilbane-x-kassatex\" title=\"Sara Gilbane x Kassatex\">Architectural Digest<\/a><\/p>",
+              "btn_txt": "",
+              "btn_url": ""
+            }
+          },
+          "f4dc4f9c-4a02-4be8-af78-6bf351423a7a": {
+            "type": "image",
+            "settings": {
+              "video": "",
+              "image": "shopify:\/\/shop_images\/IN-THE-PRESS_2000x2000_3.jpg",
+              "mobile_image": "shopify:\/\/shop_images\/IN-THE-PRESS_2000x2000_3.jpg",
+              "sub_title": "",
+              "title": "In the Press",
+              "detail": "<p>\"A collaboration between bath brand Kassatex and vintage furniture retailer Chairish has led to fun, cottagecore-inspired riffs on bathroom essentials, like this bath mat.\"<br\/><\/p><p>-  <a href=\"\/collections\/sara-gilbane-x-kassatex\" title=\"Sara Gilbane x Kassatex\">People<\/a><\/p>",
+              "btn_txt": "",
+              "btn_url": ""
+            }
+          }
+        },
+        "block_order": [
+          "b65d7ee5-c7eb-4b85-9e6b-53b99df46dc7",
+          "afa478f0-db44-4225-bb33-28f6e5d3f160",
+          "f4dc4f9c-4a02-4be8-af78-6bf351423a7a"
+        ],
+        "settings": {
+          "is_enable": true
+        }
+      },
+      "everywhere-tote-8": {
+        "type": "everywhere-tote-8",
+        "settings": {
+          "is_enable": false,
+          "video": "",
+          "sub_title": "",
+          "title": "Picnic Pick: Borsa di Vino",
+          "detail": "<p>Put the spritz into your picnic this summer with the perfect carry all. Hand woven dividers to protect your spritz’s three essential ingredients, Aperol, Prosecco, and sparkling water.<\/p>",
+          "btn_txt": "Recipe Here",
+          "btn_url": "https:\/\/blog.kassatex.com\/news\/mia-moretti-x-kassatex-2\/"
+        }
+      },
+      "intro-beach-bag-13": {
+        "type": "intro-beach-bag-13",
+        "settings": {
+          "is_enable": true,
+          "color": "#333333",
+          "align_content": "intro-beach--content--align-left",
+          "back_image": "shopify:\/\/shop_images\/bandier-x-kassatex_2021.jpg",
+          "mobile_back_img": "shopify:\/\/shop_images\/bandier-x-kassatex_2021.jpg",
+          "sub_title": "",
+          "title": "",
+          "btn_txt": "",
+          "btn_url": ""
+        }
+      },
+      "our-favorites-13": {
+        "type": "our-favorites-13",
+        "settings": {
+          "is_enable": true,
+          "title": "",
+          "btn_txt": "shop beach bags",
+          "btn_url": ""
+        }
+      },
+      "common-reviews-13": {
+        "type": "common-reviews-13",
+        "settings": {
+          "is_enable": false,
+          "title": "What Our Customers Have to Say"
+        }
+      },
+      "bundle-image-tutorial-13": {
+        "type": "bundle-image-tutorial-13",
+        "blocks": {
+          "7c5d633b-36fb-49eb-a706-820f67755a7c": {
+            "type": "item",
+            "settings": {
+              "is_inverse": false,
+              "video": "",
+              "image": "shopify:\/\/shop_images\/bandier-alpaca-robe_032021.gif",
+              "title": "The Alpaca Robe",
+              "description": "The quintessential layer to ring in spring.",
+              "button_text": "",
+              "button_url": ""
+            }
+          },
+          "9de69e24-6fa4-4111-9538-9f77ded278c5": {
+            "type": "item",
+            "settings": {
+              "is_inverse": true,
+              "video": "",
+              "image": "shopify:\/\/shop_images\/bandier-throw-blankets.gif",
+              "title": "The Alpaca Throw",
+              "description": "Meet the perfect outdoor dining blanket and couch-adorning throw. Available in muted colorways, the collection lends itself to it's versatility.",
+              "button_text": "",
+              "button_url": ""
+            }
+          }
+        },
+        "block_order": [
+          "7c5d633b-36fb-49eb-a706-820f67755a7c",
+          "9de69e24-6fa4-4111-9538-9f77ded278c5"
+        ],
+        "settings": {
+          "is_enable": true
+        }
+      },
+      "quote-slider-13": {
+        "type": "quote-slider-13",
+        "blocks": {
+          "62c96c8a-c1f4-46ac-808f-48bfdab37e8b": {
+            "type": "image",
+            "settings": {
+              "video": "",
+              "sub_title": "",
+              "title": "About the Collection",
+              "detail": "<p>&quot;Partnering with Kassatex on this cozy collection of robes and blankets was a no brainer for us. We’ve come up on a year of stay at home and our wardrobes and necessities have really shifted this past year — focusing on comfortable luxuries that make us feel better yet still put together. Look no further than the Kassatex alpaca robe&quot;<\/p><p><br\/><em>- Jennifer Bandier<\/em><\/p>",
+              "btn_txt": "",
+              "btn_url": ""
+            }
+          }
+        },
+        "block_order": [
+          "62c96c8a-c1f4-46ac-808f-48bfdab37e8b"
+        ],
+        "settings": {
+          "is_enable": true
+        }
+      },
+      "everywhere-tote-13": {
+        "type": "everywhere-tote-13",
+        "settings": {
+          "is_enable": false,
+          "video": "",
+          "image": "shopify:\/\/shop_images\/on-the-blog_ryan-korban_gift-guide-2020.jpg",
+          "mobile_image": "shopify:\/\/shop_images\/on-the-blog_ryan-korban_gift-guide-2020.jpg",
+          "sub_title": "On the Blog",
+          "title": "At Home with Ryan Korban",
+          "detail": "",
+          "btn_txt": "Read Now",
+          "btn_url": "https:\/\/blog.kassatex.com\/design\/at-home-with-ryan-korban-holiday-edition"
+        }
+      },
+      "intro-beach-bag-6": {
+        "type": "intro-beach-bag-6",
+        "settings": {
+          "is_enable": true,
+          "color": "#ffffff",
+          "align_content": "intro-beach--content--align-center",
+          "back_image": "shopify:\/\/shop_images\/sara-gilbane-x-kassatex_LP2020.jpg",
+          "mobile_back_img": "shopify:\/\/shop_images\/sara-gilbane-x-kassatex_LP2020.jpg",
+          "sub_title": "",
+          "title": "",
+          "btn_txt": "",
+          "btn_url": ""
+        }
+      },
+      "our-favorites-6": {
+        "type": "our-favorites-6",
+        "blocks": {
+          "d6f6a4cb-1196-4c2f-9f66-44f9e96c1bd7": {
+            "type": "product",
+            "settings": {
+              "product_item": "boudoir-eyemask-pillowcase"
+            }
+          },
+          "5547ba91-c948-4a44-96ab-b20b7753f75a": {
+            "type": "product",
+            "settings": {
+              "product_item": "boudoir-robe"
+            }
+          },
+          "e1e85a52-eeba-4b76-8626-d8a05cb0a3be": {
+            "type": "product",
+            "settings": {
+              "product_item": "boudoir-throw-blanket"
+            }
+          }
+        },
+        "block_order": [
+          "d6f6a4cb-1196-4c2f-9f66-44f9e96c1bd7",
+          "5547ba91-c948-4a44-96ab-b20b7753f75a",
+          "e1e85a52-eeba-4b76-8626-d8a05cb0a3be"
+        ],
+        "settings": {
+          "is_enable": true,
+          "title": "Shop the Collection",
+          "btn_txt": "",
+          "btn_url": ""
+        }
+      },
+      "common-reviews-6": {
+        "type": "common-reviews-6",
+        "settings": {
+          "is_enable": false,
+          "title": "What Our Customers Have to Say"
+        }
+      },
+      "bundle-image-tutorial-6": {
+        "type": "bundle-image-tutorial-6",
+        "blocks": {
+          "fb901bdc-b78f-4d4d-9025-132a3d6f11ad": {
+            "type": "item",
+            "settings": {
+              "is_inverse": false,
+              "video": "",
+              "image": "shopify:\/\/shop_images\/SaraGilbane-Eyemask-Pillowcase_LP1.gif",
+              "title": "Beauty Sleep Essentials",
+              "description": "\"I am a strong believer in some pampering rituals pre-bed and bringing some of my favorite patterns to life on a silk pillowcase (good-bye wrinkles!), silk sleep mask was a dream come true.\"",
+              "button_text": "Shop Now",
+              "button_url": "shopify:\/\/products\/boudoir-eyemask-pillowcase"
+            }
+          },
+          "78b3ebad-e629-4cd0-880b-d432bda9d2e7": {
+            "type": "item",
+            "settings": {
+              "is_inverse": true,
+              "video": "",
+              "image": "shopify:\/\/shop_images\/SaraGilbane-Throw-Blanket_LP2.jpg",
+              "title": "A Dash of Flair",
+              "description": "\"Interior designing is all about creating a lifestyle which does not stop at your sofa fabric.\"",
+              "button_text": "Shop Now",
+              "button_url": "shopify:\/\/products\/boudoir-throw-blanket"
+            }
+          },
+          "7d78f2d4-813c-4ce5-bef4-c7f99bafacf0": {
+            "type": "item",
+            "settings": {
+              "is_inverse": false,
+              "video": "",
+              "image": "shopify:\/\/shop_images\/SaraGilbane_Bathrobe_LP3.jpg",
+              "title": "The Robe for Ladies who Lounge",
+              "description": "\"Lounging is at its peak right now, so creating the softest bathrobe was a dream come true.\"",
+              "button_text": "Shop Now",
+              "button_url": "shopify:\/\/products\/boudoir-robe"
+            }
+          }
+        },
+        "block_order": [
+          "fb901bdc-b78f-4d4d-9025-132a3d6f11ad",
+          "78b3ebad-e629-4cd0-880b-d432bda9d2e7",
+          "7d78f2d4-813c-4ce5-bef4-c7f99bafacf0"
+        ],
+        "settings": {
+          "is_enable": true
+        }
+      },
+      "quote-slider-6": {
+        "type": "quote-slider-6",
+        "settings": {
+          "is_enable": true
+        }
+      },
+      "everywhere-tote-6": {
+        "type": "everywhere-tote-6",
+        "settings": {
+          "is_enable": true,
+          "video": "",
+          "image": "shopify:\/\/shop_images\/On-the-Blog_SaraGilbanexKassatex.jpg",
+          "mobile_image": "shopify:\/\/shop_images\/On-the-Blog_SaraGilbanexKassatex.jpg",
+          "sub_title": "On the Blog",
+          "title": "Sara Gilbane x Kassatex",
+          "detail": "<p>Learn more about the collaboration<\/p>",
+          "btn_txt": "Learn More",
+          "btn_url": "https:\/\/blog.kassatex.com\/news\/sara-gilbane-x-kassatex"
+        }
+      },
+      "intro-beach-bag-14": {
+        "type": "intro-beach-bag-14",
+        "settings": {
+          "is_enable": true,
+          "color": "#333333",
+          "align_content": "intro-beach--content--align-left",
+          "back_image": "shopify:\/\/shop_images\/Collaborations_012022.jpg",
+          "mobile_back_img": "shopify:\/\/shop_images\/Collaborations_012022m.jpg",
+          "sub_title": "",
+          "title": "Discover Our Collaborations",
+          "btn_txt": "",
+          "btn_url": ""
+        }
+      },
+      "our-favorites-14": {
+        "type": "our-favorites-14",
+        "settings": {
+          "is_enable": true,
+          "title": "",
+          "btn_txt": "",
+          "btn_url": ""
+        }
+      },
+      "common-reviews-14": {
+        "type": "common-reviews-14",
+        "blocks": {
+          "a38a5cad-b930-4c07-a2c1-3151a4553ef5": {
+            "type": "product",
+            "disabled": true,
+            "settings": {
+              "product_item": "farmers-market-tote",
+              "count": 3
+            }
+          },
+          "fff0a8f1-6564-4970-b7bf-87dc6d0ea033": {
+            "type": "product",
+            "settings": {
+              "product_item": "",
+              "count": 1
+            }
+          }
+        },
+        "block_order": [
+          "a38a5cad-b930-4c07-a2c1-3151a4553ef5",
+          "fff0a8f1-6564-4970-b7bf-87dc6d0ea033"
+        ],
+        "settings": {
+          "is_enable": false,
+          "title": "What Our Customers Have to Say"
+        }
+      },
+      "bundle-image-tutorial-14": {
+        "type": "bundle-image-tutorial-14",
+        "blocks": {
+          "70e2d840-d0ac-4378-af04-4e8d692a0e62": {
+            "type": "item",
+            "settings": {
+              "is_inverse": true,
+              "video": "",
+              "image": "shopify:\/\/shop_images\/Collaborations_Jennifer-Fisher-for-Kassatex.jpg",
+              "title": "Jennifer Fisher for Kassatex",
+              "description": "\"Partnering with Kassatex meant partnering with generations of textile craftsmanship and creating a superior collection of soft home and accessories for every room.\" - Jennifer Fisher",
+              "button_text": "Shop Now",
+              "button_url": "shopify:\/\/collections\/jennifer-fisher-for-kassatex"
+            }
+          },
+          "8730788b-1bd0-4898-b3bc-8484fecc3c1a": {
+            "type": "item",
+            "settings": {
+              "is_inverse": false,
+              "video": "",
+              "image": "shopify:\/\/shop_images\/Collaborations_MiaMorettixKassatex_2022.jpg",
+              "title": "Mia Moretti x Kassatex",
+              "description": "Discover everyday essential totes and baskets in new sun-ripened colors.",
+              "button_text": "Shop Now",
+              "button_url": "shopify:\/\/pages\/mia-moretti-x-kassatex"
+            }
+          },
+          "8887180a-90e4-4cb5-aa81-16f2296504d5": {
+            "type": "item",
+            "settings": {
+              "is_inverse": true,
+              "video": "",
+              "image": "shopify:\/\/shop_images\/Collaborations_ChairishxKassatex.jpg",
+              "title": "Chairish x Kassatex",
+              "description": "We teamed up with Chairish to bring you a collection made from our signature materials, designed in Chairish-inspired colors and whimsical design details.",
+              "button_text": "Shop Now",
+              "button_url": "shopify:\/\/pages\/chairish-x-kassatex"
+            }
+          },
+          "14d3fcdd-9083-49f1-91e0-beac984c74c1": {
+            "type": "item",
+            "settings": {
+              "is_inverse": false,
+              "video": "",
+              "image": "shopify:\/\/shop_images\/SaraGilbanexKassatex.jpg",
+              "title": "Sara Gilbane x Kassatex",
+              "description": "Experience the Boudoir Collection designed in collaboration with interior designer Sara Gilbane.",
+              "button_text": "Shop Now",
+              "button_url": "shopify:\/\/pages\/sara-gilbane-x-kassatex"
+            }
+          },
+          "7f496dff-c83f-4b98-bd16-cac91345600a": {
+            "type": "item",
+            "disabled": true,
+            "settings": {
+              "is_inverse": false,
+              "video": "",
+              "image": "shopify:\/\/shop_images\/AtHomeEdit_TheDefinedDish.jpg",
+              "title": "The Defined Dish",
+              "description": "We partnered with Alex Snodgrass a recipe developer, cookbook author, health enthusiast, and founder of the popular blog and social media outlet The Defined Dish.",
+              "button_text": "Shop Now",
+              "button_url": "shopify:\/\/collections\/the-defined-dish"
+            }
+          },
+          "7e66599b-aa14-459b-91f4-489b7771a22b": {
+            "type": "item",
+            "disabled": true,
+            "settings": {
+              "is_inverse": true,
+              "video": "",
+              "image": "shopify:\/\/shop_images\/AtHomeEdit_ArtisanCollection.jpg",
+              "title": "Artisan Collections",
+              "description": "Crafted by artisans around the world, discover our collection of socially-conscious products.",
+              "button_text": "Shop Now",
+              "button_url": "shopify:\/\/collections\/artisan-collections"
+            }
+          },
+          "9c18423d-8b0b-4115-91da-83ae66a6df91": {
+            "type": "item",
+            "disabled": true,
+            "settings": {
+              "is_inverse": false,
+              "video": "",
+              "image": "shopify:\/\/shop_images\/at-home-edit_justaddkassatex.jpg",
+              "title": "Get Inspired and #justaddkassatex",
+              "description": "See how some of our favorite creators refreshed their homes with our cozy collections.",
+              "button_text": "Shop Now",
+              "button_url": "shopify:\/\/collections\/justaddkassatex"
+            }
+          },
+          "1ba09ed8-d521-4604-9858-6ffb0dbf5b6e": {
+            "type": "item",
+            "disabled": true,
+            "settings": {
+              "is_inverse": false,
+              "video": "",
+              "image": "shopify:\/\/shop_images\/at-home-edit_back-to-school.jpg",
+              "title": "Back to School",
+              "description": "Class is in session. Refresh your kid's college dorm with these essential collections.",
+              "button_text": "Shop Now",
+              "button_url": "shopify:\/\/collections\/dorm-essentials"
+            }
+          },
+          "a5fcce7b-6b96-4af1-892c-82a20ecfc1de": {
+            "type": "item",
+            "disabled": true,
+            "settings": {
+              "is_inverse": true,
+              "video": "",
+              "image": "shopify:\/\/shop_images\/AtHomeEdit_OutdoorEssentials.jpg",
+              "title": "Spa Essentials",
+              "description": "Create your own little piece of paradise with zen-den essentials inspired by swimwear designer Oleema Miller's Hawaii home.",
+              "button_text": "Shop Now",
+              "button_url": "https:\/\/kassatex.com\/collections\/outdoor-spa-essentials"
+            }
+          },
+          "eaa93cfd-e4b1-4088-ab19-4278cc26f2f9": {
+            "type": "item",
+            "disabled": true,
+            "settings": {
+              "is_inverse": false,
+              "video": "",
+              "image": "shopify:\/\/shop_images\/AtHomeEdit_Lake-Tahoe.jpg",
+              "title": "Lake Tahoe",
+              "description": "From cobalt blue lakes, and snowy Sierra peaks, bring this dreamy destination home and style with collections inspired by Tahoe's natural beauty.",
+              "button_text": "Shop Now",
+              "button_url": "shopify:\/\/collections\/lake-tahoe"
+            }
+          },
+          "aad907e6-0e1d-472e-8092-bf91db9be2a9": {
+            "type": "item",
+            "disabled": true,
+            "settings": {
+              "is_inverse": true,
+              "video": "",
+              "image": "shopify:\/\/shop_images\/AtHomeEdit_Kids-Clubhouse.jpg",
+              "title": "Kids Clubhouse",
+              "description": "Kids who love cozy only!",
+              "button_text": "Shop Now",
+              "button_url": "shopify:\/\/collections\/kids-clubhouse"
+            }
+          },
+          "faeda30c-cae3-4a98-9822-66a764ae5f6e": {
+            "type": "item",
+            "disabled": true,
+            "settings": {
+              "is_inverse": false,
+              "video": "",
+              "image": "shopify:\/\/shop_images\/AtHomeEdit_Tulum-Mexico.jpg",
+              "title": "Tulum, Mexico",
+              "description": "Channel Tulum’s laid back vibes, and transport your home to the city known for white sands and turquoise waters.",
+              "button_text": "Shop Now",
+              "button_url": "shopify:\/\/collections\/tulum-mexico"
+            }
+          },
+          "d49d8685-6b2f-4161-9327-108765e0715a": {
+            "type": "item",
+            "disabled": true,
+            "settings": {
+              "is_inverse": true,
+              "video": "",
+              "image": "shopify:\/\/shop_images\/AtHomeEdit_BridalParty.jpg",
+              "title": "Bridal Party",
+              "description": "Give the gift of cozy with these must-haves for every bachelorette squad or wedding day prep.",
+              "button_text": "Shop Now",
+              "button_url": "shopify:\/\/collections\/wedding-registry-edit"
+            }
+          },
+          "7c75ce16-58ac-4d41-bc0d-19cb14af9d2f": {
+            "type": "item",
+            "settings": {
+              "is_inverse": true,
+              "video": "",
+              "image": "shopify:\/\/shop_images\/1Hotels-x-Kassatex.jpg",
+              "title": "1 Hotels x Kassatex",
+              "description": "Bring the best of 1 Hotels to your home.",
+              "button_text": "Shop Now",
+              "button_url": "shopify:\/\/collections\/1-hotels-x-kassatex"
+            }
+          }
+        },
+        "block_order": [
+          "70e2d840-d0ac-4378-af04-4e8d692a0e62",
+          "8730788b-1bd0-4898-b3bc-8484fecc3c1a",
+          "8887180a-90e4-4cb5-aa81-16f2296504d5",
+          "14d3fcdd-9083-49f1-91e0-beac984c74c1",
+          "7f496dff-c83f-4b98-bd16-cac91345600a",
+          "7e66599b-aa14-459b-91f4-489b7771a22b",
+          "9c18423d-8b0b-4115-91da-83ae66a6df91",
+          "1ba09ed8-d521-4604-9858-6ffb0dbf5b6e",
+          "a5fcce7b-6b96-4af1-892c-82a20ecfc1de",
+          "eaa93cfd-e4b1-4088-ab19-4278cc26f2f9",
+          "aad907e6-0e1d-472e-8092-bf91db9be2a9",
+          "faeda30c-cae3-4a98-9822-66a764ae5f6e",
+          "d49d8685-6b2f-4161-9327-108765e0715a",
+          "7c75ce16-58ac-4d41-bc0d-19cb14af9d2f"
+        ],
+        "settings": {
+          "is_enable": true
+        }
+      },
+      "quote-slider-14": {
+        "type": "quote-slider-14",
+        "blocks": {
+          "45fa1dc7-dd4c-4f63-8153-1f43db626e04": {
+            "type": "image",
+            "settings": {
+              "video": "",
+              "sub_title": "",
+              "title": "",
+              "detail": "",
+              "btn_txt": "",
+              "btn_url": ""
+            }
+          }
+        },
+        "block_order": [
+          "45fa1dc7-dd4c-4f63-8153-1f43db626e04"
+        ],
+        "settings": {
+          "is_enable": true
+        }
+      },
+      "everywhere-tote-14": {
+        "type": "everywhere-tote-14",
+        "settings": {
+          "is_enable": false,
+          "video": "",
+          "sub_title": "",
+          "title": "",
+          "detail": "",
+          "btn_txt": "",
+          "btn_url": ""
+        }
+      },
+      "16243962866cfd8df8": {
+        "type": "best-sellers",
+        "disabled": true,
+        "blocks": {
+          "65770c34-e127-4aa2-af3e-b8c1700aa2b9": {
+            "type": "tab",
+            "settings": {
+              "tab_title": "",
+              "tab_product_1": "spa-luxury-robes",
+              "tab_product_2": "hotel-waffle-terry-robes",
+              "tab_product_3": "contempo-hooded-robes"
+            }
+          },
+          "47a0ab92-fbda-4130-b7cc-a4030798c10c": {
+            "type": "tab",
+            "settings": {
+              "tab_title": "",
+              "tab_product_1": "",
+              "tab_product_2": "",
+              "tab_product_3": ""
+            }
+          }
+        },
+        "block_order": [
+          "65770c34-e127-4aa2-af3e-b8c1700aa2b9",
+          "47a0ab92-fbda-4130-b7cc-a4030798c10c"
+        ],
+        "settings": {
+          "title": "Gifts for Dad",
+          "color": "#636363"
+        }
+      },
+      "giftcard-panel-script": {
+        "type": "giftcard-panel-script",
+        "settings": {
+        }
+      },
+      "16324985342853eb9b": {
+        "type": "single-collection",
+        "disabled": true,
+        "settings": {
+          "inverse_elements": false,
+          "title": "The Throw\nAnywhere Blanket",
+          "subtitle": "Snuggle-up in this sublimely\nsoft blanket",
+          "button_text": "Shop Now",
+          "button_url": "shopify:\/\/products\/the-throw-anywhere-blanket",
+          "color": "#000000"
+        }
+      },
+      "1636469946c1fedba3": {
+        "type": "posts-slider",
+        "disabled": true,
+        "blocks": {
+          "059abe70-c1d1-42ff-8935-cba1ee327cb9": {
+            "type": "post",
+            "settings": {
+              "blog_title": "Luxury Hotel Partners Include",
+              "article_title": "1 Hotel South Beach",
+              "article_url": "",
+              "article_url_url_type": "0",
+              "article_excerpt": "Shop Now"
+            }
+          },
+          "8fe6eaf3-d296-4e7d-80eb-e44138fe73f2": {
+            "type": "post",
+            "settings": {
+              "blog_title": "Gift Guide",
+              "article_title": "The Holiday Table",
+              "article_url": "shopify:\/\/collections\/the-holiday-table",
+              "article_url_url_type": "0",
+              "article_excerpt": "Shop Now"
+            }
+          },
+          "a21265e5-b683-4ee2-bc94-59c521f33614": {
+            "type": "post",
+            "settings": {
+              "blog_title": "At Home Edit",
+              "article_title": "Luke Ditella's Gift Guide",
+              "article_url": "shopify:\/\/collections\/luke-ditellas-gift-guide",
+              "article_url_url_type": "0",
+              "article_excerpt": "Shop Now"
+            }
+          }
+        },
+        "block_order": [
+          "059abe70-c1d1-42ff-8935-cba1ee327cb9",
+          "8fe6eaf3-d296-4e7d-80eb-e44138fe73f2",
+          "a21265e5-b683-4ee2-bc94-59c521f33614"
+        ],
+        "settings": {
+          "color": "#636363"
+        }
+      },
+      "163647282896ba729b": {
+        "type": "single-collection",
+        "disabled": true,
+        "settings": {
+          "inverse_elements": false,
+          "title": "Eberjy PJ Sets",
+          "subtitle": "Shop the soft and airy short set to keep you cool and comfy all night long.",
+          "button_text": "Shop Eberjey PJ Sets",
+          "button_url": "shopify:\/\/pages\/chairish-x-kassatex",
+          "color": "#000000"
+        }
+      }
+    },
+    "content_for_index": [
+      "1531148491794",
+      "1542667186792",
+      "1531205064886",
+      "1532630872162",
+      "1531207330410",
+      "1636469946c1fedba3",
+      "1600261539356",
+      "1531211598260",
+      "1531207748782",
+      "16324985342853eb9b",
+      "163647282896ba729b",
+      "1556027246028",
+      "16243962866cfd8df8",
+      "1542667492237",
+      "1533045841521",
+      "1532627625471",
+      "1532631046272",
+      "1532627590509",
+      "1542667915217",
+      "1531228438684",
+      "1531229457957"
+    ]
+  }
+}

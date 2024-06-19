@@ -1,0 +1,119 @@
+{%- assign _section = section.settings -%}
+{%- assign _blocks = section.blocks -%}
+
+<section class="section-about">
+  
+  <div class="section__inner">
+
+    <div class="section__content visible-sm-block visible-xs-block">
+      <h5 class="section__title">{{ page.title }}</h5><!-- /.section__title -->
+
+      {%- if _section.blockquote != blank -%}
+        <blockquote>
+          {{ _section.blockquote | newline_to_br }}
+        </blockquote>
+      {%- endif -%}
+    </div>
+
+    {%- if _section.image -%}
+      <div class="section__image lazyload" data-sizes="auto" data-bgset="{{ _section.image | img_url: '1024x' }} 1024w, {{ _section.image | img_url: '1300x' }} 1300w, {{ _section.image | img_url: '1600x' }} 1600w, {{ _section.image | img_url: '1800x' }} 1800w, {{ _section.image | img_url: '2048x' }} 2048w"></div><!-- /.section__image -->
+    {%- endif -%}
+
+    <div class="section__content">
+      <h5 class="section__title hidden-sm hidden-xs">{{ page.title }}</h5><!-- /.section__title -->
+
+      {%- if _section.blockquote != blank -%}
+        <blockquote class="hidden-sm hidden-xs">
+          {{ _section.blockquote | newline_to_br }}
+        </blockquote>
+      {%- endif -%}
+
+      {%- if _section.text_col_1 != blank or _section.text_col_2 != blank -%}
+        <p>{{ _section.text_col_1 | newline_to_br }}</p>
+        <p>{{ _section.text_col_2 | newline_to_br }}</p>
+      {%- endif -%}
+
+    </div><!-- /.section__content -->
+  </div><!-- /.section__inner -->
+
+  <div class="shell">
+    <div class="section__body">
+      {%- if _section.video_show_video -%}
+        {%- assign video_id = '' -%}
+        {%- assign iframe_src = '' -%}
+
+        {%- assign video_image = _section.video_image -%}
+        {%- assign video_url = _section.video -%}
+
+        {%- if video_url contains 'youtube' -%}
+          {%- if video_url contains 'list' or video_url contains 'index' -%}
+            {%- assign video_id = video_url | split: '&' | first | split: '=' | last -%}
+          {%- else -%}
+            {%- assign video_id = video_url | split: 'v=' | last -%}
+          {%- endif -%}
+
+          {%- assign iframe_src = 'https://www.youtube.com/embed/' | append: video_id -%}
+        {%- elsif video_url contains 'vimeo' -%}
+          {%- assign video_id = video_url | split: '/' | last -%}
+
+          {%- assign iframe_src = 'https://player.vimeo.com/video/' | append: video_id -%}
+        {%- endif -%}
+
+        <div class="video-holder video-holder--alt section__video">
+          <div class="video-holder__image js-play-btn" style="background-image: url({%- if video_image -%} {{ video_image }} {%- else -%} {{ 'slide-1.jpg' | asset_url }} {%- endif -%});">
+            <span class="btn-play">
+              <i class="ico-play"></i>
+            </span>
+          </div><!-- /.video-holder__image -->
+
+          <iframe width="560" height="315" src="{{ iframe_src }}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div><!-- /.video-holder -->
+      {%- endif -%}
+
+    </div><!-- /.section__body -->
+  </div><!-- /.shell -->
+</section><!-- /.section-about -->
+
+{% schema %}
+{
+  "name": "About Us",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "textarea",
+      "id": "blockquote",
+      "label": "Blockquote"
+    },
+    {
+      "type": "textarea",
+      "id": "text_col_1",
+      "label": "Text 1"
+    },
+    {
+      "type": "textarea",
+      "id": "text_col_2",
+      "label": "Text 2"
+    },
+    {
+      "type": "checkbox",
+      "id": "video_show_video",
+      "label": "Show video",
+      "default": true
+    },
+    {
+      "type": "url",
+      "id": "video",
+      "label": "Video"
+    }
+  ],
+  "presets": [
+    {
+      "name": "About Us"
+    }
+  ]
+}
+{% endschema %}

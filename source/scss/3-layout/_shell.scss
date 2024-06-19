@@ -1,0 +1,20 @@
+/* ------------------------------------------------------------ *\
+  Shell
+\* ------------------------------------------------------------ */
+
+.shell {
+  max-width: $shell-max-width + $shell-gutter * 2;
+  padding-right: $shell-gutter;
+  padding-left: $shell-gutter;
+  margin: auto;
+
+  &--fluid {
+    max-width: none;
+  }
+
+  /* Mobile */
+
+  @media (max-width: #{$responsive-xs}) {
+    padding: 0 18px;
+  }
+}

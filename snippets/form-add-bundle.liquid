@@ -1,0 +1,181 @@
+<div class="form-product">
+  <form action="/cart/add" method="post" enctype="multipart/form-data" class="js-form-ajax">
+    <div class="section__entry hidden-xs">
+      <p>{{ product.description }}</p>
+    </div>
+
+    <div class="options-container" style="visibility: hidden;">
+      <select name="id" class="hidden" data-options="{% for option in product.options %}{{option | downcase | handleize }}{% unless forloop.last %},{% endunless %}{% endfor %}">
+        {% for variant in product.variants %}
+        {% capture data_fields %}{% for option in product.options %}data-{{option | handle }}="{{ variant.options[forloop.index0] | handle }}" {% endfor %}{% endcapture %}
+        {%- assign inventory_value = variant.inventory_quantity -%}
+        {%- unless variant.available -%}
+        {%- assign inventory_value =  -1 -%}
+        {%- endunless -%}
+        <option {% if variant == current_variant %} selected="selected" {% endif %} data-sku="{{ variant.sku }}" value="{{ variant.id }}" data-compare-price="{{ variant.compare_at_price | money | strip_html }}" data-available="{{ variant.available }}" data-price="{{ variant.price | money | strip_html }}" data-url="{{variant.url | within: product.collections[0]}}" data-image="{{ variant.image.src | img_url: '428x' }}" data-variant-title="{{variant.title}}" {{data_fields}} data-inventory="{{inventory_value}}" {% if inventory_value < 1 and is_preorder %} data-preorder="{{ preorder_date }}"{% endif %} data-q-price="{{ variant.price | divided_by: 4 | money }}">{{ variant.title }}</option>
+        {% endfor %}
+      </select>
+
+      <div class="form__row product-variants-container" style="border: 0;">
+        {%- for option in product.options_with_values -%}
+        {%- assign isColor = false -%}
+        {%- assign option_handle = option.name | handle -%}
+        {%- assign option_selector = 'option' | append: forloop.index -%}
+        {%- assign current_variant_option = current_variant[option_selector] -%}
+        {%- assign current_variant_option_handle = current_variant_option | handle -%}
+        {%- assign current_variant_optionArr = current_variant_option | split: '(' -%}
+        {%- assign current_variant_optionTitle = current_variant_optionArr[0] | trim -%}
+
+        {%- if option_handle == 'color' -%}
+        {%- assign isColor = true -%}
+        {%- endif -%}
+
+        <div class="form__row first-row">
+          {% if forloop.index == 1 %}
+            <label class="form__label">Color: </label>
+          {% elsif forloop.index == 2 %}
+            <label class="form__label">Size: </label>
+          {% endif %}
+
+          <label class="form__label">{{ current_variant_optionTitle }}</label>
+
+          {%- if forloop.last and available_sizes.size > 0 -%}
+            <a href="#popup" class="js-btn-expand">{{ 'products.general.size_guide' | t }}</a>
+          {%- endif -%}
+
+          <div class="form__controls">
+            {% assign optionNameDowncase = option.name | downcase %}
+            <ul class="{% if isColor %} list-radios-colors {% else %} list-radios-boxes {% endif %}">
+              {%- for value in option.values -%}
+              {%- assign value_handle = value | handle -%}
+              {%- assign masterColorTitleArr = value | split: '(' -%}
+              {%- assign masterColorTitle = masterColorTitleArr[0] | trim -%}
+              <li>
+                <div class="radio">
+                  <input type="radio" placeholder="{{option_handle}}: {{ value }}" class="optionFilter {{ option_handle | capitalize}}" name="{{ option_handle }}" id="field-{{product.id | append: '-' | append: value_handle}}" value="{{ value_handle }}" data-text="{% if isColor %} {{ masterColorTitle }} {% else %}{{ value | escape }}{% endif %}" {% if isColor %} data-text-original="{{ value }}" {% endif %} {% if forloop.first %}checked{% endif %} />
+                  <label {% if isColor %} class="{{ value_handle }}" {% endif %} for="field-{{product.id | append: '-' | append: value_handle}}" {% if isColor %} data-color-name="{{ value_handle }}" {% endif %}>{% if isColor %} &nbsp; {% else %} {{ value }} {% endif %}</label>
+                </div>
+              </li>
+              {%- endfor -%} 
+            </ul>
+          </div>
+        </div>
+        {%- endfor -%}
+
+        {% for subproduct in products_in_bundle %}
+        {%- assign variant = all_products[subproduct[1].name] -%}
+
+        {% for option in variant.options_with_values %}
+        {% if option.name != 'Color' and option.name != 'Size' %}
+        {%- assign bundle_option_order = bundle_option_order | plus: 1 -%}
+        {%- assign option_name = variant.title | append: " - " | append: option.name -%}
+
+        {%- include 'variant-filter' with filterName: option_name, position: bundle_option_order, options: option.values, productId: variant.id -%}
+        {% endif %}
+        {% endfor %}
+        {% endfor %}
+
+        {% if aditional_attributes %} 
+        {% for aditionalAttr in aditional_attributes %}
+        {%- assign attribute_name = aditionalAttr | first -%}
+        {%- assign attribute_values = aditionalAttr | last | split: ','  -%}
+        {%- assign bundle_option_order = bundle_option_order | plus: 1 -%}
+        {%- include 'variant-filter' with filterName: attribute_name, position: bundle_option_order, options: attribute_values -%}
+        {% endfor %}
+        {% endif %}
+      </div>
+    </div>
+
+    {%- assign product_tags_string = product.tags | join: ',' -%}
+   
+    {%- if product_tags_string contains 'customizer' -%}
+
+      <!-- product for monogramming fee -->
+      {% assign namespace = product.metafields.sf_customizer.template %}
+      {% assign store_mono_fee_product = all_products[shop.metafields[namespace].product_monogram_fee] %}
+      {% assign  store_mono_fee_product_price = store_mono_fee_product.variants[0].price %}
+      <div class="form__row form__row--full form__row--available" data-monogram-trigger {% if currentVariant.available == false %} style="display: none!important;" {% endif %}>
+        <a class="btn btn--block" id="to_view_customizer">add a monogram (+{{ store_mono_fee_product_price | money_without_trailing_zeros }})</a>
+      </div>
+    {%- endif -%}
+
+    {% if product_tags_string contains 'no_discounts_allowed' %}
+      <input type="text" name="properties[noDiscountsAllowed]" value="Not eligible for discounts or promo codes" style="display: none">
+    {% endif %}
+
+    {% if product_tags_string contains 'no_gift_wrap_allowed' %}
+      <input
+        type="text"
+        name="properties[no_gift_wrap_allowed]"
+        value="{{ 'cart.general.no_gift_wrap_allowed' | t }}"
+        style="display: none"
+      >
+    {% endif %}
+
+    {% if product.metafields.sf_product.redirection_url %}
+      <input type="text" name="properties[redirection_url]" value="{{- product.metafields.sf_product.redirection_url -}}" style="display: none">
+    {% endif %}
+    
+
+    <div class="form-action-wishlist">
+      <div class="form__row form__row--half form__row--available">
+        <div class="form__controls">
+          <div class="counter js-counter">
+            <span class="counter__minus js-counter-minus">&nbsp;</span>
+            <input type="number" class="counter__field js-counter-field" name="quantity" id="field-qty" value="1" data-prev-vale="1" min="0" />
+            <span class="js-counter-plus counter__plus">&nbsp;</span>
+          </div>
+        </div>
+      </div>
+  
+      <div class="form__actions form__row--available">
+        <button type="button" name="add" id="AddToCart--{{ section.id }}" class="btn btn--solid form__btn btn-add-to-cart btn-add-bundle{% if section.settings.enable_payment_button %} btn--secondary-accent{% endif %}"{% unless current_variant.available %} disabled="disabled"{% endunless %}>
+          <span>ADD TO CART</span>
+          <i class="fa fa-spinner fa-spin"></i>
+        </button>
+      </div>
+      
+      <a href="#" class="btn btn--solid btn--block sold-out-btn" style="display:none;">Sold Out! Notify Me</a>
+      
+      <div class="container-btn-wishlist form__controls">
+        <a  class="btn-add-to-wishlist disabled" href="#">
+          <div id="wishlist-icon-container">
+            {% render 'wishlist-icon' %}
+          </div>
+        </a>
+      </div>
+    </div>
+  </form>
+  <div class="container-klaviyo-modal" style="display: none;">
+    <div class="fade-in">
+      <div id="klaviyo-bis-modal">
+        <div class="" id="container">
+          <button type="button" class="close klaviyo-bis-close" data-dismiss="modal">×</button>
+          <h3 class="modal-title">Strada Embroidered Percale Flat Sheet</h3>
+          <p class="description">Register to receive a notification when all the items of this bundle comes back in stock.</p>
+          <form action="#" class="form-horizontal clearfix">
+            <div class="form-group">
+              <div id="variant_select" class="col-sm-12">
+                <input type="hidden" id="product" value="1364338769985">
+                {%- comment -%} This select is only visual and doesn't operate with values {%- endcomment -%}
+                <select id="klaviyo-variants" class="selectpicker form-control input-lg"></select>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-12">
+                <input type="email" id="email" placeholder="Email" class="form-control input-lg" value="">
+              </div>
+            </div>
+            <div class="control-group clearfix submit-container">
+              <button type="button" class="btn js-notify-btn">Notify me when available</button>
+            </div>
+            <div id="error_message" class="error_message alert alert-danger"></div>
+            <div id="completed_message" class="completed_message alert alert-success">You're in! We'll let you know when it's back. <a href="#" class="klaviyo-bis-close">Close</a>
+            </div>
+          </form>
+          <p class="small-print"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

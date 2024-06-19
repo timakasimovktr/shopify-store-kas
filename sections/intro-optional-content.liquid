@@ -1,0 +1,96 @@
+{%- assign introImg = section.settings.image -%}
+
+{%- if introImg -%}
+  <div class="intro-collection">
+    <div class="intro__image lazyload" data-bg="{{introImg | image_url}}"></div>
+  </div>
+{%- endif -%}
+
+<div class="intro__content {% if section.settings.padding_bottom == true %}intro__content-padding-bottom{% endif %}">
+  <span class="font-300 tk-effra font-lighter">{{section.settings.upper_description}}</span>
+  <h1 class="section-title font-lighter">{{section.settings.title}}</h1>
+  <h2 class="section-subtitle font-300 tk-effra font-lighter">{{section.settings.subtitle}}</h2> 
+</div>
+{% stylesheet %}
+.intro__content {
+	text-align: center;
+}
+.intro__content.intro__content-padding-bottom {
+  padding-bottom: 1rem;
+}
+@media screen and (min-width: 769px)
+{
+  .intro__content.intro__content-padding-bottom {
+    padding-bottom: 5rem;
+  }
+}
+.intro__content span {
+    display: block;
+    height: auto;
+    min-height: auto;
+    font-size: 16px;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+}
+.intro__content .section-title {
+    font-family: Vanitas; 
+    font-weight: 700;
+    margin-top: 50px;
+    margin-bottom: 34px;
+    font-size: 45px;
+    line-height: 1.2;
+    text-transform: initial;
+    letter-spacing: 0.5px;
+}
+.intro__content .section-subtitle {
+    max-width: 500px;
+    margin: auto auto 1.2vw;
+    line-height: 1.3;
+    font-size: 22px;
+}
+@media (max-width: 767px){
+    .intro__content span { font-size: 12px }
+    .intro__content  .section-subtitle {
+        max-width: 70vw;
+        font-size: 16px
+    }
+}
+{% endstylesheet %}
+
+{% schema %}
+{   
+    "name": "Intro Optional Content",
+    "tag": "section",
+    "settings": [
+        {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+        },
+        {
+            "type": "text",
+            "id": "upper_description",
+            "label": "Upper Description",
+            "default": "insert text content here"
+        },
+        {
+            "type": "text",
+            "id": "title",
+            "label": "Title",
+            "default": "This is the Title"
+        },
+        {
+            "type": "text",
+            "id": "subtitle",
+            "label": "Subtitle",
+            "default": "This is the Subtitle"
+        },
+        {
+            "type": "checkbox",
+            "id": "padding_bottom",
+            "label": "Padding bottom",
+            "default": false
+        }
+    ]
+}
+{% endschema %}

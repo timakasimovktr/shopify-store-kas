@@ -1,0 +1,31 @@
+{% assign formID = formClasses | split: '_' | last %}
+
+<form action="https://vital-forms-api.c1.humanpresence.app/api/form/vfob/9198ac30-a9b7-4422-a078-20b406898361$5fdcc23c93fc6c00b0037736"
+    data-ajax-submit="//manage.kmail-lists.com/ajax/subscriptions/subscribe"
+    method="POST" novalidate="novalidate" id="email_signup-{{index}}" class="form-subscribe{% if custom_class != blank %} {{ custom_class }}{% endif %}"
+    autocomplete="off" data-vfib="0">
+  <input type="hidden" name="g" value="{{embed_form}}">
+  <input type="hidden" name="$fields" value="Birthday">
+  <input type="hidden" name="$list_fields" value="$consent">
+
+  <label for="k_id_email{{index}}" class="hidden">{{ 'general.newsletter_form.label' | t }}</label>
+  <input type="email" id="k_id_email{{index}}" name="email" value="" placeholder="{%- if placeholder_text != blank -%}{{ placeholder_text }}{%- else -%}{{ 'general.newsletter_form.newsletter_email' | t }}{%- endif -%}" class="subscribe__field" />
+
+  <!--label for="k_id_birthday{{index}}" class="hidden">{{ 'general.newsletter_form.label2' | t }}</label>
+  <input type="text" id="k_id_birthday{{index}}" name="Birthday" value="" placeholder="{{ 'general.newsletter_form.newsletter_birthday' | t }}" class="subscribe__field" /-->
+
+  <button type="submit" class="subscribe__btn subscribe__btn klaviyo_submit_button">
+    {%- if submit_btn_text != blank -%}
+      {{ submit_btn_text }}
+    {%- else -%}
+      <div class="subscribe__btn__inner">
+        {%- include 'icons' with icon: 'arrow-right' -%}
+      </div>
+    {%- endif -%}
+  </button>
+
+  <div class="klaviyo_messages">
+    <div class="success_message" style="display:none;"></div>
+    <div class="error_message" style="display:none;"></div>
+  </div>
+</form>

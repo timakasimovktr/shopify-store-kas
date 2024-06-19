@@ -1,0 +1,378 @@
+<style>
+	@font-face {
+	  font-family:"effra";
+	  font-display: swap;
+	  src:url("https://use.typekit.net/af/32bae8/00000000000000000001787c/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i4&v=3") format("woff2"),url("https://use.typekit.net/af/32bae8/00000000000000000001787c/27/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i4&v=3") format("woff"),url("https://use.typekit.net/af/32bae8/00000000000000000001787c/27/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i4&v=3") format("opentype");
+	  font-style:italic;
+	  font-weight:400;
+	}
+
+	@font-face {
+	  font-family: 'gabriola';
+	  font-display: swap;
+	  font-style: normal;
+	  font-weight: 400;
+	  src: url('{{ "gabriola.ttf" | asset_url }}') format('truetype');
+	}
+	
+	@font-face {
+	  font-family: 'english-script';
+	  font-display: swap;
+	  font-style: normal;
+	  font-weight: 400;
+	  src: url('{{ "3751BD_0_0.eot" | asset_url }}');
+	  src: url('{{ "3751BD_0_0.eot?#iefix" | asset_url }}') format('embedded-opentype'),url('{{ "3751BD_0_0.woff2" | asset_url }}') format('woff2'),url('{{ "3751BD_0_0.woff" | asset_url }}') format('woff'),url('{{ "3751BD_0_0.ttf" | asset_url }}') format('truetype');
+	}
+	
+	@font-face {
+	  font-family: 'goudy-old-style';
+	  font-display: swap;
+	  font-style: normal;
+	  font-weight: 400;
+	  src: url('{{ "375518_0_0.eot" | asset_url }}');
+	  src: url('{{ "375518_0_0.eot?#iefix" | asset_url }}') format('embedded-opentype'),url('{{ "375518_0_0.woff2" | asset_url }}') format('woff2'),url('{{ "375518_0_0.woff" | asset_url }}') format('woff'),url('{{ "375518_0_0.ttf" | asset_url }}') format('truetype');
+	}
+	
+	@font-face {
+	  font-family: 'felix-tilting';
+	  font-display: swap;
+	  font-style: normal;
+	  font-weight: 400;
+	  src: url('{{ "375518_1_0.eot" | asset_url }}');
+	  src: url('{{ "375518_1_0.eot?#iefix" | asset_url }}') format('embedded-opentype'),url('{{ "375518_1_0.woff2" | asset_url }}') format('woff2'),url('{{ "375518_1_0.woff" | asset_url }}') format('woff'),url('{{ "375518_1_0.ttf" | asset_url }}') format('truetype');
+	}
+</style>
+
+{% assign store_mono_fonts = "" %}
+{% assign store_mono_png_fonts = "" %}
+{% assign store_mono_png_fonts_icons = "" %}
+{% assign store_mono_png_fonts_previews = "" %}
+{% assign store_mono_colors = "" %}
+{% assign store_mono_point_monogram_message = "" %}
+{% assign store_mono_point_monogram_color = "" %}
+
+{% assign store_mono_tpl_image = "" %}
+
+{% assign store_mono_tpl_pos = "" %}
+
+{%- comment -%}namespace of monogram tpl{%- endcomment -%}
+{% assign tpl_namespace = product.metafields.sf_customizer.template %}
+
+{%- comment -%}monogramming template name{%- endcomment -%}
+{% assign store_mono_tpl_name = shop.metafields[tpl_namespace].name %}
+
+{%- comment -%}product for monogramming fee{%- endcomment -%}
+{% assign store_mono_fee_product = all_products[shop.metafields[tpl_namespace].product_monogram_fee] %}
+
+{%- comment -%}global fonts{%- endcomment -%}
+{% assign fonts_effra = shop.metafields.sf_monogram.fonts_effra %}
+{% if fonts_effra %}
+	{% assign store_mono_fonts = store_mono_fonts | append: fonts_effra | append: "#||#" %}
+{% endif %}
+
+{% assign fonts_sans_serif = shop.metafields.sf_monogram.fonts_sans_serif %}
+{% if fonts_sans_serif %}
+	{% assign store_mono_fonts = store_mono_fonts | append: fonts_sans_serif | append: "#||#" %}
+{% endif %}
+
+{% assign fonts_felix_tilting = shop.metafields.sf_monogram.fonts_felix_tilting %}
+{% if fonts_felix_tilting %}
+	{% assign store_mono_fonts = store_mono_fonts | append: fonts_felix_tilting | append: "#||#" %}
+{% endif %}
+
+{% assign fonts_gabriola = shop.metafields.sf_monogram.fonts_gabriola %}
+{% if fonts_gabriola %}
+	{% assign store_mono_fonts = store_mono_fonts | append: fonts_gabriola | append: "#||#" %}
+{% endif %}
+
+{%- comment -%}
+-----PNG Fonts-----
+{%- endcomment -%}
+
+{% assign fonts_ballantines = shop.metafields.sf_monogram.fonts_ballantines %}
+{% if fonts_ballantines %}
+	{% assign store_mono_png_fonts = store_mono_png_fonts | append: fonts_ballantines | append: "#||#" %}
+	{% assign store_mono_png_fonts_icons = store_mono_png_fonts_icons | append: shop.metafields.sf_monogram.font_icons_ballantines | append: "#||#" %}
+
+	{% if product.metafields.sf_monogram.preview_images_ballantines != blank %}
+		{% assign store_mono_png_fonts_previews = store_mono_png_fonts_previews | append: product.metafields.sf_monogram.preview_images_ballantines | append: "#||#" %}
+	{% else %}
+		{% assign store_mono_png_fonts_previews = store_mono_png_fonts_previews | append: "https://cdn.shopify.com/s/files/1/0002/9910/6314/files/Ballantines_Preview.PNG?v=1604941911#||#" %}
+	{% endif %}
+{% endif %}
+
+{% assign fonts_narrow_block = shop.metafields.sf_monogram.fonts_narrow_block %}
+{% if fonts_narrow_block %}
+	{% assign store_mono_png_fonts = store_mono_png_fonts | append: fonts_narrow_block | append: "#||#" %}
+	{% assign store_mono_png_fonts_icons = store_mono_png_fonts_icons | append: shop.metafields.sf_monogram.font_icons_narrow_block | append: "#||#" %}
+
+	{% if product.metafields.sf_monogram.preview_images_narrow_block != blank %}
+		{% assign store_mono_png_fonts_previews = store_mono_png_fonts_previews | append: product.metafields.sf_monogram.preview_images_narrow_block | append: "#||#" %}
+	{% else %}
+		{% assign store_mono_png_fonts_previews = store_mono_png_fonts_previews | append: "https://cdn.shopify.com/s/files/1/0002/9910/6314/files/Narrow_Block_Preview.PNG?v=1604941911#||#" %}
+	{% endif %}
+{% endif %}
+
+{% assign fonts_point_monogram = shop.metafields.sf_monogram.fonts_point_monogram %}
+{% if fonts_point_monogram %}
+	{% assign store_mono_png_fonts = store_mono_png_fonts | append: fonts_point_monogram | append: "#||#" %}
+	{% assign store_mono_png_fonts_icons = store_mono_png_fonts_icons | append: shop.metafields.sf_monogram.font_icons_point_monogram | append: "#||#" %}
+	
+	{% if product.metafields.sf_monogram.preview_images_point_monogram != blank %}
+		{% assign store_mono_png_fonts_previews = store_mono_png_fonts_previews | append: product.metafields.sf_monogram.preview_images_point_monogram | append: "#||#" %}
+	{% else %}
+		{% assign store_mono_png_fonts_previews = store_mono_png_fonts_previews | append: "https://cdn.shopify.com/s/files/1/0002/9910/6314/files/Point_Monogram_Preview.PNG?v=1604941912#||#" %}
+	{% endif %}
+{% endif %}
+
+{% assign fonts_upright_script = shop.metafields.sf_monogram.fonts_upright_script %}
+{% if fonts_upright_script %}
+	{% assign store_mono_png_fonts = store_mono_png_fonts | append: fonts_upright_script | append: "#||#" %}
+	{% assign store_mono_png_fonts_icons = store_mono_png_fonts_icons | append: shop.metafields.sf_monogram.font_icons_upright_script | append: "#||#" %}
+	
+	{% if product.metafields.sf_monogram.preview_images_upright_script != blank %}
+		{% assign store_mono_png_fonts_previews = store_mono_png_fonts_previews | append: product.metafields.sf_monogram.preview_images_upright_script | append: "#||#" %}
+	{% else %}
+		{% assign store_mono_png_fonts_previews = store_mono_png_fonts_previews | append: "https://cdn.shopify.com/s/files/1/0002/9910/6314/files/Upright_Script_Preview.PNG?v=1604941912#||#" %}
+	{% endif %}
+{% endif %}
+
+{%- comment -%}
+
+{%- endcomment -%}
+{% assign store_mono_point_monogram_message = shop.metafields.sf_monogram.point_monogram_message %}
+{% assign store_mono_point_monogram_color = shop.metafields.sf_monogram.point_monogram_color %}
+
+{%- comment -%}
+global colors
+{%- endcomment -%}
+{% assign colors_black = shop.metafields.sf_monogram.colors_black | default: '#000000' %}
+{% if colors_black %}
+	{% assign store_mono_colors = store_mono_colors | append: "black:" | append: colors_black | append: "#||#" %}
+{% endif %}
+
+{% assign colors_grey = shop.metafields.sf_monogram.colors_grey %}
+{% if colors_grey %}
+	{% assign store_mono_colors = store_mono_colors | append: "grey:" | append: colors_grey | append: "#||#" %}
+{% endif %}
+
+{% assign colors_silver = shop.metafields.sf_monogram.colors_silver %}
+{% if colors_silver %}
+	{% assign store_mono_colors = store_mono_colors | append: "silver:" | append: colors_silver | append: "#||#" %}
+{% endif %}
+
+{% assign colors_gold = shop.metafields.sf_monogram.colors_gold %}
+{% if colors_gold %}
+	{% assign store_mono_colors = store_mono_colors | append: "gold:" | append: colors_gold | append: "#||#" %}
+{% endif %}
+
+{% assign colors_beige = shop.metafields.sf_monogram.colors_beige %}
+{% if colors_beige %}
+	{% assign store_mono_colors = store_mono_colors | append: "beige:" | append: colors_beige | append: "#||#" %}
+{% endif %}
+
+{% assign colors_brown = shop.metafields.sf_monogram.colors_brown %}
+{% if colors_brown %}
+	{% assign store_mono_colors = store_mono_colors | append: "brown:" | append: colors_brown | append: "#||#" %}
+{% endif %}
+
+{% assign colors_navy = shop.metafields.sf_monogram.colors_navy %}
+{% if colors_navy %}
+	{% assign store_mono_colors = store_mono_colors | append: "navy:" | append: colors_navy | append: "#||#" %}
+{% endif %}
+
+{% assign colors_blue = shop.metafields.sf_monogram.colors_blue %}
+{% if colors_blue %}
+	{% assign store_mono_colors = store_mono_colors | append: "light blue:" | append: colors_blue | append: "#||#" %}
+{% endif %}
+
+{% assign colors_white = shop.metafields.sf_monogram.colors_white %}
+{% if colors_white %}
+	{% assign store_mono_colors = store_mono_colors | append: "white:" | append: colors_white | append: "#||#" %}
+{% endif %}
+
+{% assign colors_pink = shop.metafields.sf_monogram.colors_pink %}
+{% if colors_pink %}
+	{% assign store_mono_colors = store_mono_colors | append: "pink:" | append: colors_pink | append: "#||#" %}
+{% endif %}
+
+{% assign colors_red = shop.metafields.sf_monogram.colors_red %}
+{% if colors_red %}
+	{% assign store_mono_colors = store_mono_colors | append: "red:" | append: colors_red | append: "#||#" %}
+{% endif %}
+
+{% assign colors_yellow = shop.metafields.sf_monogram.colors_yellow %}
+{% if colors_yellow %}
+	{% assign store_mono_colors = store_mono_colors | append: "green:" | append: colors_yellow | append: "#||#" %}
+{% endif %}
+
+{%- comment -%} position in template image {%- endcomment -%}
+{% assign pos_top_left = shop.metafields[tpl_namespace].pos_top_left %}
+{% if pos_top_left %}
+	{% if store_mono_tpl_name == "robe" %}
+		{% assign store_mono_tpl_pos = store_mono_tpl_pos | append: "left:" | append: pos_top_left | append: "#||#" %}
+	{% else %}
+		{% assign store_mono_tpl_pos = store_mono_tpl_pos | append: "top_left:" | append: pos_top_left | append: "#||#" %}
+	{% endif %}
+{% endif %}
+
+{% assign pos_top_center = shop.metafields[tpl_namespace].pos_top_center %}
+{% if pos_top_center %}
+	{% assign store_mono_tpl_pos = store_mono_tpl_pos | append: "top:" | append: pos_top_center | append: "#||#" %}
+{% endif %}
+
+{% assign pos_top_right = shop.metafields[tpl_namespace].pos_top_right %}
+{% if pos_top_right %}
+	{% assign store_mono_tpl_pos = store_mono_tpl_pos | append: "top_right:" | append: pos_top_right | append: "#||#" %}
+{% endif %}
+
+{% assign pos_center = shop.metafields[tpl_namespace].pos_center %}
+{% if pos_center %}
+	{% assign store_mono_tpl_pos = store_mono_tpl_pos | append: "center:" | append: pos_center | append: "#||#" %}
+{% endif %}
+
+{% assign pos_bottom_left = shop.metafields[tpl_namespace].pos_bottom_left %}
+{% if pos_bottom_left %}
+	{% assign store_mono_tpl_pos = store_mono_tpl_pos | append: "bottom_left:" | append: pos_bottom_left | append: "#||#" %}
+{% endif %}
+
+{% assign pos_bottom_center = shop.metafields[tpl_namespace].pos_bottom_center %}
+{% if pos_bottom_center %}
+	{% if store_mono_tpl_name == "bath_towel" %}
+		{% assign store_mono_tpl_pos = store_mono_tpl_pos | append: "bottom:" | append: pos_bottom_center | append: "#||#" %}
+	{% else %}
+		{% assign store_mono_tpl_pos = store_mono_tpl_pos | append: "bottom_center:" | append: pos_bottom_center | append: "#||#" %}
+	{% endif %}
+{% endif %}
+
+{% assign pos_bottom_right = shop.metafields[tpl_namespace].pos_bottom_right %}
+{% if pos_bottom_right %}
+	{% assign store_mono_tpl_pos = store_mono_tpl_pos | append: "bottom_right:" | append: pos_bottom_right | append: "#||#" %}
+{% endif %}
+
+{%- comment -%} images for monogramming {%- endcomment -%}
+{%- for image in product.images -%}
+	{%- assign image_alt_handle = image.alt | handle -%}
+	{% assign altArr = image.alt | split: '|' %}
+	{% assign alt_color = altArr[0] %}
+  	{% if image_alt_handle contains 'customizer' %}
+  		{% assign image_src = image.src | img_url: '700x' %}
+  		{% assign store_mono_tpl_image = store_mono_tpl_image | append: alt_color | append: '|' | append: image_src | append: '#||#' %}
+  	{% endif %}
+{%- endfor -%}
+
+{%- comment -%} char limit {%- endcomment -%}
+{% assign char_limit = shop.metafields[tpl_namespace].char_limit %}
+
+<div id="product-customizer"></div>
+
+<script type="text/javascript">
+	// customized product
+	window.store_mono_product = {{ product | json }};
+	window.store_mono_product.url = {{ product.url | json }};
+	window.store_mono_product_variants = {{ product.variants | json }};
+
+	// product for monogramming fee
+	window.store_mono_fee_product = {{ store_mono_fee_product | json }};
+
+	// monogram quantity for bundled products
+	window.store_mono_product_fee_quntity = {}
+
+	{% for variant in product.variants %}
+	window.store_mono_product_fee_quntity['{{ variant.id }}'] = {{ variant.metafields.monogram.quantity.value | default: 1 }}
+	{%endfor%}
+
+	// global variables
+	let _store_mono_fonts = "{{store_mono_fonts}}".split("#||#");
+	_store_mono_fonts.pop();
+	window.store_mono_fonts = [];
+	for (var i = 0; i < _store_mono_fonts.length; i++) {
+		let fn = _store_mono_fonts[i];
+
+		window.store_mono_fonts.push({
+			name: fn,
+			active: i == 0,
+			isPng: false
+		});
+	}
+	let _store_mono_png_fonts = "{{store_mono_png_fonts}}".split("#||#");
+	let _store_mono_png_fonts_previews = "{{store_mono_png_fonts_previews}}".split("#||#");
+	let _store_mono_png_fonts_icons = "{{store_mono_png_fonts_icons}}".split("#||#");
+	_store_mono_png_fonts.pop();
+	_store_mono_png_fonts_previews.pop();
+	_store_mono_png_fonts_icons.pop();
+	for (var i = 0; i < _store_mono_png_fonts.length; i++) {
+		let fn = _store_mono_png_fonts[i];
+		
+		window.store_mono_fonts.push({
+			name: fn,
+			active: false,
+			isPng: true,
+			imgSrc: _store_mono_png_fonts_previews[i],
+			iconSrc: _store_mono_png_fonts_icons[i]
+		});
+	}
+
+	window.store_mono_point_monogram_message = '{{store_mono_point_monogram_message}}';
+	window.store_mono_point_monogram_color = '{{store_mono_point_monogram_color}}';
+
+	let _store_mono_colors = "{{store_mono_colors}}".split("#||#");
+	_store_mono_colors.pop();
+	window.store_mono_colors = [];
+	for (var i = 0; i < _store_mono_colors.length; i++) {
+		let pc = _store_mono_colors[i];
+		let pc_obj = pc.split(":");
+		let status = false;
+		if (i == 0) {
+			status = true
+		}
+
+		window.store_mono_colors.push({ name: pc_obj[0], value: pc_obj[1], active: status});
+	}
+
+	// position
+	window.store_mono_tpl_pos = [];
+	let _store_mono_tpl_pos = "{{store_mono_tpl_pos}}".split("#||#");
+	_store_mono_tpl_pos.pop();
+	for (var i = 0; i< _store_mono_tpl_pos.length; i++) {
+		let pos = _store_mono_tpl_pos[i];
+		let pos_obj = pos.split(":");
+		let pos_values = pos_obj[1].split("*");
+		let pos_boxwidth = 100;
+		if(pos_values.length == 4) {
+			pos_boxwidth = pos_values[3];
+		}
+		let status = false;
+		if (i == 0) {
+			status = true
+		}
+
+		window.store_mono_tpl_pos.push({ id: pos_obj[0], label: pos_obj[0], pos_top: pos_values[0], pos_left: pos_values[1], pos_angle: pos_values[2], pos_width: pos_boxwidth, active: status});
+	}
+
+	// global variables
+	window.store_mono_tpl_image = [];
+	var _alt = '';
+	var _image = '';
+	{% if store_mono_tpl_image != '' %}
+		{% assign imageObjs = store_mono_tpl_image | split: '#||#' | compact %}
+		{% for imgObj in imageObjs %}
+			{% assign imgArr = imgObj | split: '|' %}
+			_alt = "{{imgArr[0]}}";
+			_image = "{{imgArr[1]}}";
+			window.store_mono_tpl_image.push({ "alt": _alt, "image": _image });
+		{% endfor %}
+	{% endif %}
+
+	// char limit
+	window.store_mono_char_limit = {{char_limit}};
+</script>
+
+{% schema %}
+{
+  "name": "Customizer",
+  "blocks": [
+
+  ]
+}
+{% endschema %}

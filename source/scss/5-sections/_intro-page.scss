@@ -1,0 +1,46 @@
+.intro-page {
+  position: relative;
+  max-height: 100vh;
+  overflow: hidden;
+  .intro__image {
+    background-size: cover;
+  }
+  .intro__content--wrapper {
+    position: absolute;
+    top: 50%;   
+    transform: translateY(-50%);
+    text-align: center;
+    padding: 0 30px;
+    color: #636363;
+    width: 100%;
+  }
+  .intro__content--inner {
+    position: relative;
+    width: 100%;
+    max-width: 665px;
+    margin: auto;
+  }
+  .intro__content--title {
+    margin-bottom: 35px;
+  }
+}
+.intro__content {
+  font-family: "Vanitas";
+  letter-spacing: .5px;
+  font-size: 24px;
+}
+@media (max-width: $responsive-xs) {
+  .intro-page {
+    .intro__content--title {
+      margin: 0;
+    }
+  }
+  .intro-page__content {
+    padding: 80px 30px;
+    font-size: 20px;
+    text-align: center;
+    border-bottom: 1px solid #f5f5f5;
+    font-family: "Vanitas";
+    letter-spacing: .5px;
+  }
+}

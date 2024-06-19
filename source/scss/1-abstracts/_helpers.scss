@@ -1,0 +1,216 @@
+/* ------------------------------------------------------------ *\
+	Helpers
+\* ------------------------------------------------------------ */
+
+/*  Clear  */
+
+.clear {
+	@util clearfix;
+}
+
+/*  Notext  */
+
+.notext {
+	@util text-hide;
+}
+
+/*  Hidden  */
+
+[hidden],
+.hidden {
+	display: none !important;
+}
+
+/*  Non-visible  */
+
+[hidden],
+.nonvisibled {
+	visibility: hidden !important;
+	opacity: 0;
+	max-height: 500px;
+	overflow: hidden;
+}
+
+/*  Alignleft  */
+
+.alignleft {
+	float: left;
+}
+
+/*  Alignright  */
+
+.alignright {
+	float: right;
+}
+
+/*  Disabled  */
+
+[disabled],
+.disabled {
+	cursor: default;
+}
+
+/*  Grid  */
+
+.col {
+	max-width: 100%;
+	flex: 1;
+
+	&s {
+		display: flex;
+		flex-flow: row wrap;
+		margin: 0 -21px;
+	}
+
+	&--1of2 {
+		max-width: calc(50% - 42px);
+		flex: 0 0 calc(50% - 42px);
+		margin: 0 21px;
+	}
+}
+
+/*  Responsive Helpers  */
+
+.visible-xs-block,
+.visible-xs-inline,
+.visible-xs-inline-block,
+.visible-xs-flex,
+.visible-sm-block,
+.visible-sm-flex,
+.visible-sm-inline,
+.visible-sm-inline-block,
+.visible-md-block,
+.visible-md-flex,
+.visible-md-inline,
+.visible-md-inline-block,
+.visible-lg-block,
+.visible-lg-inline,
+.visible-pad-flex,
+.visible-lg-inline-block {
+	display: none !important;
+}
+
+.visible-block {
+	display: block !important;
+}
+
+@media (max-width: $responsive-xs) {
+	.hidden-xs {
+		display: none !important;
+	}
+	.visible-xs-block {
+		display: block !important;
+	}
+	.visible-xs-inline {
+		display: inline !important;
+	}
+	.visible-xs-inline-block {
+		display: inline-block !important;
+	}
+	.visible-xs-flex {
+		display: flex !important;
+	}
+}
+
+@media (min-width: $responsive-xs + 1) and (max-width: $responsive-sm) {
+	.hidden-sm {
+		display: none !important;
+	}
+	.visible-sm-block {
+		display: block !important;
+	}
+	.visible-sm-inline {
+		display: inline !important;
+	}
+	.visible-sm-inline-block {
+		display: inline-block !important;
+	}
+	.visible-sm-flex {
+		display: flex !important;
+	}
+}
+
+@media (min-width: $responsive-xs + 1) and (max-width: $responsive-pad) {
+	.hidden-pad {
+		display: none !important;
+	}
+	.visible-pad-block {
+		display: block !important;
+	}
+	.visible-pad-inline {
+		display: inline !important;
+	}
+	.visible-pad-inline-block {
+		display: inline-block !important;
+	}
+	.visible-pad-flex {
+		display: flex !important;
+	}
+}
+
+/* iPad 3, 4 and Pro 9.7" */
+/* iPad Pro 10.5" */
+/* iPad Pro 12.9" */
+@media only screen and (min-device-width: 768px) and (max-device-width: 768px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2),
+only screen and (min-device-width: 1024px) and (max-device-width: 1024px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 2),
+only screen and (min-device-width: 834px) and (max-device-width: 834px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2),
+only screen and (min-device-width: 1112px) and (max-device-width: 1112px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 2),
+only screen and (min-device-width: 1024px) and (max-device-width: 1024px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2), 
+only screen and (min-device-width: 1366px) and (max-device-width: 1366px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 2) {
+	.hidden-padpro {
+		display: none !important;
+	}
+	.visible-padpro-block {
+		display: block !important;
+	}
+	.visible-padpro-inline {
+		display: inline !important;
+	}
+	.visible-padpro-inline-block {
+		display: inline-block !important;
+	}
+}
+
+@media (min-width: $responsive-sm + 1) and (max-width: $responsive-md) {
+	.hidden-md {
+		display: none !important;
+	}
+	.visible-md-block {
+		display: block !important;
+	}
+	.visible-md-inline {
+		display: inline !important;
+	}
+	.visible-md-inline-block {
+		display: inline-block !important;
+	}
+	.visible-md-flex {
+		display: flex !important;
+	}
+}
+
+@media (min-width: $responsive-md + 1) {
+	.hidden-lg {
+		display: none !important;
+	}
+	.visible-lg-block {
+		display: block !important;
+	}
+	.visible-lg-inline {
+		display: inline !important;
+	}
+	.visible-lg-inline-block {
+		display: inline-block !important;
+	}
+	.visible-lg-flex {
+		display: flex !important;
+	}
+}
+
+/* ------------------------------------------------------------ *\
+	Body
+\* ------------------------------------------------------------ */
+
+.anyflexbox body {
+	display: block;
+}

@@ -1,0 +1,145 @@
+<style>
+.btn--link {
+  margin-left: 0;
+  max-width: none;
+  display: inline-block;
+  text-transform: uppercase;
+  width: auto;
+  padding-right: 18px;
+  font-size: 18px!important;
+  font-weight: 300!important;
+}
+@media (max-width: 767px){
+  .btn--link {
+    font-size: 16px!important;
+    margin: 0;
+    max-width: none;
+    display: inline-block;
+    text-transform: capitalize;
+    width: auto;
+    padding-right: 18px;
+    font-weight: 300!important;
+  }
+}
+</style>
+
+<div class="section-image" style="background-color:{{section.settings.background_color}}">
+    <div class="shell">
+      <div class="section__inner">
+        <!-- left panel -->
+        <div class="section__image">
+          <div class="section_image-inner d-sm-flex">
+            {% if section.settings.title != blank %}
+              <h2 class="section__title">{{section.settings.title}}</h2>
+            {% endif %}
+            {% if section.settings.content != blank %}
+              {{section.settings.content}}
+            {% endif %}
+            {% if section.settings.btn_arrow_url != blank %}
+            <a  href="{{section.settings.btn_arrow_url}}" class="btn btn--link mt-6">
+              {{section.settings.btn_arrow_text}}
+              <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="408px" height="408px" viewBox="0 0 408 408" style="enable-background:new 0 0 408 408;" xml:space="preserve">
+                <g>
+                  <g id="arrow-forward">
+                    <polygon points="204,0 168.3,35.7 311.1,178.5 0,178.5 0,229.5 311.1,229.5 168.3,372.3 204,408 408,204"></polygon>
+                  </g>
+                </g>
+              </svg>
+            </a>
+            {% endif %}
+          </div>
+        </div>
+        <!-- right panel -->
+        <div class="section__content container-calendly">
+          <div class="calendly-inline-widget" 
+              data-url="{{section.settings.calendlyUrl}}" 
+              style="min-width:320px;height:620px;">
+            </div>
+        </div>
+      </div>
+    </div>
+</div>
+
+{% if section.settings.calendlyUrl != blank %}
+  <script src="https://assets.calendly.com/assets/external/widget.js"></script> 
+{% endif %}
+
+{% stylesheet %}
+.mt-6 {
+  margin-top: 2rem!important;
+}
+
+.font-300 {
+  font-weight: 300!important;
+}
+
+.section_image-inner {
+  padding-top: 3rem;
+}
+
+@media screen and (min-width: 769px) {
+  .section_image-inner {
+    width: 65%;
+    padding-top: 4rem;
+    padding-left: 3rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .section-appointment .section__title,
+  .section-appointment .section__title + p { text-align: center !important}
+}
+
+@media screen and (max-width: 768px) {
+  .d-sm-flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+}
+{% endstylesheet %}
+
+{% schema %}
+{   
+    "name": "Appointment",
+    "class": "section-appointment",
+    "tag": "section",
+    "settings": [
+      {
+       "type": "color",
+       "id": "background_color",
+       "label": "Background color",
+       "default": "#ffffff"
+      },
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Title",
+        "default": "Schedule An Appointment"
+      },
+      {
+        "type": "richtext",
+        "id": "content",
+        "label": "Content"
+      },
+      {
+        "id": "calendlyUrl",
+        "type": "text",
+        "label": "Calendly URL",
+        "default": "https://calendly.com/kassatexny/design-studio-appointment"
+      },
+      {
+        "id": "btn_arrow_text",
+        "type": "text",
+        "label": "Button Text",
+        "default": "Click me"
+      },
+      {
+        "id": "btn_arrow_url",
+        "type": "text",
+        "label": "Button URL"
+      }
+    ]
+}
+{% endschema %}

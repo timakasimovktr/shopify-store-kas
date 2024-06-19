@@ -1,0 +1,184 @@
+{%- assign class_current = 'current' -%}
+{%- assign class_has_children = 'has-dropdown' -%}
+{%- assign linklist_links = linklists[handle].links -%}
+
+{%- capture dropdowns -%}
+  {%- section 'nav-dropdown' -%}
+{%- endcapture -%}
+
+{{ dropdowns }}
+
+{%- assign dropdowns_meta =  dropdowns | split: '<!--' | last | split: '-->' | first -%}
+
+{%- if linklist_links.size > 0 -%}
+  <ul>
+    {%- for link in linklist_links -%}
+      {%- assign link_handle = link.handle -%}
+
+      {%- assign classes = '' -%}
+
+      {%- if dropdowns_meta contains link_handle -%}
+        {%- assign classes = classes | append: class_has_children -%}
+      {%- endif -%}
+
+      {%- if link.active -%}
+        {%- assign classes = classes | append: ' ' | append: class_current -%}
+      {%- endif -%}
+
+      <li {% if classes != empty %} class="{{ classes }}"{% endif %}>
+        <a href="{{ link.url }}">{{ link.title }}<span class="visible-xs-block visible-pad-block visible-padpro-block" aria-expanded="false"></span></a>
+
+        {%- if classes contains class_has_children -%}
+          {%- assign start_split = 'linkHandle:' | append: link_handle -%}
+
+          {%- assign array_meta = dropdowns_meta | split: start_split | last | split: '@@' | first | split: '||' -%}
+
+          {%- assign large_image = array_meta[1] | replace: 'largeImage:', '' -%}
+          {%- assign nav_1 = array_meta[2] | replace: 'nav-1:', '' -%}
+          {%- assign nav_2 = array_meta[3] | replace: 'nav-2:', '' -%}
+          {%- assign nav_3 = array_meta[4] | replace: 'nav-3:', '' -%}
+          {%- assign nav_4 = array_meta[5] | replace: 'nav-4:', '' -%}
+          {%- assign box_link = array_meta[6] | replace: 'boxLink:', '' -%}
+          {%- assign box_image = array_meta[7] | replace: 'boxImage:', '' -%}
+          {%- assign box_title = array_meta[8] | replace: 'boxTitle:', '' -%}
+          {%- assign box_content = array_meta[9] | replace: 'boxContent:', '' -%}
+          {%- assign box_thumbnail = array_meta[10] | replace: 'boxThumbnail:', '' -%}
+
+          {%- assign dropdown_1_links = linklists[nav_1].links -%}
+          {%- assign dropdown_2_links = linklists[nav_2].links -%}
+          {%- assign dropdown_3_links = linklists[nav_3].links -%}
+          {%- assign dropdown_4_links = linklists[nav_4].links -%}
+
+          <div class="nav__dropdown">
+            <div class="nav__dropdown-inner">
+              {%- if large_image != empty -%}
+                <div class="lazyload nav__dropdown-image hidden-xs hidden-pad hidden-padpro" data-expand="-20" data-bg="{{ large_image }}" data-image="{{ large_image }}">
+                </div><!-- /.nav__dropdown-image -->
+
+                {%- if dropdown_1_links.size > 0 or dropdown_2_links.size > 0 or dropdown_3_links.size > 0 or dropdown_4_links.size > 0 -%}
+                  <div class="nav__dropdown-cols">
+                    {%- if dropdown_1_links.size > 0 or dropdown_3_links.size > 0 -%}
+                      <div class="nav__dropdown-col">
+                        <ul>
+                          {%- if dropdown_1_links.size > 0 -%}
+                            {%- include 'dropdown-menu' with dropdown_links: dropdown_1_links -%}
+                          {%- endif -%}
+
+                          {%- if dropdown_3_links.size > 0 -%}
+                            {%- include 'dropdown-menu' with dropdown_links: dropdown_3_links -%}
+                          {%- endif -%}
+                        </ul>
+                      </div><!-- /.nav__dropdown-col -->
+                    {%- endif -%}
+
+                    {%- if dropdown_2_links.size > 0 or dropdown_4_links.size > 0 -%}
+                      <div class="nav__dropdown-col">
+                        <ul>
+                          {%- if dropdown_2_links.size > 0 -%}
+                            {%- include 'dropdown-menu' with dropdown_links: dropdown_2_links -%}
+                          {%- endif -%}
+
+                          {%- if dropdown_4_links.size > 0 -%}
+                            {%- include 'dropdown-menu' with dropdown_links: dropdown_4_links -%}
+                          {%- endif -%}
+                        </ul>
+                      </div><!-- /.nav__dropdown-col -->
+                    {%- endif -%}
+                  </div><!-- /.nav__dropdown-cols -->
+                {%- endif -%}
+                {%- if box_thumbnail != empty and box_link != empty -%}
+                  <a href="{{box_link}}" class="nav__dropdown-box hidden-xs hidden-pad hidden-padpro nav__dropdown-thumbnail">
+                    <img data-src="{{ box_thumbnail }}" alt="Kassatex Offerings" class="lazyload full-width" />
+                  </a>
+                {%- else -%}
+                  {%- if box_link != empty and box_image != empty or box_title != empty or box_content != empty -%}
+                    <a href="{{box_link}}" class="nav__dropdown-box hidden-xs hidden-pad hidden-padpro">
+                      {%- if box_image != empty -%}
+                        <img src="{{ box_image }}" alt="Kassatex Offerings" />
+                      {%- else -%}
+                        {%- include 'icons' icon: 'nav-zzz' -%}
+                      {%- endif -%}
+
+                      {%- if box_title != empty -%}
+                        <h6>{{ box_title }}</h6>
+                      {%- endif -%}
+
+                      {%- if box_content != empty -%}
+                        <p>{{ box_content }}</p>
+                      {%- endif -%}
+                    </a><!-- /.nav__dropdown-box -->
+                  {%- endif -%}
+                {%- endif -%}
+              {%- endif -%}
+            </div><!-- /.nav__dropdown-inner -->
+          </div><!-- /.nav__dropdown -->
+        {%- endif -%}
+      </li>
+    {%- endfor -%}
+
+    <li class="visible-xs-block visible-pad-block visible-padpro-block"> 
+      <a href="/pages/rewards" title="rewards">Rewards</a> 
+    </li> 
+
+    {%- if settings.blog_link != blank -%}
+      <li class="visible-xs-block visible-pad-block visible-padpro-block">
+        <a href="{{ settings.blog_link }}" target="_blank">{{ 'general.header.blog_link_text' | t }}</a>
+      </li>
+    {%- endif -%}
+
+    {%- if customer -%}
+      <li class="visible-xs-block visible-pad-block visible-padpro-block has-dropdown">
+        <a href="/account">{{ 'general.header.account_link_text' | t }}
+          <span class="visible-xs-block visible-pad-block visible-padpro-block" aria-expanded="false"></span>
+        </a>
+        <div class="nav__dropdown">
+          <div class="nav__dropdown-inner">
+            <div class="nav__dropdown-cols">
+              <div class="nav__dropdown-col">
+                <ul>
+                  <li class=" has-dropdown">
+                    <div class="nav__dropdown">
+                      <ul>      
+                        <li><a href="/account">My Profile</a></li>
+                        <li><a href="/account/addresses">Address Book</a></li>
+                        <li><a href="/pages/orders">Order History</a></li>
+                        <li><a href="/pages/rewards">My Rewards</a></li> 
+                        <li><a href="/account/logout">Sign Out</a></li>
+                      </ul>
+                    </div><!-- /.nav__dropdown -->
+                  </li>
+                </ul>
+              </div><!-- /.nav__dropdown-col -->
+            </div><!-- /.nav__dropdown-cols -->
+          </div><!-- /.nav__dropdown-inner -->
+        </div>
+      </li>
+    {%- else -%}
+      <li class="visible-xs-block visible-pad-block visible-padpro-block">
+        <a href="/account">{{ 'general.header.login_link_text' | t }}</a>
+      </li>
+    {%- endif -%}
+    <li class="visible-xs-block visible-pad-block visible-padpro-block">
+      <a href="/pages/wishlist" class="wishlist-fav-icon">
+        <i aria-hidden="true" focusable="false" role="presentation" class="fa fa-heart-o"></i>
+        <span class="">Wishlist</span>
+      </a>
+    </li>
+  </ul>
+{%- endif -%}
+
+<style>
+  .nav__dropdown .first_level{
+    display: block;
+    font-size: 1.05rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #333;
+    font-weight: 400;
+    margin-bottom: 0.5rem;
+  }
+
+  .nav__dropdown .first_level .nav__dropdown{
+    text-transform: capitalize;
+  }
+</style>

@@ -1,0 +1,20 @@
+<div class="currency_selector{{ custom_class }}">
+  {%- if settings.title_currency_selector != blank -%}
+    <h6>{{ settings.title_currency_selector}}</h6>
+  {%- endif -%}
+  <div class="select">
+    <select class="{{ select_id }}">
+      {%- assign a_currencies = settings.available_currencies | split: ',' -%}
+      {%- for currency in a_currencies -%}
+
+        {%- assign currency_value = currency | strip | downcase -%}
+        {%- if currency_value == 'local' -%}
+          {%- assign currency_value = "-1" -%}
+          <option class="gip_currency_select_local" value="{{ currency_value | upcase }}">{{ currency | strip | upcase }}</option>
+        {%- else -%}
+          <option value="{{ currency_value | upcase }}">{{ currency | strip | upcase }}</option>
+        {%- endif -%}
+      {%- endfor -%}
+    </select>
+  </div>
+</div>

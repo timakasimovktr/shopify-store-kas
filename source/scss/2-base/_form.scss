@@ -1,0 +1,548 @@
+/* ------------------------------------------------------------ *\
+  Form
+\* ------------------------------------------------------------ */
+
+.form {
+  &.form__center {
+    margin: auto;
+    width: 90%;
+  }
+
+  .form__row {
+    margin-bottom: 12px;
+  }
+
+  .form__cols {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  
+
+  .form__col {
+    width: 49%;
+  }
+
+  .form__link {
+    font-size: 14px;
+    line-height: 1.29;
+    color: $default-color;
+    letter-spacing: 0.035em;
+    font-weight: 300;
+  }
+
+  .btn--solid {
+    margin-top: 10px;
+  }
+
+  .form__btn {
+    margin-top: 16px;
+
+    + .form__btn {
+      margin-left: 10px;
+    }
+  }
+
+  .select select {
+    padding-left: 10px;
+    height: 40px;
+  }
+
+  /* Modifiers */
+  &--login,
+  &--recover-password,
+  &--add-address {
+    display: none;
+  }
+
+  &--add-address {
+    margin-top: 20px;
+  }
+
+  &.form--edit-address {
+    .btn {
+      padding: 15px 34px 14px;
+    }
+  }
+
+  /* Mobile */
+
+  @media (max-width: #{$responsive-xs}) {
+    .form__cols {
+      display: block;
+    }
+
+    .form__col {
+      width: 100%;
+    }
+
+    .form__btn {
+      display: block;
+      width: 100%;
+      text-align: center;
+
+      + .form__btn {
+        margin-left: 0;
+      }
+    }
+  }
+}
+
+input:checked + .form {
+  display: block;
+}
+
+/* ------------------------------------------------------------ *\
+  Form Product Simple
+\* ------------------------------------------------------------ */
+
+.form-product-simple {
+  visibility: hidden;
+  overflow-y: auto;
+  position: absolute;
+  bottom: 25px;
+  left: 34px;
+  right: 34px;
+  max-height: calc(100% - 50px);
+  min-height: 70px;
+  padding: 8px 10px 9px;
+  background-color: lightgrey;
+  opacity: 0;
+  transition: opacity 0.3s, visibility 0.3s;
+
+  &.is-expanded {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  .form__row {
+    text-align: center;
+  }
+
+  .form__row + .form__row {
+    margin-top: 8px;
+  }
+
+  .form__label {
+    margin-bottom: 5px;
+    display: inline-block;
+    font-size: 14px;
+    line-height: 2.14;
+    color: $default-color;
+    font-weight: 400;
+  }
+
+  @media (min-width: 420px) {
+    left: 20%;
+    right: 20%;
+  }
+
+  @media (min-width: 500px) {
+    left: 25%;
+    right: 25%;
+  }
+
+  @media (min-width: 769px) {
+    left: 1%;
+    right: 1%;
+  }
+
+  @media (min-width: 900px) {
+    left: 8%;
+    right: 8%;
+  }
+
+  @media (min-width: 1024px) {
+    left: 12%;
+    right: 12%;
+  }
+
+  @media (min-width: 1100px) {
+    left: 16%;
+    right: 16%;
+  }
+
+  @media (min-width: 1230px) {
+    left: 20%;
+    right: 20%;
+  }
+
+  @media (min-width: 1230px) {
+    left: 20%;
+    right: 20%;
+  }
+
+  @media (min-width: #{$responsive-md}) {
+    left: 22%;
+    right: 22%;
+  }
+}
+
+/* ------------------------------------------------------------ *\
+  Form Product
+\* ------------------------------------------------------------ */
+
+.form-product {
+  margin-bottom: 8px;
+  .preorder--message {
+    width: 100%;
+    font-size: 12px;
+    line-height: 1.29;
+    color: rgb(99, 99, 99);
+    font-weight: 400;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    text-align: center;
+  }
+  .form__row {
+    width: 100%;
+    padding-top: 4px;
+    border-top: 1px solid #cdccc9;
+    margin-bottom: 12px;
+
+    > a {
+      float: right;
+      font-weight: 300;
+      font-style: normal;
+      color: #696969;
+      font-size: 14px;
+      line-height: 2.14;
+      letter-spacing: 0.04em;
+      text-decoration: none;
+      transition: opacity 0.3s;
+
+      &#to_view_customizer {
+        color: $default-color;
+        font-style: normal;
+        line-height: 1.36;
+        letter-spacing: 0.072em;
+      }
+
+
+      &:hover {
+        opacity: 0.5;
+      }
+    }
+  }
+
+  .form__row--without-border {
+    border: none;
+  }
+
+  .form__row--half {
+    max-width: 170px;
+    border-top: none;
+    padding: 0;
+    margin: 0 15px 10px 0;
+
+    .form__controls {
+      margin: 0;
+    }
+  }
+
+  .form__row--full {
+    border-top: none;
+  }
+
+  .form__label {
+    display: inline-block;
+    margin-bottom: 6px;
+    font-size: 14px;
+    line-height: 2.14;
+    color: $contrast-color;
+    font-weight: 300;
+  }
+
+  .form__controls {
+    margin-bottom: 4px;
+  }
+
+  .form__actions {
+    margin-bottom: 10px;
+    width: calc(100% - 185px);
+  }
+
+  .form__btn {
+    width: 100%;
+    max-width: 100%;
+    padding: 14px 5px;
+    font-weight: 300;
+    font-size: 16px;
+  }
+
+  .list-radios-colors label {
+    width: 20px;
+    height: 20px;
+
+    &:after {
+      width: 26px;
+      height: 26px;
+    }
+  }
+
+  .list-radios-boxes {    
+    label:after {
+      border-color: $default-color;
+    }
+
+    input + label::after {
+      transition: none;
+    }
+
+    input[disabled] + label,
+    input[disabled] + label::after,
+    input[disabled] + label:hover::after {
+      border: none !important;
+      cursor: initial;
+    }
+
+    input[disabled] + label::after {
+      content: " ";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #000;
+      background-image: linear-gradient( to top right, white 48%, black, white 52% );
+      opacity: .5;
+    }
+  }
+
+  form {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+    align-items: center;
+  }
+
+  ul {
+    justify-content: flex-start;
+  }
+
+  /* Modifiers */
+  &--accessories {
+    margin-top: 20px;
+
+    .form__row:not(.form__row--half) {
+      padding: 0;
+      margin-bottom: 23px;
+    }
+
+    .select {
+      display: block;
+      width: 100%;
+
+      select {
+        text-transform: uppercase;
+      }
+    }
+  }
+
+  /* Mobile */
+
+  @media (max-width: 1170px) {
+    .form__actions {
+      width: calc(96% - 140px);
+    }
+
+    .form__row--half {
+      max-width: 140px;
+      width: 45%;
+      margin-right: 4%;
+    }
+    
+    .form__btn {
+      width: 100%;
+    }
+  }
+
+  /* Mobile */
+
+  @media (max-width: #{$responsive-xs}) {
+    padding-bottom: 10px;
+
+    .form__row--half {
+      max-width: 170px;
+      width: 48%;
+    }
+
+    .form__actions {
+      width: calc(96% - 170px);
+      min-width: 48%;
+    }
+
+    .form__btn {
+      width: 100%;
+    }
+  }
+}
+
+.form-product .form__row>a,
+.form-product .form__label,
+.section-product .section__price {
+	font-weight: 400;
+}
+
+
+/* ------------------------------------------------------------ *\
+  Section Gift-Card Form
+\* ------------------------------------------------------------ */
+
+.section__form {
+  display: grid;
+  grid-template-areas: 'title title' 'rName sName' 'rEmail rEmail' 'message message';
+  gap: 0.5rem 1rem;
+  margin: 1rem 0;
+
+  .line-item-property__field label {
+    line-height: 1.41667;
+    font-size: 12px;
+  }
+
+  input, textarea {
+    background-color: #f7f7f7;
+    border: none;
+    border-radius: 2px;
+    box-shadow: 0 1px 0 #fff;
+    color: #435c70;
+    margin-top: 5px;
+    outline: 0;
+    overflow: auto;
+    padding: 14px 20px;
+    resize: none;
+    width: 100%;
+    font-size: 14px;
+  }
+
+  .section__form-title {
+    grid-area: title;
+    font-size: calc(.64103vw + 13.07692px);
+    line-height: 1.4;
+    text-align: center;
+  }
+
+  .recipients-name {
+    grid-area: rName;
+  }
+  .senders-name {
+    grid-area: sName;
+  }
+  .recipients-email {
+    grid-area: rEmail;
+  }
+  .your-message {
+    position: relative;
+    grid-area: message;
+    margin-bottom: 1rem;
+
+    small {
+      position: absolute;
+      right: 10px;
+      bottom: -1rem;
+    }
+  }
+
+  @media (max-width: 400px) {
+    grid-template-areas: 'title' 'rName' 'sName' 'rEmail' 'message';
+  }
+
+}
+
+/* ------------------------------------------------------------ *\
+  Form Contacts
+\* ------------------------------------------------------------ */
+
+.form-contacts {
+  max-width: 564px;
+
+  .form__head {
+    margin-bottom: 36px;
+    text-align: center;
+
+    p {
+      display: 300px;
+      line-height: 1.44;
+      font-weight: 300;
+      letter-spacing: 0.025em;
+    }
+  }
+
+  .form__title {
+    margin-bottom: 16px;
+    font-family: $font-family-serif;
+    line-height: 1.25;
+    color: $default-color;
+    font-weight: 400;
+  }
+
+  .form__cols {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+  .form__col {
+    width: 49%;
+  }
+
+  .form__row {
+    position: relative;
+    margin-bottom: 16px;
+  }
+
+  .form__label {
+    visibility: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    opacity: 0;
+  }
+
+  .select select {
+    height: 40px;
+    padding-left: 10px;
+    text-transform: uppercase;
+  }
+
+  /* Tablet Portrait */
+
+  @media (max-width: #{$responsive-sm}) {
+    max-width: none;
+    width: 100%;
+  }
+
+  /* Mobile */
+
+  @media (max-width: #{$responsive-xs}) {
+    .form__head {
+      margin-bottom: 26px;
+
+      p {
+        font-size: 14px;
+        line-height: 1.36;
+      }
+    }
+
+    .form__title {
+      margin-bottom: 9px;
+      font-size: 24px;
+    }
+
+    .form__col {
+      width: 100%;
+    }
+  }
+}
+
+.options-container {
+  width: 100%;
+}
+
+.form__row.first-row {
+  padding-top: 1rem!important;
+  padding-bottom: .5rem!important;
+}

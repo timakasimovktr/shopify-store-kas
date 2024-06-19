@@ -1,0 +1,70 @@
+{%- assign _section = section.settings -%}
+{%- assign _blocks = section.blocks -%}
+
+<section class="section-returns">
+
+  {%- if _blocks.size > 0 -%}
+    <div class="section-returns__texts">
+      {%- for block in _blocks -%}
+        {%- assign current_block = block.settings -%}
+        <p>{{ current_block.title }}</p>
+      {%- endfor -%}
+    </div>
+  {%- endif -%}
+
+  {%- if _section.button_text != blank -%}
+    {% assign open_type = _section.open_url_type %}
+    <div class="section-returns__actions">
+      <a href="{{_section.button_url}}" class="btn btn--solid" {% if open_type == "1" %}target="_blank"{% endif %}>{{ _section.button_text }}</a>
+    </div>
+  {%- endif -%}
+  <p>{{ _section.note }}</p>
+
+</section><!-- /.section-press -->
+
+{% schema %}
+{
+  "name": "Return Policy",
+  "settings": [
+    {
+      "type": "textarea",
+      "id": "note",
+      "label": "Note",
+      "default": "We accept returns or exchanges for your order within 30 days of purchase. Products must be in the original, unworn, unwashed, and undamaged condition. We are not responsible for items lost in transit and recommend that you use an insured courier and retain your receipt. We reserve the right to decline any return or exchange request that is not in compliance with our policy."
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Title",
+      "default": "Make a Return"
+    },
+    {
+      "type": "url",
+      "id": "button_url",
+      "label": "Button URL"
+    },
+    {
+       "type": "select",
+       "id": "open_url_type",
+       "options": [
+          { "value": "1", "label": "New tab"},
+          { "value": "0", "label": "Self"}
+       ],
+       "label": "Open URL"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Item",
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "title",
+          "label": "Text"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,26 @@
+/* ------------------------------------------------------------ *\
+  Filter
+\* ------------------------------------------------------------ */
+
+.filter {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 26px;
+
+  .filter__text {
+    font-size: 14px;
+    line-height: 2.14;
+    letter-spacing: 0.15em;
+    color: #000;
+    font-weight: 400;
+    text-transform: uppercase;
+  }
+
+  /* Mobile */
+
+  @media (max-width: #{$responsive-xs}) {
+    margin-bottom: 19px;
+  }
+}

@@ -1,0 +1,115 @@
+{%- assign _section = section.settings -%}
+{%- if _section.is_enable -%}
+  <div class="bundle-image-content bundle-image-tutorial">
+    <div class="shell">
+      {%- for block in section.blocks -%}
+        {%- assign _block = block.settings -%}
+        <div class="section__inner items{% if _block.is_inverse %} section__inner--inverse{% endif %}">
+          <div class="item">
+            {%- if _block.video != blank -%}
+              <div class="item__video">
+                <video muted autoplay loop playsinline>
+                  <source src="{{ _block.video }}" type="video/mp4"></source>
+                </video>
+              </div><!-- /.video-holder -->
+            {%- else -%}
+              {%- if _block.image != blank -%}
+                <figure class="section__image">
+                  <img 
+                    class="lazyload full-width"
+                    data-srcset="{% include 'bgsets', img: _block.image %}"
+                    data-sizes="auto"
+                    src="{{ _block.image | img_url: '300x' }}"
+                  />
+                </figure><!-- /.section__image -->
+              {%- endif -%}
+            {%- endif -%}
+          </div>
+          <div class="item bic-content">
+            <div class="bic-content--inner">
+              {%- if _block.title != blank -%}
+                <h2 class="section__title difference-page-section-title">{{ _block.title | newline_to_br }}</h2><!-- /.section__title -->
+              {%- endif -%}
+
+              {%- if _block.description != blank -%}
+                <div class="section__description">{{ _block.description | newline_to_br }}</div><!-- /.section__subtitle -->
+              {%- endif -%}
+              {%- if _block.button_text != blank and _block.button_url != blank -%}
+                <a href="{{ _block.button_url }}" class="btn btn--link">
+                  {{ _block.button_text }}
+                  {%- include 'icons' with icon: 'arrow-right' -%}
+                </a>
+              {%- endif -%}
+            </div>
+          </div>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+{%- endif -%}
+{% schema %}
+{
+  "name": "Blogs Tutorial",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "is_enable",
+      "label": "Is Enable/Disable",
+      "default": true
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Item",
+      "settings": [
+        {
+          "type": "checkbox",
+          "id": "is_inverse",
+          "label": "Inverse content"
+        },
+        {
+          "type": "header",
+          "content": "Video Area"
+        },
+        {
+          "type": "text",
+          "id": "video",
+          "label": "Video Url",
+          "info": "MP4 file is recommended."
+        },
+        {
+          "type": "header",
+          "content": "Image Area"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "textarea",
+          "id": "title",
+          "label": "Title"
+        },        
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description"
+        },
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "Button text",
+          "default": "shop"
+        },
+        {
+          "type": "url",
+          "id": "button_url",
+          "label": "Button URL"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

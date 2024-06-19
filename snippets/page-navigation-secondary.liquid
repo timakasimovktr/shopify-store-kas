@@ -1,0 +1,7 @@
+{% assign navLinks = linklists[handle].links %}
+
+<div class="secondary-navigation visible-md-block visible-lg-block visible-pad-block visible-sm-block" data-nav-desktop="desktop" data-nav-url="{{ page.url }}">
+  {% for link in navLinks %}
+    <span>{{ link.title }}</span>
+  {% endfor %}
+</div>

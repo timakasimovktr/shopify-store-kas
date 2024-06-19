@@ -1,0 +1,115 @@
+{%- assign current_variant = current_product.selected_or_first_available_variant -%}
+
+<form action="/cart/add" method="post" data-gift-box-form style="position: relative">
+
+  <select name="id" class="hidden" data-options="{% for option in current_product.options %}{{option | downcase | handleize }}{% unless forloop.last %},{% endunless %}{% endfor %}">
+    {% for variant in current_product.variants %}
+      {% capture data_fields %}{% for option in current_product.options %}data-{{option | downcase | handleize }}="{{ variant.options[forloop.index0] | downcase | handleize }}" {% endfor %}{% endcapture %}
+      {% if variant.available %}
+        <option data-options="{% for option in variant.options %}{{ option | downcase | handleize }}{% unless forloop.last %}|{% endunless %}{% endfor %}" {% if variant == current_variant %} selected="selected" {% endif %} data-sku="{{ variant.sku }}" value="{{ variant.id }}" data-price="{{ variant.price | money }}" {{data_fields}} data-q-price="{{ variant.price | divided_by: 4 | money_with_currency }}">{{ variant.title }} - {{ variant.price | money_with_currency }}</option>
+      {% else %}
+        <option data-options="{% for option in variant.options %}{{ option | downcase | handleize }}{% unless forloop.last %}|{% endunless %}{% endfor %}" disabled="disabled" data-price="{{ variant.price | money }}" {{data_fields}} data-q-price="{{ variant.price | divided_by: 4 | money_with_currency }}">
+          {{ variant.title }} - {{ 'products.product.sold_out' | t }}
+        </option>
+      {% endif %}
+    {% endfor %}
+  </select>
+
+  {%- for option in current_product.options_with_values -%}
+    {%- assign option_handle = option.name | handle -%}
+
+    {%- assign option_selector = 'option' | append: forloop.index -%}
+    {%- assign current_variant_option = current_variant[option_selector] -%}
+    {%- assign current_variant_option_handle = current_variant_option | handle -%}
+
+    <div class="form__row {% if forloop.first %}first-row{% endif %}">
+      <label class="form__label">{{ option.name | capitalize }}</label>
+
+      <div class="form__controls">
+        {%- if option_handle == 'color' -%}
+          <ul class="list-radios-colors">
+            {%- for value in option.values -%}
+              {%- assign value_handle = value | handle -%}
+
+              {% assign cc = '' | default: '#ffffff' %}
+              {% for vc in vanityColors %}
+                {% assign _vc = vc | split: '|' %}
+                {% assign _cn = _vc[0] %}
+                {% assign _cc = _vc[1] %}
+                {% if _cn == value_handle %}
+                  {% assign cc = _cc %}
+                {% endif %}
+              {% endfor %}
+
+              <li>
+                <div class="radio">
+                  <input type="radio" placeholder="{{option_handle}}: {{ value }}" {% if forloop.first %}checked{% endif %} name="{{ option_handle }}" id="{{ option_handle | append: '-' | append: value_handle | append: '-' | append: forloop.index | append: '-' | append: additional_suffix | append: current_product.id }}" value="{{ value | handle }}" data-preffix="{{option_handle}}" />
+
+                  <label for="{{ option_handle | append: '-' | append: value_handle| append: '-' | append: forloop.index | append: '-' | append: additional_suffix | append: current_product.id }}" data-color-name="{{ value | handle }}" style="background-color: {{ cc }};">&nbsp;</label>
+                </div><!-- /.radio -->
+              </li>
+            {%- endfor -%}
+          </ul><!-- /.list-radios-colors -->
+        {%- else -%}
+          <ul class="list-radios-boxes">
+            {%- for value in option.values -%}
+              {%- assign value_handle = value | handle -%}
+
+              <li>
+                <div class="radio">
+                  <input placeholder="{{option_handle}}: {{ value }}" type="radio" {% if forloop.first %}checked{% endif %} name="{{ option_handle }}" id="{{ option_handle | append: '-' | append: value_handle | append: '-' | append: forloop.index | append: '-' | append: additional_suffix | append: current_product.id }}" value="{{ value | handle }}" data-preffix="{{option_handle}}" />
+
+                  <label for="{{ option_handle | append: '-' | append: value_handle | append: '-' | append: forloop.index | append: '-' | append: additional_suffix | append: current_product.id }}">{{ value }}</label>
+                </div><!-- /.radio -->
+              </li>
+            {%- endfor -%}
+          </ul><!-- /.list-radios -->
+        {%- endif -%}
+      </div><!-- /.form__controls -->
+    </div><!-- /.form__row -->
+  {%- endfor -%}
+
+  <input type="hidden" name="quantity" value="1" />
+  <input id="final-sale" type="hidden" value="Not eligible for discounts or promo codes" name="properties[noDiscountsAllowed]">
+  <input id="final-sale" type="hidden" value="Final Sale" name="properties[saleDiscountMsg]">
+  <button type="submit" class="btn btn--solid btn--block">{{ settings.gift_btn }} (+<span class="gift-price">{{ current_variant.price | money }}</span>)</button>
+</form>
+
+<script>
+  window.$form_ = document.querySelector('[data-gift-box-form]')
+  window.$giftPrice = window.$form_.querySelector('.gift-price')
+  window.$inputs = window.$form_.querySelectorAll('input[data-preffix]')
+  window.$options = window.$form_.querySelectorAll('option[data-options]')
+  window.$lastClickedInputs = []
+  window.$inputs.forEach($input => {
+    $input.addEventListener('click', () => {
+      if (window.$lastClickedInputs.includes($input)) return
+      // find checked inputs
+      let selectedOptions = []
+      window.$lastClickedInputs = []
+      window.$inputs.forEach($inp => {
+        if ($inp.checked) {
+          selectedOptions.push($inp.value)
+          window.$lastClickedInputs.push($inp)
+        }
+      })
+
+      // find select option for checked input
+      window.$options.forEach($option => {
+        if($option.dataset.options.split('|').every(option => selectedOptions.includes(option))) {
+          $option.selected = true
+          window.$giftPrice.innerHTML = $option.dataset.price
+        } else {
+          $option.selected = false
+        }
+      })
+    })
+  })
+
+  window.addEventListener('beforeunload', () => {
+    delete window.$form_
+    delete window.$inputs
+    delete window.$options
+    delete window.$lastClickedInputs
+  })
+</script>

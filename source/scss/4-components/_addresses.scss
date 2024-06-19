@@ -1,0 +1,72 @@
+/* ------------------------------------------------------------ *\
+  Addresses
+\* ------------------------------------------------------------ */
+
+.addresses {
+  .accordions {
+    margin-bottom: 15px;
+  }
+
+  .accordion-section {
+    padding: 13px 10px 17px 0;
+    border-top: 1px solid #e1dfdf;
+    border-bottom: 1px solid #e1dfdf;
+
+    + .accordion-section {
+      border-top: none;
+    }
+  }
+
+  .accordion-head {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+  .accordion-head-inner {
+    max-width: 145px;
+    font-size: 14px;
+    line-height: 1.29;
+    color: $default-color;
+    letter-spacing: 0.035em;
+    font-weight: 300;
+  }
+
+  .accordion-head-actions {
+    width: 190px;
+
+    a + a {
+      margin-top: 13px;
+    }
+
+    .is-active {
+      opacity: 0.2;
+      pointer-events: none;
+    }
+  }
+
+  .accordion-body {
+    display: none;
+    padding-top: 20px;
+  }
+
+  /* Mobile */
+
+  @media (max-width: #{$responsive-xs}) {
+    .accordion-head-inner,
+    .accordion-head-actions {
+      max-width: 100%;
+      width: 100%;
+    }
+
+    .accordion-head-actions {
+      margin-top: 31px;
+    }
+
+    > a {
+      display: block;
+      width: 100%;
+    }
+  }
+}

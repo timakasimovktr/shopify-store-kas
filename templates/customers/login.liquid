@@ -1,0 +1,261 @@
+{% comment %}
+	Forgot Password
+{% endcomment %}
+{% capture recover_customer_password %}
+	{% form 'recover_customer_password', class: 'form form--default form--recover-password' %}
+		{% capture error_recover_email %}{% if form.errors %}error{% endif %}{% endcapture %}
+
+		{% if form.posted_successfully? %}
+			{% assign recover_password = true %}
+		{% endif %}
+
+		{% if form.posted_successfully? %}
+			{% assign reset_success = true %}
+		{% endif %}
+
+		<div class="form__head">
+			<h2 class="continue_as_guest">{{ 'customer.recover_password.title' | t }}</h2>
+		</div><!-- /.form__head -->
+
+		{% if form.errors %}
+			{% assign recover_password_checked = true %}
+			<div class="form__notice error">
+				{{ form.errors | default_errors }}
+			</div><!-- /.form__notice -->
+		{% endif %}
+
+		<div class="form__row">
+			<label for="field-recover-email" class="form__label" hidden>{{ 'customer.recover_password.email' | t }}</label>
+
+			<input type="email" value="" name="email" id="field-recover-email" class="field {{ error_recover_email }}" placeholder="{{ 'customer.recover_password.email' | t }}" autocorrect="off" autocapitalize="off">
+		</div><!-- /.form__row -->
+
+		<div class="form__actions">
+			<input type="submit" class="form__btn btn btn--block" value="{{ 'customer.recover_password.submit' | t }}">
+		</div><!-- /.form__actions -->
+	{% endform %}
+{% endcapture %}
+
+{% comment %}
+	Login
+{% endcomment %}
+{% capture customer_login %}
+{% assign sp_form_action = "/account/login" %}
+	{% if content_for_header contains "vital-forms.js" %}
+		{% assign sp_form_action = "https://vital-forms-api.c1.humanpresence.app/api/form/vfob/9198ac30-a9b7-4422-a078-20b406898361$5fdcbbab7d524d00b29b275d" %}
+	{% endif %}
+	{% form 'customer_login', class: 'form form--default form--login', action: sp_form_action, data-vfib: "0" %}
+		{% capture error_login_email %}{% if form.errors contains "password" %}error{% endif %}{% endcapture %}
+		{% capture error_login_password %}{% if form.errors contains "email" %}error{% endif %}{% endcapture %}
+
+		<div class="form__head">
+			<h2>{{ 'customer.login.title' | t }}</h2>
+
+			<!--h6>{{ 'customer.login.social_title' | t }}</h6>
+			<div class="one-click-social-login"></div-->
+
+			<h6>{{ 'customer.login.subtitle' | t }}</h6>
+		</div><!-- /.form__head -->
+
+		{% if form.errors %}
+			<div class="form__notice error">
+				{{ form.errors | default_errors }}
+			</div><!-- /.form__notice -->
+		{% endif %}
+
+		{% if reset_success %}
+			<div class="form__notice success">
+				{{ 'customer.recover_password.success' | t }}
+			</div><!-- /.form__notice -->
+		{% endif %}
+
+		<div class="form__body">
+			<div class="form__row">
+				<label for="field-login-email" class="form__label" hidden>{{ 'customer.login.email' | t }}</label>
+
+				<input type="email" name="customer[email]" id="field-login-email" class="field {{ error_login_email }}" placeholder="{{ 'customer.login.email' | t }}" value="" autocorrect="off" autocapitalize="off" />
+			</div><!-- /.form__row -->
+
+			<div class="form__row">
+				<label for="field-login-password" class="form__label" hidden>{{ 'customer.login.password' | t }}</label>
+
+				<input type="password" value="" name="customer[password]" id="field-login-password" class="field {{ error_login_password }}" placeholder="{{ 'customer.login.password' | t }}" />
+			</div><!-- /.form__row -->
+		</div><!-- /.form__body -->
+
+		<div class="form__actions">
+			<span class="form__link">
+				<label for="btn-form-recover-password">{{ 'customer.login.forgot_password' | t }}</label>
+			</span>
+
+			{% if shop.customer_accounts_optional %}
+				<!--span class="link link-register form__link">
+					{{ 'layout.customer.create_account' | t | customer_register_link }}
+				</span-->
+			{% endif %}
+
+			<input type="submit" class="form__btn btn btn--block" value="{{ 'customer.login.sign_in' | t }}">
+		</div><!-- /.form__actions -->
+	{% endform %}
+
+	{% if shop.checkout.guest_login %}
+		{% form 'guest_login', class: 'form form-default form-guest-login'  %}
+			<div class="form__head">
+				<h2 class="continue_as_guest">{{ 'customer.login.guest_title' | t }}</h2>
+			</div><!-- /.form__head -->
+
+			<div class="form__actions">
+				<input type="submit" class="form__btn btn btn--block" value="{{ 'customer.login.guest_continue' | t }}">
+			</div><!-- /.form__actions -->
+		{% endform %}
+	{% endif %}
+{% endcapture %}
+
+{% comment %}
+	Create Account
+{% endcomment %}
+{%- capture register -%}
+	{% assign sp_form_action = "/account" %}
+	{% if content_for_header contains "vital-forms.js" %}
+		{% assign sp_form_action = "https://vital-forms-api.c1.humanpresence.app/api/form/vfob/9198ac30-a9b7-4422-a078-20b406898361$5fdcbf41ab01a700b0046e90" %}
+	{% endif %}
+	{% form 'create_customer', class: 'form form--default form--register', action: sp_form_action, data-vfib: "0" %}
+		{% capture error_first_name %}{% if form.errors contains "first_name" %}error{% endif %}{% endcapture %}
+		{% capture error_last_name %}{% if form.errors contains "last_name" %}error{% endif %}{% endcapture %}
+		{% capture error_email %}{% if form.errors contains "email" %}error{% endif %}{% endcapture %}
+		{% capture error_birthday %}{% if form.errors contains "birthday" %}error{% endif %}{% endcapture %}
+		{% capture error_password %}{% if form.errors contains "password" %}error{% endif %}{% endcapture %}
+
+		<div class="form__head">
+			<h2>{{ 'customer.register.title' | t }}</h2>
+
+			<h6>{{ 'customer.register.subtitle' | t }}</h6>
+		</div><!-- /.form__head -->
+
+		<div class="form__notice error {% unless form.errors %} hidden {% endunless %}">
+	       {{ form.errors | default_errors }}
+	    </div><!-- /.form__notice -->
+
+		<div class="form-body">
+			<div class="form__row">
+				<label for="field-email" class="form__label" hidden>{{ 'customer.register.email' | t }}</label>
+
+				<input type="email" name="customer[email]" id="field-email" class="field {{ error_email }}" placeholder="{{ 'customer.register.email' | t }}" autocorrect="off" autocapitalize="off" value="{{ form.email }}" required />
+			</div><!-- /.form__row -->
+
+			<div class="form__cols">
+				<div class="form__col">
+					<div class="form__row">
+						<label for="field-first-name" class="form__label" hidden>{{ 'customer.register.first_name' | t }}</label>
+
+						<input type="text" name="customer[first_name]" id="field-first-name" class="field {{ error_first_name }}" placeholder="{{ 'customer.register.first_name' | t }}" autocapitalize="words" value="{{ form.first_name }}" required />
+					</div><!-- /.form__row -->
+				</div><!-- /.form__col -->
+
+				<div class="form__col">
+					<div class="form__row">
+						<label for="field-last-name" class="form__label" hidden>{{ 'customer.register.last_name' | t }}</label>
+
+						<input type="text" name="customer[last_name]" id="field-last-name" class="field {{ error_last_name }}" placeholder="{{ 'customer.register.last_name' | t }}"  autocapitalize="words" value="{{ form.last_name }}" required />
+					</div><!-- /.form__row -->
+				</div><!-- /.form__col -->
+			</div><!-- /.form__cols -->
+
+			<div class="form__row">
+				<label for="field-birthday" class="form__label" hidden>{{ 'customer.register.birthday' | t }}</label>
+
+				<input type="text" name="customer[note][Birthday]" id="field-birthday" class="field {{ error_birthday }}" pattern="\d{2}/\d{2}/\d{2}" placeholder="{{ 'customer.register.birthday_placeholder' | t }}" value="" required />
+			</div><!-- /.form__row -->
+
+			<div class="form__row">
+				<label for="field-password" class="form__label" hidden>{{ 'customer.register.password' | t }}</label>
+
+				<input type="password" name="customer[password]" id="field-password" class="field {{ error_password }}" placeholder="{{ 'customer.register.password' | t }}" value="" required />
+			</div><!-- /.form__row -->
+
+			<div class="form__row">
+				<label for="field-password-2" class="form__label" hidden>{{ 'customer.register.password' | t }}</label>
+
+				<input type="password" name="test" id="field-password-2" class="field {{ error_password }}" placeholder="{{ 'customer.register.password-2' | t }}" value="" required data-error="{{ 'customer.register.error_password' | t }}" />
+			</div><!-- /.form__row -->
+		</div><!-- /.form-body -->
+
+		<div class="form__actions clear">
+			<div class="checkbox">
+        <input type="checkbox" name="subscribe-checkbox" id="field-checkbox" checked>
+
+        <label for="field-checkbox" class="form__label">{{ 'customer.register.subscribe_text' | t }}</label>
+      </div><!-- /.checkbox -->
+
+			<input type="submit" class="form__btn btn btn--block" value="{{ 'customer.register.submit' | t }}" >
+		</div><!-- /.form__actions -->
+	{% endform %}
+{%- endcapture -%}
+
+{% if recover_password_checked %}
+	{% assign login_checked = '' %}
+	{% assign recover_password_checked = 'checked' %}
+{% else %}
+	{% assign login_checked = 'checked' %}
+	{% assign recover_password_checked = '' %}
+{% endif %}
+
+<section class="section-default">
+	<div class="shell">
+		<div class="section__inner">
+			<div class="section__cols">
+				<div class="section__col">
+					{% comment %}
+						Login View
+					{% endcomment %}
+					<input type="radio" name="select-form" id="btn-form-login" class="field-hidden" {{ login_checked }} />
+
+					{{ customer_login }}
+
+					{% comment %}
+						Forgot Password View
+					{% endcomment %}
+					<input type="radio" name="select-form" id="btn-form-recover-password" class="field-hidden" {{ recover_password_checked }}/>
+
+					{{ recover_customer_password }}
+				</div><!-- /.section__col -->
+
+				<div class="section__col">
+					{{ register }}
+				</div><!-- /.section__col -->
+			</div><!-- /.section__cols -->
+
+			{%- if settings.box_title_1 != blank or settings.box_title_2 != blank -%}
+				<div class="section__boxes">
+					{%- if settings.box_title_1 -%}
+						<div class="section__box">
+							<h5>{{ settings.box_title_1 | newline_to_br }}</h5>
+
+							{%- if settings.box_btn_text_1 != blank and settings.box_btn_url_1 != blank -%}
+								<a  href="{{ settings.box_btn_url_1}}" class="btn btn--link">
+									{{ settings.box_btn_text_1 }}
+
+									{%- include 'icons' with icon: 'arrow-right' -%}
+								</a>
+							{%- endif -%}
+						</div><!-- /.section__box -->
+					{%- endif -%}
+
+					{%- if settings.box_title_2 -%}
+						<div class="section__box">
+							<h5>{{ settings.box_title_2 | newline_to_br }}</h5>
+
+							{%- if settings.box_btn_text_2 != blank and settings.box_btn_url_2 != blank -%}
+								<a  href="{{ settings.box_btn_url_2}}" class="btn btn--link">
+									{{ settings.box_btn_text_2 }}
+
+									{%- include 'icons' with icon: 'arrow-right' -%}
+								</a>
+							{%- endif -%}
+						</div><!-- /.section__box -->
+					{%- endif -%}
+				</div><!-- /.section__boxes -->
+			{%- endif -%}
+		</div><!-- /.section__inner -->
+	</div><!-- /.shell -->
+</section><!-- /.section-default -->

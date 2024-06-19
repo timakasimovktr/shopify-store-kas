@@ -1,0 +1,84 @@
+<div class="bundle-image-content">
+  <div class="shell">
+    {%- for block in section.blocks -%}
+      {%- assign _block = block.settings -%}
+      <div class="section__inner items{% if _block.is_inverse %} section__inner--inverse{% endif %}">
+        <div class="item">
+          {%- if _block.image != blank -%}
+            <figure class="section__image">
+              <img src="{{ _block.image | img_url: '800x' }}" alt="" />
+            </figure><!-- /.section__image -->
+          {%- endif -%}
+        </div>
+        <div class="item bic-content">
+          <div class="bic-content--inner">
+            {%- if _block.title != blank -%}
+              <h2 class="section__title difference-page-section-title">{{ _block.title | newline_to_br }}</h2><!-- /.section__title -->
+            {%- endif -%}
+
+            {%- if _block.subtitle != blank -%}
+              <h4 class="section__subtitle">{{ _block.subtitle | newline_to_br }}</h4><!-- /.section__subtitle -->
+            {%- endif -%}
+            {%- if _block.description != blank -%}
+              <div class="section__description">{{ _block.description | newline_to_br }}</div><!-- /.section__subtitle -->
+            {%- endif -%}
+            {%- if _block.button_text != blank and _block.button_url != blank -%}
+              <a href="{{ _block.button_url }}" class="btn">
+                {{ _block.button_text }}
+              </a>
+            {%- endif -%}
+          </div>
+        </div>
+      </div>
+    {%- endfor -%}
+  </div>
+</div>
+{% schema %}
+{
+  "name": "Bedding Fabrics",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Item",
+      "settings": [
+        {
+          "type": "checkbox",
+          "id": "is_inverse",
+          "label": "Inverse content"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "textarea",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "textarea",
+          "id": "subtitle",
+          "label": "Sub Title"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description"
+        },
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "Button text"
+        },
+        {
+          "type": "url",
+          "id": "button_url",
+          "label": "Button URL"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

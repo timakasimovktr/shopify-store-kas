@@ -1,0 +1,729 @@
+{%- if cart.item_count > 0 -%}
+
+  {%- assign totalPoints = 0 -%}
+  {%- assign hasGiftCardInCart = false -%}
+  {%- assign giftBoxVariantID = 0 -%}
+  {%- assign gift_counts = 0 -%}
+  {%- assign gift_counts_in_cart = 0 -%}
+  {%- assign monogram_fee_product_id = '' -%}
+  {%- assign monogram_fee_product_title = '' -%}
+  {%- assign monogram_fee_price = 0 -%}
+  {%- assign monogram_fee_price_original = 0 -%}
+  {%- assign monogram_fee_price_unit = 0 -%}
+  {%- assign monogram_fee_price_original_unit = 0 -%}
+  {%- assign cart_product_ids = "" -%}
+  {%- assign isFinalSale = false -%}
+  {%- for _product in cart.items -%}
+    {%- assign cart_product_ids = cart_product_ids | append: _product.variant.id | append: "," -%}
+  {%- endfor -%}
+  {%- assign cart_product_ids = cart_product_ids | split: ',' -%}
+
+  {%- comment -%}
+    Detect monogram fee product
+  {%- endcomment -%}
+  {%- for _product in cart.items -%}
+    {%- assign productTitle = _product.product.title | downcase -%}
+    {% if productTitle contains 'monogram' %}
+      {% assign monogram_fee_product_id = _product.product.variants[0].id %}
+      {% assign monogram_fee_product_title = _product.product.title %}
+      {% assign monogram_fee_price = _product.final_line_price %}
+      {% assign monogram_fee_price_original = _product.original_line_price %}
+      {% assign monogram_fee_price_unit = _product.product.variants[0].price %}
+      {% assign monogram_fee_price_original_unit = _product.product.variants[0].compare_at_price %}
+      {% break %}
+    {% endif %}
+  {% endfor %}
+
+  <form action="/cart" method="post">
+    <div class="cart__inner-body">
+      <div class="products-simple">
+        {% assign openedBundleContainer = false %}
+        {% assign parentBundleIds = '' %}
+        {% assign bundleProducts = '' %}
+        {% assign monogramBundleProducts = '' %}
+        {%- for _product in cart.items -%}
+          {%- assign variantProduct = _product.product -%}
+          {%- assign noDiscountsAllowed = false -%}
+          {%- assign no_gift_wrap_allowed = false -%}
+          {% assign multiplier = _product.variant.metafields.monogram.quantity.value | default: 1 %}
+
+          {%- for tag in variantProduct.tags -%}
+            {%- if tag contains 'points:' -%}
+              {%- assign pointsDatas = tag | split: ':' -%}
+              {%- if pointsDatas.size > 2 -%}
+                {%- assign pointOption = pointsDatas[1] | handle -%}
+                {%- assign pointValue = pointsDatas[2] | handle -%}
+                {%- assign optionIndex = 1 -%}
+                {%- for option in variantProduct.options_with_values -%}
+                  {%- assign option_str = 'option' | append: optionIndex -%}
+                  {%- assign option_handle = option.name | handle -%}
+                  {%- if option_handle == pointOption -%}
+                    {%- assign value_handle = _product.variant[option_str] | handle -%}
+                    {%- if pointValue == value_handle -%}
+                      {%- assign points = pointsDatas[3] | plus: 0 | times: _product.quantity -%}
+                      {%- assign totalPoints = totalPoints | plus: points -%}
+                    {%- endif -%}
+                  {%- endif -%}
+                  {%- assign optionIndex = optionIndex | plus: 1 -%}
+                {%- endfor -%}
+              {%- else -%}
+                {%- assign points = pointsDatas[1] | plus: 0 | times: _product.quantity -%}
+                {%- assign totalPoints = totalPoints | plus: points -%}
+              {%- endif -%}
+            {%- endif -%}
+
+            {% if tag == 'no_discounts_allowed' %}
+              {%- assign noDiscountsAllowed = true -%}
+            {% endif %}
+            {% if tag == 'no_gift_wrap_allowed' %}
+              {%- assign no_gift_wrap_allowed = true -%}
+            {% endif %}
+
+            {% if tag == 'Final Sale' %}
+              {%- assign isFinalSale = true -%}
+            {% endif %}
+
+          {%- endfor -%}
+
+          {%- assign unitPoints = settings.gift_points | plus: 0 -%}
+          {%- assign points_float = unitPoints | times: 1.0 -%}
+          {%- assign gift_counts = totalPoints | divided_by: points_float | ceil -%}
+          {% if gift_counts == 0 %}
+            {%- assign gift_counts = 1 -%}
+          {% endif %}
+
+          {%- assign productTitle = _product.product.title | downcase -%}
+          {%- if productTitle contains 'gift card' -%}
+            {%- assign hasGiftCardInCart = true -%}
+            {%- assign giftBoxVariantID = _product.variant.id -%}
+            {%- assign gift_counts_in_cart = _product.quantity -%}
+          {%- endif -%}
+
+          {% assign preorder_date = '' %}
+          {% assign property_size = _product.properties | size %}
+          {% assign bundle_title = "" %}
+          {% assign bundle_variant_title = "" %}
+          {% assign bundle_image = "" %}
+          {% assign bundle_item_title = "" %}
+          {% assign bundle_url = "" %}
+          {% assign _monogram_fee_product_id = '' %}
+          {% assign has_property_monogram = false %}
+          {% assign addedAsBundle = false %}
+          {% assign closeBundleContainer = false %}
+          {% assign closeBundleContainer2 = false %}
+          {% assign isHolidayGift = false %}
+          {% assign isBogoGift = false %}
+          {% assign saleDiscountMsg = false %}
+          {% assign recipientName = '' %}
+          {% assign senderName = '' %}
+          {% assign recipientEmail = '' %}
+          {% assign giftMessage = '' %}
+          {% assign redirection_url = _product.variant.metafields.sf_product.redirection_url | default: _product.product.metafields.sf_product.redirection_url | default: _product.properties.redirect_url %}
+
+          {% if property_size > 0 %}
+            {% for p in _product.properties %}
+              {% if p.first == 'addedAsBundle' %}
+                {% assign addedAsBundle = true %}
+                {% if _product.properties['productsInBundle'] != parentBundleIds and closeBundleContainer == false and openedBundleContainer == true %}
+                  {% assign closeBundleContainer = true %}
+                {% endif %}
+                {% assign parentBundleIds = _product.properties['productsInBundle'] %}
+                {% assign productsInBundle = _product.properties['productsInBundle'] | json | remove : '[' | remove : ']' %}
+                {% assign bundleDiscountedPrice = _product.properties['bundleDiscountedPrice'] | times: 100 | divided_by: _product.properties['quantity'] %}
+                {% assign bundleRealPrice = _product.properties['bundleRealPrice'] | times: 100 | divided_by: _product.properties['quantity'] %}
+                {%- assign validBundle = false -%}
+                {%- assign productsInBundleIds = productsInBundle | split: ',' -%}
+                {%- for p_id in productsInBundleIds -%}
+                  {% if cart_product_ids contains p_id %}
+                    {%- assign validBundle = true -%}
+                  {% else %}
+                    {%- assign validBundle = false -%}
+                    {% break %}
+                  {% endif %}
+                {%- endfor -%}
+              {% endif %}
+              {% if p.first contains 'Bundle Title' %}
+                {% assign bundle_title = p.last %}
+              {% endif %}
+              {% if p.first contains 'Bundle Variant Title' %}
+                {% assign bundle_variant_title = p.last %}
+              {% endif %}
+              {% if p.first contains 'Bundle Item Title' %}
+                {% assign bundle_item_title = p.last %}
+              {% endif %}
+              {% if p.first contains 'Bundle Image' %}
+                {% assign bundle_image = p.last %}
+              {% endif %}
+              {% if p.first contains 'Bundle URL' %}
+                {% assign bundle_url = p.last %}
+              {% endif %}
+              {% if p.first contains 'preorder' %}
+                {% assign preorder_date = p.last %}
+              {% endif %}
+              {% if p.first contains 'Monogram' %}
+                {% assign has_property_monogram = true %}
+                {% assign _monogram_fee_product_id = monogram_fee_product_id %}
+              {% endif %}
+              {% if p.first contains 'isHolidayGift' %}
+                {% assign isHolidayGift = p.last %}
+              {% endif %}
+              {% if p.first contains 'isBogoGift' %}
+                {% assign isBogoGift = p.last %}
+              {% endif %}
+              {% if p.first contains 'bogoPromoNumber' %}
+                {% assign bogoPromoNumber = p.last %}
+              {% endif %}
+              {% if p.first contains 'saleDiscountMsg' %}
+                {% assign saleDiscountMsg = p.last %}
+              {% endif %}
+              {% if p.first contains 'Recipient’s name' %}
+                {% assign recipientName = p.last %}
+              {% endif %}
+              {% if p.first contains 'Sender’s name' %}
+                {% assign senderName = p.last %}
+              {% endif %}
+              {% if p.first contains 'Recipient’s email' %}
+                {% assign recipientEmail = p.last %}
+              {% endif %}
+              {% if p.first contains 'Your message' %}
+                {% assign giftMessage = p.last %}
+              {% endif %}
+            {% endfor %}
+          {% endif %}
+
+          {% assign alreadyAddedToBundleMonogramsNotSimple = false %}
+          {% assign alreadyAddedToBundleNotMonogram = false %}
+          {% if bundleProducts contains _product.variant.id == false and monogramBundleProducts contains _product.variant.id == true %}
+            {% assign alreadyAddedToBundleMonogramsNotSimple = true %}
+          {% endif %}
+
+          {% if bundleProducts contains _product.variant.id == true and monogramBundleProducts contains _product.variant.id == false %}{% endif %}
+          {% comment %}
+            {% if openedBundleContainer and bundleProducts contains _product.variant.id or monogramBundleProducts contains _product.variant.id %}
+            {% assign closeBundleContainer = true %}
+            {% endif %}
+          {% endcomment %}
+
+          {% unless productTitle contains 'monogram' %}
+            {% if addedAsBundle %}
+              {% if has_property_monogram %}
+                {% assign monogramBundleProducts = monogramBundleProducts | append: _product.variant.id | append: '|' %}
+              {% else %}
+                {% assign bundleProducts = bundleProducts | append: _product.variant.id | append: '|' %}
+              {% endif %}
+            {% endif %}
+          {% endunless %}
+
+          {% if addedAsBundle == false %}
+            {% assign closeBundleContainer = true %}
+          {% endif %}
+
+          {% comment %}check if gift box{% endcomment %}
+          {%- assign productTitle = _product.product.title | downcase -%}
+          {%- assign isGiftBox = false -%}
+          {%- if productTitle contains 'gift box' -%}
+            {%- assign isGiftBox = true -%}
+          {%- endif -%}
+
+          {% assign isMonogramFeeProduct = false %}
+          {% if productTitle contains 'monogram' %}
+            {% assign isMonogramFeeProduct = true %}
+          {% endif %}
+
+          {%- assign isGiftCard = false -%}
+          {%- if productTitle contains 'gift card' -%}
+            {%- assign isGiftCard = true -%}
+          {%- endif -%}
+
+          {% unless _product.variant.inventory_management == blank or _product.variant.inventory_policy == 'continue' %}
+            {%- assign max_inventory = _product.variant.inventory_quantity -%}
+          {% endunless %}
+
+
+          {% if closeBundleContainer == true and openedBundleContainer == true %}
+          </div>
+        </div>
+        {% assign closeBundleContainer = false %}
+        {% assign openedBundleContainer = false %}
+      {%- endif -%}
+
+      {% if addedAsBundle == true and closeBundleContainer == false and openedBundleContainer == false and validBundle == true %}
+        <div class="bundle-container">
+          <div class="mainBundle">
+            <figure class="product__image">
+              <a  href="{{ _product.properties.bundleUrl }}" target="_blank" title="{{ _product.properties.bundle }}">
+                <img src="{{ _product.properties.bundleImage }}" alt="{{ _product.properties.bundle }}"/>
+              </a>
+              <a  href="#" class="btn-show-items">
+                <small>
+                  <i>show items &nbsp;&nbsp;</i>
+                  <img src="{{ 'arrow-select.png' | asset_url }}" alt=""/>
+                </small>
+              </a>
+            </figure>
+            <div class="product__content">
+              <h6 class="product__title">
+                <span>{{ _product.properties.bundle }}
+                </span>
+              </h6>
+              <ul>
+                {%- unless _product.variant.title contains 'Default' or _product.properties['hasBundleTag'] == 'true' -%}
+                  {%- if _product.variant.option1 != blank -%}
+                    {% assign optionArr = _product.variant.option1 | split: '(' %}
+                    {% assign optionVal = optionArr[0] | strip %}
+                    <li>{{ optionVal }}
+                    </li>
+                  {%- endif -%}
+
+                  {%- if _product.variant.option2 != blank -%}
+                    {% if _product.properties.isBundleSet or _product.properties.bundle %}
+                      {% assign optionVal = 'Bundle' %}
+                    {% else %}
+                      {% assign optionArr = _product.variant.option2 | split: '(' %}
+                      {% assign optionVal = optionArr[0] | strip %}
+                    {% endif %}
+                    <li>{{ optionVal }}
+                    </li>
+                  {%- endif -%}
+
+                  {%- if preorder_date != blank -%}
+                    <li>Expected Shipping Date:
+                      <br>{{ preorder_date }}
+                    </li>
+                  {%- endif -%}
+                {%- endunless -%}
+                <li class="cart-error-description"></li>
+              </ul>
+              <div class="product__counter_price">
+                <div class="product__counter">
+                  <div class="counter js-counter js-counter-bundle" data-variant-id="{{ productsInBundle }}" data-giftbox="{{ isGiftBox }}">
+                    <span class="counter__minus js-counter-minus">&nbsp;</span>
+                    <label for="fquantity_{{ _product.product.id }}-{{ forloop.index }}" class="hidden">Qty</label>
+                    <input type="number" class="counter__field js-counter-field-bundle" name="" id="fquantity_{{ _product.product.id }}-{{ forloop.index }}" value="{{ _product.properties["quantity"] }}" data-prev-vale="{{ _product.quantity }}" min="1"/>
+                    <span class="js-counter-plus counter__plus">&nbsp;</span>
+                  </div>
+                </div>
+                {% if has_property_monogram %}
+                  {% assign bundleProductsCount = _product.properties.productsInBundle | size %}
+                  {%- assign item_for_monogram_fee_price = monogram_fee_price_unit | times: bundleProductsCount -%}
+                  {%- assign item_for_monogram_fee_price_original = monogram_fee_price_original_unit | times: bundleProductsCount -%}
+                  {%- assign bundleDiscountedPrice = bundleDiscountedPrice | plus: item_for_monogram_fee_price -%}
+                  {% if item_for_monogram_fee_price_original == 0 %}
+                    {%- assign bundleRealPrice = bundleRealPrice | plus: item_for_monogram_fee_price -%}
+                  {% else %}
+                    {%- assign bundleRealPrice = bundleRealPrice | plus: item_for_monogram_fee_price_original -%}
+                  {% endif %}
+                {% endif %}
+                <p class="product__price">{{ bundleDiscountedPrice | times: _product.properties["quantity"] | money }}
+                  {%- if bundleDiscountedPrice != bundleRealPrice -%}
+                    <del>{{ bundleRealPrice | times: _product.properties["quantity"] | money }}
+                    </del>
+                  {%- endif -%}
+                </p>
+              </div>
+            </div>
+            <a  href="#" class="btn-remove-bundle" data-variant-id="{{ productsInBundle }}">
+              <i class="ico-close"></i>
+            </a>
+            {% if has_property_monogram %}
+              <div class="form__notice form__notice-customizer form__adjustment">
+                <p>{{settings.customizer_message}}
+                </p>
+              </div>
+            {% endif %}
+
+          </div>
+          <div class="products-container">
+            {%- assign openedBundleContainer = true -%}
+          {%- endif -%}
+
+          {% assign productCollectionsIds = '' %}
+          {% for item in _product.product.collections %}
+            {%- assign productCollectionsIds = productCollectionsIds | append:item.id -%}
+            {% if forloop.last == false %}
+              {%- assign productCollectionsIds = productCollectionsIds | append:',' -%}
+            {% endif %}
+          {% endfor %}
+
+          <div class="product {% if _product.properties.isPackagingProduct %}hidden{% endif %}" data-collections-id="{{ productCollectionsIds }}" data-key={{_product.key}} data-id="{{_product.id}}" data-quantity="{{ _product.quantity }}" data-variant-id="{{_product.variant.id}}" data-original-unit-price="{{_product.variant.price}}" data-bundle-title="{{bundle_title}}-{{bundle_variant_title}}" data-bundle-itemtitle="{{bundle_item_title}}" data-monogram="{{_monogram_fee_product_id}}" data-giftcard="{{isGiftCard}}" {% if isMonogramFeeProduct %}style="display:none;"{% endif %} {% if isHolidayGift %}data-is-holiday-message="{{settings.holiday_gift_desc_text}}"data-is-holiday-gift="{{isHolidayGift}}"{% endif %}{% if isBogoGift %}data-is-bogo-gift="{{isBogoGift}}"data-is-bogo-message="{{settings.buyonegetone_gift_desc_text}}"{% endif %}{% if bogoPromoNumber %}data-bogo-promo-number="{{bogoPromoNumber}}"{% endif %}>{%- if bundle_title == "" -%}
+              {%- if  _product.product.images.size > 0 -%}
+                <figure class="product__image">
+                  <a  href="{% if redirection_url == blank %}{{ _product.properties.bundleUrl | default: _product.url }}{% else %}{{ redirection_url }}{% endif %}" title="{{ _product.product.title }}">
+                    {%- if _product.variant.image -%}
+                      <img src="{{ _product.variant.image | img_url: '428x' }}" alt=""/>
+                    {%- else -%}
+                      <img src="{{ _product.product.images[0] | img_url: '428x' }}" alt=""/>
+                    {%- endif -%}
+                  </a>
+                </figure>
+              {%- endif -%}
+            {%- else -%}
+              <figure class="product__image">
+                <a  href="{% if redirection_url == blank %}{{ bundle_url }}{% else %}{{ redirection_url }}{% endif %}" title="{{ _product.product.title }}">
+                  <img src="{{ bundle_image }}" alt=""/>
+                </a>
+              </figure>
+            {%- endif -%}
+
+            <div class="product__content">
+              <h6 class="product__title">
+                {%- if bundle_title == "" -%}
+                  <a  href="{% if redirection_url == blank %}{{ _product.properties.bundleUrl | default: _product.url }}{% else %}{{ redirection_url }}{% endif %}" title="{{ _product.product.title }}">{{ _product.product.title }}
+                  </a>
+                {%- else -%}
+                  <a  href="{% if redirection_url == blank %}{{ bundle_url }}{% else %}{{ redirection_url }}{% endif %}" title="{{ bundle_title }}">{{ bundle_title }}
+                  </a>
+                {%- endif -%}
+              </h6>
+
+              {% if has_property_monogram %}
+                {%- assign item_for_monogram_fee_price = monogram_fee_price_unit | times: _product.quantity -%}
+                {%- assign item_for_monogram_fee_price_original = monogram_fee_price_original_unit | times: _product.quantity -%}
+                {% assign _price = _product.final_line_price | plus: item_for_monogram_fee_price %}
+                {% assign _original_price = _product.original_line_price | plus: item_for_monogram_fee_price_original %}
+
+                <p class="product__price">{{ _price | money }}
+                  {%- if _original_price > _price -%}
+                    <del>{{ _original_price | money }}
+                    </del>
+                  {%- endif -%}
+                </p>
+                <!-- /.product__price -->
+              {% else %}
+                <p class="product__price">{{ _product.final_line_price | money }}
+                  {%- if _product.original_line_price > _product.final_line_price -%}
+                    <del>{{ _product.original_line_price | money }}
+                    </del>
+                  {%- endif -%}
+                </p>
+                <!-- /.product__price -->
+              {% endif %}
+
+              {%- unless _product.variant.title contains 'Default' -%}
+                <ul>
+                  {%- if _product.variant.option1 != blank -%}
+                    {% assign optionArr = _product.variant.option1 | split: '(' %}
+                    {% assign optionVal = optionArr[0] | strip %}
+                    <li>{{ optionVal }}
+                    </li>
+                  {%- endif -%}
+
+                  {%- if _product.variant.option2 != blank -%}
+                    {% assign optionArr = _product.variant.option2 | split: '(' %}
+                    {% assign optionVal = optionArr[0] | strip %}
+                    <li>{{ optionVal }}
+                    </li>
+                  {%- endif -%}
+
+                  {%- if preorder_date != blank -%}
+                    <li>Expected Shipping Date:
+                      <br>{{ preorder_date }}
+                    </li>
+                  {%- endif -%}
+                </ul>
+              {%- endunless -%}
+
+              {% assign hasCustomMessages = false %}
+              <div class="custom-messages">
+                {% if saleDiscountMsg and isFinalSale %}
+                  <small style="display: block;margin-bottom:0">
+                    <i>{{saleDiscountMsg}}
+                    </i>
+                  </small>
+                  {% assign hasCustomMessages = true %}
+                {% endif %}
+                {% if noDiscountsAllowed %}
+                  <small style="display: block; margin-bottom:1rem">
+                    <i>{{_product.properties['noDiscountsAllowed']}}
+                    </i>
+                  </small>
+                  {% assign hasCustomMessages = true %}
+                {% endif %}
+                {% if no_gift_wrap_allowed %}
+                  <small style="display: block; margin-bottom:1rem">
+                    <i>{{ 'cart.general.no_gift_wrap_allowed' | t }}
+                    </i>
+                  </small>
+                  {% assign hasCustomMessages = true %}
+                {% endif %}
+                {% if recipientName != blank %}
+                  <small style="display: block; margin-bottom:0">Recipient’s name:
+                    {{recipientName}}
+                  </small>
+                  {% assign hasCustomMessages = true %}
+                {% endif %}
+                {% if senderName != blank %}
+                  <small style="display:block;margin-bottom:0;">Sender’s name:
+                    {{senderName}}
+                  </small>
+                  {% assign hasCustomMessages = true %}
+                {% endif %}
+                {% if recipientEmail != blank %}
+                  <small style="display:block;margin-bottom:0;">Recipient’s email:
+                    {{recipientEmail}}
+                  </small>
+                  {% assign hasCustomMessages = true %}
+                {% endif %}
+                {% if giftMessage != blank %}
+                  <small style="display:block;margin-bottom:0;">Your message:
+                    {{giftMessage}}
+                  </small>
+                  {% assign hasCustomMessages = true %}
+                {% endif %}
+              </div>
+              {% assign beachHatsCollection = _product.product.collections | where: 'handle', 'beach-hats' | first %}
+              <div class="product__counter_price" {% if hasCustomMessages %}style="margin-top: 1rem"{% endif %}>
+                <div class="product__counter">
+                  <div class="counter js-counter js-counter-ajax" data-giftbox="{{isGiftBox}}">
+                    <input class="property-redirect_url" type="hidden" value="{{ _product.properties["redirect_url"] }}">
+                    {% if has_property_monogram %}
+                      <input class="property-monogramText" type="hidden" value="{{ _product.properties["Monogram Text"] }}">
+                      <input class="property-monogramFont" type="hidden" value="{{ _product.properties["Monogram Font"] }}">
+                      <input class="property-monogramColor" type="hidden" value="{{ _product.properties["Monogram Color"] }}">
+                      <input class="property-monogramPlace" type="hidden" value="{{ _product.properties["Monogram Place"] }}">
+                      <input class="property-monogramQuantity" type="hidden" value="{{ _product.properties["MonogramQuantity"] }}">
+                    {% endif %}
+                    {%- if addedAsBundle == true and validBundle == true  -%}
+                      <input class="property-bundle" type="hidden" value="{{ _product.properties["bundle"] }}">
+                      <input class="property-bundleDiscountedPrice" type="hidden" value="{{ _product.properties["bundleDiscountedPrice"] }}">
+                      <input class="property-bundleUnitPrice" type="hidden" value="{{ _product.properties["bundleUnitPrice"] }}">
+                      <input class="property-bundleUnitDiscount" type="hidden" value="{{ _product.properties["bundleUnitDiscount"] }}">
+                      <input class="property-bundleRealPrice" type="hidden" value="{{ _product.properties["bundleRealPrice"] }}">
+                      <input class="property-productsInBundle" type="hidden" value="{{ _product.properties['productsInBundle'] | json | remove : '[' | remove : ']' }}">
+                      <input class="property-quantity" type="hidden" value="{{ _product.properties["quantity"] }}">
+                      <input class="property-bundleUrl" type="hidden" value="{{ _product.properties["bundleUrl"] }}">
+                      <input class="property-initialQty" type="hidden" value="{{ _product.properties["initialQty"] }}">
+                      <input class="property-addedAsBundle" type="hidden" value="{{ _product.properties["addedAsBundle"] }}">
+                      <input class="property-discountAmount" type="hidden" value="{{ _product.properties["discountAmount"] }}">
+                      <input class="property-bundleImage" type="hidden" value="{{ _product.properties["bundleImage"] }}">
+                      <input class="property-hasBundleTag" type="hidden" value="{{ _product.properties["hasBundleTag"] | default: false }}">
+
+                      <p class="bundle-counter">
+                        <small>Qty:
+                          {{ _product.quantity }}
+                        </small>
+                      </p>
+                      <input type="number" class="counter__field js-counter-field" name="updates[]" id="fquantity_{{ _product.id }}-1" value="{{ _product.properties["quantity"] }}" {% if beachHatsCollection %}data-collection-name="{{beachHatsCollection.handle}}"{% endif %} data-variant-id="{{_product.variant.id}}" {% if _product.properties.isPackagingProduct %}data-is-packaging-product="true"{% endif %} data-prev-vale="{{ _product.properties["quantity"] }}" min="0" style="display: none"/>
+                    {%- else -%}
+                      <span class="counter__minus js-counter-minus">&nbsp;</span>
+                      <label for="fquantity_{{ _product.id }}-1" class="hidden">Qty</label>
+                      <input type="number" class="counter__field js-counter-field" name="updates[]" id="fquantity_{{ _product.id }}-1" value="{{ _product.quantity }}" {% if beachHatsCollection %}data-collection-name="{{beachHatsCollection.handle}}"{% endif %} data-variant-id="{{_product.variant.id}}" {% if _product.properties.isPackagingProduct %}data-is-packaging-product="true"{% endif %} data-prev-vale="{{ _product.quantity }}" min="0" {% unless _product.variant.inventory_management == blank or _product.variant.inventory_policy == 'continue' %} data-max="{{ _product.variant.inventory_quantity }}" {% endunless %}/><span class="js-counter-plus counter__plus">&nbsp;</span>
+                    {%- endif -%}
+                  </div>
+                </div>
+
+                {% if has_property_monogram %}
+                  {%- assign item_for_monogram_fee_price = monogram_fee_price_unit | times: _product.quantity | times: multiplier -%}
+                  {%- assign item_for_monogram_fee_price_original = monogram_fee_price_original_unit | times: _product.quantity -%}
+                  {% assign _price = _product.final_line_price | plus: item_for_monogram_fee_price %}
+                  {% assign _original_price = _product.original_line_price | plus: item_for_monogram_fee_price_original %}
+
+                  <p class="product__price" {%- if addedAsBundle == true and validBundle == true -%} style="display:none"{%- endif -%}>{{ _price | money }}
+                    {%- if _original_price > _price -%}
+                      <del>{{ _original_price | money }}
+                      </del>
+                    {%- endif -%}
+                  </p>
+                  <!-- /.product__price -->
+                {% elsif _product.variant.compare_at_price | times: _product.quantity > _product.final_line_price %}
+                  <p class="product__price" {%- if addedAsBundle == true and validBundle == true -%} style="display:none"{%- endif -%}>
+                    {{ _product.final_line_price | money }}
+                    <del>{{ _product.variant.compare_at_price | times: _product.quantity | money }}
+                    </del>
+                  </p>
+                  <!-- /.product__price -->
+                {% else %}
+                  <p class="product__price" {%- if addedAsBundle == true and validBundle == true -%} style="display:none"{%- endif -%}>{{ _product.final_line_price | money }}
+                    {%- if _product.original_line_price > _product.final_line_price -%}
+                      <del>{{ _product.original_line_price | money }}
+                      </del>
+                    {%- endif -%}
+                  </p>
+                  <!-- /.product__price -->
+                {% endif %}
+              </div>
+
+              {% if isBogoGift %}
+                <label class="custom-gift-qty">Qty:
+                  <span>1</span>
+                </label><br/>
+                <span class="gift-desc" style="color: rgb(100, 100, 100);">{{settings.buyonegetone_gift_desc_text}}
+                </span>
+              {% endif %}
+
+              {% if isHolidayGift %}
+                <label class="custom-gift-qty">Qty:
+                  <span>1</span>
+                </label><br/>
+                <span class="gift-desc" style="color: rgb(159, 55, 48);">{{settings.holiday_gift_desc_text}}
+                </span>
+              {% endif %}
+
+            </div>
+            <!-- /.product__content -->
+
+            <a class="cart__inner-remove_item" data-variant-id="{{ _product.variant.id }}">
+              <i class="ico-close"></i>
+            </a>
+
+            {% if has_property_monogram %}
+              {%- assign item_for_monogram_fee_price = monogram_fee_price_unit | times: _product.quantity | times: multiplier -%}
+              {% unless addedAsBundle %}
+                <div class="form__notice form__notice-customizer form__adjustment">
+                  <p>{{settings.customizer_message}}
+                  </p>
+                </div>
+              {% endunless %}
+              <div class="product__includes">
+                <div>
+                  <span>{{ 'cart.general.included_title' | t }}
+                  </span>
+                  <ul>
+                    <li>{{monogram_fee_product_title}}
+                      +
+                      {{item_for_monogram_fee_price | money_without_trailing_zeros }}
+                    </li>
+                  </ul>
+                </div>
+                <div>
+                  <span>Monogram</span>
+                  <ul>
+                    {% for p in _product.properties %}
+                      {% if p.first contains 'Monogram ' %}
+                        {% case p.first %}
+                          {% when 'Monogram Text' %}
+                            <li>{{p.first}}
+                              :
+                              {{p.last}}
+                            </li>
+                          {% else %}
+                            <li>{{p.first}}
+                              :
+                              {{ p.last | capitalize }}
+                            </li>
+                        {% endcase %}
+                      {% endif %}
+                    {% endfor %}
+                  </ul>
+                </div>
+              </div>
+            {% endif %}
+
+            <!-- Warning Message Remain Stock -->
+            {%- if max_inventory != blank and settings.is_remain_stock_handle and settings.cart_remain_message != blank -%}
+
+              {%- assign _remain_inventory = max_inventory | minus: _product.quantity -%}
+              <div class="cart-remain-stock-message" {% if settings.cart_remain_color != blank %}style="color: {{ settings.cart_remain_color }}"{% endif %}>{{ settings.cart_remain_message | replace: "[X]", _remain_inventory }}
+              </div>
+            {%- endif -%}
+            <!-- / Warning Message Remain Stock -->
+
+            <!-- Error Message: Out Of Stock -->
+            {%- if max_inventory != blank and settings.is_out_handle and settings.cart_out_message != blank -%}
+              <div class="cart-out-stock-error-message hidden" {% if settings.cart_out_color != blank %}style="color: {{ settings.cart_out_color }}"{% endif %}>{{ settings.cart_out_message }}
+              </div>
+            {%- endif -%}
+            <!-- / Error Message: Out Of Stock -->
+
+            {%- if bundle_item_title != "" -%}
+              <div class="product__includes">
+                <span>{{ 'cart.general.included_title' | t }}
+                </span>
+                <ul>
+                  <li>{{ bundle_item_title }}
+                  </li>
+                </ul>
+              </div>
+              <!-- /.cart-product__includes -->
+            {%- endif -%}
+          </div>
+          <!-- /.product -->
+        {%- endfor -%}
+
+        {%- if gift_counts < gift_counts_in_cart -%}
+          {%- assign gift_counts_in_cart = gift_counts -%}
+        {%- endif -%}
+      </div>
+      <!-- /.products-simple -->
+    </div>
+    <!-- /.cart__inner-body -->
+
+    {% section 'giftcard-panel' %}
+
+    <div class="cart-footer">
+      {% section 'giftcard-message' %}
+
+
+      <div class="cart__inner-actions">
+        <div class="subtotal">
+          <p>{{ 'cart.general.subtotal' | t }}
+          </p>
+
+          <p class="total_price">{{ cart.total_price | money }}
+          </p>
+
+        </div>
+        <div class="footer-afterpay-cart">
+          <!-- <div class="afterpay-cart"></div> -->
+          <afterpay-placement data-locale="en_US" data-currency="USD" data-amount="{{cart.total_price | money}}" data-modal-link-style="more-info-text" data-logo-type="lockup" data-min="35.00" data-max="1200.00" data-size="sm" async></afterpay-placement>
+        </div>
+        {%- if settings.discount_price != blank -%}
+
+          {%- assign convert_discount_price = settings.discount_price | times: 100 -%}
+          {%- if cart.total_price < convert_discount_price -%}
+            {%- assign left_to_free_delivery = convert_discount_price | minus: cart.total_price | money -%}
+            <p>
+              <small>{{ 'cart.general.message_shipping_left' | t: price: left_to_free_delivery | replace: '&lt;', '<' | replace: '&gt;', '>' }}
+              </small>
+            </p>
+
+          {%- endif -%}
+        {%- endif -%}
+
+        <a href="#cart-inner" class="btn btn--block continue-shopping js-btn-expand">{{ 'cart.general.continue_btn' | t }}
+        </a>
+
+        <a href="/cart" class="btn btn--block btn--solid">{{ 'cart.general.checkout' | t }}
+        </a>
+
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      var hasGiftCardInCart = {{hasGiftCardInCart}};
+      var giftBoxCounts = {{gift_counts}};
+      var giftBoxCountsInCart = {{gift_counts_in_cart}};
+      var giftBoxVariantID = {{giftBoxVariantID}};
+    </script>
+
+  </form>
+{%- else -%}
+  <div class="cart-empty">
+    <div>
+      <h4>
+        {{ 'cart.general.title' | t }}
+      </h4>
+      <p>
+        {{ 'cart.general.empty' | t }}
+      </p>
+      <p>
+        {{ 'cart.general.continue_browsing_html' | t }}
+      </p>
+    </div>
+    <a href="#cart-inner" class="btn btn--block continue-shopping js-btn-expand">
+      {{ 'cart.general.continue_btn' | t }}
+    </a>
+  </div>
+  <!-- the snippet is executed when on load cart has no items, otherwise save giftcard msg after adding items doesnt work-->
+  {% section 'giftcard-panel-script' %}
+{%- endif -%}
+
+<style>
+  afterpay-placement {
+    --logo-badge-width: 70px;
+    font-weight: 400
+  }
+  .cart-error-description {
+    color: #a80909;
+  }
+</style>

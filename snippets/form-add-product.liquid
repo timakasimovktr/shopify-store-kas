@@ -1,0 +1,247 @@
+{% assign master_colors_list = "" %}
+{% assign vanity_colors_list = "" %}
+{% for i in (1..9) %}
+  {% assign prefix = 'filter_by_colors_master_color' | append: i %}
+  {% assign namespace = currentCollection.metafields.sf_banners[prefix] %}   
+  {% assign title = shop.metafields[namespace].title %}   
+  {% assign master_color = shop.metafields[namespace].master_color %}     
+  {% assign vanity_colors = shop.metafields[namespace].vanity_colors | newline_to_br | strip_newlines | replace: "<br />", "||" %}
+  {% if master_color and vanity_colors  %}
+    {% assign master_colors_list = master_colors_list | append: title | append: '|' | append: master_color | append: ',' %}
+    {% assign vanity_colors_list = vanity_colors_list | append: vanity_colors | append: ',' %}
+  {% endif %}
+{% endfor %}
+
+{% for i in (2..7) %}
+  {% assign prefix = 'filter_by_colors_master_colo_' | append: i %}
+  {% assign namespace = currentCollection.metafields.sf_banners[prefix] %}   
+  {% assign title = shop.metafields[namespace].title %}   
+  {% assign master_color = shop.metafields[namespace].master_color %}     
+  {% assign vanity_colors = shop.metafields[namespace].vanity_colors | newline_to_br | strip_newlines | replace: "<br />", "||" %}
+  {% if master_color and vanity_colors  %}
+    {% assign master_colors_list = master_colors_list | append: title | append: '|' | append: master_color | append: ',' %}
+    {% assign vanity_colors_list = vanity_colors_list | append: vanity_colors | append: ',' %}
+  {% endif %}
+{% endfor %}
+
+{%- assign master_colors_list = master_colors_list | split: ',' | compact | join: '","' -%}
+{%- assign vanity_colors_list = vanity_colors_list | split: ',' | compact -%}
+{% assign vanity_colors_list_new = '' %}
+{% for vc in vanity_colors_list %}
+  {% assign vc_items = vc | split: '||' %}
+  {% assign new_vc_item = '' %}
+  {% for item in vc_items %}
+    {% assign _items = item | split: '|' %}
+    {% assign _item_handle = _items[0] | handle %}
+    {% assign new_vc_item = new_vc_item | append: _item_handle | append: '|' | append: _items[1] | append: '||' %}
+  {% endfor %}
+  {%- assign new_vc_item = new_vc_item | split: '||' | compact | join: '||' -%}
+  {% assign vanity_colors_list_new = vanity_colors_list_new | append: new_vc_item | append: ',' %}
+{% endfor %}
+{%- assign vanity_colors_list = vanity_colors_list_new | split: ',' | compact -%}
+{%- assign vanity_colors_list_arr = vanity_colors_list_new | split: ',' | compact | join: '","' -%}
+
+
+{% assign packageVariantId = '' %}
+{% assign target_sku = "FHA-BOX-NA-OS" %}
+
+{% assign isbeachHatsCollectionProduct = false %}
+{% for collection in product.collections %}
+  {% if collection.handle == 'beach-hats' %}
+    {% assign isbeachHatsCollectionProduct = true %}
+    {% break %}
+  {% endif %}
+{% endfor %}
+
+{% assign packageVariantId = collections['beach-hats'].products | map: 'variants' | where: 'sku', target_sku | map: 'id' | first %} 
+
+<div class="form-product">
+  <form action="/cart/add" method="post" enctype="multipart/form-data" class="js-form-ajax" {% if isbeachHatsCollectionProduct %}data-packaging-product-variant-id='{{packageVariantId}}'{% endif %}>
+    <div class="section__entry hidden-xs">
+     {%- if product.description contains '</' -%}
+        {{ product.description }}
+      {%- else -%}
+        <p>{{ product.description }}</p>
+      {%- endif -%}
+    </div><!-- /.section__entry -->
+  
+    <div class="options-container" style="visibility: hidden;">
+      <select name="id" class="hidden" data-options="{% for option in product.options %}{{option | downcase | handleize }}{% unless forloop.last %},{% endunless %}{% endfor %}">
+        {% for variant in product.variants %}
+          {% capture data_fields %}{% for option in product.options %}data-{{option | handle }}="{{ variant.options[forloop.index0] | handle }}" {% endfor %}{% endcapture %}
+          {%- assign inventory_value = variant.inventory_quantity -%}
+          {%- unless variant.available -%}
+            {%- assign inventory_value =  -1 -%}
+          {%- endunless -%}
+          <option {% if variant == current_variant %} selected="selected" {% endif %} data-sku="{{ variant.sku }}" value="{{ variant.id }}" data-compare-price="{{ variant.compare_at_price | money | strip_html }}" data-available="{{ variant.available }}" data-price="{{ variant.price | money | strip_html }}" data-url="{{variant.url | within: product.collections[0]}}" data-image="{{ variant.image.src | img_url: '428x' }}" data-variant-title="{{variant.title}}" {{data_fields}} data-inventory="{{inventory_value}}" {% if inventory_value < 1 and is_preorder %} data-preorder="{{ preorder_date }}"{% endif %} data-q-price="{{ variant.price | divided_by: 4 | money }}">{{ variant.title }}</option>
+        {% endfor %}
+      </select>
+
+      {%- for option in product.options_with_values -%}
+        {%- assign option_handle = option.name | handle -%}
+
+        {%- assign option_selector = 'option' | append: forloop.index -%}
+        {%- assign current_variant_option = current_variant[option_selector] -%}
+        {%- assign current_variant_option_handle = current_variant_option | handle -%}
+
+        {% assign current_variant_optionArr = current_variant_option | split: '(' %}
+        {% assign current_variant_optionTitle = current_variant_optionArr[0] | trim %}
+
+        <div class="form__row {% if forloop.first %}first-row{% endif %}">
+          <label class="form__label">{{option.name}}: </label>
+          <label class="form__label">{{ current_variant_optionTitle }}</label>
+
+          {%- if forloop.last and available_sizes.size > 0 -%}
+            <a href="#popup" class="js-btn-expand">{{ 'products.general.size_guide' | t }}</a>
+          {%- endif -%}
+
+          <div class="form__controls">
+            {%- if option_handle == 'color' -%}
+              <ul class="list-radios-colors">
+                {%- for value in option.values -%}
+                    
+                  {%- assign value_handle = value | handle -%}
+                  {%- assign is_current_variant = false -%}
+
+                  {% if current_variant_option_handle == value_handle %}
+                    {% assign is_current_variant = true %}
+                  {% endif %}
+                  
+                  {% assign masterColorTitleArr = value | split: '(' %}
+                  {% assign masterColorTitle = masterColorTitleArr[0] | trim %}
+                  <li>
+                    <div class="radio">
+                      <input type="radio" placeholder="{{option_handle}}: {{ value }}" {% if is_current_variant == true %} checked {% endif %} name="{{ option_handle }}" id="field-{{product.id | append: '-' | append: value_handle}}" value="{{ value_handle }}" data-text="{{ masterColorTitle }}" data-text-original="{{ value }}" {% if is_current_variant %} checked {% endif %} />
+
+                      <label class="{{value_handle}}" for="field-{{product.id | append: '-' | append: value_handle}}" data-color-name="{{ value_handle }}" >&nbsp;</label>
+                    </div><!-- /.radio -->
+                  </li>
+                {%- endfor -%}
+              </ul><!-- /.list-radios -->
+            {%- else -%}
+              <ul class="list-radios-boxes">
+                {%- for value in option.values -%}
+                  {%- assign value_handle = value | handle -%}
+                  {%- assign is_current_variant = false -%}
+
+                  {%- if current_variant_option_handle == value_handle -%}
+                    {%- assign is_current_variant = true -%}
+                  {%- endif -%}
+
+                  <li>
+                    <div class="radio">
+                      <input type="radio" placeholder="{{option_handle}}: {{ value }}" {% if is_current_variant == true %} checked {% endif %} name="{{ option_handle }}" id="field-{{product.id | append: '-' | append: value_handle}}" value="{{ value_handle }}" data-text="{{ value | escape }}" {% if is_current_variant %} checked {% endif %} />
+
+                      <label for="field-{{product.id | append: '-' | append: value_handle }}">{{ value }}</label>
+                    </div><!-- /.radio -->
+                  </li>
+                {%- endfor -%}
+              </ul><!-- /.list-radios-boxes -->
+            {%- endif -%}
+          </div><!-- /.form__controls -->
+        </div><!-- /.form__row -->
+      {%- endfor -%}
+    </div>
+
+    {%- assign product_tags_string = product.tags | join: ',' -%}
+   
+    {%- if product_tags_string contains 'customizer' -%}
+
+      <!-- product for monogramming fee -->
+      {% assign namespace = product.metafields.sf_customizer.template %}
+      {% assign store_mono_fee_product = all_products[shop.metafields[namespace].product_monogram_fee] %}
+      {% assign  store_mono_fee_product_price = store_mono_fee_product.variants[0].price %}
+      <div class="form__row form__row--full form__row--available" {% if currentVariant.available == false %} style="display: none;" {% endif %}>
+        <a class="btn btn--block" id="to_view_customizer">add a monogram (+{{ store_mono_fee_product_price | money_without_trailing_zeros }})</a>
+      </div>
+    {%- endif -%}
+
+    {% if product_tags_string contains 'Final Sale' %}
+      <input type="text" name="properties[saleDiscountMsg]" value="Final Sale" style="display: none">
+    {% endif %}
+
+    {% if product_tags_string contains 'no_discounts_allowed' %}
+      <input type="text" name="properties[noDiscountsAllowed]" value="Not eligible for discounts or promo codes" style="display: none">
+    {% endif %}
+
+    {% if product_tags_string contains 'no_gift_wrap_allowed' %}
+      <input
+        type="text"
+        name="properties[no_gift_wrap_allowed]"
+        value="{{ 'cart.general.no_gift_wrap_allowed' | t }}"
+        style="display: none"
+      >
+    {% endif %}
+
+    {% if product.metafields.sf_product.redirection_url %}
+      <input type="text" name="properties[redirect_url]" value="{{- product.metafields.sf_product.redirection_url -}}" style="display: none">
+    {% endif %}
+    
+    {% comment %}<div class="form__row form__row--half form__row--available" {% if currentVariant.available == false %} style="display: none;" {% endif %}>{% endcomment %}
+    <div class="form-action-wishlist">
+      <div class="form__row form__row--half form__row--available">
+        <div class="form__controls">
+          <div class="counter js-counter">
+            <span class="counter__minus js-counter-minus">&nbsp;</span>
+
+            <input type="number" class="counter__field js-counter-field" name="quantity" id="field-qty" value="1" data-prev-vale="1" min="0" />
+
+            <span class="js-counter-plus counter__plus">&nbsp;</span>
+          </div><!-- /.counter -->
+        </div><!-- /.form__controls -->
+      </div><!-- /.form__row -->
+
+      <div class="form__actions form__row--available" {% if current_variant.available == false %} style="display: none;" {% endif %}>
+        {%- if product.metafields.sf_included_products.size > 0 -%}
+          {%- if bundleFirstAvailable -%}
+            <input type="submit" value="{%- if current_variant.inventory_quantity > 0 -%}{{ 'products.product.add_to_cart' | t }}{%- else -%}{{ 'products.product.pre_order' | t }}{%- endif -%}" class="btn btn--solid form__btn" />
+          {%- else -%}
+            <input type="submit" value="{{ 'products.product.out_of_stock' | t }}" class="btn btn--solid form__btn" disabled />
+          {%- endif -%}
+        {%- else -%}
+          {%- if bundleFirstAvailable -%}
+            <input type="submit" value="{%- if current_variant.inventory_quantity > 0 -%}{{ 'products.product.add_to_cart' | t }}{%- else -%}{{ 'products.product.pre_order' | t }}{%- endif -%}" class="btn btn--solid form__btn"/>
+          {%- else -%}
+            {%- if is_preorder -%}
+              <input type="submit" value="{{ 'products.product.pre_order' | t }}" class="btn btn--solid form__btn" />
+            {%- else -%}
+              <input type="submit" value="{{ 'products.product.out_of_stock' | t }}" class="btn btn--solid form__btn" disabled />
+            {%- endif -%}
+          {%- endif -%}
+        {%- endif -%}
+      </div><!-- /.form__actions -->
+
+      <a href="#" class="btn btn--solid btn--block klaviyo-bis-trigger" style="text-align: center; width: 100%!important;padding-left:20px;padding-right:20px;display: none;">Sold Out! Notify Me</a>
+      
+      <div class="container-btn-wishlist form__controls">
+        <a class="btn-add-to-wishlist" href="#">
+          <div id="wishlist-icon-container">
+            {% render 'wishlist-icon' %}
+          </div>
+        </a>
+      </div>
+    </div>
+
+    {%- if is_preorder -%}
+      <p class="preorder--message"{%- if current_variant.inventory_quantity > 0 -%} style="display: none"{% endif %}>
+        {{ 'products.product.preorder_message_html'  | t: date: preorder_date }}
+      </p>
+    {%- endif -%}
+  </form>
+</div><!-- /.form-product -->
+
+<script type="text/javascript">
+  window.options_by_color = ["{{ master_colors_list }}"];
+  window.vanity_colors_list = ["{{ vanity_colors_list_arr }}"];
+
+  window.saleDiscountsPerVariant = [];
+  {% for variant in product.variants %}
+  saleDiscountsPerVariant.push({
+    variantId: {{ variant.id }},
+    discount: '{{ variant.compare_at_price | money_without_currency }}',
+    discountMsg: 'Final Sale'
+  });
+  {% endfor %}
+
+</script>
+

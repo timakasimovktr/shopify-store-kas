@@ -1,0 +1,141 @@
+{%- assign _section = section.settings -%}
+{%- assign _blocks = section.blocks -%}
+
+{%- if _blocks.size > 0 -%}
+
+  {% assign vanity_colors_all = shop.metafields.sf_color_code.colors | newline_to_br | strip_newlines | replace: "<br />", "," %}
+  {%- assign vanity_colors_all = vanity_colors_all | split: ',' | compact -%}
+  {% assign new_vc_item_all = '' %}
+  {% for _vanity_color in vanity_colors_all %}
+    {% assign _vanity_color_item = _vanity_color | split: '|' %}
+    {% assign _item_handle = _vanity_color_item[0] | handle %}
+    {% assign new_vc_item_all = new_vc_item_all | append: _item_handle | append: '|' | append: _vanity_color_item[1] | append: ',' %}
+  {% endfor %}
+  {%- assign vanity_colors_all = new_vc_item_all | split: ',' | compact -%}
+
+  {%- comment -%} Style of Section {%- endcomment -%}
+    {%- if _section.color != blank -%}
+      <style type="text/css">
+        .section-sellers[data-section-id="{{ section.id }}"] .section__title {
+          color: {{ _section.color }};
+        }
+      </style>
+    {%- endif -%}
+
+  <section class="section-sellers" data-section-id="{{ section.id }}">
+    <div class="shell">
+      {%- if _section.title != blank -%}
+        <header class="section__head">
+          <h4 class="section__title">{{ _section.title | newline_to_br }}</h4><!-- /.section__title -->
+        </header><!-- /.section__head -->
+      {%- endif -%}
+
+      <div class="section__body">
+        <div class="tabs">
+          <div class="tabs__head">
+            <nav class="tabs__nav">
+              <ul>
+                {%- for block in _blocks -%}
+                  {%- assign current_block = block.settings -%}
+
+                  {%- if current_block.tab_product_1 != blank or current_block.tab_product_2 != blank or current_block.tab_product_3 != blank -%}
+                    <li {% if forloop.first %} class="current" {% endif %}>
+                      <a href="#tab{{forloop.index}}">{{ current_block.tab_title }}</a>
+                    </li>
+                  {%- endif -%}
+                {%- endfor -%}
+              </ul>
+            </nav><!-- /.tabs__nav -->
+          </div><!-- /.tabs__head -->
+
+          <div class="tabs__body">
+            {%- for block in _blocks -%}
+              {%- assign current_block = block.settings -%}
+              {%- assign current_block_title = current_block.tab_title | handle -%}
+
+              {%- if current_block.tab_product_1 != blank or current_block.tab_product_2 != blank or current_block.tab_product_3 != blank -%}
+                <div class="tab {% if forloop.first %}current{% endif %}" id="tab{{forloop.index}}">
+                  <div class="products">
+                    {%- for i in (1..3) -%}
+                      {%- assign product_template = 'tab_product_' | append: i -%}
+                      {%- assign current_product = all_products[current_block[product_template]] -%}
+                      {%- assign class_hidden = '' -%}
+                      {%- assign product_index = i -%}
+
+                      
+                        {%- if i != 1 -%}
+                          {%- assign class_hidden = 'hidden-xs' -%}
+                        {%- endif -%}
+                      
+
+                      {%- if current_product != empty -%}
+                        {%- include 'product-item' with _product: current_product, additionalClasses: class_hidden, vanityColors: vanity_colors_all -%}
+                      {%- endif -%}
+                    {%- endfor -%}
+                  </div><!-- /.products -->
+                </div><!-- /.tab -->
+              {%- endif -%}
+            {%- endfor -%}
+          </div><!-- /.tabs__body -->
+        </div><!-- /.tabs -->
+      </div><!-- /.section__body -->
+    </div><!-- /.shell -->
+  </section><!-- /.section-sellers -->
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Best sellers",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title"
+    },
+    {
+      "type": "header",
+      "content": "General Style"
+    },
+    {
+      "type": "color",
+      "id": "color",
+      "label": "Content Color",
+      "default": "#636363"
+    }
+  ],
+  "max_blocks": 4,
+  "blocks": [
+    {
+      "type": "tab",
+      "name": "Tab",
+      "settings": [
+        {
+          "type": "text",
+          "id": "tab_title",
+          "label": "Tab title"
+        },
+        {
+          "type": "product",
+          "id": "tab_product_1",
+          "label": "Product 1"
+        },
+        {
+          "type": "product",
+          "id": "tab_product_2",
+          "label": "Product 2"
+        },
+        {
+          "type": "product",
+          "id": "tab_product_3",
+          "label": "Product 3"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Best sellers"
+    }
+  ]
+}
+{% endschema %}

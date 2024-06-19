@@ -1,0 +1,92 @@
+{% assign vanity_colors_all = shop.metafields.sf_color_code.colors | newline_to_br | strip_newlines | replace: "<br />", "," %}
+{%- assign vanity_colors_all = vanity_colors_all | split: ',' | compact -%}
+{% assign new_vc_item_all = '' %}
+{% for _vanity_color in vanity_colors_all %}
+  {% assign _vanity_color_item = _vanity_color | split: '|' %}
+  {% assign _item_handle = _vanity_color_item[0] | handle %}
+  {% assign new_vc_item_all = new_vc_item_all | append: _item_handle | append: '|' | append: _vanity_color_item[1] | append: ',' %}
+{% endfor %}
+{%- assign vanity_colors_all = new_vc_item_all | split: ',' | compact -%}
+
+
+{%- assign _section = section.settings -%}
+{%- assign _blocks = section.blocks -%}
+{%- if _section.is_enable -%}
+  <div class="our-fav">
+    <div class="shell">
+      <div class="our-fav--inner">
+
+        {%- if _section.title != blank -%}
+          <h1 class="our-fav--title beach-bags-section-title">
+            {{ _section.title }}
+          </h1>
+        {%- endif -%}
+
+        {%- if _blocks.size > 0 -%}
+          <div class="products">
+            {%- for block in _blocks -%}
+              {%- assign _block = block.settings -%}
+
+              {%- assign current_product = all_products[_block.product_item] -%}
+
+              {%- if current_product != empty -%}
+                {%- include 'product-item' with _product: current_product, vanityColors: vanity_colors_all -%}
+              {%- endif -%}
+
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
+
+        {%- if _section.btn_url != blank and _section.btn_txt != blank -%}
+          <a href="{{ _section.btn_url }}" class="btn btn--link" id="shop-tabletop-btn">
+            {{ _section.btn_txt }}
+            {%- include 'icons' with icon: 'arrow-right' -%}
+          </a>
+        {%- endif -%}
+
+      </div>
+    </div>
+  </div>
+{%- endif -%}
+{% schema %}
+{
+  "name": "Our Favorites",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "is_enable",
+      "label": "Is Enable/Disable",
+      "default": true
+    },
+    {
+      "type": "textarea",
+      "id": "title",
+      "label": "Title"
+    },    
+    {
+      "type": "text",
+      "id": "btn_txt",
+      "label": "Button Text",
+      "default": "shop beach bags"
+    },
+    {
+      "type": "url",
+      "id": "btn_url",
+      "label": "Button Url"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "product",
+      "name": "Product",
+      "settings": [
+        {
+          "type": "product",
+          "id": "product_item",
+          "label": "Product"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

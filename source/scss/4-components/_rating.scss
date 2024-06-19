@@ -1,0 +1,35 @@
+/* ------------------------------------------------------------ *\
+  Rating
+\* ------------------------------------------------------------ */
+
+.rating {
+  margin-bottom: 14px;
+  display: none;
+
+  .spr-badge-starrating .spr-icon {
+    position: static;
+    width: auto;
+    height: auto;
+    margin: 0 2px;
+    font-size: 16px;
+    line-height: 1;
+    vertical-align: middle;
+
+    &:before {
+      font-size: 100%;
+    }
+  }
+
+  .spr-badge-caption {
+    font-size: 14px;
+    line-height: 1.43;
+    color: #bdbbbd;
+    font-weight: 400;
+  }
+
+  /* Mobile */
+
+  @media (max-width: #{$responsive-xs}) {
+    margin-bottom: 13px;
+  }
+}

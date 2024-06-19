@@ -1,0 +1,60 @@
+<div class="review-items">
+  {%- for i in (1..4) -%}
+    {%- assign inverse_elements_selector = 'item_' | append: i | append: '_inverse_elements' -%}
+    {%- assign background_color_selector = 'item_' | append: i | append: '_background_color' -%}
+    {%- assign image_selector = 'item_' | append: i | append: '_image' -%}
+    {%- assign title_selector = 'item_' | append: i | append: '_title' -%}
+    {%- assign content_selector = 'item_' | append: i | append: '_content' -%}
+
+    {%- assign inverse_elements = review_items[inverse_elements_selector] -%}
+    {%- assign background_color = review_items[background_color_selector] | default: '#fff' -%}
+    {%- assign _image = review_items[image_selector] -%}
+    {%- assign _title = review_items[title_selector] -%}
+    {%- assign content = review_items[content_selector] -%}
+
+    {%- if _image and _title and content -%}
+      <div class="review-item" style="background-color: {{background_color}};">
+        <div class="review-item__inner {% if inverse_elements == 1 %}review-item__inner--inverse{% endif %}">
+          <h2 class="review-item__header visible-xs-block">{{ _title | newline_to_br }}</h2><!-- /.review-item__title -->
+
+          {%- if inverse_elements != 1 -%}
+            <div class="review-item__image-wrapper">
+              <div class="aspect-ratio" style="aspect-ratio: 1.0">
+                <img data-src="{{ _image }}" alt="" class="lazyload" />
+              </div>
+            </div>
+          {%- endif -%}
+
+          <div class="review-item__content-wrapper {% if inverse_elements == 1 %}hidden-xs{% endif %}">
+            <div class="review-item__content">
+              <h2 class="review-item__header hidden-xs">{{ _title | newline_to_br }}</h2><!-- /.review-item__title -->
+              <div class="review-item__content__inner">
+                {{ content | newline_to_br }}
+              </div>
+            </div>
+          </div>
+
+          {%- if inverse_elements == 1 -%}
+            <div class="review-item__image-wrapper">
+              <div class="aspect-ratio" style="aspect-ratio: 1.0">
+                <img data-src="{{ _image }}" alt="" class="lazyload" />
+              </div>
+            </div>
+          {%- endif -%}
+
+          {%- if inverse_elements == 1 -%}
+            <div class="review-item__content-wrapper  visible-xs-block">
+              <div class="review-item__content">
+                <h2 class="review-item__header hidden-xs">{{ _title | newline_to_br }}</h2><!-- /.review-item__title -->
+                <div class="review-item__content__inner">
+                  {{ content | newline_to_br }}
+                </div>
+              </div>
+            </div>
+          {%- endif -%}
+
+        </div><!-- /.review-item__inner -->
+      </div><!-- /.review-item -->
+    {%- endif -%}
+  {%- endfor -%}
+</div><!-- /.review-items -->

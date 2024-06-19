@@ -1,0 +1,38 @@
+{%- assign _blocks = section.blocks -%}
+
+{%- for block in _blocks -%}
+  {%- assign current_block = block.settings -%}
+  {%- if handle == current_block.exclude_product -%}
+    <meta name="robots" content="noindex">
+  {%- endif -%}
+{%- endfor -%}
+
+{% schema %}
+{
+  "name": "Exclude from Google Seach",
+  "blocks": [
+    {
+      "type": "product",
+      "name": "Product",
+      "settings": [
+        {
+           "type": "product",
+           "id": "exclude_product",
+           "label": "Excluded Product"
+        }
+      ]
+    },
+    {
+      "type": "page",
+      "name": "Page",
+      "settings": [
+        {
+           "type": "page",
+           "id": "exclude_product",
+           "label": "Excluded Page"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

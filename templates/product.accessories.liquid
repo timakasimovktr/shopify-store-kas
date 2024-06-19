@@ -1,0 +1,180 @@
+{%- assign current_variant = product.variants[0] -%}
+{% assign vanity_colors_all = shop.metafields.sf_color_code.colors | newline_to_br | strip_newlines | replace: "<br />", "," %}
+{%- assign vanity_colors_all = vanity_colors_all | split: ',' | compact -%}
+{% assign new_vc_item_all = '' %}
+{% for _vanity_color in vanity_colors_all %}
+  {% assign _vanity_color_item = _vanity_color | split: '|' %}
+  {% assign _item_handle = _vanity_color_item[0] | handle %}
+  {% assign new_vc_item_all = new_vc_item_all | append: _item_handle | append: '|' | append: _vanity_color_item[1] | append: ',' %}
+{% endfor %}
+{%- assign vanity_colors_all = new_vc_item_all | split: ',' | compact -%}
+
+{%- assign available_sizes = '' -%}
+{%- assign active_promo = false -%}
+
+{%- assign is_preorder = false -%}
+
+{%- for tag in product.tags -%}
+  {%- assign tag_handle = tag | downcase -%}
+  {%- if tag contains 'promo' -%}
+    {%- assign active_promo = true -%}
+  {%- endif -%}
+  {%- if tag_handle contains 'pre-order' -%}
+    {%- assign preorder_date = tag_handle | remove: 'pre-order:' -%}
+    {%- assign is_preorder = true -%}
+  {%- endif -%}
+
+  {%- if tag contains 'sizeguide:' -%}
+    {%- assign page_handle = tag | replace: 'sizeguide:', '' -%}
+    {%- assign available_sizes = available_sizes | append: page_handle | append: '@@@' -%}
+  {%- endif -%}
+
+{%- endfor -%}
+
+
+
+
+{%- assign promo_switch = shop.metafields.sf_promo.active_promo -%}
+
+{% assign disableReview = product.metafields.sf_yotpo.disable %}
+
+<section class="section-product">
+  <div class="shell normal-product-layout">
+    <div class="section__inner">
+      {%- include 'product-sliders' -%}
+
+      <div class="section__content">
+        <h4 class="section__title">{{ product.title }}</h4><!-- /.section__title -->
+
+        {%- if active_promo and promo_switch == 1 -%}
+          {%- assign saving_text = shop.metafields.sf_promo.promo_savings -%}
+        {%- endif -%}
+
+        <p class="section__price"><span>{{ current_variant.price | money }}</span> {%- if current_variant.compare_at_price > current_variant.price -%} <del>{{ current_variant.compare_at_price | money }}</del> {%- endif -%} {%- if saving_text -%} <span>{{ saving_text }}</span> {%- endif -%}</p><!-- /.section__price -->
+
+        {% if disableReview != 1 %}
+          <div class="yotpo bottomLine" data-product-id="{{ product.id }}"></div>
+        {% endif %}
+
+        <div class="afterpay-wrapper"></div>
+
+        {%- include 'form-add-product-accessories' with currentVariant: current_variant -%}
+
+        {%- if active_promo and promo_switch == 1 -%}
+          {%- assign promo_text = shop.metafields.sf_promo.promo_text -%}
+
+          <p class="section__message">{%- if promo_text -%} {{ promo_text }} {%- else -%} {{ 'products.general.promo_text' | t }} {%- endif -%}</p><!-- /.section__message -->
+        {%- endif -%}
+
+        <div class="section__entry visible-xs-block">
+          {%- if product.description contains '</' -%}
+            {{ product.description }}
+          {%- else -%}
+            <p>{{ product.description }}</p>
+          {%- endif -%}
+        </div><!-- /.section__entry -->
+
+        {%- include 'product-accordions' -%}
+      </div><!-- /.section__content -->
+    </div><!-- /.section__inner -->
+  </div><!-- /.shell -->
+
+  {%- for tag in product.tags -%}
+    {%- if tag contains 'customizer' -%}
+      {%- section 'customizer' -%}
+    {%- endif -%}
+  {%- endfor -%}
+
+</section><!-- /.section-product -->
+
+{%- include 'included-products' -%}
+
+{% assign review_items = product.metafields.sf_review_items %}
+
+{%- if review_items.size > 0 -%}
+  {%- include 'review-product' -%}
+{%- endif -%}
+
+{%- assign show_video = product.metafields.sf_video.show_video -%}
+
+{%- if show_video == 1 -%}
+  {%- include 'product-video' -%}
+{%- endif -%}
+
+{%- include 'best-sleep' -%}
+
+{%- assign current_collection = collection | default: current_product.collections[0] -%}
+
+{%- include 'related-products' with vanityColors: vanity_colors_all -%}
+
+<section class="section-reviews">
+  <div class="shell">
+    <div class="section__inner">
+      <div id="shopify-product-reviews" class="reviews" data-id="{{product.id}}">{{ product.metafields.spr.reviews }}</div>
+    </div><!-- /.section__inner -->
+  </div><!-- /.shell -->
+</section><!-- /.section-reviews -->
+
+{%- if available_sizes.size > 0 -%}
+{%- include 'product-size-chart' -%}
+{%- endif -%}
+
+
+<script type="text/javascript" src="https://static-us.afterpay.com/javascript/present-afterpay.js"></script>
+
+
+<script src="{{'products.min.js' | asset_url}}" defer></script>
+
+<script type="text/javascript">
+
+
+  function check_script_presentAfterpay(glob_var) {
+
+      if(typeof(glob_var) !== 'undefined') {
+        var product_price = {{ current_variant.price }};
+        new presentAfterpay(apConfig).init();
+        if ((product_price < 3500) || (product_price > 120000)) {
+          window.updateAfterpayTemplate(false);
+        } else {
+          window.updateAfterpayTemplate(true, "{{ current_variant.price | divided_by: 4 | money }}");
+        }
+      } else {
+        setTimeout(function() {
+          check_script_presentAfterpay(glob_var)
+        }, 100);
+      }
+  }
+
+  onDocumentReady(() =>  check_script_presentAfterpay($));
+
+</script>
+
+<style type="text/css">
+  #afterpay-modal-modal {
+    padding: 20px;
+  }
+  .c-afterpay-info-modal-annotation__p {
+    padding-top: 20px;
+  }
+</style>
+
+<script type="text/javascript">
+  var cartbtn_status = {
+    "add_to_cart": "{{ 'products.product.add_to_cart' | t }}",
+    "out_of_stock": "{{ 'products.product.out_of_stock' | t }}",
+    "pre_order": "{{ 'products.product.pre_order' | t }}"
+  };
+  var is_preorder = {{ is_preorder }};
+</script>
+
+{% if disableReview != 1 %}
+  <div class="yotpo yotpo-main-widget" 
+    data-product-id="{{ product.id }}"
+    data-price="{{ variant.price | money_without_currency }}"
+    data-currency="{{ shop.currency }}" 
+    data-name="{{ product.title | escape }}" 
+    data-url="{{ shop.url }}{{ product.url }}" 
+    data-image-url="{{ product.featured_image | product_img_url: "large" |replace: '?', '%3F' | replace: '&','%26'}}" 
+    data-description="{{ product.description | escape }}"> 
+  </div>
+{% endif %}

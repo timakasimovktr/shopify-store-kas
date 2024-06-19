@@ -1,0 +1,26 @@
+<hr class="{% if first %}first{% endif %}">
+
+<div class="cart-extra-field" data-cart-extra-field>
+  <div class="space-between lh-1">
+    <h3 class="cart-extra-field-header">{{ header }}</h3>
+    <div data-dropdown-trigger>
+      <span class="hide-dropdown" data-hide-dropdown></span>
+      <span class="show-dropdown" data-show-dropdown></span>
+    </div>
+  </div>
+
+  <div class="dropdown" data-dropdown>
+    <p class="line-item-property__field">
+      <label for="{{ name }}" class="title">{{ title }} (<span class="count" data-count>0</span>/200)</label>
+      <textarea id="{{ name }}" placeholder="{{ placeholder }}" maxlength="200" data-input></textarea>
+
+      <label for="hidden-{{ name }}" class="hidden">{{ title }}</label>
+      <textarea id="hidden-{{ name }}" class="hidden" name="{{ name }}" maxlength="200" data-input-hidden></textarea>
+    </p>
+
+    <div class="actions space-between">
+      <button type="button" class="save btn btn--solid" data-save>Save</button>
+      <button type="button" class="cancel btn" data-cancel>Cancel</button>
+    </div>
+  </div>
+</div>

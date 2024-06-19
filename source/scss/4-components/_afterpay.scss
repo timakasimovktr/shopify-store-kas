@@ -1,0 +1,33 @@
+.afterpay-paragraph {
+    padding-bottom: 15px;
+    font-size: 14px;
+	display: block !important;
+
+	.afterpay-text1 {
+		margin-right: 5px;
+    	font-weight: 300;
+	}
+
+	img {
+    	max-width: 90px !important;
+	}
+
+	a.afterpay-link {
+		position: relative;
+	    margin-left: 5px;
+    	text-decoration: underline !important;
+		u {
+			display: none;
+		}
+	}
+
+	strong {
+		font-weight: 400;
+	}
+}
+
+.section-related-products {
+	.afterpay-paragraph {
+		display: none;
+	}
+}

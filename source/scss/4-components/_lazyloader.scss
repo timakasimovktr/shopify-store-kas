@@ -1,0 +1,10 @@
+.lazyload {
+	opacity: 0;
+}
+
+.lazyloading {
+	opacity: 1;
+	transition: opacity 300ms;
+	background: #f7f7f7 url("{{ 'loader.gif' | asset_url }}") no-repeat center;
+	background-size: initial !important;
+}

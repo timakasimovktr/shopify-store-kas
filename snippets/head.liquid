@@ -1,0 +1,89 @@
+	<meta charset="utf-8" />
+
+	{% if page_description %}
+		<meta name="description" content="{{ page_description | escape }}">
+	{% endif %}
+
+	{% include 'social-meta-tags' %}
+
+	<link rel="canonical" href="{{ canonical_url }}">
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0, maximum-scale=1.0, user-scalable=no,viewport-fit=cover">
+
+	<title>{{ theme_title }}</title>
+
+	{% if settings.favicon %}
+		<link rel="shortcut icon" href="{{ settings.favicon | img_url: 'pico' }}" type="image/png" />
+		<link rel="apple-touch-icon-precomposed" href="{{ settings.favicon | img_url: '57x57' }}" />
+		<link rel="apple-touch-icon-precomposed" href="{{ settings.favicon | img_url: '114x114' }}" />
+		<link rel="apple-touch-icon-precomposed" href="{{ settings.favicon | img_url: '72x72' }}" />
+		<link rel="apple-touch-icon-precomposed" href="{{ settings.favicon | img_url: '144x144' }}" />
+		<link rel="apple-touch-icon-precomposed" href="{{ settings.favicon | img_url: '60x60' }}" />
+		<link rel="apple-touch-icon-precomposed" href="{{ settings.favicon | img_url: '120x120' }}" />
+		<link rel="apple-touch-icon-precomposed" href="{{ settings.favicon | img_url: '76x76' }}" />
+		<link rel="apple-touch-icon-precomposed" href="{{ settings.favicon | img_url: '152x152' }}" />
+		<link rel="icon" type="image/png" href="{{ settings.favicon | img_url: '196x196' }}" />
+		<link rel="icon" type="image/png" href="{{ settings.favicon | img_url: '96x96' }}" />
+		<link rel="icon" type="image/png" href="{{ settings.favicon | img_url: '32x32' }}" />
+		<link rel="icon" type="image/png" href="{{ settings.favicon | img_url: '16x16' }}" />
+		<link rel="icon" type="image/png" href="{{ settings.favicon | img_url: '128x' }}" />
+		<meta name="application-name" content="&nbsp;"/>
+		<meta name="msapplication-TileColor" content="#FFFFFF" />
+		<meta name="msapplication-TileImage" content="{{ settings.favicon | img_url: '144x144' }}" />
+		<meta name="msapplication-square70x70logo" content="{{ settings.favicon | img_url: '70x70' }}" />
+		<meta name="msapplication-square150x150logo" content="{{ settings.favicon | img_url: '150x150' }}" />
+		<meta name="msapplication-wide310x150logo" content="{{ settings.favicon | img_url: '310x150' }}" />
+		<meta name="msapplication-square310x310logo" content="{{ settings.favicon | img_url: '310x310' }}" />
+	{% endif %}
+
+	{{ theme_styles }}
+
+	<!-- optimization trick font-awesome --> 
+	{% comment %}{{ '//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css' | stylesheet_tag }}{% endcomment %}
+	<link rel="preload" as="style" onload="this.rel = 'stylesheet'" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<!-- end optimization trick --> 
+	
+
+	{% unless settings.custom_style == blank %}
+		<style type="text/css" media="screen">
+			{{ settings.custom_style }}
+		</style>
+	{% endunless %}
+
+	{% comment %}{{ '//code.jquery.com/jquery-3.3.1.min.js' | script_tag }}{% endcomment %}
+	<!-- custom js  - Speed optimization --> 
+	  <script src="//code.jquery.com/jquery-3.6.1.min.js" defer></script>
+	<!-- end of custom js -->
+
+	{% if template contains 'customers' %}
+		{{ 'shopify_common.js' | shopify_asset_url | script_tag }}
+		{{ 'customer_area.js'  | shopify_asset_url | script_tag }}
+	{% endif %}
+
+	{% if template contains 'product' %}
+		{{ 'option_selection.js' | shopify_asset_url | script_tag }}
+
+		{% assign redirection_url = product.metafields.sf_product.redirection_url %}
+
+		<script>
+			window.product = {{ product | json }};
+			window.product.url = {{ product.url | json }};
+			window.product.redirection_url = {{ redirection_url | json }};
+		</script>
+	{% endif %}
+
+	{% capture scripts %}
+
+		{{ theme_scripts }}
+
+		{% unless settings.custom_script == blank %}
+			{% unless settings.custom_script contains '</script>' and settings.custom_script contains '<script' %}
+				<script type="text/javascript">
+					{{ settings.custom_script }}
+				</script>
+			{% else %}
+				{{ settings.custom_script }}
+		    {% endunless %}
+
+		{% endunless %}
+
+	{% endcapture %}

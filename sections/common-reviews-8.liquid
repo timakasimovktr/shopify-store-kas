@@ -1,0 +1,74 @@
+{%- assign _section = section.settings -%}
+
+
+
+{%- if _section.is_enable -%}
+  {%- if section.blocks.size > 0 -%}
+    {%- capture product_reviews -%}
+      [
+        {%- for block in section.blocks -%}
+          {%- assign _product = all_products[block.settings.product_item] -%}
+          {
+            "p_id": {{ _product.id }},
+            "p_count": {{ block.settings.count }}
+          }{% unless forloop.last %},{% endunless %}
+        {%- endfor -%}
+      ]
+    {%- endcapture -%}
+  {%- endif -%}
+
+  <div class="common-reviews">
+    <div class="shell">
+      <div class="common-reviews--inner">
+        {%- if _section.title != blank -%}
+          <div class="common-reviews--title">{{ _section.title }}</div>
+        {%- endif -%}
+        <div id="common-reviews--content" {% if product_reviews %} data-products='{{ product_reviews }}'{% endif %}>
+          <div class="common-reviews--content"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+{%- endif -%}
+{% schema %}
+{
+  "name": "Review Section",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "is_enable",
+      "label": "Is Enable/Disable",
+      "default": true
+    },
+    {
+      "type": "textarea",
+      "id": "title",
+      "label": "Title",
+      "default": "What Our Customers Have to Say"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "product",
+      "name": "Product",
+      "settings": [
+        {
+          "type": "product",
+          "id": "product_item",
+          "label": "Inverse content"
+        },
+        {
+          "type":   "range",
+          "id":     "count",
+          "min":       1,
+          "max":       10,
+          "step":      1,
+          "unit":      "s",
+          "label":     "Count of Products",
+          "default":   1
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

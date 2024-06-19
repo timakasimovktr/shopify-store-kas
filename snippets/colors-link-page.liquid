@@ -1,0 +1,91 @@
+{%- assign _collection = _collection | default: collection | default: _product.collections[0] -%}
+{%- assign options = _product.options_with_values | where: "name", "Color" -%}
+{%- assign option = options | first -%}
+
+<div class="list-colors--selected"></div>
+
+<div class="list-colors-available" data-url="{{ _product.url | within: current_collection }}">
+  {%- if color_sizes == 1 -%}
+    {{ 'products.product.available_one_color' | t }}
+  {%- else -%}
+    {{ 'products.product.available_colors' | t: counts: color_sizes }}
+  {%- endif -%}
+</div>
+
+<ul class="list-colors product__colors">
+  {% assign colors_shown = 0 %}
+  {% for value in option.values %}
+    {% if colors_shown >= 4 %}
+      {% break %} 
+    {% endif %}
+    {% assign value_handle = value | handle %}
+    {% assign _value = value %}
+    {%- assign current_class = '' -%}
+    {%- assign option_image = '' -%} 
+    {%- assign option_image_index = 0 -%}
+    {%- assign variant_url = '' -%} 
+
+    {% assign color_is_discontinued = false %}
+    {% for tag in _product.tags %}
+      {% if tag contains 'discontinued:color:' %}
+        {% assign discontinued_color_handle = tag | remove: 'discontinued:color:' | handle %}
+        {% if value_handle == discontinued_color_handle %}
+          {% assign color_is_discontinued = true %}
+          {% break %}
+        {% endif %}
+      {% endif %}
+    {% endfor %}
+
+    {% if color_is_discontinued %}
+      {% continue %}
+    {% endif %}
+
+    {%- for image in _product.images -%}
+      {%- assign image_alt_handle = image.alt | handle -%}
+      {%- if image_alt_handle == value_handle and option_image_index == 0 -%}
+        {%- assign option_image = image | img_url: '480x' -%}
+        {%- assign option_image_index = 1 -%}
+        {%- assign testMine = image.variants | where: "options", _value -%}
+        {%- assign variant_url = _product.url | within: _collection -%}
+      {%- endif -%}
+
+      {%- if forloop.last and option_image_index == 0 -%}
+        {%- assign option_image = image | img_url: '480x' -%}
+      {%- endif -%}
+    {%- endfor -%}
+
+    <li {% if current_class != empty %} class="{{current_class}}" {% endif %}>
+      <a  class="{{value_handle}}" data-href="{{variant_url}}" data-image="{{option_image}}" data-color-name="{{value_handle}}" data-color-text="{{_value}}">&nbsp;</a>
+      <img class="lazyload" data-src="{{option_image}}" style="display:none;" />
+    </li>
+
+    {% assign colors_shown = colors_shown | plus: 1 %}
+  {% endfor %}
+
+  {% if option.values.size > 4 %}
+    <li>
+      <a href="{{variant_url}}" rel="nofollow" class="more-colors-available">
+        + more colors available
+      </a>
+    </li>
+  {% endif %}
+</ul>
+
+<style>
+  .more-colors-available{
+    font-family: effra,sans-serif;
+    font-style: normal;
+    color: #636363;
+    height: 20px;
+    line-height: 20px;
+    font-size: 12px;
+    letter-spacing: .028em;
+    font-weight: 300;
+    width: 100% !important;
+  }
+  
+  .more-colors-available:after{
+    border: 0 !important;
+  }
+
+</style>

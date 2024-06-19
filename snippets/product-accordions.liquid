@@ -1,0 +1,21 @@
+{%- if product.metafields.sf_accordions -%}
+  <div class="accordion">
+    {%- for i in (1..3) -%}
+      {%- assign accordion_title_string = 'accordion_' | append: i | append: '_title' -%}
+      {%- assign accordion_content_string = 'accordion_' | append: i | append: '_content' -%}
+      {%- assign accordion_title = product.metafields.sf_accordions[accordion_title_string] -%}
+      {%- assign accordion_content = product.metafields.sf_accordions[accordion_content_string] -%}
+
+      {%- if accordion_title and accordion_content -%}
+        <div class="accordion__section">
+          <div class="accordion__head js-accordion-head">
+              <h6>{{ accordion_title }}</h6>
+          </div><!-- /.accordion__head -->
+          <div class="accordion__body js-accordion-body">
+            {{ accordion_content }}
+          </div><!-- /.accordion__body -->
+        </div><!-- /.accordion__section -->
+      {%- endif -%}
+    {%- endfor -%}
+  </div><!-- /.accordion -->
+{%- endif -%}

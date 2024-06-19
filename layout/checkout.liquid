@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="{{ locale }}" dir="{{ direction }}" class="{{ checkout_html_classes }}">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, height=device-height, minimum-scale=1.0, user-scalable=0">
+    <meta name="referrer" content="origin">
+
+    <title>{{ page_title }}</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display" rel="stylesheet">
+
+    {{ content_for_header }}
+
+    {{ checkout_stylesheets }}
+    {{ checkout_scripts }}
+  
+    <style>
+      .checkout--body .header__bar{display: none}
+      .hide-bundle-desc-property{display: none}
+      th .custom-message{display: block;color:black;padding:.25rem 0}
+      .monogram-message {font-style: oblique;font-weight: 600 !important;margin: 0.5rem 0!important;}
+    </style>
+    
+    <script type="text/javascript">
+      var _checkout_method_custom_css = "{{ 'bundle.min.css' | asset_url }}";
+    </script>
+
+    {{ 'bundle.min.css' | asset_url | stylesheet_tag }}
+    {% comment %}{{ '//code.jquery.com/jquery-3.3.1.min.js' | script_tag }}{% endcomment %}
+
+    <!-- slick carousel --> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script> 
+    <!-- end of slick --> 
+
+    {{ 'bundle.min.js' | asset_url | script_tag }}
+    {{ 'checkout.min.js' | asset_url | script_tag }}
+    
+    <!-- Reach Localize Script -->
+    <script
+      id="gointerpay_localize"
+      src="https://assets.rch.io/c0126abc-f008-42c2-8b3d-73cbe3809714/localize.js"
+      data-merchant_id="c0126abc-f008-42c2-8b3d-73cbe3809714"
+      data-currency_tag="yes"
+    ></script>
+
+    <!-- Start BounceX tag. Deploy at the beginning of document head. -->
+    <script>
+      (function(d) {
+        var e = d.createElement('script');
+        e.src = d.location.protocol + '//tag.bounceexchange.com/3733/i.js';
+        e.async = true;
+        d.getElementsByTagName("head")[0].appendChild(e);
+      }(document));
+    </script>
+    <!-- End BounceX tag -->
+
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.min.js"
+      integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+      crossorigin="anonymous"></script>
+  </head>
+  <body class="checkout--body" data-monogram="{{settings.customizer_message}}">
+    {{ skip_to_content_link }}
+
+    <div class="header-checkout">
+      {%- include 'header-bar' -%}
+      <div class="shell">
+        {% comment %}
+          <a class="logo logo--left" href="/">
+            <img alt="Kassatex" class="logo__image logo__image--medium" src="{{ 'KASSATEX_LOGO_GREY.svg' | asset_url }}">
+          </a>
+        {% endcomment %}
+        {{ content_for_logo }}
+      </div><!-- /.shell -->
+    </div><!-- /.header header--checkout -->
+
+    {{ breadcrumb }}
+
+    {{ order_summary_toggle }}
+
+    <div class="shell">
+      <div class="content content-checkout" data-content>
+        <div class="wrap">
+          <div class="main" role="main">
+            <div class="main__header">
+              {{ alternative_payment_methods }}
+            </div>
+            <div class="main__content">
+              {{ content_for_layout }}
+            </div>
+          </div>
+
+          <div class="sidebar" role="complementary">
+            <div class="sidebar__header">
+              {{ content_for_logo }}
+            </div>
+            <div class="sidebar__content">
+              <!-- Gift Message -->
+              {%-if checkout.note.size > 0 -%}
+                <div id="checkout-notes" class="included_products" style="margin:1.5rem 0;">
+                  <p class="order-summary__small-text">
+                    <span>{{'Gift Message' | upcase }}</span>
+                    <span class="product__description__property">{{checkout.note | replace: '||', '<br>' | replace: "::", ":  "}}</span>
+                  </p>
+                </div>
+              {%- endif -%}
+              <!-- Gift Message -->
+              {{ content_for_order_summary }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div><!-- /.shell -->
+    
+    <!-- Gift Message -->
+    {%-if checkout.note.size > 0 -%}
+      <script>
+        jQuery( "#checkout-notes" ).insertBefore( ".order-summary__section--discount" );
+      </script>
+    {%- endif -%}
+    <!-- Gift Message -->
+
+    <input id="shipping-method-message-t" value="{{ 'checkout.shipping_method_message_html' | t }}" type="hidden">
+
+    <script>
+      $(document).ready(() => {
+        console.log('doc ready');
+        if(!localStorage.getItem('discount_applied')){
+          if(localStorage.getItem('bouncex_welcome15') != null || localStorage.getItem('bouncex_welcome20') != null) {
+            let redirectUrl = location.href + '?';
+            if(location.search.indexOf("?") != -1)
+            redirectUrl = location.href + '&';
+
+            if(localStorage.getItem('bouncex_welcome15') != null)
+            redirectUrl += 'discount=WELCOME15';
+            if(localStorage.getItem('bouncex_welcome20') != null)
+            redirectUrl += 'discount=WELCOME20';
+
+            localStorage.setItem('discount_applied', true);
+            location.href = redirectUrl;
+          }
+        }
+
+        {% if page_title contains 'Thank you' %}
+        localStorage.removeItem('discount_applied');
+      	localStorage.removeItem('bouncex_welcome15');
+      	localStorage.removeItem('bouncex_welcome20');
+        {% endif %}
+
+
+        $(document).on('click', '.tag__button', function(e){
+          if(window.location.search.indexOf('discount=WELCOME15') != -1 || window.location.search.indexOf('discount=WELCOME20') != -1){
+            localStorage.removeItem('discount_applied');
+            localStorage.removeItem('bouncex_welcome15');
+            localStorage.removeItem('bouncex_welcome20');
+
+            /*
+            $(e.currentTarget).closest('form').on('submit', () => {
+              console.log('redirect');
+              location.href = location.href.replace('discount=WELCOME15').replace('discount=WELCOME20');
+            });
+            */
+          }
+        })  
+      
+        // Valdiation for PO Boxes and error message customization
+        handlePOBoxMessage();
+      });
+
+      /**
+       * This function checks if address contains PO Box
+       * keywords and then customize the
+       * Shopify standar shipping rejection message.
+       */
+      function handlePOBoxMessage(){
+        var poBoxesKeyWordsFromSE = ["po box", "post office", "p o box", "p.o.box", "p.o. box", "p.o box", "pobox", "post office box", "post box", "p. o. box", "po. box", "postal box"],
+          poBoxesKeyWordFromSE, VALID_PO_MESSAGE = "We don't offer shipping to PO Boxes";
+        var $error = $('.section__content .notice--error'),
+          $address, $poMessage;
+
+        if($error.length > 0){
+          $poMessage = $('.section__content .content-box.blank-slate > p');
+          $address = $('.content-box address')
+          addressText = $address.text().trim();
+          
+          for (let i = 0; i < poBoxesKeyWordsFromSE.length; i++) {
+            poBoxesKeyWordsFromSE = poBoxesKeyWordsFromSE[i];
+            if(addressText.includes(poBoxesKeyWordsFromSE)){
+              $poMessage.text(VALID_PO_MESSAGE);
+              break;
+            }
+          }
+        }
+      }
+
+      
+      // Monogram message adding
+      // It adds a caution message on products with monogram included
+      function addMonogramMessage() {
+        fetch('/cart.js')
+            .then(response => response.json())
+            .then(data => {
+              moveGiftCardMessage(data.items)
+              const cartsWithMonogram = data.items.filter(cart => {
+                const itemsInMonogram = Object.keys(cart.properties);
+                if(itemsInMonogram.includes('Monogram Place') === true) {
+                  return true;
+                }
+              })
+              const monogramMessage = document.body.dataset['monogram']
+              const renderedCarts = []
+
+              cartsWithMonogram.forEach(cart => {
+                if (renderedCarts.includes(cart['product_id'])) {
+                  return
+                }
+
+                const productDescriptions = document.querySelectorAll(`[data-product-id="${cart['product_id']}"] th`)
+
+                productDescriptions.forEach(productDescription => {
+                  let spans = Array.from(productDescription.childNodes)
+                  let hasMonogram = spans.some(el => el.textContent.toLowerCase().includes('monogram'))
+                  if (!hasMonogram) {
+                    return
+                  }
+                  const span = document.createElement('span')
+                  span.setAttribute('class', 'product__description__property order-summary__small-text monogram-message')
+                  span.append(monogramMessage)
+                  const customFields = spans.filter(el => {
+                    if (el.classList) {
+                      return el.classList.contains('custom-message')
+                    }
+                  })
+                  if (customFields.length > 0) {
+                    customFields[customFields.length - 1].style.marginBottom = '1rem'
+                  }
+
+                  spans = spans.filter(el => !customFields.includes(el))
+
+                  spans.splice(2, 0, span, ...customFields)
+                  productDescription.innerHTML = ''
+                  spans.forEach(el => {
+                    productDescription.append(el)
+                  })
+                })
+                renderedCarts.push(cart['product_id'])
+              })
+            })
+      }
+
+      function moveGiftCardMessage(carts) {
+        const giftCards = carts.filter(cart => cart.gift_card)
+        giftCards.forEach(cart => {
+          const productDescriptions = document.querySelectorAll(`[data-product-id="${cart['product_id']}"] th`)
+          productDescriptions.forEach(productDescription => {
+            let spans = Array.from(productDescription.childNodes)
+            const spanToMove = spans.find(span => span.textContent.includes('Recipient’s email'))
+            const spanInsertTo = spans.find(span => span.textContent.includes('Recipient’s name'))
+            if(spanToMove) {
+              spanToMove.style.marginTop = '1rem'
+              productDescription.insertBefore(spanToMove, spanInsertTo)
+            }
+
+          })
+        })
+      }
+
+      $(document).on('page:change page:load', addMonogramMessage)
+
+    </script>
+
+    {% include 'footer' %}
+
+    {{ tracking_code }}
+  </body>
+</html>
+{% include 'swell-checkout' %}
+{% include 'swell-post-checkout' %}

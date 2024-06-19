@@ -1,0 +1,133 @@
+<div class="form-product form-product--accessories">
+  <form action="/cart/add" method="post" enctype="multipart/form-data" class="js-form-ajax">
+    <div class="section__entry hidden-xs">
+      {%- if product.description contains '</' -%}
+        {{ product.description }}
+      {%- else -%}
+        <p>{{ product.description }}</p>
+      {%- endif -%}
+    </div><!-- /.section__entry -->
+
+    {%- assign showSizeGuide = false -%}
+
+    {%- for tag in product.tags -%}
+     {%- if tag contains 'sizeguide'-%}
+      {%- assign showSizeGuide = true -%}
+     {%- endif -%}
+    {%- endfor -%}
+
+    {%- if product.variants.size > 1 -%}
+      <div class="form__row first-row">
+        <div class="select options-container">
+          {%- if showSizeGuide == true and product.variants.size > 0 -%}
+            <a href="#popup" class="pop-up-right js-btn-expand">{{ 'products.general.size_guide' | t }}</a>
+          {%- endif -%}
+
+          <label class="form__label">Size: </label>
+          <select name="id" data-options="{% for option in product.options %}{{option | downcase | handleize }}{% unless forloop.last %},{% endunless %}{% endfor %}">
+            <!--option value="">Make a selection</option-->
+            {%- assign options_size = product.options | size -%}
+            {% for variant in product.variants %}
+
+              {%- assign _option_pos = forloop.index0 -%}
+
+              {%- for product_option in product.options_with_values -%}
+                {%- assign _option_name = product_option.name | downcase -%}
+                {%- if _option_name contains 'size' -%}
+                  {%- assign _option_pos = product_option.position | minus: 1 -%}
+                {%- endif -%}
+              {%- endfor -%}
+
+              {% capture data_fields %}{% for option in product.options %}data-accessories="{{ variant.options[_option_pos] | handle }}"{% endfor %}{% endcapture %}
+              {%- assign inventory_value = variant.inventory_quantity -%}
+              {%- unless variant.available -%}
+                {%- assign inventory_value =  -1 -%}
+              {%- endunless -%}
+
+              {%- assign variant_title = variant.option1 -%}
+              {%- if options_size > 1 -%}
+                {%- assign variant_title = variant.option2 -%}
+              {%- endif -%}
+        
+              <option data-sku="{{ variant.sku }}" value="{{ variant.id }}" data-compare-price="{{ variant.compare_at_price | money }}" data-available="{{ variant.available }}" data-price="{{ variant.price | money }}" data-inventory="{{inventory_value}}" {{data_fields}}{% if inventory_value < 1 and is_preorder %} data-preorder="{{ preorder_date }}"{% endif %} data-q-price="{{ variant.price | divided_by: 4 | money }}">{{ variant_title }}</option>
+            {% endfor %}
+          </select>
+        </div><!-- /.select -->
+      </div><!-- /.form__row -->
+    {%- endif -%}
+
+    {%- for tag in product.tags -%}
+      {%- if tag contains 'customizer' -%}
+
+        <!-- product for monogramming fee -->
+        {% assign namespace = product.metafields.sf_customizer.template %}
+        {% assign store_mono_fee_product = all_products[shop.metafields[namespace].product_monogram_fee] %}
+        {% assign  store_mono_fee_product_price = store_mono_fee_product.variants[0].price %}
+        <div class="form__row form__row--full form__row--available" {% if currentVariant.available == false %} style="display: none;" {% endif %}>
+          <a class="btn btn--block" id="to_view_customizer">add a monogram (+{{ store_mono_fee_product_price | money_without_trailing_zeros }})</a>
+        </div>
+      {%- endif -%}
+    {%- endfor -%}
+
+    {%- assign product_tags_string = product.tags | join: ',' -%}
+
+    {% if product_tags_string contains 'Final Sale' %}
+      <input type="text" name="properties[saleDiscountMsg]" value="Final Sale" style="display: none">
+    {% endif %}
+    
+    {% if product_tags_string contains 'no_discounts_allowed' %}
+      <input type="text" name="properties[noDiscountsAllowed]" value="Not eligible for discounts or promo codes" style="display: none">
+    {% endif %}
+
+    {% if product_tags_string contains 'no_gift_wrap_allowed' %}
+      <input
+        type="text"
+        name="properties[no_gift_wrap_allowed]"
+        value="{{ 'cart.general.no_gift_wrap_allowed' | t }}"
+        style="display: none"
+      >
+    {% endif %}
+
+    <div class="form-action-wishlist">
+      <div class="form__row form__row--half form__row--available" {% if currentVariant.available == false %} style="display: none;" {% endif %}>
+        <div class="form__controls">
+          <div class="counter js-counter">
+            <span class="counter__minus js-counter-minus">&nbsp;</span>
+  
+            <input type="number" class="counter__field js-counter-field" name="quantity" id="field-qty" value="1" data-prev-vale="1" min="0" />
+  
+            <span class="js-counter-plus counter__plus">&nbsp;</span>
+          </div><!-- /.counter -->
+        </div><!-- /.form__controls -->
+      </div><!-- /.form__row -->
+  
+      <div class="form__actions form__row--available" {% if currentVariant.available == false %} style="display: none;" {% endif %}>
+        {%- if currentVariant.available -%}
+          <input type="submit" value="{{ 'products.product.add_to_cart' | t }}" class="btn btn--solid form__btn" />
+        {%- else -%}
+          {%- if is_preorder -%}
+            <input type="submit" value="{{ 'products.product.pre_order' | t }}" class="btn btn--solid form__btn" />
+          {%- else -%}
+            <input type="submit" value="{{ 'products.product.out_of_stock' | t }}" class="btn btn--solid form__btn" disabled />
+          {%- endif -%}
+        {%- endif -%}
+      </div><!-- /.form__actions -->
+      
+      <a href="#" class="btn btn--solid btn--block klaviyo-bis-trigger" style="text-align: center; width: 100%!important;padding-left:20px;padding-right:20px;display: none;">Sold Out! Notify Me</a>
+
+      <div class="container-btn-wishlist form__controls">
+        <a class="btn-add-to-wishlist" href="#">
+          <div id="wishlist-icon-container">
+            {% render 'wishlist-icon' %}
+          </div>
+        </a>
+      </div>
+    </div>
+    
+    {%- if is_preorder -%}
+    <p class="preorder--message"{%- if current_variant.inventory_quantity > 0 -%} style="display: none"{% endif %}>
+      {{ 'products.product.preorder_message_html'  | t: date: preorder_date }}
+    </p>
+    {%- endif -%}
+  </form>
+</div><!-- /.form-product -->

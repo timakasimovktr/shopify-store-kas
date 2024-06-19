@@ -1,0 +1,1481 @@
+{%- assign current_variant = product.selected_or_first_available_variant -%}
+{%- assign available_sizes = '' -%}
+{%- assign active_promo = false -%}
+{%- assign is_preorder = false -%}
+{% assign hasBundleTag = false %}
+
+{% assign vanity_colors_all = shop.metafields.sf_color_code.colors | newline_to_br | strip_newlines | replace: "<br />", "," %}
+{%- assign vanity_colors_all = vanity_colors_all | split: ',' | compact -%}
+{% assign new_vc_item_all = '' %}
+{% for _vanity_color in vanity_colors_all %}
+  {% assign _vanity_color_item = _vanity_color | split: '|' %}
+  {% assign _item_handle = _vanity_color_item[0] | handle %}
+  {% assign new_vc_item_all = new_vc_item_all | append: _item_handle | append: '|' | append: _vanity_color_item[1] | append: ',' %}
+{% endfor %}
+{%- assign vanity_colors_all = new_vc_item_all | split: ',' | compact -%}
+
+{%- for tag in product.tags -%}
+{%- assign tag_handle = tag | downcase -%}
+
+{%- if tag contains 'sizeguide:' -%}
+{%- assign page_handle = tag | replace: 'sizeguide:', '' -%}
+{%- assign available_sizes = available_sizes | append: page_handle | append: '@@@' -%}
+{%- endif -%}
+
+{%- if tag contains 'promo' -%}
+  {%- assign active_promo = true -%}
+{%- endif -%}
+
+{%- if tag_handle contains 'pre-order' -%}
+{%- assign preorder_date = tag_handle | remove: 'pre-order:' -%}
+{%- assign is_preorder = true -%}
+{%- endif -%}
+
+{% if tag == 'bundle' %}
+  {% assign hasBundleTag = true %}
+{% endif %}
+
+{%- endfor -%}
+
+{%- assign promo_switch = shop.metafields.sf_promo.active_promo -%}
+
+{%- assign available_sizes = available_sizes | split: '@@@' -%}
+{% assign disableReview = product.metafields.sf_yotpo.disable %}
+
+{%- assign products_in_bundle = product.metafields.bundle -%}
+{%- assign aditional_attributes = product.metafields.aditionalAttributes -%}
+{% if aditional_attributes == empty%}
+  {%- assign aditional_attributes = product.metafields.additionalAttributes -%}
+{% endif %}
+{%- assign bundle_discount = product.tags | where: 'DISCOUNT' | remove: 'DISCOUNT::' | remove: '[' | remove: ']' | remove: '"' | plus: 0 -%}
+{%- assign bundle_colors = '' -%}
+{%- assign bundle_sizes = '' -%}
+{%- assign bundle_min_price = 0 -%}
+{%- assign bundle_max_price = 0 -%}
+{%- assign bundle_option_order = 1 -%}
+{%- assign products_variants_in_bundle = '' -%}
+{%- assign aditional_attributes_json = aditional_attributes | json -%}
+
+{% for item in products_in_bundle %}
+  {%- assign product_variant = all_products[item[1].value.name] -%}
+  {%- comment -%} Quick fix to support both old bundles and new bundle sets metafield structure {%- endcomment -%}
+  {% if product_variant == blank or product_variant == null %}
+    {% assign product_variant = all_products[item[1].name] %}
+  {% endif %}
+
+  {%- assign product_variant_json = product_variant | json -%}
+  {%- assign color_variant = product_variant.options_with_values | where: "name", "Color" | first -%}
+  {%- assign size_variant = product_variant.options_with_values | where: "name", "Size" | first -%}
+  {%- assign products_variants_in_bundle = products_variants_in_bundle | append: product_variant -%}
+
+  {%- unless product.options contains 'Color' -%}
+    {%- if color_variant -%}
+      {%- assign colors_variants = color_variant.values | remove: '"' | remove: '[' | remove: ']' -%}
+      {%- assign bundle_colors = bundle_colors | append: ', ' | append: colors_variants -%}
+      {%- assign bundle_colors_option = color_variant.position -%}
+    {%- endif -%}
+  {%- endunless -%}
+
+  {%- unless product.options contains 'Size' -%}
+    {%- if size_variant -%}
+      {%- assign sizes = size_variant.values | remove: '"' | remove: '[' | remove: ']' -%}
+      {%- assign bundle_sizes = bundle_sizes | append: ', ' | append: sizes -%}
+    {%- endif -%}
+  {%- endunless -%}
+
+  {%- unless aditional_attributes_json contains product_variant.id | append: ''  -%}
+    {%- assign bundle_min_price = bundle_min_price | plus: product_variant.price_min -%}
+  {%- endunless -%}
+
+  {% if item[1].value.option == blank %} {%- comment -%} If metafields point to a bundle{%- endcomment -%}
+    {%- assign bundle_max_price = bundle_max_price | plus: product_variant.price_max -%}
+  {% elsif item[1].value.option != blank and bundle_max_price == 0 %} {%- comment -%} or a Bundle Set{%- endcomment -%}
+    {%- assign bundle_max_price = product_variant.price_max -%}
+  {% endif %}
+{% endfor %}
+
+{%- if product.options contains 'Color' -%}
+  {%- assign color_variant = product.options_with_values | where: "name", "Color" | first -%}
+  {%- assign colors_variants = color_variant.values | remove: '"' | remove: '[' | remove: ']' -%}
+  {%- assign bundle_colors = bundle_colors | append: ', ' | append: colors_variants -%}
+{%- endif -%}
+
+{%- if product.options contains 'Size' -%}
+  {%- assign size_variant = product.options_with_values | where: "name", "Size" | first -%}
+  {%- assign sizes = size_variant.values | remove: '"' | remove: '[' | remove: ']' -%}
+  {%- assign bundle_sizes = bundle_sizes | append: ', ' | append: sizes -%}
+  {%- assign bundle_sizes_option = size_variant.position  -%}
+{%- endif -%}
+
+{%- assign bundle_colors = bundle_colors | remove_first: ', ' | split: ', ' | uniq -%}
+{%- assign bundle_sizes = bundle_sizes | remove_first: ', ' | replace: '/', ', ' | split: ', '  | uniq -%}
+{%- assign bundle_min_price_discount = bundle_min_price | times: bundle_discount | divided_by: 100.0 -%}
+{%- assign bundle_max_price_discount = bundle_max_price | times: bundle_discount | divided_by: 100.0 -%}
+
+<section class="section-product">
+  <div class="shell normal-product-layout">
+    <div class="section__inner">
+      {%- include 'product-sliders' -%}
+
+      <div class="section__content">
+        <h4 class="section__title">{{ product.title }}</h4>
+
+        {%- if active_promo and promo_switch == 1 -%}
+          {%- assign saving_text = shop.metafields.sf_promo.promo_savings -%}
+        {%- endif -%}
+        
+        <p class="section__bundle_price bundle-price">
+          <span class="product-single__price discount-price">
+            {% if bundle_min_price != bundle_max_price %}
+              {{ bundle_min_price | minus: bundle_min_price_discount | money }} - {{ bundle_max_price | minus: bundle_max_price_discount | money }} 
+            {% else %}
+              {{ bundle_min_price | minus: bundle_min_price_discount | money }}
+            {% endif %}
+          </span>
+          {%- if bundle_discount > 0 -%}
+            <small class="real-price">
+              {% if bundle_min_price != bundle_max_price %}
+                ({{ bundle_min_price | money }} - {{ bundle_max_price | money }})
+              {% else %}
+                ({{ bundle_min_price | money }})
+              {% endif %}
+            </small>
+          {%- endif -%}
+        </p>
+
+        {% if disableReview != 1 %}
+        <div class="yotpo bottomLine" data-product-id="{{ product.id }}"></div>
+        {% endif %}
+
+        <div class="afterpay-wrapper"></div>
+
+        {%- include 'form-add-bundle' -%}
+
+        {%- if active_promo and promo_switch == 1 -%}
+          {%- assign promo_text = shop.metafields.sf_promo.promo_text -%}
+
+          <p class="section__message">{%- if promo_text -%} {{ promo_text }} {%- else -%} {{ 'products.general.promo_text' | t }} {%- endif -%}</p>
+        {%- endif -%}
+
+        <div class="section__entry visible-xs-block">
+          {%- if product.description contains '</' -%}
+          {{ product.description }}
+          {%- else -%}
+          <p>{{ product.description }}</p>
+          {%- endif -%}
+        </div>
+
+        {%- include 'product-accordions' -%}
+      </div>
+    </div>
+  </div>
+
+  {%- for tag in product.tags -%}
+    {%- if tag contains 'customizer' -%}
+      {%- section 'customizer' -%}
+    {%- endif -%}
+  {%- endfor -%}
+</section>
+
+{% assign review_items = product.metafields.sf_review_items %}
+
+{%- assign below_review_items = false -%}
+{%- if review_items.size > 0 -%}
+  {%- assign below_review_items = true -%}
+{%- endif -%}
+
+{%- include 'complete-the-look' with vanityColors: vanity_colors_all, below_review_items: below_review_items -%}
+
+{%- if below_review_items -%}
+  {%- include 'review-product' -%}
+{%- endif -%}
+
+{%- assign show_video = product.metafields.sf_video.show_video -%}
+
+{%- if show_video == 1 -%}
+  {%- include 'product-video' -%}
+{%- endif -%}
+
+{%- include 'best-sleep' -%}
+
+{%- include 'related-products' with vanityColors: vanity_colors_all -%}
+
+<section class="section-reviews">
+  <div class="shell">
+    <div class="section__inner">
+      <h2>Customer Reviews</h2>
+    </div>
+    <div id="shopify-product-reviews" class="reviews" data-id="{{ product.id }}">
+      {{ product.metafields.spr.reviews }}
+    </div>
+  </div>
+</section>
+
+{%- if available_sizes.size > 0 -%}
+{%- include 'product-size-chart' -%}
+{%- endif -%}
+
+<script type="text/javascript" src="https://static-us.afterpay.com/javascript/present-afterpay.js"></script>
+
+
+<script src="{{'products.min.js' | asset_url}}" defer></script>
+
+<script type="text/javascript">
+
+  function check_script_afterPay(glob_var) {
+    if(typeof(glob_var) !== 'undefined') {
+      var product_price = {{ current_variant.price }};
+      new presentAfterpay(apConfig).init();
+      if ((product_price < 3500) || (product_price > 120000)) {
+        window.updateAfterpayTemplate(false);
+      } else {
+        window.updateAfterpayTemplate(true, "{{ current_variant.price | divided_by: 4 | money }}");
+      }
+    } else {
+      setTimeout(function() {
+        check_script_afterPay(glob_var)
+      }, 100);
+    }
+  }
+    onDocumentReady(() =>  check_script_afterPay($));
+
+</script>
+
+<style type="text/css">
+  #afterpay-modal-modal {
+    padding: 20px;
+  }
+
+  .c-afterpay-info-modal-annotation__p {
+    padding-top: 20px;
+  }
+
+  .bundle-price {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 4px;
+    font-size: 22px;
+    line-height: 1.33;
+    color: #636363;
+    font-family: Vanitas;
+    letter-spacing: .5px;
+    font-weight: 300;
+  }
+
+  .bundle-price .real-price {
+    margin-left: .5rem;
+  }
+
+</style>
+
+
+<script type="text/javascript">
+  var cartbtn_status = {
+    "add_to_cart": "{{ 'products.product.add_to_cart' | t }}",
+    "out_of_stock": "{{ 'products.product.out_of_stock' | t }}",
+    "pre_order": "{{ 'products.product.pre_order' | t }}"
+  };
+
+  var is_preorder = {{ is_preorder }};
+  var is_bundle = true;
+
+  window.current_variant_id = {{ current_variant.id }};
+</script>
+
+{% if disableReview != 1 %}
+<div class="yotpo yotpo-main-widget"
+data-product-id="{{ product.id }}"
+data-price="{{ variant.price | money_without_currency }}"
+data-currency="{{ shop.currency }}"
+data-name="{{ product.title | escape }}"
+data-url="{{ shop.url }}{{ product.url }}"
+data-image-url="{{ product.featured_image | product_img_url: "large" |replace: '?', '%3F' | replace: '&','%26'}}"
+data-description="{{ product.description | escape }}">
+</div>
+{% endif %}
+
+{% unless product == empty %}
+<script id="bundle-products">
+
+  // let masterBundleProduct;
+  var masterBundleProductOptions = [],
+  bundleProductsArr = [],
+  products_variants,
+  products_options,
+  products_options_amount,
+  cartItems = [],
+  outOfStockItemsForKlaviyo = [],
+  bundleUnitPrice = 0,
+  bundleRealPrice = 0,
+  bundleDiscountedPrice = 0,
+  selectedBundleImage = undefined,
+  $klaviyoPopupResultMsg, $klaviyoVariantsDropdown,
+  $variantsSelect,
+  defaultSizes = JSON.parse('{{ product.metafields.global.defaultSizes | json }}'),
+  disabledSizesforColors = [],
+  IS_BUNDLE_SET = product.tags.includes('isBundleSet'),
+  $monogrammingButtonRow;
+
+
+  window.dataLayer = window.dataLayer || [];
+
+  if(defaultSizes == '' || defaultSizes == undefined || defaultSizes == null) {
+    defaultSizes = { products: [] };
+  }
+
+  {% for option in product.options_with_values %}
+    masterBundleProductOptions.push("{{ option.name }}");
+  {% endfor %}
+
+  {% for item in products_in_bundle %}
+    {%- assign product_in_bundle = all_products[item[1].value.name] -%}
+    {%- comment -%} Quick fix to support both old bundles and new bundle sets metafield structure {%- endcomment -%}
+    {% if product_in_bundle == blank or product_variant == null %}
+      {% assign product_in_bundle = all_products[item[1].name] %}
+    {% endif %}
+
+    products_variants = [];
+    products_options = [];
+    products_options_amount = [];
+
+    {% for option in product_in_bundle.options_with_values %}
+      products_options.push("{{ option.name }}");
+      products_options_amount.push({{ option.values | size }})
+    {% endfor %}
+
+    {% for variant in product_in_bundle.variants %}
+    {% assign itemQty = item[1].value.qty %}
+      {%- comment -%} Quick fix to support both old bundles and new bundle sets metafield structure {%- endcomment -%}
+      {% if itemQty == blank or product_variant == null %}
+        {% assign itemQty = item[1].qty %}
+      {% endif %}
+      {% assign itemOption = item[1].value.option %}
+      {% if itemOption == blank or product_variant == null %}
+        {% assign itemOption = item[1].option %}
+      {% endif %}
+
+      products_variants.push({
+        id: {{ variant.id }},
+        title: "{{ product_in_bundle.title }}",
+        available: {{ variant.available }},
+        stock: {{ variant.inventory_quantity }},
+        options: [`{{ variant.option1 }}`, `{{ variant.option2 }}`, `{{ variant.option3 }}`],
+        price: {{ variant.price }},
+        {% if variant.compare_at_price %}
+          compare_at_price: {{ variant.compare_at_price }},          
+        {% endif %}
+        quantity: {{ itemQty }},
+        productParent: {{ product_in_bundle.id }},
+        image: "{{ variant.featured_image.src | img_url }}",
+        bundleImage: "{{ variant.image.src | img_url }}",
+        url: "{{ shop.url }}{{ variant.url }}"
+      });
+
+      window.dataLayer.push({
+        "event": "stock",
+        "variant_id": "{{ variant.id }}",
+        "stock_qty": {{variant.inventory_quantity}},
+        {% if variant.inventory_quantity > 0 %}"in_stock": true{% else %}"in_stock": false{% endif %}
+      });
+    {% endfor %}
+
+    bundleProductsArr.push({
+      id: {{ product_in_bundle.id | json }},
+      options: products_options,
+      variants: products_variants,
+      handle: "{{ product_in_bundle.handle }}",
+      tags: "{{ product_in_bundle.tags }}"
+    });
+    
+    var disabledSizesForColorsFromProduct;
+
+    {% if product_in_bundle.metafields.product.disabledSizesForColors != blank %}
+      disabledSizesForColorsFromProduct = JSON.parse(`{{ product_in_bundle.metafields.product.disabledSizesForColors }}`);
+
+      disabledSizesForColorsFromProduct.forEach(function(dsfp){
+        disabledSizesforColors.push({
+          color: handleize(dsfp.color),
+          disabledSize: handleize(dsfp.disabledSize)
+        });
+      });
+    {% endif %}
+
+    {% if itemOption != blank %}
+    bundleProductsArr[bundleProductsArr.length-1].targetOption = `{{ itemOption }}`;
+    {% endif %}
+  {% endfor %}
+
+  function validateEmail(email) {
+    const regex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return regex.test(email);
+  }
+
+  /*
+  * This function is also called from wishlsit asset.
+  */
+  function calculateBundlePriceAndStock() {
+    let amountToBuy = parseInt($("#field-qty").val()),
+    errors = [],
+    bundlePrice = 0,
+    bundleCompareAtPrice = 0,
+    productsToRemove = [],
+    variantsAdded = [],
+    matchingVariantIndex = -1,
+    matchingVariant;
+
+    cartItems = [];
+    outOfStockItemsForKlaviyo = [];
+
+    if ($(".optionFilter[data-product-remove]:checked").val()) {
+      ($(".optionFilter[data-product-remove]:checked")).each(function() {
+        productsToRemove.push($(this).data("product-remove"));
+      });
+    }
+    
+    bundleUnitPrice = 0;
+
+    if(behaveAsBundle()){
+      var allProductsArray = [], selectedSizeOptionValue = handleize($('.optionFilter.Size:checked').val()),
+      uniqueSizeOptions = [], uniqueColorOptions = [], currentColorOption;
+
+      if(IS_BUNDLE_SET && selectedSizeOptionValue == 'bundle'){
+        allProductsArray = getBundleSetOptions().map(bpr => product);;
+        uniqueSizeOptions = getUniqueOptionValuesByOpIndex(product.variants, 1);
+      } else {
+        allProductsArray = bundleProductsArr;
+      }
+
+      allProductsArray.forEach(function(product, index) {
+        variantsAdded = [];
+        matchingVariantIndex = -1;
+        var currentColor = $('.optionFilter.Color:checked').val();
+
+        if(IS_BUNDLE_SET && selectedSizeOptionValue == 'bundle'){
+          matchingVariantIndex = getIndexOfSelectedBundledVariant(product, currentColor, uniqueSizeOptions[index]);
+        } else {
+          if(product.targetOption){
+            matchingVariantIndex = getIndexOfSelectedBundledVariant(product, currentColor, product.targetOption);
+          } else {
+            matchingVariantIndex = getIndexOfSelectedBundledVariant(product);
+          }
+        }
+
+        // No variant match. Check default color
+        if(matchingVariantIndex == -1 && !IS_BUNDLE_SET){
+          uniqueColorOptions = getUniqueOptionValuesByOpIndex(product.variants, 0);
+          if(uniqueColorOptions.length == 1){
+            // Default for the unique color option available
+            matchingVariantIndex = getIndexOfSelectedBundledVariant(product, uniqueColorOptions[0]);
+          }
+        }
+        
+        matchingVariant = product.variants[matchingVariantIndex];
+        matchingVariant.productHandle = product.handle;
+
+        if (matchingVariantIndex != -1) {
+          selectedBundleImage = getSelectedBundleVariantImgSrc(getSelectedOptions(product));
+
+          // extra validation
+          if (!variantsAdded.includes(matchingVariant.title) && !productsToRemove.includes(product.id)){
+            variantsAdded.push(matchingVariant.title);
+            
+            bundlePrice += matchingVariant.price / 100 * getBundledQtyOfVariantId(matchingVariant.id);
+            bundleUnitPrice += matchingVariant.price / 100;
+            if(matchingVariant.compare_at_price != null && matchingVariant.compare_at_price != 0 ){
+              bundleCompareAtPrice += matchingVariant.compare_at_price / 100 * getBundledQtyOfVariantId(matchingVariant.id);
+            } else {
+              bundleCompareAtPrice = null;
+            }
+            
+            if (matchingVariant.stock < (amountToBuy * matchingVariant.quantity)) {
+              errors.push("- The product " + matchingVariant.title + " has not enough stock, it only has " + matchingVariant.stock + ((matchingVariant.stock == 1)? " unity" : " unities") + " in stock.");
+
+              outOfStockItemsForKlaviyo.push({
+                productId: matchingVariant.productParent,
+                variantId: matchingVariant.id
+              });
+            } else if (!matchingVariant.available) {
+              errors.push("- The product " + matchingVariant.title + " is not available.");
+            }
+
+            cartItems.push(matchingVariant);
+          }
+        }
+      });
+    }
+
+      $(".bundle-errors-container").html('');
+
+      if(behaveAsBundle()){
+        bundleDiscountedPrice = ((bundlePrice - bundlePrice * {{ bundle_discount | divided_by: 100.0 }}) * amountToBuy).toFixed(2);
+        bundleDiscountedCompareAtPrice = ((bundleCompareAtPrice - bundleCompareAtPrice * {{ bundle_discount | divided_by: 100.0 }}) * amountToBuy).toFixed(2);
+        let bundle_compare_at_price;
+        if(bundleDiscountedCompareAtPrice > 0){          
+          bundle_compare_at_price = ' <del>$'+bundleDiscountedCompareAtPrice+'</del>';
+        } else {
+          bundle_compare_at_price = "";
+        }
+        $(".bundle-price .discount-price").html("$" + bundleDiscountedPrice + bundle_compare_at_price);
+        bundleRealPrice = (bundlePrice * amountToBuy).toFixed(2);
+        $(".bundle-price .real-price").html("($" + bundleRealPrice + ")");
+
+        if (errors.length === 0) {
+          $(".bundle-errors-container").hide();
+
+          showKlaviyoBundleButton(false);
+          showMonogrammingButton();
+        } else {
+          let bundledVariantsToAdd, bundleMinPrice, bundleMaxPrice, minPriceShow, maxPriceShow,
+          bundleDiscount = parseFloat(`{{ bundle_discount | divided_by: 100.0 }}`), discountPriceString = '';
+          
+          if(!IS_BUNDLE_SET){
+            bundledVariantsToAdd = getBundledVariantsToAdd(bundleProductsArr);
+          } else {
+            bundledVariantsToAdd = getBundledSetVariantsToAdd(product);
+          }
+
+          bundleMinPrice = bundledVariantsToAdd.map(v => v.price).reduce(function(acc, a){return acc + a}, 0);
+          bundleMaxPrice = bundleMinPrice;
+          minPriceShow = bundleMinPrice - (bundleMinPrice * bundleDiscount);
+          maxPriceShow = bundleMaxPrice - (bundleMaxPrice * bundleDiscount);
+
+          minPriceShow = ((bundleMinPrice * amountToBuy) / 100).toFixed(2);
+          maxPriceShow = ((bundleMaxPrice * amountToBuy) / 100).toFixed(2);
+
+          if(minPriceShow != maxPriceShow){
+            discountPriceString = "$" + minPriceShow + " - $" + maxPriceShow;
+          } else {
+            discountPriceString = "$" + minPriceShow;
+          }
+          
+          showMonogrammingButton(false);
+          showKlaviyoBundleButton(true);
+
+          $("#klaviyo-bis-modal .modal-title").html($(".section-product .section__content .section__title").html());
+        }
+      } else if (errors.length === 0) {
+        let compare_at_price;
+        if($variantsSelect.find('option:selected').data('compare-price').replace('$', '') * amountToBuy > 0){
+          compare_at_price = ' <del>$'+($variantsSelect.find('option:selected').data('compare-price').replace('$', '') * amountToBuy).toFixed(2)+'</del>';
+        } else{
+          compare_at_price = '';
+        }
+        $(".bundle-price .discount-price").html('$'+($variantsSelect.find('option:selected').data('price').replace('$', '') * amountToBuy).toFixed(2) + compare_at_price);
+        $(".bundle-price .real-price").html('$'+($variantsSelect.find('option:selected').data('price').replace('$', '') * amountToBuy).toFixed(2));
+        
+        var inventory = parseInt($variantsSelect.find('option')[$variantsSelect[0].selectedIndex].dataset.inventory);
+        showKlaviyoBundleButton(inventory <= 0);
+
+        if(inventory > 0){
+          showMonogrammingButton();
+        } else {
+          showMonogrammingButton(false);
+        }
+      }
+    }
+    
+    function showMonogrammingButton(show = true){
+      if(show){
+        $monogrammingButtonRow.show();
+      } else {
+        $monogrammingButtonRow.hide();
+      }
+    }
+
+    function verifyIfCanAddToCart() {
+      let canAddToCart = true;
+
+      changeMonogramPrice()
+
+      // At least 1 variant option selected for each group
+      $(".product-variants-container .options-container, .form-product .options-container").each(function() {
+        if (!$(this).find("input:checked").val()) {
+          canAddToCart = false;
+          return false;
+        }
+      });
+
+      if (canAddToCart) {
+        $(".btn-add-bundle").removeAttr("disabled");
+        return true;
+      } else {
+        $(".btn-add-bundle").attr("disabled", "disabled");
+        return false;
+      }
+    }
+
+    function changeMonogramPrice() {
+      try {
+        window.current_variant_id
+        const select = $variantsSelect[0];
+        if(!select) return;
+        const id = select.value
+        if(!id) return;
+        const multiplier = window.store_mono_product_fee_quntity[id] || 1
+        const $price = document.querySelector('#to_view_customizer span.money')
+
+        if($price && multiplier > 1) {
+            $price.innerHTML ='$' + (window.store_mono_fee_product.price / 100) * multiplier;
+        } else if($price) {
+          $price.innerHTML = window.store_mono_fee_product.price / 100 + ''
+        }
+
+      } catch (e) {}
+    }
+
+    function addToCart( items, cb ) {
+      return $.ajax({
+        url: '/cart/add.js',
+        type: 'POST',
+        dataType: 'json',
+        data: JSON.stringify({
+          items: items
+        }),
+        contentType: "application/json",
+        success: function() {
+          if(cb) cb();
+          $.ajax({
+            url: '/cart',
+            success: function(response) {
+              const $cartDropdown = $('.cart .cart__inner');
+              const $cart_popup = $( '.cart-popup__overlay' )
+              const $cart_popup_slide = $( '.cart-popup__slide' )
+
+              const $response = $(response);
+              const $result = $response.find('.main > .hidden > form').length
+              ? $response.find('.main > .hidden > form')
+              : $response.find('.main > .hidden > .cart-empty');
+
+              $cartDropdown.find('form, .cart-empty').remove();
+              $result.appendTo($cartDropdown);
+              $cartDropdown.addClass('is-expanded');
+              $cart_popup.addClass('open');
+              $cart_popup_slide.addClass('open-slide');
+              $('body').css('overflow', 'hidden');
+
+              if(typeof $radioHolder != 'undefined') {
+                $radioHolder
+                .removeClass('is-active')
+                .find('input:checked')
+                .prop('checked', false);
+              }
+
+              // update item counts in mini cart
+              let all_item_counts = 0;
+              $('.header__inner .cart__inner-body .product').each(function(i){
+                if($(this).css('display') != 'none') {
+                  let _qty = $(this).find('input.counter__field').val();
+                  all_item_counts += parseInt(_qty);
+                }
+              });
+
+              if(all_item_counts > 0) {
+                $('.cart .cart__link span').text(all_item_counts);
+              } else {
+                $('.cart .cart__link span').text('');
+              }
+
+              $(".btn-add-bundle").removeClass("loading");
+              $(".btn-add-bundle").removeAttr("disabled");
+            }
+          });
+        }
+      })
+      .fail(function(data) {
+        $(".error-container").show();
+        $(".error-container p").html("Error: " + JSON.parse(data.responseText).description);
+        $(".btn-add-bundle").removeClass("loading");
+      });
+    }
+
+    function getUniqueOptionValuesByOpIndex(variants, optionIndex){
+      var uniqueOptions = [];
+
+      variants.forEach(function(v, i){
+        if(!uniqueOptions.includes(v.options[optionIndex])){
+          uniqueOptions.push(v.options[optionIndex]);
+        }
+      });
+
+      return uniqueOptions;
+    }
+
+    /**
+     *
+     * This function fetches and returns formated
+     * bundled items to add to cart, related to the
+     * selected options on current PDP.
+     *
+     * Called from wishlist.js asset
+     *
+     * @param {array} items
+     * @param {array} variant
+     */
+    function getBundledItemsToAdd(items, productsInBundle, bundleRealPrice, bundleDiscountedPrice, selectedBundleImage){
+      let formattedItems = [];
+      $(items).each(function(i, variant) {
+        formattedItems.push({
+          quantity: parseInt($("#field-qty").val()),
+          id: parseInt(variant.id),
+          productHandle: variant.productHandle,
+          variant: {
+            price: variant.price,
+            image: variant.image,
+            url: variant.url
+          },
+          properties: {
+            'addedAsBundle': 'true',
+            'isBundleSet': IS_BUNDLE_SET,
+            'bundle': "{{ product.title }}",
+            'title': variant.title,
+            'productId': variant.productParent,
+            'options': variant.options,
+            'bundleId': 1,
+            'productsInBundle': productsInBundle,
+            'discountAmount': "{{ bundle_discount }}",
+            'bundleRealPrice': bundleRealPrice,
+            'bundleDiscountedPrice': bundleDiscountedPrice,
+            'bundleImage': selectedBundleImage,
+            'bundleUrl': "{{ shop.url }}{{ product.url }}",
+            'redirect_url': '{{ product.metafields.sf_product.redirection_url }}',
+            'hasBundleTag': '{{ hasBundleTag }}',
+          }
+        });
+      });
+      
+      return formattedItems;
+    }
+
+    /**
+     *
+     * This function return the index of the BUNDLED variant
+     * that matches current filters options (color, size, etc)
+     * from PDP or the target options parameter.
+     * Here a metafield "defaultSizes" is being used and
+     * changes behaviour on normal variant options selected match
+     *
+     * @param {object} product
+     */
+    function getIndexOfSelectedBundledVariant(product, colorOption = null, sizeOption = null){
+      var targetIndex = -1,
+      products_options_values = [],
+      option1, option2, option3,
+      variantOption1, variantOption2, variantOption3,
+      selectedOptions = getSelectedOptions(product).map(op => handleize(op));
+      
+      products_options_values[0] = colorOption ? handleize(colorOption) : selectedOptions[0];
+      products_options_values[1] = sizeOption ? handleize(sizeOption) : selectedOptions[1];
+      
+      option1 = products_options_values[0] ? products_options_values[0] : null;
+      option2 = products_options_values[1] ? products_options_values[1] : null;
+      option2 = handleize(getDefaultSize(product.id, option2));
+      option3 = products_options_values[2] ? products_options_values[2] : null;
+
+      if(option2 == 'bundle'){
+        option2 = null;
+      }
+
+      // find matching variant on each bundled product
+      for (let i = 0; i < product.variants.length; i++) {
+        const variant = product.variants[i];
+        
+        // Compares variant options == selected options
+        variantOption1 = variant.options[0] ? handleize(variant.options[0]) : null;
+        variantOption2 = variant.options[1] ? handleize(getDefaultSize(product.id, variant.options[1])) : null;
+        variantOption3 = variant.options[2] ? handleize(variant.options[2]) : null;
+        
+        if (variantOption1 == option1 &&
+        (variantOption2 == option2 || option2 === null) &&
+        (variantOption3 == option3 || (variant.options[2] == "") || option3 === null)) {
+          return i;
+        }
+      }
+
+      console.warn('Options didnt match any variant', option1, option2, option3);
+      return targetIndex;
+    }
+
+    
+    /**
+     *
+     * This function return the index of the BUNDLE variant
+     * that matches current filters options (color, size, etc)
+     * from PDP. If this is a bundle set but the bundle option
+     * is not selected, normal product variant index will be
+     * returned
+     */
+    function getIndexOfSelectedVariant(){
+      var filters = [], filterElems = document.querySelectorAll('.optionFilter:checked'),
+      didNotMatch = false, filtersCount = filterElems.length;
+
+      if(filtersCount > 2){
+        filtersCount = 2;
+      }
+      
+      // < 2 as third option is not a real variant option
+      for (let i = 0; i < filtersCount; i++) {
+        if(filterElems[i].classList.contains('Size')){
+          filters.push(getDefaultSize(product.id, filterElems[i].value));
+        } else {
+          filters.push(handleize(filterElems[i].value));
+        }
+      }
+
+      for (let i = 0; i < product.variants.length; i++) {
+        for (let j = 0; j < filters.length; j++) {
+          if(!product.variants[i].options.map(op => handleize(op)).includes(filters[j])){
+            didNotMatch = true;
+            break;
+          }
+        }
+
+        if(!didNotMatch){
+          return i;
+        }
+
+        didNotMatch = false;
+      }
+      
+      console.error('Bundle product variant not found for filters', filters);
+      return -1;
+    }
+
+    /**
+     * This function gets the selected options
+     * based on user input
+     *
+     * @param {object} product
+     */
+    function getSelectedOptions(product){
+      let optionInput = [], products_options_values = [];
+
+      // set available product options
+      product.options.forEach(function(option, index) {
+        optionInput = $(".optionFilter." + option + ":checked");
+        if (optionInput.data("product")) {
+          optionInput = $(".optionFilter." + option + "[data-product=" + product.id + "]:checked");
+        }
+        if (option == "Color") {
+          products_options_values.push(optionInput.data("text-original"));
+        } else if (option == "Size") {
+          products_options_values.push(optionInput.data("text"));
+        } else {
+          products_options_values.push(optionInput.val());
+        }
+      });
+      
+      return products_options_values;
+    }
+
+    function getSelectedBundleVariantImgSrc(selectedOptions){
+      let sliderImgObj, containsAllOptions = true, matchingImgSrc = '';
+
+      if(window.product.tags.includes('bundleImageDefault')){
+        for (let i = 0; i < window.productSliderImgs.length; i++) {
+          sliderImgObj = window.productSliderImgs[i];
+          if(sliderImgObj.alt == 'default'){
+            matchingImgSrc = sliderImgObj.src;
+            break;
+          }
+        }
+      }
+      else{
+        for (let i = 0; i < window.productSliderImgs.length; i++) {
+          sliderImgObj = window.productSliderImgs[i];
+          containsAllOptions = true;
+
+          for (let j = 0; j < selectedOptions.length; j++) {
+            if(selectedOptions[j] && selectedOptions[j].toLowerCase() == 'bundle'){
+              continue;
+            }
+            
+            if(selectedOptions[j] && !sliderImgObj.alt.includes(selectedOptions[j].toLowerCase())){
+              containsAllOptions = false;
+              break;
+            }
+          }
+
+          if(containsAllOptions){
+            matchingImgSrc = sliderImgObj.src;
+            break;
+          }
+        }
+      }
+
+      return matchingImgSrc;
+    }
+
+    function getDefaultSize(productId, currentSize){
+      var defaultSizeProduct, useDefaultSize;
+
+      for (var i = 0; i < defaultSizes.products.length; i++) {
+        defaultSizeProduct = defaultSizes.products[i];
+        if(productId == defaultSizeProduct.productId && defaultSizeProduct.onSizes.split(',').map(size => handleize(size.trim())).includes(handleize(currentSize))){
+          return defaultSizeProduct.use;
+        }
+      }
+
+      return currentSize;
+    }
+
+    function getNewKlaviyoDropdownOption(title, productId, variantId, options = false){
+      var $newOption = $('<option>');
+      $newOption.text(title);
+      $newOption.val(variantId);
+      $newOption.data('product-id', productId);
+      $newOption.data('variant-id', variantId);
+
+      if(options){
+        $newOption.data('options', options);
+      }
+
+      return $newOption;
+    }
+
+    /**
+     * This function will update the
+     * variants with inventory not available
+     * in the dropdown within klaviyo's popup.
+     * */
+    function populateKlaviyoDropdown(){
+      var currentVariant;
+
+      $klaviyoVariantsDropdown.empty();
+
+      // Get all options available
+      for (let i = 0; i < product.variants.length; i++) {
+        currentVariant = product.variants[i];
+        var selectedColorMatches = currentVariant.options.map(op => handleize(op)).includes(handleize(getSelectedOptions(product)[0]));
+
+        if(selectedColorMatches && (!currentVariant.available || currentVariant.stock <= 0)){
+          $klaviyoVariantsDropdown.append(getNewKlaviyoDropdownOption(currentVariant.title, product.id, currentVariant.id));
+        }
+      }
+    }
+
+    /**
+     * Same as populateKlaviyoDropdown but
+     * for PDP bundles.
+     * */
+    function populateKlaviyoDropdownForBundles(){
+      var bundleProductsNotAvailable = [], targetVariantIndex, targetOptions, isBundle = false, unavailableVariants;
+
+      $klaviyoVariantsDropdown.empty();
+
+      // Get all options available
+      for (let i = 0; i < product.variants.length; i++) {
+        var selectedColorMatches = product.variants[i].options.map(op => handleize(op)).includes(handleize(getSelectedOptions(product)[0]));
+
+        if(!IS_BUNDLE_SET || (IS_BUNDLE_SET && product.variants[i].options.map(op => handleize(op)).includes('bundle'))){
+          isBundle = true;
+        }
+
+        unavailableVariants = getUnavailableBundledVariants(product.variants[i], product.variants[i].options.map(op => handleize(op)));
+        
+        if(isBundle && unavailableVariants.length > 0 && selectedColorMatches){
+          var $newKlaviyoOption;
+          unavailableVariants.forEach((unavailableVariant) => {
+            if(IS_BUNDLE_SET && !product.variants[i].options.map(op => handleize(op)).includes('bundle')){
+              $newKlaviyoOption = getNewKlaviyoDropdownOption(unavailableVariant.variant.title, unavailableVariant.productId, unavailableVariant.variant.id);
+            } else if (!IS_BUNDLE_SET){
+              $newKlaviyoOption = getNewKlaviyoDropdownOption(`${unavailableVariant.variant.title} - ${unavailableVariant.variant.options[0]} / ${unavailableVariant.variant.options[1]}`, unavailableVariant.productId, unavailableVariant.variant.id, product.variants[i].options.map(op => handleize(op)));
+            }
+            
+            if($klaviyoVariantsDropdown.find(`[value="${unavailableVariant.variant.id}"]`).length == 0){
+              $klaviyoVariantsDropdown.append($newKlaviyoOption);
+            }
+          });
+        }
+      }
+    }
+
+
+    /**
+     * Returns all options except for the bundle one
+     * */
+    function getBundleSetOptions(){
+      var variants = [],
+      $sizes = $('.optionFilter.Size');
+
+      for (let i = 0; i < $sizes.length; i++) {
+        if(handleize($sizes[i].value) != 'bundle'){
+          variants.push($sizes[i].value);
+        }
+      }
+      
+      return variants;
+    }
+
+    /**
+     * Returns the unavailable variants within the bundle,
+     * if any.
+     * */
+    function getUnavailableBundledVariants(productVariant, targetOptions = null){
+      var selectedSizeOptionValue = handleize($('.optionFilter.Size:checked').val()),
+      allProductsArray = [], unavailableVariants = [];
+      
+      if(IS_BUNDLE_SET && selectedSizeOptionValue == 'bundle'){
+        allProductsArray = getBundleSetOptions().map(bpr => product);
+      } else {
+        allProductsArray = bundleProductsArr;
+      }
+      
+      if(!targetOptions){
+        targetOptions = [].concat(productVariant.options);
+      }
+
+      for (let i = 0; i < allProductsArray.length; i++) {
+        if(allProductsArray[i].targetOption){
+          targetOptions[1] = handleize(getDefaultSize(allProductsArray[i].id, allProductsArray[i].targetOption));
+        } else {
+          targetOptions[1] = handleize(getDefaultSize(allProductsArray[i].id, productVariant.options[1]));
+        }
+        
+        targetVariantIndex = getIndexOfSelectedBundledVariant(allProductsArray[i], targetOptions[0], targetOptions[1]);
+        
+        if(targetVariantIndex > -1){
+          if(!allProductsArray[i].variants[targetVariantIndex].available || allProductsArray[i].variants[targetVariantIndex].stock <= 0){
+            unavailableVariants.push({
+              productId: allProductsArray[i].id,
+              variant: allProductsArray[i].variants[targetVariantIndex]
+            });
+          }
+        }
+      }
+      
+      return unavailableVariants;
+    }
+
+    function updateKlaviyoSelectedOption(){
+      var $selectedVariant = $variantsSelect.find(`option[value=${$variantsSelect.val()}]`),
+      bundleOptionChecked = handleize($('.optionFilter.Size:checked').val()) == 'bundle';
+
+      if(IS_BUNDLE_SET && !bundleOptionChecked){
+        // PRODUCTS
+        if(parseInt($selectedVariant.data('inventory')) <= 0 || !$selectedVariant.data('available')){
+          $klaviyoVariantsDropdown[0].selectedIndex = $klaviyoVariantsDropdown.find(`option[value=${$variantsSelect.val()}]`).index();
+          console.error('product unavailable');
+          return;
+        }
+      }
+      
+      // BUNDLE PRODUCTS
+      var bundleVariant = product.variants[$variantsSelect[0].selectedIndex],
+      unavailableVariants = getUnavailableBundledVariants(bundleVariant);
+      if((!IS_BUNDLE_SET || (IS_BUNDLE_SET && bundleOptionChecked)) && unavailableVariants.length > 0){
+        console.error('bundle unavailable');
+        $klaviyoVariantsDropdown[0].selectedIndex = $klaviyoVariantsDropdown.find(`option[value=${unavailableVariants[0].variant.id}]`).index();
+        return;
+      }
+    }
+
+    function selectOutOfStockFromDropdown(outOfStockVariants){
+      let dropdownValues = [], outOfStockVariantIds, dropdownOptions = [], targetOptionOptions;
+
+      outOfStockVariantIds = outOfStockVariants.map((variant) => { return variant.variantId });
+      dropdownOptions = $klaviyoVariantsDropdown.find('option');
+      
+      for (let i = 0; i < dropdownOptions.length; i++) {
+        if(outOfStockVariantIds.map(id => +id).includes(+dropdownOptions[i].value)){
+          targetOptionOptions = $(dropdownOptions[i]).data('options');
+          optionsMatch = false;
+          selectedOptions = getSelectedOptions(product).map(op => handleize(op));
+          
+          if(targetOptionOptions[0] == selectedOptions[0]){
+            if(targetOptionOptions[1] && targetOptionOptions[1] == selectedOptions[1]){
+              optionsMatch = true;
+            } else if(!targetOptionOptions[1]){
+              optionsMatch = true;
+            }
+          }
+          
+          if(optionsMatch){
+            $klaviyoVariantsDropdown[0].selectedIndex = i;
+            break;
+          }
+        }
+      }
+    }
+
+    /**
+     * The selected product will be treated as
+     * a bundle if is not a bundleSet OR
+     * it is a bundleSet and the bundle set
+     * size option is selected
+     */
+    function behaveAsBundle(){
+      let behaveAsBundle = false;
+      if(IS_BUNDLE_SET){
+        behaveAsBundle = isBundleSizeOptionSelected();
+      } else {
+        behaveAsBundle = true;
+      }
+      
+      return behaveAsBundle;
+    }
+
+    function pushProductsToShopify( items, cb ) {
+      return $.ajax({
+        url: '/cart/add.js',
+        type: 'POST',
+        dataType: 'json',
+        data: JSON.stringify({
+          items: items
+        }),
+        contentType: "application/json",
+        success: function() {
+          if(cb) cb();
+          $.ajax({
+            url: '/cart',
+            success: function(response) {
+              const $cartDropdown = $('.cart .cart__inner');
+              const $cart_popup = $( '.cart-popup__overlay' )
+              const $cart_popup_slide = $( '.cart-popup__slide' )
+
+              const $response = $(response);
+              const $result = $response.find('.main > .hidden > form').length
+              ? $response.find('.main > .hidden > form')
+              : $response.find('.main > .hidden > .cart-empty');
+
+              $cartDropdown.find('form, .cart-empty').remove();
+              $result.appendTo($cartDropdown);
+              $cartDropdown.addClass('is-expanded');
+              $cart_popup.addClass('open');
+              $cart_popup_slide.addClass('open-slide');
+              $('body').css('overflow', 'hidden');
+
+              if(typeof $radioHolder != 'undefined') {
+                $radioHolder
+                .removeClass('is-active')
+                .find('input:checked')
+                .prop('checked', false);
+              }
+
+              // update item counts in mini cart
+              let all_item_counts = 0;
+              $('.header__inner .cart__inner-body .product').each(function(i){
+                if($(this).css('display') != 'none') {
+                  let _qty = $(this).find('input.counter__field').val();
+                  all_item_counts += parseInt(_qty);
+                }
+              });
+
+              if(all_item_counts > 0) {
+                $('.cart .cart__link span').text(all_item_counts);
+              } else {
+                $('.cart .cart__link span').text('');
+              }
+
+              $(".btn-add-bundle").removeClass("loading");
+              $(".btn-add-bundle").removeAttr("disabled");
+            }
+          });
+        }
+      })
+      .fail(function(data) {
+        $(".error-container").show();
+        $(".error-container p").html("Error: " + JSON.parse(data.responseText).description);
+        $(".btn-add-bundle").removeClass("loading");
+      });
+    }
+    window.pushProductsToShopify = pushProductsToShopify; // For Monograming VUE.JS access
+
+    /**
+     * Returns array of variants that will be
+     * added to the cart when current product
+     * is a BUNDLE_SET
+     * */
+    function getBundledSetVariantsToAdd(bundleSetProduct){
+      const selectedColor = getSelectedOptions(bundleSetProduct)[0],
+      uniqueSizeOptions = getUniqueOptionValuesByOpIndex(bundleSetProduct.variants, 1);
+      var variantsToAdd = [];
+      
+      for (let i = 0; i < bundleSetProduct.variants.length; i++) {
+        const colorHandle = handleize(bundleSetProduct.variants[i].option1),
+        sizeHandle = handleize(bundleSetProduct.variants[i].option2);
+        
+        if(colorHandle == handleize(selectedColor) && sizeHandle != 'bundle' &&
+          uniqueSizeOptions.map(op => handleize(op)).includes(sizeHandle)){
+            variantsToAdd.push(bundleSetProduct.variants[i]);
+        }
+      }
+
+      return variantsToAdd;
+    }
+
+    /**
+     * Returns array of variants that will be
+     * added to the cart when current product
+     * is a BUNDLE and points to a Bundle Set
+     * */
+    function getBundledVariantsToAdd(products){
+      const selectedColor = getSelectedOptions(product)[0];
+      var variantsToAdd = [], bundleProduct, targetSize;
+      
+      for (let i = 0; i < products.length; i++) {
+        bundleProduct = products[i];
+        targetSize = handleize(bundleProduct.targetOption);
+
+        for (let j = 0; j < bundleProduct.variants.length; j++) {
+          const colorHandle = handleize(bundleProduct.variants[j].options[0]),
+          sizeHandle = handleize(bundleProduct.variants[j].options[1]);
+          
+          if(colorHandle == handleize(selectedColor) && sizeHandle != 'bundle'){
+            if(!targetSize || (targetSize && sizeHandle == targetSize)){
+              variantsToAdd.push(bundleProduct.variants[j]);
+              break;
+            }
+          }
+        }
+      }
+      
+      return variantsToAdd;
+    }
+
+    function isBundleSizeOptionSelected(){
+      return $('.optionFilter.Size[value="bundle"]').prop('checked');
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      $klaviyoPopupResultMsg = $('#completed_message');
+      $klaviyoVariantsDropdown = $('#klaviyo-variants');
+      $variantsSelect = $('select[name="id"]');
+      $monogrammingButtonRow = $('#to_view_customizer').parent();
+
+      verifyIfCanAddToCart();
+
+      $('.product-variants-container').on('click', 'input', function(){
+        verifyIfCanAddToCart();
+      });
+
+      $(".sold-out-btn").on('click', function(e){
+        $klaviyoPopupResultMsg.hide();
+        $(".container-klaviyo-modal").show();
+        e.preventDefault();
+      });
+
+      $('.klaviyo-bis-close').on('click', function(e){
+        e.preventDefault();
+        $(".container-klaviyo-modal").hide();
+        
+      });
+
+      $(".container-klaviyo-modal").on('click', function(e){
+        if (!$(e.target).closest("#klaviyo-bis-modal").length) {
+          $(".container-klaviyo-modal").hide();
+        }
+      });
+
+      $('.btn-add-bundle').on('click', function(){
+        let productsToAdd = [];
+
+        if(!behaveAsBundle()){
+          productsToAdd.push({
+            quantity: parseInt($("#field-qty").val()),
+            id: parseInt($variantsSelect.val()),
+          });
+        } else {
+          calculateBundlePriceAndStock();
+
+          if ($(".bundle-errors-container > div").length > 0) {
+            $(".bundle-errors-container").show();
+          } else {
+            $(this).addClass("loading");
+            $(".bundle-errors-container").hide();
+            let productsInBundle = jQuery.map(cartItems, function(variant) { return variant.id });
+
+            $(cartItems).each(function(i, variant) {
+              let bundledItemInitialQty =  getBundledQtyOfVariantId(variant.id);
+              productsToAdd.push({
+                quantity:  parseInt($("#field-qty").val()) * bundledItemInitialQty,
+                id: parseInt(variant.id),
+                properties: {
+                  'addedAsBundle': 'true',
+                  'isBundleSet': IS_BUNDLE_SET,
+                  'bundle': "{{ product.title }}",
+                  'productsInBundle': productsInBundle,
+                  'discountAmount': "{{ bundle_discount }}",
+                  'bundleUnitPrice': bundleUnitPrice.toFixed(2),
+                  'bundleUnitDiscount': (bundleUnitPrice - bundleDiscountedPrice).toFixed(2),
+                  'bundleRealPrice': bundleRealPrice,
+                  'bundleDiscountedPrice': bundleDiscountedPrice,
+                  'bundleImage': selectedBundleImage,
+                  'bundleUrl': "{{ shop.url }}{{ product.url }}",
+                  'quantity': parseInt($("#field-qty").val()),
+                  'initialQty': bundledItemInitialQty,
+                  'redirect_url': '{{ product.metafields.sf_product.redirection_url }}',
+                  'hasBundleTag': '{{ hasBundleTag }}',
+                }
+              });
+            });
+        }
+      }
+      
+        addToCart(productsToAdd);
+      });
+
+      $('.product-variants-container').on('change, click', '.optionFilter', function(){
+        $variantsSelect[0].selectedIndex = getIndexOfSelectedVariant();
+
+        if(behaveAsBundle()){
+          populateKlaviyoDropdownForBundles();
+        } else {
+          populateKlaviyoDropdown();
+        }
+
+        if (verifyIfCanAddToCart()) {
+          calculateBundlePriceAndStock();
+        }
+
+        if(behaveAsBundle() && !IS_BUNDLE_SET){
+          selectOutOfStockFromDropdown(outOfStockItemsForKlaviyo);
+        } else {
+          updateKlaviyoSelectedOption();
+        }
+      });
+
+      $('.form-product select[name="id"]').on('change', function(){
+        if (verifyIfCanAddToCart()) {
+          calculateBundlePriceAndStock();
+        }
+        
+        validateExistantOptions();
+      });
+
+      $('#field-qty').on('change', function(){
+        if (verifyIfCanAddToCart()) {
+          calculateBundlePriceAndStock();
+        }
+      });
+    });
+
+    function getBundledQtyOfVariantId(variantId){
+      var targetQty = 1;
+      
+      for (let i = 0; i < bundleProductsArr.length; i++) {
+        var targetVariant = bundleProductsArr[i].variants.find((variant) => { return variant.id == variantId});
+        if(targetVariant){
+          targetQty = targetVariant.quantity;
+          break;
+        }
+      }
+
+      return targetQty;
+    }
+
+    function showKlaviyoBundleButton(show = true){
+      if(show){
+        $('#field-qty').closest('.form__row').hide();
+        $('.btn-add-to-cart').closest('.form__actions').hide();
+        $('#to_view_customizer').hide();
+        $(".sold-out-btn").show();
+      } else {
+        $(".sold-out-btn").hide();
+        $('#field-qty').closest('.form__row').show();
+        $('#to_view_customizer').show();
+        $('.btn-add-to-cart').closest('.form__actions').show();
+      }
+    }
+
+    function getProductOptionIndex(product, targetOption){
+      return product.options.map(op => handleize(op)).findIndex(handleize(targetOption));
+    }
+
+    function handleize(str){
+      var handle;
+      
+      if(!str){
+        return str;
+      }
+
+      handle = str.replace(/\W+/g, "-");
+
+      while(handle.endsWith('-')){
+        handle = handle.substring(0, handle.length-1);
+      }
+
+      return handle.toLowerCase();
+    }
+
+    /**
+     * minOrMax: -1 or 1
+     * */
+    function getMinOrMaxPrice(variants, minOrMax){
+      var price;
+
+      for (let i = 0; i < variants.length; i++) {
+        if(!price || (minOrMax < 0 && variants.price < price) || (minOrMax > 0 && variants.price > price)) {
+          price = variants[i].price;
+        }
+      }
+
+      return price;
+    }
+
+    function getProductOptionIndex(product, optionName){
+      return product.options.map(o => o.toLowerCase()).findIndex(o => o == optionName);
+    }
+
+    /*
+    * Returns all the available filter values
+    * from PDP.
+    */
+    function getInputOptionValues(optionName){
+      var sizeInputOptions = [], sizeInputs = document.querySelectorAll(`input[name="${optionName.toLowerCase()}"]`);
+
+      sizeInputs.forEach(function(sizeInput){
+        sizeInputOptions.push(sizeInput.value);
+      });
+
+      return sizeInputOptions;
+    }
+
+    /**
+    * Disabled all PDP size options based on
+    * product.disabledSizesforColors metafield
+    */
+    function validateExistantOptions(){
+      var selectedColor = handleize(document.querySelector('input[name="color"]:checked').value),
+      targetDisabledSizeForColors, sizeInputToDisable, firstSizeInput;
+      
+      if(behaveAsBundle()){
+        document.querySelectorAll(`input[name="size"]`).forEach(function(sizeOptionInput){
+          sizeOptionInput.removeAttribute('disabled');
+        })
+        
+        targetDisabledSizeForColors = disabledSizesforColors.filter(ds => ds.color == selectedColor)
+
+        if(!targetDisabledSizeForColors || targetDisabledSizeForColors.length == 0){
+          return;
+        }
+
+        targetDisabledSizeForColors?.forEach(function(disbledSize){
+          sizeInputToDisable = document.querySelector(`input[name="size"][value="${disbledSize.disabledSize}"]`);
+          sizeInputToDisable.setAttribute('disabled', true);
+        });
+
+        let selectedDisabledOption = document.querySelector('input[name="size"]:checked:disabled'),
+        newAvailableOption = document.querySelector(`input[name="size"]:first-child:not(:disabled)`);
+
+        if(selectedDisabledOption && newAvailableOption){
+          setTimeout(() => {
+            newAvailableOption.click();
+          }, 150);
+        }
+      }
+    }
+  </script>
+
+  <style>
+    li {
+        list-style: none;
+    }
+
+    a.klaviyo-bis-trigger {
+      display: none!important;
+    }
+  </style>
+
+{% endunless %}

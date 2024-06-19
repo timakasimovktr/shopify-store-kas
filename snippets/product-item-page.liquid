@@ -1,0 +1,99 @@
+{%- if is_show_more_item -%}
+  <div class="product show-more-item visible-xs-inline-block">
+    <figure class="product__image">
+      {%- assign _more_url = "{{ current_collection.url }}" -%}
+      {%- if button_url != blank -%}
+        {%- assign _more_url = button_url -%}
+      {%- endif -%}
+
+      <a  href="{{ _more_url }}">
+        <div class="product__image-inner">
+          <span>
+            Shop All
+            {%- include 'icons' with icon: 'arrow-right' -%}
+          </span>
+        </div>
+      </a>
+    </figure>
+  </div>
+{%- else -%}
+  {%- if related_products -%}
+    {%- assign current_product = _product -%}
+  {%- else -%}
+    {%- assign current_product = _product | default: product -%}
+  {%- endif -%}
+
+  {%- assign current_collection = collection | default: current_product.collections[0] -%}
+
+  {%- assign isAccessories = false -%}
+  {%- if current_product.template_suffix == 'accessories' -%}
+    {%- assign isAccessories = true -%}
+  {%- endif -%}
+
+  {%- assign has_diabledhover_tag = false -%}
+  {%- if current_product.tags.size > 0 -%}
+    {%- for tag in current_product.tags -%}
+      {%- if tag == 'plp:disabledhover' -%}
+        {%- assign has_diabledhover_tag = true -%}
+      {%- endif -%}
+    {%- endfor -%}
+  {%- endif -%}
+
+  {%- assign variant_url = '' -%}
+  {%- assign option_image = "" -%}
+  {%- assign option_image_index = 0 -%}
+  {%- assign has_color_option = false -%}
+  {%- assign options = _product.options_with_values | where: "name", "Color" -%}
+
+    {% if options.size > 0 %}
+      {%- assign has_color_option = true -%}
+    {% endif %}
+
+  {%- if variant_url == "" -%}
+    {%- assign variant_url = current_product.url | within: current_collection -%}
+  {%- endif -%}
+
+  {%- assign searched_option_value = '' -%}
+
+  <div class="product {{additionalClasses}} {% if hide_on_mobile == true %} hidden-xs{% endif %}" data-index="{{ loopIndex }}" data-size='{{ productSizes }}' data-weight="{{ productWeights }}" data-fabric="{{ productFabrics }}" data-material="{{ productMaterials }}" data-style="{{ current_product.type }}" style="order:{{productIndex}}" data-template="{{ current_product.template_suffix }}">
+    <figure class="product__image">
+      <a href="{{ current_product.url }}">
+
+          {%- if current_product.images[0] != blank -%}
+            <div class="product__image-inner product__image-inner--first lazyload {% if has_diabledhover_tag %}product__image-inner--disabled{% endif %}" data-bgset="{{ current_product.images[0].src | img_url: '480x', format: 'pjpg' }}"></div>
+          {%- endif -%}
+
+        {%- if current_product.images[1] != blank -%}
+          {%- assign option_image = current_product.images[1].src -%}
+        {%- endif -%}
+
+        {%if has_diabledhover_tag == false %}
+          {%- if option_image != "" -%}
+            <div class="product__image-inner  product__image-inner--origin lazyload" data-sizes="auto" data-bgset="{{ option_image | img_url: '480x', format: 'pjpg' }} 480w"></div>
+
+            <div class="product__image-inner product__image-inner--hover"></div>
+          {%- endif -%}
+        {%- endif -%}
+      </a>
+    </figure><!-- /.product__image -->
+
+    <div class="product__content">
+      <div class="product__content--header">
+        <h6 class="product__title">{{ current_product.title }}</h6><!-- /.product__title -->
+
+        <p class="product__price">
+            {%- if current_product.price_min < current_product.price_max -%}
+              {{ current_product.price_min | money }} - {{ current_product.price_max | money }}
+            {%- else -%}
+              {{ current_product.price_min | money }}
+            {%- endif -%}
+        </p><!-- /.product__price -->
+      </div>
+
+      <div class="{%- if isAccessories -%}hidden{%- endif -%}">
+         {%- include 'colors-link-page' with _product: current_product, vanityColors: vanityColors -%}
+      </div>
+    </div><!-- /.product__content -->
+    {% comment %}{% render 'yotpo-meta-reviews' current_product: current_product %}{% endcomment %}
+  </div><!-- /.product -->
+{%- endif -%}

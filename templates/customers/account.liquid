@@ -1,0 +1,21 @@
+<section class="section-default">
+	<div class="shell">
+		<div class="section__inner section__inner--alt">
+			{%- include 'account-aside' -%}
+
+			<div class="section__content">
+				<h2 class="visible-xs-block">Hi {{ customer.first_name }},</h2>
+
+				<h5 class="section__title">{{ 'customer.account.title' | t }}</h5>
+
+				<ul>
+					<li>{{ customer.name }}</li>
+
+					<li>{{ customer.email }}</li>
+				</ul>
+			</div><!-- /.section__content -->
+		</div><!-- /.section__inner section__inner--alt -->
+	</div><!-- /.shell -->
+</section><!-- /.section-default -->
+
+

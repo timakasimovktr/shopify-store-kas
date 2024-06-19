@@ -1,0 +1,117 @@
+{%- assign image_slider = '' -%}
+{%- assign thumb_slider = '' -%}
+{%- assign alt_images = '' -%}
+{%- assign src_images = '' -%}
+
+{% comment %}{%- assign color_names = product_colors | split: '<!--' | last | split: '-->' | first -%}{% endcomment %}
+
+{%- assign variant_titles_string = '' -%}
+
+{%- for variant in product.variants -%}
+  {%- assign variant_title_handle = variant.title | handle -%}
+  {%- assign variant_titles_string = variant_titles_string | append: variant_title_handle | append: '@@' -%}
+{%- endfor -%}
+
+{%- assign use_filtering = true -%}
+{%- for image in product.images -%}
+  {%- capture image_slider_slide -%}
+    {%- assign image_alt_handle = image.alt | handle -%}
+    {% assign alt_images = alt_images | append: '||' | append: image.alt %}
+    {% assign src_image = image.src | img_url %}
+    {% assign src_images = src_images | append: '||' | append: src_image %}
+
+    {% for color in product_colors %}
+      {% assign _color_handle = color | handle %}
+      {%- if _color_handle == image_alt_handle -%}
+        {%- assign use_filtering = true -%}
+      {%- endif -%}
+    {% endfor %}
+
+    {%- if variant_titles_string contains image_alt_handle and product.template_suffix == 'accessories' -%}
+      {%- assign use_filtering = true -%} 
+    {%- endif -%}
+
+    <div class="pdp-slider-container slider__slide {% if image.alt != empty %} slider__slide--{{ image_alt_handle }} {% endif %}">
+      <a  href="#" class="link-zoom">
+        <span>
+          <i class="ico-zoom"></i>
+        </span>
+
+        <img 
+          class="lazyload"
+          data-srcset="{{ image.src | img_url: '400x', format: 'pjpg' }} 400w, {{ image.src | img_url: '768x', format: 'pjpg' }} 768w, {{ image.src | img_url: '1024x', format: 'pjpg' }} 1024w, {{ image.src | img_url: '1600x', format: 'pjpg' }} 1600w, {{ image.src | img_url: '2048x', format: 'pjpg' }} 2048w"
+          data-sizes="auto"
+          src="{{ image.src | img_url: '1024x', format: 'pjpg' }}"
+          data-original-src="{{ image.src | img_url: '1024x', format: 'pjpg' }}"
+          data-original-width="1024"
+          data-original-height="{{ 1024 | times: image.aspect_ratio }}"
+          data-aspectratio="{{ image.aspect_ratio }}"
+          style="width:100%;"
+        />
+       
+      </a>
+    </div><!-- /.slider__slide -->
+  {%- endcapture -%}
+
+  {%- capture thumb_slider_slide -%}
+    <div class="pdp-slider-thumbs-container slider__slide {% if image.alt != empty %} slider__slide--{{ image_alt_handle }} {% endif %}">
+      <img class="lazyload" data-src="{{ image.src | img_url: '302x', format: 'pjpg' }}" alt="{{product.title | escape }} {{image.alt | escape}}" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="/>
+    </div><!-- /.slider__slide_thumb -->
+  {%- endcapture -%}
+
+  {%- assign image_slider = image_slider | append: image_slider_slide -%}
+  {%- assign thumb_slider = thumb_slider | append: thumb_slider_slide -%}
+{%- endfor -%}
+
+{%- assign option_selector = 'option' -%}
+{%- assign option_selector_size = '' -%}
+
+{%- for option in product.options_with_values -%}
+  {%- assign option_name_handle = option.name | handle -%}
+
+  {%- if option_name_handle == 'color' or product.template_suffix == 'accessories' -%}
+    {%- assign option_selector = option_selector | append: option.position -%}
+  {%- endif -%}
+
+  {%- if option_name_handle == 'size' -%}
+    {%- assign option_selector_2 = 'option' | append: option.position -%}
+    {%- assign option_selector_size = current_variant[option_selector_2] | handle -%}
+  {%- endif -%}
+{%- endfor -%}
+
+<div class="section__images">
+  {%- if true -%}
+    <div class="slider-images">
+      <div class="slider__clip">
+        <div class="slider__slides js-slider-images {% if use_filtering == false %} js-slider-without-filter {% endif %}" {% if use_filtering %} data-color="{{current_variant[option_selector] | handle}}" data-size="{{option_selector_size}}" {% endif %}>
+          {{ image_slider == blank }}
+        </div><!-- /.slider__slides -->
+      </div><!-- /.slider__clip -->
+    </div><!-- /.slider-images -->
+
+    <div class="slider-thumbs hidden-xs">
+      <div class="slider__clip">
+        <div class="slider__slides js-slider-thumbs {% if use_filtering == false %} js-slider-without-filter {% endif %}" {% if use_filtering %} data-color="{{current_variant[option_selector] | handle}}" data-size="{{option_selector_size}}" {% endif %}>
+          {{ thumb_slider }}
+        </div><!-- /.slider__slides -->
+      </div><!-- /.slider__clip -->
+    </div><!-- /.slider-thumbs -->
+  {%- endif -%}
+</div><!-- /.section__images -->
+
+
+<script>
+  // Used for correct bundle image variant selection on add to cart
+  let altImages = '{{ alt_images }}'.split('||');
+  let srcImages = '{{ src_images }}'.split('||');
+  window.productSliderImgs = [];
+  
+  for (let i = 0; i < altImages.length; i++) {
+    if(altImages[i] != ""){
+      window.productSliderImgs.push({
+        alt: altImages[i].toLocaleLowerCase(),
+        src: srcImages[i]
+      })
+    }
+  }
+</script>

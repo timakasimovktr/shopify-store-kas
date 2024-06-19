@@ -1,0 +1,198 @@
+{%- assign _section = section.settings -%}
+{%- assign _blocks = section.blocks -%}
+
+<section class="section-contact">
+  <div class="shell">
+    <div class="section__inner">
+      <div class="form-contacts">
+        {% assign sp_form_action = "/contact" %}
+        {% if content_for_header contains "vital-forms.js" %}
+          {% assign sp_form_action = "https://vital-forms-api.c1.humanpresence.app/api/form/vfob/9198ac30-a9b7-4422-a078-20b406898361$5fdcc56962231a00b0f0794b" %}
+        {% endif %}
+        {% form 'contact', class: '', action: sp_form_action, data-vfib: "0" %}
+          <header class="form__head">
+            <h2 class="form__title">{{ page.title }}</h2><!-- /.form__title -->
+
+            {%- if page.content contains '</' -%}
+              {{ page.content }}
+            {%- else -%}
+              <p>{{ page.content }}</p>
+            {%- endif -%}
+          </header><!-- /.form__head -->
+
+          <div class="form__body">
+            {% assign attr_name = 'contact.form.name' | t | handle %}
+            {% assign attr_phone = 'contact.form.phone' | t | handle %}
+            {% capture field_name %}{% if form[name_attr] %}{{ form[name_attr] }}{% elsif customer %}{{ customer.name }}{% endif %}{% endcapture %}
+            {% capture field_email %}{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}{% endcapture %}
+            {% capture field_phone %}{% if form[name_attr] %}{{ form[name_attr] }}{% elsif customer %}{{ customer.phone }}{% endif %}{% endcapture %}
+            {% capture field_message %}{% if form.body %}{{ form.body }}{% endif %}{% endcapture %}
+
+            {% if form.errors %}
+              <div class="form__notice error">
+                {{ form.errors | default_errors }}
+              </div><!-- /.form-notice -->
+            {% endif %}<a href="#"></a>
+
+            {% if form.posted_successfully? %}
+              <div class="form__notice success">
+                {{ 'contact.form.post_success' | t }}
+              </div><!-- /.form__notice -->
+            {% endif %}
+
+            <div class="form__body">
+              <div class="form__cols">
+                <div class="form__col">
+                  <div class="form__row">
+                    <label for="field-contact-name" class="form__label">{{ 'contact.form.first_name' | t }}</label>
+
+                    <input type="text" id="field-contact-name" class="field" name="contact[{{ attr_name }}]" placeholder="{{ 'contact.form.first_name' | t }}" autocapitalize="words" value="{{ field_name }}">
+                  </div><!-- /.form__row -->
+                </div><!-- /.form__col -->
+
+                <div class="form__col">
+                  <div class="form__row">
+                    <label for="field-contact-lname" class="form__label">{{ 'contact.form.last_name' | t }}</label>
+
+                    <div class="form__controls">
+                      <input type="text" id="field-contact-lname" class="field" name="contact[last-name]" placeholder="{{ 'contact.form.last_name' | t }}" value="">
+                    </div><!-- /.form__controls -->
+                  </div><!-- /.form__row -->
+                </div><!-- /.form__col -->
+              </div><!-- /.form__cols -->
+
+              <div class="form__row">
+                <label for="field-contact-email" class="form__label">{{ 'contact.form.email' | t }}</label>
+
+                <input type="email" id="field-contact-email" class="field" name="contact[email]" placeholder="{{ 'contact.form.email' | t }}" autocorrect="off" autocapitalize="off" value="{{ field_email }}">
+              </div><!-- /.form__row -->
+
+              {%- if _blocks.size > 0 -%}
+                <div class="form__row">
+                  <label for="field-designer" class="form__label">{{ _blocks[0].settings.text }}</label>
+
+                  <div class="form__controls">
+                    <div class="select">
+                      <select name="contact[select]" id="field-designer">
+                        {%- for block in _blocks -%}
+                          <option value="{{block.settings.text}}">{{block.settings.text}}</option>
+                        {%- endfor -%}
+                      </select>
+                    </div><!-- /.select -->
+                  </div><!-- /.form__controls -->
+                </div><!-- /.form__row -->
+              {%- endif -%}
+
+              <div class="form__row">
+                <label for="field-email-subject" class="form__label">{{ 'contact.form.subject' | t }}</label>
+
+                <div class="form__controls">
+                  <input type="text" class="field" name="contact[email-subject]" id="field-email-subject" value="" placeholder="{{ 'contact.form.subject' | t }}" />
+                </div><!-- /.form__controls -->
+              </div><!-- /.form__row -->
+
+              <div class="form__row">
+                <label for="field-contact-message" class="form__label">{{ 'contact.form.message' | t }}</label>
+
+                <textarea rows="10" id="field-contact-message" class="textarea" name="contact[body]" placeholder="{{ 'contact.form.message' | t }}">{{ field_message }}</textarea>
+              </div><!-- /.form__row -->
+            </div><!-- /.form__body -->
+
+            <div class="form__actions">
+              <input type="submit" class="form__btn btn btn--block" value="{{ 'contact.form.send' | t }}" >
+            </div><!-- /.form__actions -->
+          </div><!-- /.form__body -->
+        {% endform %}
+      </div><!-- /.form-contacts -->
+
+      {%- if _section.show_more_information -%}
+        <div class="contacts-default">
+          {%- if _section.title_1 != blank -%}
+            <h2 class="contacts__title">{{ _section.title_1 | newline_to_br }}</h2><!-- /.contacts__title -->
+          {%- endif -%}
+
+          {%- if _section.list_contacts != blank -%}
+            {{ _section.list_contacts | replace: '<ul>', '<ul class="list-contacts-default">' }}
+          {%- endif -%}
+
+          {%- assign title_2 = _section.title_2 -%}
+          {%- assign link_text = _section.link_text -%}
+          {%- assign link_url = _section.link -%}
+
+          {%- if title_2 or link_text -%}
+            <div class="contacts__box">
+              {%- if title_2 -%}
+                <h2>{{  title_2 | newline_to_br }}</h2>
+              {%- endif -%}
+
+              {%- if link_text -%}
+                <a href="{{ link_url }}" class="btn btn--link">
+                  {{link_text}}
+                  {%- include 'icons' with icon: 'arrow-right' -%}
+                </a>
+              {%- endif -%}
+            </div><!-- /.contacts__box -->
+          {%- endif -%}
+        </div><!-- /.contacts-default -->
+      {%- endif -%}
+
+    </div><!-- /.section__inner -->
+  </div><!-- /.shell -->
+</section><!-- /.section-contact -->
+
+{% schema %}
+{
+  "name": "Contact Us",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_more_information",
+      "label": "Show More Information",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "title_1",
+      "label": "Title 1"
+    },
+    {
+      "type": "textarea",
+      "id": "list_contacts",
+      "label": "List Contacts"
+    },
+    {
+      "type": "text",
+      "id": "title_2",
+      "label": "Title 2"
+    },
+    {
+      "type": "text",
+      "id": "link_text",
+      "label": "Link Text"
+    },
+    {
+      "type": "url",
+      "id": "link",
+      "label": "Link"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "tab",
+      "name": "Inquiry",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Inquiry"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Contact Us"
+    }
+  ]
+}
+{% endschema %}

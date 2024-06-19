@@ -1,0 +1,28 @@
+<div class="form__row">
+  <div class="form__controls">
+    <div class="counter js-counter">
+      <span class="counter__minus js-counter-minus">&nbsp;</span>
+
+      {%- assign product_tags_string = _product.tags | join: ',' -%}
+      {% if product_tags_string contains 'no_discounts_allowed' %}
+       {% assign isnoDiscountsAllowed = true %}
+      {% else %}
+        {% assign isnoDiscountsAllowed = false %}
+      {% endif %}
+
+      {% if  product_tags_string contains 'Final Sale' %}
+        {%- assign isFinalSale = true -%}
+      {% else %}
+        {%- assign isFinalSale = false -%}
+      {% endif %}
+        
+      <input type="number" class="counter__field complete-the-look-qty" data-no-discounts-allowed="{{isnoDiscountsAllowed}}" data-sale-discounts-msg="{{isFinalSale}}" value="1" min="1" />
+
+      <span class="js-counter-plus counter__plus">&nbsp;</span>
+    </div><!-- /.counter -->
+  </div><!-- /.form__controls -->
+</div><!-- /.form__row -->
+
+<div class="form__actions form__row--available">
+  <input type="button" value="{{ 'products.product.add_to_cart' | t }}" class="btn btn--block btn--solid form__btn complete-the-look-btn"/>
+</div><!-- /.form__actions -->

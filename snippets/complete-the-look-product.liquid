@@ -1,0 +1,240 @@
+{%- assign current_product = _product -%}
+{%- assign current_collection = collection | default: current_product.collections[0] -%}
+{%- assign has_diabledhover_tag = false -%}
+{%- assign product_tags_string = current_product.tags | join: ',' -%}
+
+{%- if product_tags_string contains 'plp:disabledhover:' -%}
+  {%- assign has_diabledhover_tag = true -%}
+{%- endif -%}
+
+{%- assign variant_url = '' -%}
+{%- assign option_image = "" -%}
+{%- assign option_image_index = 0 -%}
+{%- assign options = current_product.options_with_values | where: "name", "Color" -%}
+{%- assign optionsSize = current_product.options_with_values | where: "name", "Size" -%}
+{%- assign option = options | first -%}
+{%- assign optionSize = optionsSize | first -%}
+
+  {% for value in option.values %}
+    {% assign value_handle = value | handle %}
+
+    {%- for image in current_product.images -%}
+      {%- assign image_alt_handle = image.alt | handle -%}
+      {%- if image_alt_handle == value_handle and option_image_index == 0 -%}
+        {%- assign option_image = image -%}
+        {%- assign option_image_index = 1 -%}
+        {%- assign variant_url = current_product.url | within: current_collection -%}
+      {%- endif -%}
+      {%- if forloop.last and option_image_index == 0 -%}
+        {%- assign option_image = image -%}
+      {%- endif -%}
+    {%- endfor -%}
+
+  {% endfor %}
+
+{%- if variant_url == "" -%}
+  {%- assign variant_url = current_product.url | within: current_collection -%}
+{%- endif -%}
+
+<div class="product-complete-the-look">
+	<div class="product-complete-the-look_left">
+		<div class="product">
+			<figure class="product__image">
+				<a href="{{ current_product.url }}">
+
+					{% comment %}{%- if product_tags_string contains 'badge:' -%}
+						{%- assign badges = '' -%}
+						{%- for tag in current_product.tags -%}
+							{%- if tag contains 'badge:' -%}
+								{%- capture badges_html -%}
+									{% if forloop.index > 1 and forloop.index != forloop.last %}, {% endif %} {{ tag | replace: 'badge:', '' }}
+								{%- endcapture -%}
+
+								{%- assign badges = badges | append: badges_html -%}
+							{%- endif -%}
+						{%- endfor -%}
+
+						<span class="product__badges">{{badges}}</span>
+					{%- endif -%}{% endcomment %}
+
+					{%- if current_product.images[0] != blank -%}
+						<div class="lazyload product__image-inner product__image-inner--first product__image-inner--disabled" data-bgset="{{ current_product.images[0].src | img_url: '250x', format: 'pjpg' }}" data-expand="-20" data-init="1" data-original-image="{{ current_product.images[0].src | img_url: '250x', format: 'pjpg' }}"></div>
+					{%- endif -%}
+
+					{%- if current_product.images[1] != blank -%}
+						{%- assign option_image = current_product.images[1].src -%}
+					{%- endif -%}
+
+					{% comment %}
+					{%if has_diabledhover_tag == false %}
+						{%- if option_image != "" -%}
+							<div class="lazyload product__image-inner  product__image-inner--origin" data-sizes="auto" data-bgset="{{ option_image | img_url: '250x' }} 480w"></div>
+							<div class="product__image-inner product__image-inner--hover"></div>
+						{%- endif -%}
+					{%- endif -%}
+					{% endcomment %}
+				</a>
+			</figure><!-- /.product__image -->
+		</div>
+		<div class="product_info">
+			{% comment %}bundled product{% endcomment %}
+			{%- assign isBundle = false -%}
+			{%- assign _bundle_price_min = 0 -%}
+			{%- assign _bundle_price_max = 0 -%}
+          
+      {% comment %}
+			{%- if current_product.metafields.sf_included_products.size > 0 -%}
+				{%- assign bundleMinPrices = '' -%}
+				{%- assign bundleMaxPrices = '' -%}
+
+				{%- for i in (1..8) -%}
+				  {%- assign included_product_string = 'product_' | append: i | append: '_product' -%}
+				  {%- assign included_one_color_string = 'product_' | append: i | append: '_only_one_variant' -%}
+				  {%- assign included_color_name_string = 'product_' | append: i | append: '_color_name' -%}
+				  {%- assign included_product = all_products[current_product.metafields.sf_included_products[included_product_string]] -%}
+				  {%- assign included_one_color = current_product.metafields.sf_included_products[included_one_color_string] -%}
+				  {%- assign included_color_name = current_product.metafields.sf_included_products[included_color_name_string] -%}
+
+				  {%- unless included_product.empty? -%}
+
+				    {%- assign sub_bundleMinPrices = '' -%}
+				    {%- assign sub_bundleMaxPrices = '' -%}
+
+		        {%- for variant_option_value in optionSize.values -%}
+		          {%- assign variant_option_handle = variant_option_value | handle -%}
+
+		          {%- for included_variant in included_product.variants -%}
+		            {%- assign included_product_options_size =  included_product.options | size -%}
+		            {%- if included_product_options_size > 1 -%}
+		              {%- assign included_product_option = included_variant.option2 | handle -%}
+		            {%- else -%}
+		              {%- assign included_product_option = included_variant.option1 | handle -%}
+		            {%- endif -%}
+
+		            {%- if included_product_option == variant_option_handle -%}
+		              {%- assign sub_bundleMinPrices = sub_bundleMinPrices | append: included_variant.price | append: ',' -%}
+		              {%- if included_variant.compare_at_price > 0 -%}
+		                {%- assign sub_bundleMaxPrices = sub_bundleMaxPrices | append: included_variant.compare_at_price | append: ',' -%}
+		              {%- else -%}
+		                {%- assign sub_bundleMaxPrices = sub_bundleMaxPrices | append: included_variant.price | append: ',' -%}
+		              {%- endif -%}
+
+		              {%- break -%}
+		            {%- endif -%}
+
+		          {%- endfor -%}
+
+		        {%- endfor -%}
+
+				    {%- if sub_bundleMinPrices != '' -%}
+				      {%- assign sub_bundleMinPrices = sub_bundleMinPrices | split: ',' | compact | join: ',' -%}
+				    {%- endif -%}
+
+				    {%- if sub_bundleMaxPrices != '' -%}
+				      {%- assign sub_bundleMaxPrices = sub_bundleMaxPrices | split: ',' | compact | join: ',' -%}
+				    {%- endif -%}
+
+				    {%- assign bundleMinPrices = bundleMinPrices | append: sub_bundleMinPrices | append: '@' -%}
+				    {%- assign bundleMaxPrices = bundleMaxPrices | append: sub_bundleMaxPrices | append: '@' -%}
+				  {%- endunless -%}
+				{%- endfor -%}
+
+				{%- if bundleMinPrices != '' -%}
+				  {%- assign _prices_values = '' -%}
+				  {%- assign bundleMinPrices = bundleMinPrices | split: '@' | compact -%}
+
+		      {%- for variant_option_value in optionSize.values -%}
+		        {%- assign _size_index = forloop.index0 -%}
+
+		        {%- assign _sub_total = 0 -%}
+		        {%- for _prices in bundleMinPrices -%}
+		          {%- assign _prices_arr = _prices | split: ',' | compact -%}
+		          {%- assign _sub_total = _sub_total | plus: _prices_arr[_size_index] -%}
+		        {%- endfor -%}
+
+		        {%- assign _prices_values = _prices_values | append: _sub_total | append: ',' -%}
+		      {%- endfor -%}
+
+				  {%- if _prices_values != '' -%}
+				    {%- assign _prices_values = _prices_values | split: ',' | compact -%}
+
+				    {% assign tmp_min = 0 %}
+				    {% assign tmp_max = 0 %}
+				    {% for _pv in _prices_values %}
+				      {% assign _bp = _pv | plus: 0 %}
+				      {% if forloop.index0 == 0 %}
+				        {% assign tmp_min = _bp %}
+				      {% endif %}
+
+				      {% if tmp_min > _bp %}
+				        {% assign tmp_min = _bp %}
+				      {% endif %}
+				    {% endfor %}
+
+				    {%- assign _bundle_price_min = tmp_min -%}
+				  {%- endif -%}
+
+				{%- endif -%}
+
+				{%- if bundleMaxPrices != '' -%}
+				  {%- assign _prices_values = '' -%}
+				  {%- assign bundleMaxPrices = bundleMaxPrices | split: '@' | compact -%}
+
+		      {%- for variant_option_value in optionSize.values -%}
+		        {%- assign _size_index = forloop.index0 -%}
+		        {%- assign _sub_total = 0 -%}
+		        {%- for _prices in bundleMaxPrices -%}
+		          {%- assign _prices_arr = _prices | split: ',' | compact -%}
+		          {%- assign _sub_total = _sub_total | plus: _prices_arr[_size_index] -%}
+		        {%- endfor -%}
+		        {%- assign _prices_values = _prices_values | append: _sub_total | append: ',' -%}
+		      {%- endfor -%}
+
+				  {%- if _prices_values != '' -%}
+				    {%- assign _prices_values = _prices_values | split: ',' | compact -%}
+
+				    {% assign tmp_max = 0 %}
+				    {% for _pv in _prices_values %}
+				      {% assign _bp = _pv | plus: 0 %}
+
+				      {% if tmp_max < _bp %}
+				        {% assign tmp_max = _bp %}
+				      {% endif %}
+				    {% endfor %}
+
+				    {%- assign _bundle_price_max = tmp_max -%}
+				  {%- endif -%}
+
+				{%- endif -%}
+
+				{%- assign isBundle = true -%}
+			{%- endif -%}
+      {% endcomment %}
+
+			<a  class="product__title" href="{{ current_product.url | within: current_collection }}">{{ _product.title }}</a>
+			<p class="product__price">
+				{% if isBundle %}
+					{%- if _bundle_price_min < _bundle_price_max -%}
+						{{ _bundle_price_min | money }} - {{ _bundle_price_max | money }}
+					{%- else -%}
+						{{ _bundle_price_min | money }}
+					{%- endif -%}
+				{% else %}
+					{%- if current_product.price < current_product.price_max -%}
+						{{ current_product.price | money }} - {{ current_product.price_max | money }}
+					{%- else -%}
+						{{ current_product.price | money }}
+					{%- endif -%}
+				{% endif %}
+			</p><!-- /.product__price -->
+
+			{%- include 'complete-the-look-variants' -%}
+		</div>
+	</div>
+
+	<div class="product-complete-the-look_right">
+		{%- include 'complete-the-look-actions' with _product: look_product -%}
+	</div>
+
+	{%- include 'complete-the-look-includes' -%}
+</div>

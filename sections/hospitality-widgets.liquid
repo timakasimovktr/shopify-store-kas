@@ -1,0 +1,94 @@
+{%- assign _blocks = section.blocks -%}
+
+{%- if _blocks.size > 0 -%}
+  <section class="section-interior">
+    <div class="interio-widgets">
+        {%- for block in _blocks -%}
+          {%- assign current_block = block.settings -%}
+
+          <div class="interio_widget">
+            {%- if current_block.title != blank -%}
+              <h2>{{ current_block.title }}</h2>
+            {%- endif -%}
+
+            {%- if current_block.subtitle != blank -%}
+              <h6>{{ current_block.subtitle }}</h6>
+            {%- endif -%}
+
+            {%- if current_block.image != blank -%}
+              <div class="interio_widget-image lazyload" data-sizes="auto" data-bgset="{{ current_block.image | img_url: '180x' }} 180w, {{ current_block.image | img_url: '360x' }} 360w, {{ current_block.image | img_url: '540x' }} 540w, {{ current_block.image | img_url: '720x' }} 720w"></div><!-- /.slider__slide-image -->
+            {%- endif -%}
+
+            {%- if current_block.description != blank -%}
+              <p>{{ current_block.description }}</p>
+            {%- endif -%}
+
+            {%- if current_block.button_text != blank -%}
+              {% assign open_type = current_block.open_url_type %}
+              <a href="{{current_block.button_url}}" class="btn btn--block" {% if open_type == "1" %}target="_blank"{% endif %}>{{ current_block.button_text }}</a>
+            {%- endif -%}
+
+          </div><!-- /.slider__slide -->
+        {%- endfor -%}
+    </div><!-- /.slider-posts -->
+  </section><!-- /.section-posts -->
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Hospitality Widgets",
+  "max_blocks": 2,
+  "blocks": [
+    {
+      "type": "widget",
+      "name": "Widget",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "text",
+          "id": "subtitle",
+          "label": "Subtitle"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description"
+        },
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "Button text"
+        },
+        {
+          "type": "url",
+          "id": "button_url",
+          "label": "Button URL"
+        },
+        {
+           "type": "select",
+           "id": "open_url_type",
+           "options": [
+              { "value": "1", "label": "New tab"},
+              { "value": "0", "label": "Self"}
+           ],
+           "label": "Open URL"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hospitality Widgets"
+    }
+  ]
+}
+{% endschema %}

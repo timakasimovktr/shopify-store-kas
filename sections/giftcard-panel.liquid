@@ -1,0 +1,396 @@
+<style>
+
+    /*.lds-ring {*/
+    /*    display: none;*/
+    /*    position: relative;*/
+    /*    width: 25px;*/
+    /*    height: 25px;*/
+    /*    position: absolute;*/
+    /*    bottom: 14px;*/
+    /*    left: 0;*/
+    /*    right: 0;*/
+    /*    margin: 0 auto;*/
+    /*}*/
+
+    /*.lds-ring.active {*/
+    /*    display: inline-block;*/
+    /*}*/
+
+    /*.lds-ring div {*/
+    /*    box-sizing: border-box;*/
+    /*    display: block;*/
+    /*    position: absolute;*/
+    /*    width: 25px;*/
+    /*    height: 25px;*/
+    /*    margin: 3px;*/
+    /*    border: 3px solid #fff;*/
+    /*    border-radius: 50%;*/
+    /*    animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;*/
+    /*    border-color: #fff transparent transparent transparent;*/
+    /*}*/
+
+    /*.lds-ring div:nth-child(1) {*/
+    /*    animation-delay: -0.45s;*/
+    /*}*/
+
+    /*.lds-ring div:nth-child(2) {*/
+    /*    animation-delay: -0.3s;*/
+    /*}*/
+
+    /*.lds-ring div:nth-child(3) {*/
+    /*    animation-delay: -0.15s;*/
+    /*}*/
+
+    /*@keyframes lds-ring {*/
+    /*    0% {*/
+    /*        transform: rotate(0deg);*/
+    /*    }*/
+    /*    100% {*/
+    /*        transform: rotate(360deg);*/
+    /*    }*/
+    /*}*/
+
+
+    .cart__inner-giftmessage {
+        position: absolute;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        height: fit-content;
+        min-height: 100vh;
+        background: #fff;
+        padding: 21px 20px 16px;
+        transition: all 0.15s;
+        transform: translate(100%);
+        z-index: 999999;
+        width: 100%;
+        max-width: 497px;
+    }
+
+    @media (min-width: 425px) {
+        .cart__inner-giftmessage {
+            padding: 21px 18px 16px;
+        }
+    }
+
+    .cart .cart__inner {
+        overflow-x: hidden;
+    }
+
+    @media (max-width: 767px) {
+        .cart .cart__inner-body {
+            height: calc(100vh - 380px);
+        }
+    }
+
+
+    @media screen and (min-width: 767px) {
+        .cart__inner-giftmessage {
+            max-width: 497px;
+        }
+    }
+
+
+    /*.cart__inner-giftmessage textarea {*/
+    /*    max-width: 100%;*/
+    /*    min-width: 100%;*/
+    /*    max-height: calc(100vh - 260px) !important;*/
+    /*    min-height: 223px;*/
+    /*    margin-bottom: 1rem;*/
+    /*    padding: 0.5rem;*/
+    /*    font-size: 15px;*/
+    /*    font-weight: 400;*/
+    /*    font-style: italic;*/
+    /*}*/
+
+    .cart__inner-giftmessage.active {
+        transform: translate(0);
+        transition: all 0.35s;
+    }
+
+    .cart__inner-giftmessage header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid #e8e7e7;
+    }
+
+    .cart__inner-giftmessage header span {
+        height: 16px;
+        width: 16px;
+        cursor: pointer;
+    }
+
+    /*.cart__inner-textarea {*/
+    /*    position: relative;*/
+    /*}*/
+
+    /*.cart__inner-giftmessage .btn.disabled {*/
+    /*    opacity: 0.5;*/
+    /*    color: #636363 !important;*/
+    /*}*/
+
+    .cart__inner-giftmessage .message {
+        text-align: center;
+        height: 40px;
+        line-height: 40px;
+        margin-top: 1rem;
+        color: #fff;
+    }
+
+    .cart__inner-giftmessage .message.success {
+        background: #06c782;
+    }
+
+    .cart__inner-giftmessage .message.error {
+        background: #ea2c56;
+    }
+
+    .cart__message {
+        margin-top: 1rem;
+    }
+
+    .cart__message p {
+        font-size: 14px;
+        line-height: 1.3;
+        font-weight: 400;
+        letter-spacing: 0.02em;
+        text-align: center;
+    }
+
+    /*.msg-count {*/
+    /*    margin: 1rem 0;*/
+    /*}*/
+
+    .ico-close {
+        cursor: pointer;
+    }
+
+    .cart-popup__gift-form__label {
+        font-size: 14px;
+    }
+
+    /*.action-btns {*/
+    /*    display: flex;*/
+    /*    justify-content: space-between;*/
+    /*}*/
+
+    .gift-message-footer {
+        position: absolute;
+        bottom: 0;
+        left: 18px;
+        right: 18px;
+        margin-bottom: 1.5rem;
+    }
+
+    /*.btn-white {*/
+    /*    color: #636363;*/
+    /*    background: #fff;*/
+    /*    border: 1px solid #636363*/
+    /*}*/
+
+
+    /*.mr-08 {*/
+    /*    margin-right: 0.8rem;*/
+    /*}*/
+
+    /*.hide {*/
+    /*    display: none;*/
+    /*}*/
+
+    /*.show {*/
+    /*    display: block;*/
+    /*}*/
+
+    /*.action-btns .fa-spinner {*/
+    /*    color: #fff;*/
+    /*    position: absolute;*/
+    /*    left: 0px;*/
+    /*    right: 0px;*/
+    /*    top: 17px;*/
+    /*}*/
+
+    /*#update-message {*/
+    /*    position: relative;*/
+    /*}*/
+
+    .giftmsg_header {
+        padding-bottom: 0.75rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid #e8e7e7;
+    }
+
+    .cart__inner-giftmessage hr {
+        height: 1px;
+        background-color: #efefef;
+        width: 100%;
+        border: none;
+        outline: none;
+        margin: 1rem auto;
+    }
+
+    .cart__inner-giftmessage hr.first {
+        margin-top: 0;
+        height: 0;
+    }
+
+    .cart__inner-giftmessage textarea {
+        aspect-ratio: unset !important;
+        max-height: 20vh !important;
+    }
+
+    .cart__inner-giftmessage .actions {
+        margin-top: 1rem !important;
+    }
+
+    .cart__inner-giftmessage .cart-extra-fields-wrapper {
+        margin-bottom: 3rem;
+    }
+
+</style>
+
+<div class="cart__inner-giftmessage">
+  <div>
+    <div class="giftmsg_header">
+      <span class="ico-close close gift-msg-close">Close</span>
+      <h5 class="cart__inner-title">{{ 'Your Gift Message' }}</h5>
+      <span></span>
+    </div>
+  </div>
+  {% comment %}
+  <div class="msg-count">
+    <p class="cart-popup__gift-form__label">Your Message <span id="minicart__note-count">( <span class="char_count"
+                                                                                                 id="char_count">{{ cart.note | size }}</span> /200)</span>
+    </p>
+  </div>
+
+
+    <div class="cart__inner-textarea">
+      <textarea name="giftMessage" id="giftMessage" cols="50" rows="10" maxlength="200"
+                placeholder="Max 200 characters. Please avoid emojis and special characters."></textarea>
+      <div class="gift-message-footer">
+        <div class="action-btns">
+          <a id="update-message" class="btn btn--solid btn--block mr-08 update-message">
+            <i class="fa fa-spinner fa-spin hide" id="save_spinner"></i>{{ 'save' }}</a>
+          <a class="close btn btn--solid btn--block btn-white gift-msg-close">{{ 'cancel' }}</a>
+        </div>
+        <div class="cart__message ">
+          <p>{{ 'You will be able to select a gift box in the checkout process.' }}</p>
+        </div>
+      </div>
+
+      <div class="lds-ring">
+      </div>
+    </div>
+  {% endcomment %}
+
+  <div class="cart-extra-fields-wrapper">
+    {% render 'cart-extra-field', header: 'Gift Message', title: 'Your Message', name: 'gift_box_message2', placeholder: 'Your message', first: true %}
+    {% render 'cart-extra-field', header: 'Gift Instructions', title: 'Your instructions', name: 'gift_box_instructions2', placeholder: 'Please indicate what item(s) you would like gift wrapped' %}
+  </div>
+
+  <div class="gift-message-footer">
+    <div class="cart__message ">
+      <p>{{ 'You will be able to select a gift box in the checkout process.' }}</p>
+    </div>
+  </div>
+</div>
+
+<script>
+
+  function check_script_giftMessage(glob_var) {
+    if (typeof (glob_var) !== 'undefined') {
+
+      // $(document).on('click', '#update-message', function (e) {
+      //   var messageData = $('#giftMessage').val().trim();
+      //   var buttonMessage = $('#update-message');
+      //   var loaderAnimation = $('.lds-ring');
+      //   var spin = $('#save_spinner');
+      //
+      //   buttonMessage.addClass('disabled');
+      //   loaderAnimation.addClass('active');
+      //   spin.addClass('show')
+      //   $(".add_message_label").html("Your gift message is saved");
+      //   $("#action_btn").removeClass("hidden")
+      //
+      //   $.ajax({
+      //     url: '/cart/update.js',
+      //     type: 'POST',
+      //     data: {
+      //       note: messageData
+      //     },
+      //     dataType: 'json',
+      //     success: function (result) {
+      //       jQuery('.counter__field').trigger('change');
+      //       setTimeout(() => {
+      //         loaderAnimation.removeClass('active');
+      //         buttonMessage.removeClass('disabled');
+      //         spin.removeClass('show')
+      //         jQuery('.cart__inner-giftmessage').removeClass('active');
+      //         document.getElementById('gift-card-message').value = messageData;
+      //       }, 100)
+      //     },
+      //     error: function (jqxhr, status, exception) {
+      //     }
+      //   });
+      // });
+
+      // $(document).on('click', '#cancel', function (b) {
+      //   var loaderAnimation = $('.lds-ring');
+      //   var buttonMessage = $('#update-message');
+      //   var loaderAnimation = $('.lds-ring');
+      //   var cart__inner = $(".cart__inner-giftmessage")
+      //
+      //   buttonMessage.addClass('disabled');
+      //   loaderAnimation.addClass('active');
+      //   setTimeout(() => {
+      //     loaderAnimation.removeClass('active');
+      //     buttonMessage.removeClass('disabled');
+      //     jQuery('.cart__inner-giftmessage').removeClass('active');
+      //   }, 100)
+      //
+      // });
+
+      $(document).on('click', '#gift-msg-delete', function (e) {
+        var delete_btn = $("#gift-msg-delete").addClass("mr-2")
+        var spinner = $("#spinner").removeClass("hidden")
+        $.ajax({
+          url: '/cart/update.js',
+          type: 'POST',
+          data: {
+            note: null
+          },
+          dataType: 'json',
+          success: function (result) {
+            jQuery('.counter__field').trigger('change');
+          },
+          error: function (jqxhr, status, exception) {
+          }
+        });
+      });
+      
+      
+
+      var gmPanel = $('.cart__inner-giftmessage');
+      $(document).on('click', '.gift-msg-edit', function (e) {
+        gmPanel.addClass('active');
+        // $('textarea').val(document.getElementById('gift-card-message').value);
+      });
+
+    } else {
+      setTimeout(function () {
+        check_script_giftMessage(glob_var)
+      }, 100);
+    }
+  }
+
+  window.addEventListener('load', function () {
+    setTimeout(function () {
+      check_script_giftMessage($);
+    }, 400);
+  });
+
+</script>
+

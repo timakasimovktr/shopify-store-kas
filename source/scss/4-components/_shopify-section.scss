@@ -1,0 +1,17 @@
+/* ------------------------------------------------------------ *\
+  Shopify sections
+\* ------------------------------------------------------------ */
+
+.template-challenge {
+  .main {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 583px);
+
+    .shopify-section {
+      width: 100%;
+    }
+  }
+}

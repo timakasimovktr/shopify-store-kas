@@ -1,0 +1,21 @@
+.uploadcare-widget {
+    width: 100%;
+
+    .uploadcare-widget-button-open {
+        padding: 0;
+        width: 100%;
+        min-height: 70px;
+        margin: 0;
+        border-radius: unset;
+        border: 1px solid #bdbdbd;
+        background: #ffffff;
+        text-align: center;
+        color: $default-color;
+        line-height: 70px;
+        text-transform: uppercase;
+        font-family: inherit;
+        font-size: 14px;
+        letter-spacing: 0.1rem;
+        cursor: pointer;
+    }
+}

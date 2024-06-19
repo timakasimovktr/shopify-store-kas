@@ -1,0 +1,6 @@
+{% assign available_templates = 'index|product|collection|list-collections' | split: '|' %}
+
+{% if available_templates contains template.name %}
+  <input id="available-color-t" type="hidden" value="{{ 'products.product.available_one_color' | t }}">
+  <input id="available-colors-t" type="hidden" value="{{ 'products.product.available_colors' | t }}">
+{% endif %}

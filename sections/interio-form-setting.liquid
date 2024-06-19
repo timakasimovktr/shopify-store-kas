@@ -1,0 +1,173 @@
+{%- assign _settings = section.settings -%}
+
+<script>UPLOADCARE_PUBLIC_KEY = "{{_settings.apikey}}";</script>
+<script src="https://ucarecdn.com/libs/widget/2.10.2/uploadcare.full.min.js" charset="utf-8"></script>
+
+<div class="form form__interior-confirmation hidden">
+  <div class="form__head">
+    <h2>{{ _settings.confirm_title }}</h2>
+    <p>{{ _settings.confirm_desc }}</p>
+  </div><!-- /.form__head -->
+</div>
+
+<!--form action="https://formspree.io/{{_settings.email}}"-->
+{% form 'contact', class: 'form form--default interior_design--form interior_design--js--form' %}
+  <div class="form__head">
+    <h2>{{ 'customer.login.interior_signup' | t }}</h2>
+    <h4>{{ 'customer.login.interior_signup_subtitle' | t }}<a href="/account">{{ 'customer.login.interior_signin' | t }}</a></h4>
+  </div><!-- /.form__head -->
+
+  <div class="form__notice error">
+     {{ form.errors | default_errors }}
+  </div><!-- /.form__notice -->
+
+  <div class="form-body">
+    <div class="form__row">
+      <label for="field-email" class="form__label" hidden="">{{ 'customer.register.email' | t }}</label>
+
+      <input name="contact[email]" id="field-email" class="field " placeholder="{{ 'customer.register.email' | t }}" autocorrect="off" autocapitalize="off" value="" required="" type="email">
+    </div><!-- /.form__row -->
+
+    <div class="form__row">
+      <label for="field-company_name" class="form__label" hidden="">{{ 'customer.register.company' | t }}</label>
+
+      <input name="contact[Company Name]" id="field-company_name" class="field " placeholder="{{ 'customer.register.company' | t }}" autocorrect="off" autocapitalize="off" value="" required="">
+    </div><!-- /.form__row -->
+
+    <div class="form__cols">
+      <input name="contact[name]" id="field-username" value="" required="" type="hidden">
+
+      <div class="form__col">
+        <div class="form__row">
+          <label for="field-first-name" class="form__label" hidden="">{{ 'customer.register.first_name' | t }}</label>
+
+          <input id="field-first-name" class="field " placeholder="{{ 'customer.register.first_name' | t }}" value="" required="" type="text">
+        </div><!-- /.form__row -->
+      </div><!-- /.form__col -->
+
+      <div class="form__col">
+        <div class="form__row">
+          <label for="field-last-name" class="form__label" hidden="">{{ 'customer.register.last_name' | t }}</label>
+
+          <input id="field-last-name" class="field " placeholder="{{ 'customer.register.last_name' | t }}" value="" required="" type="text">
+        </div><!-- /.form__row -->
+      </div><!-- /.form__col -->
+    </div><!-- /.form__cols -->
+
+    <div class="form__row">
+      <label for="field-website" class="form__label" hidden="">{{ 'customer.register.website' | t }}</label>
+
+      <input name="contact[Website]" id="field-website" class="field " placeholder="{{ 'customer.register.website' | t }}" value="" type="url">
+    </div><!-- /.form__row -->
+
+    <!--div class="form__row">
+      <label for="field-address1" class="form__label" hidden="">{{ 'customer.addresses.address1' | t }}</label>
+
+      <input name="customer[addresses][][address1]" id="field-address1" class="field " placeholder="{{ 'customer.addresses.address1' | t }}" value="" required="" type="text">
+    </div>
+
+    <div class="form__row">
+      <label for="field-address2" class="form__label" hidden="">{{ 'customer.addresses.address2' | t }}</label>
+
+      <input name="customer[addresses][][address2]" id="field-address2" class="field " placeholder="{{ 'customer.addresses.address2' | t }}" value="" type="text">
+    </div>
+
+    <div class="form__cols">
+      <div class="form__col">
+        <div class="form__row">
+          <label for="field-city" class="form__label" hidden="">{{ 'customer.addresses.city' | t }}</label>
+
+          <input name="customer[addresses][][city]" id="field-city" class="field " placeholder="{{ 'customer.addresses.city' | t }}" value="" required="" type="text">
+        </div>
+      </div>
+
+      <div class="form__col">
+        <div class="form__row">
+          <label for="field-state" class="form__label" hidden="">{{ 'customer.addresses.province' | t }}</label>
+          <input type="hidden" name="customer[addresses_attributes][0][country]" value="US" />
+
+          <select name="customer[addresses][][province]" id="field-state" class="field " required="">
+            <option value="" selected disabled="">State</option><option data-code="AL" value="Alabama">Alabama</option><option data-code="AK" value="Alaska">Alaska</option><option data-code="AS" value="American Samoa">American Samoa</option><option data-code="AZ" value="Arizona">Arizona</option><option data-code="AR" value="Arkansas">Arkansas</option><option data-code="CA" value="California">California</option><option data-code="CO" value="Colorado">Colorado</option><option data-code="CT" value="Connecticut">Connecticut</option><option data-code="DE" value="Delaware">Delaware</option><option data-code="DC" value="District of Columbia">District of Columbia</option><option data-code="FM" value="Federated States of Micronesia">Federated States of Micronesia</option><option data-code="FL" value="Florida">Florida</option><option data-code="GA" value="Georgia">Georgia</option><option data-code="GU" value="Guam">Guam</option><option data-code="HI" value="Hawaii">Hawaii</option><option data-code="ID" value="Idaho">Idaho</option><option data-code="IL" value="Illinois">Illinois</option><option data-code="IN" value="Indiana">Indiana</option><option data-code="IA" value="Iowa">Iowa</option><option data-code="KS" value="Kansas">Kansas</option><option data-code="KY" value="Kentucky">Kentucky</option><option data-code="LA" value="Louisiana">Louisiana</option><option data-code="ME" value="Maine">Maine</option><option data-code="MH" value="Marshall Islands">Marshall Islands</option><option data-code="MD" value="Maryland">Maryland</option><option data-code="MA" value="Massachusetts">Massachusetts</option><option data-code="MI" value="Michigan">Michigan</option><option data-code="MN" value="Minnesota">Minnesota</option><option data-code="MS" value="Mississippi">Mississippi</option><option data-code="MO" value="Missouri">Missouri</option><option data-code="MT" value="Montana">Montana</option><option data-code="NE" value="Nebraska">Nebraska</option><option data-code="NV" value="Nevada">Nevada</option><option data-code="NH" value="New Hampshire">New Hampshire</option><option data-code="NJ" value="New Jersey">New Jersey</option><option data-code="NM" value="New Mexico">New Mexico</option><option data-code="NY" value="New York">New York</option><option data-code="NC" value="North Carolina">North Carolina</option><option data-code="ND" value="North Dakota">North Dakota</option><option data-code="MP" value="Northern Mariana Islands">Northern Mariana Islands</option><option data-code="OH" value="Ohio">Ohio</option><option data-code="OK" value="Oklahoma">Oklahoma</option><option data-code="OR" value="Oregon">Oregon</option><option data-code="PW" value="Palau">Palau</option><option data-code="PA" value="Pennsylvania">Pennsylvania</option><option data-code="PR" value="Puerto Rico">Puerto Rico</option><option data-code="RI" value="Rhode Island">Rhode Island</option><option data-code="SC" value="South Carolina">South Carolina</option><option data-code="SD" value="South Dakota">South Dakota</option><option data-code="TN" value="Tennessee">Tennessee</option><option data-code="TX" value="Texas">Texas</option><option data-code="UT" value="Utah">Utah</option><option data-code="VT" value="Vermont">Vermont</option><option data-code="VI" value="Virgin Islands">Virgin Islands</option><option data-code="VA" value="Virginia">Virginia</option><option data-code="WA" value="Washington">Washington</option><option data-code="WV" value="West Virginia">West Virginia</option><option data-code="WI" value="Wisconsin">Wisconsin</option><option data-code="WY" value="Wyoming">Wyoming</option><option data-code="AA" value="Armed Forces Americas">Armed Forces Americas</option><option data-code="AE" value="Armed Forces Europe">Armed Forces Europe</option><option data-code="AP" value="Armed Forces Pacific">Armed Forces Pacific</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="form__cols">
+      <div class="form__col">
+        <div class="form__row">
+          <label for="field-zip" class="form__label" hidden="">{{ 'customer.addresses.zip' | t }}</label>
+
+          <input name="customer[addresses][][zip]" id="field-zip" class="field " placeholder="{{ 'customer.addresses.zip' | t }}" value="" required="" type="text">
+        </div>
+      </div>
+
+      <div class="form__col">
+        <div class="form__row">
+          <label for="field-phone" class="form__label" hidden="">{{ 'customer.addresses.phone' | t }}</label>
+
+          <input name="customer[addresses][][phone]" id="field-phone" class="field " placeholder="{{ 'customer.addresses.phone' | t }}" value="" type="text">
+        </div>
+      </div>
+    </div-->
+
+    <div class="form__row">
+      <input type="hidden" role="uploadcare-uploader" id="field-resale-certificate" value="" name="contact[ResaleCertificate]" data-error="{{ 'customer.register.error_certificate' | t }}" />
+    </div><!-- /.form__row -->
+
+    <!--div class="form__row">
+      <label for="field-password" class="form__label" hidden>{{ 'customer.register.password' | t }}</label>
+
+      <input type="password" name="customer[password]" id="field-password" class="field {{ error_password }}" placeholder="{{ 'customer.register.password' | t }}" value="" required />
+    </div--><!-- /.form__row -->
+
+    <!--div class="form__row">
+      <label for="field-password-2" class="form__label" hidden>{{ 'customer.register.password' | t }}</label>
+
+      <input type="password" name="test" id="field-password-2" class="field {{ error_password }}" placeholder="{{ 'customer.register.password-2' | t }}" value="" required data-error="{{ 'customer.register.error_password' | t }}" />
+    </div--><!-- /.form__row -->
+
+    <input type="hidden" class="field" name="contact[subject]" id="contact-subject" value="Interior Design Program" />
+    <div class="form__row">
+      <label for="field-contact-message" class="form__label" hidden>{{ 'contact.form.message' | t }}</label>
+
+      <textarea rows="10" id="field-contact-message" class="textarea" name="contact[body]" placeholder="{{ 'contact.form.message' | t }}" required></textarea>
+    </div><!-- /.form__row -->
+
+  </div>
+
+  <div class="form__actions">
+    <input type="submit" class="form__btn btn btn--block" value="{{ 'customer.register.submit_form' | t }}">
+  </div><!-- /.form__actions -->
+{% endform %}
+
+{% schema %}
+{
+  "name": "Interior Form",
+  "settings": [
+    {
+      "type": "text",
+      "id": "apikey",
+      "label": "Uploadcare Key",
+      "default": "004bfad5938c966aba17"
+    },
+    {
+      "type": "text",
+      "id": "confirm_title",
+      "label": "Confirmation Title",
+      "default": "Thank You"
+    },
+    {
+      "type": "textarea",
+      "id": "confirm_desc",
+      "label": "Confirmation",
+      "default": "Thank you for signing up, a customers service representative will be in touch."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Interior Form"
+    }
+  ]
+}
+{% endschema %}

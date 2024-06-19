@@ -1,0 +1,32 @@
+/* ------------------------------------------------------------ *\
+  Bar
+\* ------------------------------------------------------------ */
+
+.bar {
+  padding: 18px 10px;
+  background-color: #f8f8f8;
+  font-family: $font-family-serif;
+  font-size: 18px;
+  line-height: 1.35;
+  color: $default-color;
+  font-weight: 400;
+  text-align: center;
+
+  a {
+    text-decoration: none;
+    transition: opacity 0.3s;
+
+    &:hover {
+      opacity: 0.7;
+    }
+  }
+
+  /* Mobile */
+
+  @media (max-width: #{$responsive-xs}) {
+    padding: 8px 10px;
+    font-size: 14px;
+    line-height: 1.93;
+    letter-spacing: 0.045em;
+  }
+}

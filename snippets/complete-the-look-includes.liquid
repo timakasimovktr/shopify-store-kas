@@ -1,0 +1,44 @@
+{%- if _product.metafields.sf_included_products.size > 0 -%}
+
+  {%- for i in (1..8) -%}
+    {%- assign included_product_string = 'product_' | append: i | append: '_product' -%}
+    {%- assign included_image_string = 'product_' | append: i | append: '_image' -%}
+    {%- assign included_title_string = 'product_' | append: i | append: '_title' -%}
+    {%- assign included_one_color_string = 'product_' | append: i | append: '_only_one_variant' -%}
+    {%- assign included_color_name_string = 'product_' | append: i | append: '_color_name' -%}
+    
+    {%- if _product.metafields.sf_included_products[included_product_string] != blank -%}
+      {%- assign included_product = all_products[_product.metafields.sf_included_products[included_product_string]] -%}
+      {%- assign included_image = _product.metafields.sf_included_products[included_image_string] -%}
+      {%- assign included_title = _product.metafields.sf_included_products[included_title_string] -%}
+      {%- assign included_one_color = _product.metafields.sf_included_products[included_one_color_string] -%}
+      {%- assign included_color_name = _product.metafields.sf_included_products[included_color_name_string] -%}
+
+      {%- unless included_product.empty? -%}
+        {% assign _one_color_name = '' %}
+        {% if included_one_color == 1 %}
+          {% if included_color_name != blank %}
+            {% assign _one_color_name = included_color_name | handle %}
+          {% else %}
+            {% assign _one_color_name = included_product.variants[0].options[0] | handle %}
+          {% endif %}
+        {% endif %}
+
+        <!-- variants -->
+        <select class="complete-the-look_included hidden" data-options="{% for option in included_product.options %}{{option | downcase | handleize }}{% unless forloop.last %},{% endunless %}{% endfor %}" data-title="{%- if included_title -%} {{ included_title | newline_to_br }} {%- else -%} {{ included_product.title }} {%- endif -%}" data-color-name="{{_one_color_name}}">
+          {% for variant in included_product.variants %}
+            {% capture data_fields %}{% for option in included_product.options %}data-{{option | handle }}="{{ variant.options[forloop.index0] | handle }}" {% endfor %}{% endcapture %}
+            {%- assign inventory_value = variant.inventory_quantity -%}
+            {%- unless variant.available -%}
+              {%- assign inventory_value =  -1 -%}
+            {%- endunless -%}
+            <option value="{{ variant.id }}" data-compare-price="{{ variant.compare_at_price }}" data-inventory="{{ inventory_value }}" data-price="{{ variant.price }}" {{data_fields}}>{{ variant.title }} - {{ variant.price | money_with_currency }}</option>
+          {% endfor %}
+        </select>
+        <!-- /variants -->
+
+      {%- endunless -%}
+    {%- endif -%}
+  {%- endfor -%}
+
+{%- endif -%}

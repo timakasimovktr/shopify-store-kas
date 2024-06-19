@@ -1,0 +1,18 @@
+<a href="{{ current_product.url }}" class="yotpo-reviews-link">
+  <div class="yotpo bottomLine"data-product-id="{{ current_product.id }}" data-url="{{ current_product.url }}">
+    {%- assign yotpo_offload_content = shop.metafields.yotpo.yotpo_offload_content %}
+    {%- assign time_now = 'now' | date: '%s' %}
+    {%- assign yotpo_live_time = shop.metafields.yotpo.yotpo_live | date: '%s' %}
+    {%- assign diff_seconds_from_live = time_now | minus: yotpo_live_time %}
+    {%- assign yotpo_bottomline_last_updated = current_product.metafields.yotpo.catalog_bottomline_update_time | date: '%s' %}
+    {%- assign diff_seconds_from_last_bottomline_update = time_now | minus: yotpo_bottomline_last_updated %}
+    {%- if yotpo_live_time and diff_seconds_from_live < 86400 or yotpo_bottomline_last_updated and diff_seconds_from_last_bottomline_update < 86400 -%}
+      {%- assign yotpo_bottomline_obsolete = false %}
+    {%- else %}
+      {%- assign yotpo_bottomline_obsolete = true %}
+    {%- endif %}
+    {%- if yotpo_offload_content == 'yes' and yotpo_bottomline_obsolete != true -%}
+      {{ current_product.metafields.yotpo.catalog_bottomline }}
+    {%- endif %}
+  </div>
+</a>

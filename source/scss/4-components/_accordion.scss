@@ -1,0 +1,71 @@
+/* ------------------------------------------------------------ *\
+  Accordion
+\* ------------------------------------------------------------ */
+
+.accordion {
+  .accordion__section {
+    border-top: 1px solid #e1dfdf;
+
+    &:last-child {
+      border-bottom: 1px solid #e1dfdf;
+    }
+  }
+
+  .accordion__head {
+    position: relative;
+    padding: 7px 50px 7px 0;
+    cursor: pointer;
+
+    h6 {
+      font-size: 15px;
+      line-height: 2.14;
+      color: $contrast-color;
+      font-weight: 300;
+    }
+
+    &:after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      right: 10px;
+      width: 14px;
+      height: 2px;
+      background-color: #bdbbbd;
+      transform: translateY(-50%);
+    }
+
+    &:before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      right: 16px;
+      width: 2px;
+      height: 14px;
+      background-color: #bdbbbd;
+      transform: translateY(-50%);
+      transition: transform 0.3s;
+    }
+
+    &.is-active:before {
+      transform: translateY(-50%) rotate(90deg);
+    }
+  }
+
+  .accordion__body {
+    overflow: hidden;
+    display: none;
+    padding-bottom: 18px;
+    font-size: 14px;
+    line-height: 18px;
+    letter-spacing: 0.03em;
+    font-weight: 300;
+  }
+}
+
+
+.accordion .accordion__head:after, 
+.accordion .accordion__head:before,
+.counter .counter__minus:before,
+.counter .counter__plus:after, .counter .counter__plus:before {
+	background-color: #333!important;
+}

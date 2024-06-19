@@ -1,0 +1,106 @@
+/* ------------------------------------------------------------ *\
+	Fonts
+  \* ------------------------------------------------------------ */
+
+/*
+ * The Typekit service used to deliver this font or fonts for use on websites
+ * is provided by Adobe and is subject to these Terms of Use
+ * http://www.adobe.com/products/eulas/tou_typekit. For font license
+ * information, see the list below.
+ *
+ * effra:
+ *   - http://typekit.com/eulas/00000000000000000001787b
+ *   - http://typekit.com/eulas/00000000000000000001787c
+ *   - http://typekit.com/eulas/000000000000000000017879
+ *   - http://typekit.com/eulas/00000000000000000001787d
+ *
+ * © 2009-2018 Adobe Systems Incorporated. All Rights Reserved.
+ */
+ /*{"last_published":"2018-07-10 16:06:06 UTC"}*/
+
+ @import url("https://p.typekit.net/p.css?s=1&k=zmp0efd&ht=tk&f=9785.9786.9789.9791&a=8353522&app=typekit&e=css");
+
+ @font-face {
+  font-family:"effra";
+  font-display: swap;
+  src:url("https://use.typekit.net/af/5c84c3/00000000000000000001787b/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3") format("woff2"),url("https://use.typekit.net/af/5c84c3/00000000000000000001787b/27/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3") format("woff"),url("https://use.typekit.net/af/5c84c3/00000000000000000001787b/27/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3") format("opentype");
+  font-style:normal;
+  font-weight:400;
+}
+
+@font-face {
+  font-family:"effra";
+  font-display: swap;
+  src:url("https://use.typekit.net/af/32bae8/00000000000000000001787c/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i4&v=3") format("woff2"),url("https://use.typekit.net/af/32bae8/00000000000000000001787c/27/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i4&v=3") format("woff"),url("https://use.typekit.net/af/32bae8/00000000000000000001787c/27/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i4&v=3") format("opentype");
+  font-style:italic;
+  font-weight:400;
+}
+
+@font-face {
+  font-family:"effra";
+  font-display: swap;
+  src:url("https://use.typekit.net/af/d82207/000000000000000000017879/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n3&v=3") format("woff2"),url("https://use.typekit.net/af/d82207/000000000000000000017879/27/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n3&v=3") format("woff"),url("https://use.typekit.net/af/d82207/000000000000000000017879/27/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n3&v=3") format("opentype");
+  font-style:normal;
+  font-weight:300;
+}
+
+@font-face {
+  font-family:"effra";
+  font-display: swap;
+  src:url("https://use.typekit.net/af/5ea570/00000000000000000001787d/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n5&v=3") format("woff2"),url("https://use.typekit.net/af/5ea570/00000000000000000001787d/27/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n5&v=3") format("woff"),url("https://use.typekit.net/af/5ea570/00000000000000000001787d/27/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n5&v=3") format("opentype");
+  font-style:normal;
+  font-weight:500;
+}
+
+.tk-effra { font-family: "effra",sans-serif; }
+
+@font-face {
+  font-family: 'gabriola';
+  font-display: swap;
+  font-style: normal;
+  font-weight: 400;
+  src: url('{{ "gabriola.ttf" | asset_url }}') format('truetype');
+}
+
+@font-face {
+  font-family: 'english-script';
+  font-display: swap;
+  font-style: normal;
+  font-weight: 400;
+  src: url('{{ "3751BD_0_0.eot" | asset_url }}');
+  src: url('{{ "3751BD_0_0.eot?#iefix" | asset_url }}') format('embedded-opentype'),url('{{ "3751BD_0_0.woff2" | asset_url }}') format('woff2'),url('{{ "3751BD_0_0.woff" | asset_url }}') format('woff'),url('{{ "3751BD_0_0.ttf" | asset_url }}') format('truetype');
+}
+
+@font-face {
+  font-family: 'goudy-old-style';
+  font-display: swap;
+  font-style: normal;
+  font-weight: 400;
+  src: url('{{ "375518_0_0.eot" | asset_url }}');
+  src: url('{{ "375518_0_0.eot?#iefix" | asset_url }}') format('embedded-opentype'),url('{{ "375518_0_0.woff2" | asset_url }}') format('woff2'),url('{{ "375518_0_0.woff" | asset_url }}') format('woff'),url('{{ "375518_0_0.ttf" | asset_url }}') format('truetype');
+}
+
+@font-face {
+  font-family: 'felix-tilting';
+  font-display: swap;
+  font-style: normal;
+  font-weight: 400;
+  src: url('{{ "375518_1_0.eot" | asset_url }}');
+  src: url('{{ "375518_1_0.eot?#iefix" | asset_url }}') format('embedded-opentype'),url('{{ "375518_1_0.woff2" | asset_url }}') format('woff2'),url('{{ "375518_1_0.woff" | asset_url }}') format('woff'),url('{{ "375518_1_0.ttf" | asset_url }}') format('truetype');
+}
+
+@font-face {
+  font-family: 'Vanitas';
+  font-display: swap;
+  src: url("{{ 'Vanitas-Regular.woff2' | asset_url }}") format("woff2"), url("{{ 'Vanitas-Regular.woff' | asset_url }}") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Vanitas';
+  font-display: swap;
+  src: url("{{ 'Vanitas-Bold.woff2' | asset_url }}") format("woff2"), url("{{ 'Vanitas-Bold.woff' | asset_url }}") format("woff");
+  font-weight: bold;
+  font-style: normal;
+}

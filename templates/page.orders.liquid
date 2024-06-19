@@ -1,0 +1,57 @@
+{%- if customer -%}
+<section class="section-default">
+  <div class="shell">
+    <div class="section__inner section__inner--alt">
+      {%- include 'account-aside' -%}
+
+      <div class="section__content">
+        {% paginate customer.orders by 20 %}
+          {% if customer.orders.size != 0 %}
+            <div class="table-orders">
+              <table>
+                <thead>
+                  <tr>
+                    <th class="order-order_number">{{ 'customer.orders.order_number' | t }}</th>
+
+                    <th class="order-date">{{ 'customer.orders.date' | t }}</th>
+
+                    <th class="order-payment_status">{{ 'customer.orders.payment_status' | t }}</th>
+
+                    <th class="order-fulfillment_status">{{ 'customer.orders.fulfillment_status' | t }}</th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  {% for order in customer.orders %}
+                    <tr>
+                      <td class="order-order_number" data-attr="{{ 'customer.orders.order_number' | t }}">{{ order.name | link_to: order.customer_url }}</td>
+
+                      <td class="order-date" data-attr="{{ 'customer.orders.date' | t }}">{{ order.created_at | date: "%b %d, %Y" }}</td>
+
+                      <td class="order-total" data-attr="{{ 'customer.orders.payment_status' | t }}">{{ order.total_price | money }}</td>
+
+                      <td class="order-fulfillment_status" data-attr="{{ 'customer.orders.fulfillment_status' | t }}">{{ order.fulfillment_status_label }}</td>
+
+                    </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div><!-- /.table-order -->
+          {% else %}
+            <div class="no-oders">
+              <p>{{ 'customer.orders.none' | t }}</p>
+            </div><!-- /.no-oders -->
+          {% endif %}
+
+          {% include 'pagination' %}
+        {% endpaginate %}
+      </div><!-- /.section__content -->
+    </div><!-- /.section__inner -->
+  </div><!-- /.shell -->
+</section><!-- /.section-default -->
+{%- else -%}
+<script type="text/javascript">
+  window.location = '{{ shop.url }}';
+</script>
+{%- endif -%}
+

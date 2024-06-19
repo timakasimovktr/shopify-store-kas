@@ -1,0 +1,115 @@
+{%- assign _section = section.settings -%}
+{%- if _section.is_enable -%}
+  <div class="intro-beach">
+    <div class="intro-beach--inner">
+
+      <div class="intro-beach--image lazyload background-cover{% if _section.mobile_back_img != blank %} hidden-xs{% endif %}"
+        data-bgset="{% include 'bgsets', img: _section.back_image %}"
+        data-sizes="auto"
+        style="
+          background-image: url({{ _section.back_image | img_url: '1x' }});
+          padding-bottom: calc(100% / {{ _section.back_image.aspect_ratio }});
+        "
+      ></div>
+
+      {%- if _section.mobile_back_img != blank -%}
+        <div class="intro-beach--image background-cover lazyload visible-xs-block"
+          data-bgset="{% include 'bgsets', img: _section.mobile_back_img %}"
+          data-sizes="auto"
+          style="
+            background-image: url({{ _section.back_image | img_url: '1x' }});
+            padding-bottom: calc(100% / {{ _section.mobile_back_img.aspect_ratio }});
+          "
+        ></div>
+      {%- endif -%}
+
+      <div class="intro-beach--content {{ _section.align_content }}"{% if _section.color != blank %} style="color: {{ _section.color }}"{% endif %}>
+        {%- if _section.sub_title != blank -%}
+          <div class="intro-beach--subtitle">{{ _section.sub_title }}</div>
+        {%- endif -%}
+
+        {%- if _section.title != blank -%}
+          <div class="intro-beach--title">{{ _section.title | newline_to_br }}</div>
+        {%- endif -%}
+
+        {%- if _section.btn_url != blank and _section.btn_txt != blank -%}
+          <a href="{{ _section.btn_url }}"{% if _section.btn_url contains "#" %} data-scrolldown="{{ _section.btn_url }}"{% endif %} class="btn">
+            {{ _section.btn_txt }}
+          </a>
+        {%- endif -%}
+
+      </div>
+    </div>
+  </div>
+{%- endif -%}
+{% schema %}
+{
+  "name": "Intro",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "is_enable",
+      "label": "Is Enable/Disable",
+      "default": true
+    },
+    {
+      "type": "color",
+      "id": "color",
+      "label": "Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "select",
+      "id": "align_content",
+      "label": "Aligned content",
+      "options": [
+        {
+          "value": "intro-beach--content--align-left",
+          "label": "Aligned left"
+        },
+        {
+          "value": "intro-beach--content--align-center",
+          "label": "Aligned center"
+        },
+        {
+          "value": "intro-beach--content--align-right",
+          "label": "Aligned right"
+        }
+      ],
+      "default": "intro-beach--content--align-center"
+    },
+    {
+      "type": "image_picker",
+      "id": "back_image",
+      "label": "Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_back_img",
+      "label": "Mobile Image"
+    },
+    {
+      "type": "text",
+      "id": "sub_title",
+      "label": "Sub Title",
+      "default": "This just in"
+    },
+    {
+      "type": "textarea",
+      "id": "title",
+      "label": "Title"
+    },
+    {
+      "type": "text",
+      "id": "btn_txt",
+      "label": "Button Text",
+      "default": "learn more"
+    },
+    {
+      "type": "url",
+      "id": "btn_url",
+      "label": "Button Url"
+    }
+  ]
+}
+{% endschema %}

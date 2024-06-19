@@ -1,0 +1,18 @@
+/* ------------------------------------------------------------ *\
+  Main
+\* ------------------------------------------------------------ */
+
+.main {
+  width: 100%;
+  padding-top: 143px;
+  
+  @media (max-width: #{$responsive-pad}) {
+    padding-top: 92px;
+  }
+}
+
+.template-index {
+	& .main {
+		padding-top: 30px;
+	}
+}

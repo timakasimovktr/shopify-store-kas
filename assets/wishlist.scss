@@ -1,0 +1,328 @@
+/* |---------- Variables ----------| */
+div#wishlist-icon-container label {
+  height: 48px;
+  }
+
+$fontColor: #333;
+
+header {
+  .header-icons .swym-hidden-counter {
+    display: none!important;
+  }
+  
+  /* desktop icon */
+  .header-icons .wishlist-fav-icon {
+    & i {
+      font-size: 1.6em;
+      color: #9F3730;
+    }
+    
+    &:hover::after  {
+      content: ''!important;
+      width: 0!important;
+      padding: 0!important;
+    }
+  }
+  
+  /* mobile menu icon */
+  nav .wishlist-fav-icon {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    
+    & i {
+      margin-right: .5rem;
+      color: #9F3730;
+    }
+  }
+}
+
+/* |---------- PDP ----------| */
+
+.form-action-wishlist {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-bottom: .5rem;
+  
+  & > * {
+    margin-right: .5rem!important;
+    margin-bottom: 0!important;
+    
+    &:last-child {
+      margin-right: 0!important;
+    }
+  }
+  
+  & .container-add-to-cart {
+    width: 80%;
+  }
+  
+  & .container-btn-wishlist {
+    text-decoration: none;
+    border: 1px solid #e1dfdf;
+  }
+  
+  & .btn-add-to-wishlist {
+    display: block;
+    
+    & i {
+      font-size: 1.5rem;
+      color:#9F3730
+    }
+
+    &.disabled {
+      opacity: .3;
+
+      &:hover, &:hover * {
+        cursor: default!important;
+      }
+    }
+  }
+}
+
+.swym-button-bar.swym-wishlist-button-bar.swym-inject { display: none }
+
+/* |---------- Notifications ----------| */
+
+.swym-notifications-container {
+  &.swymTopLeft {
+    top: unset!important;
+    right: 0!important;
+    bottom: 10px!important;
+    left: unset!important;
+    transform: translateX(300px)!important;
+  }
+  
+  &.swymTopLeft.swym-showing {
+    transform: translateX(0px)!important;
+  }
+  & .swym-powered-by-text {
+    display: none!important;
+  }
+}
+
+/* |---------- Wishlist Page ----------| */
+
+.wishlist-article .article__inner {
+  max-width: 1440px!important;
+  
+  .article__title {
+    text-align: left;
+    font-weight: lighter;
+    font-family: Vanitas;
+    margin-bottom: 1rem;
+  }
+  
+  #email-information {
+    display: none;
+    margin-top: 2rem;
+    border: 1px solid #e4e3e3;
+    padding: 2rem;
+    
+    input:not(:first-child) {
+      margin-top: 1rem;
+    }
+
+    input:last-child {
+      margin-bottom: 1rem;
+    }
+    
+    input.error {
+      border-color: #ffa6a6;
+    }
+
+    label.share-error {
+      font-size: 0.875rem;
+      font-weight: 200;
+      font-family: effra, sans-serif !important;
+      color: red;
+    }
+    
+    #btn-social-email-share {
+      display: block;
+      margin-top: 1rem;
+      width: 100%;
+    }
+    
+    #social-email-share-result {
+      text-align: center;
+      margin: 2rem 0 0 0;
+      color: green; 
+      
+      &.error {
+        color: #ffa6a6;
+      }
+    }
+    
+    @media (min-width: 769px){
+      width: 50%;
+      margin: 0 auto;
+      
+      #btn-social-email-share {
+        width: auto;
+        margin-left: auto;
+      }
+    }
+  }
+}
+
+.wishlist-header {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 1rem;
+  
+  & .wishlist-account {
+    padding-right: 1rem;
+  }
+  
+  & .wishlist-icon {
+    padding: 3px;
+
+    &.share-email {
+      margin-left: auto;
+    }
+
+    & svg {
+      width: 40px;
+      height: 40px;
+    }
+
+    &.share-facebook {
+      margin-left: .25rem;
+
+      & svg {
+        width: 30px;
+        height: 30px;
+      }
+    }
+    
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
+
+#empty-wishlist-message {
+  margin: 2rem 0 0 0;
+  text-align: center;
+}
+
+#wishlist-items-container .products {
+  justify-content: initial;
+  align-items: initial;
+  
+  & .product {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 21%;
+    margin: 0 4% 4rem 0;
+    @media screen and (max-width: 1023px) {
+      width: 48%;
+      margin: 0 2% 2rem 0;
+    }
+    
+    & .img-container {
+      display: block;
+      padding-bottom: calc(100% / (4/4));
+      background-repeat: no-repeat;
+      background-size: 100%;
+      background-position: top;
+
+      @media screen and (min-width: 768px) {
+        margin: 3.5rem 3.5rem 0 3.5rem;
+      }
+
+      @media screen and (min-width: 1024px) {
+        margin: 2rem 2rem 0 2rem;
+      }
+    }
+    
+    & .product__title {
+      text-transform: initial;
+    }
+    
+    & .product-subtitle {
+      font-family: effra, sans-serif !important;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 16px;
+      color: #333;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      margin-bottom: 1rem;
+    }
+    
+    & .product-price {
+      margin-bottom: 1rem;
+    }
+    
+    & .product-price,
+    & .slashed-price {
+      font-family: Vanitas!important;
+      color: $fontColor!important;
+      font-size: 1.125rem!important;
+      font-weight: 600;
+    }
+    
+    & .slashed-price {
+      margin-bottom: 1rem;
+      text-decoration: line-through;
+    }
+    
+    & .btn-add-to-cart {
+      width: 100%;
+      max-width: 100%;
+      padding: 14px 5px;
+      font-weight: 300;
+      font-size: 13px;
+      margin-top: auto;
+
+      @media screen and (min-width: 768px) {
+        font-size: 16px;
+      }
+    }
+
+    & .btn-add-to-cart.is-sold-out {
+      border: none;
+      background-color: #636363;
+      color: #fff;
+      font-weight: 500;
+      transition: opacity .3s;
+      font-size: 14px;
+    }
+    
+    & .ico-close {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      height: 15px;
+      width: 15px;
+      
+      &:hover {
+        cursor: pointer;
+      }
+
+      @media screen and (min-width: 768px) {
+        height: 25px;
+        width: 25px;
+      }
+
+      @media screen and (min-width: 992px) {
+        height: 15px;
+        width: 15px;
+      }
+    }
+    
+    &.product-with-discount {
+      & .product-price {
+        margin-bottom: 0;
+      }
+    }
+  }
+}

@@ -1,0 +1,257 @@
+<style>
+#popup-student-beans {
+  justify-content: center;
+  align-items: center;
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 9999;
+  background-color: white;
+  overscroll-behavior: contain;
+}
+
+#popup-student-beans .btn-close-popup {
+  position: absolute;
+  top: 25px;
+  right: 25px;
+}
+
+#popup-student-beans .btn-close-popup:hover { cursor: pointer }
+@media (max-width: 768px){
+  #popup-student-beans .btn-close-popup { 
+    right: 15px;
+    top: 15px;
+   }
+}
+
+#container-iframe-student-beans {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
+  height: 90%;
+}
+@media (max-width: 768px){
+  #container-iframe-student-beans { 
+    width: 100%;
+    height: 100%;
+   }
+}
+
+.section-about {
+  padding-bottom: 37px;
+}
+@media (max-width: 1024px){
+  .section-about .section__inner {
+    margin-top: 0!important;
+  }
+}
+
+.section__content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100%;
+}
+@media (min-width: 1024px){
+  .section__content {
+    width: 50%!important;
+  }
+}
+
+@media (min-width: 1024px) {
+  .section__content {
+    padding: 3rem!important;
+  }
+}
+
+@media (min-width: 1600px) {
+  .section__content {
+    padding: 4rem!important;
+  }
+}
+
+@media (min-width: 1024px) {
+  .custom-content-wrapper {
+    max-width: 425px;
+  }
+}
+
+.section__image {
+  width: 100%!important;
+  background-position: 0 100%!important;
+}
+@media (min-width: 1024px){
+  .section__image {
+    width: 50%!important;
+  }
+}
+
+
+@media (max-width: 1024px){
+  .discount-title {
+    margin-top: 0!important;
+  }
+}
+  
+.discount-subtitle {
+  font-weight: 400!important;
+  font-size: 1.1rem!important;
+}
+@media (max-width: 1024px){
+  .discount-subtitle {
+    text-align: center!important;
+  } 
+}
+
+.mb-0{
+  margin-bottom: 0!important;
+}
+
+.mb-3 {
+  margin-bottom: 1rem!important;
+}
+
+.mb-6 {
+  margin-bottom: 2rem!important;
+}
+
+.link-bold {
+  text-decoration: none;
+  font-weight: 400;
+}
+.link-bold:hover {
+  text-decoration: underline;
+}
+
+.font-small {
+  font-size: .75em!important;
+}
+
+.text-center {
+  text-align: center!important;
+}
+</style>
+
+{%- assign _section = section.settings -%}
+{%- assign _blocks = section.blocks -%}
+
+<div id="popup-student-beans">
+  <span class="btn-close-popup ico-close"></span>
+  <div id="container-iframe-student-beans">
+    <script data-iframe="https://connect.studentbeans.com/v2/kassatex/us" data-load="connect" id="stb_root" src="https://cdn.studentbeans.com/third-party/all.js"></script>
+  </div>
+</div>
+
+<section class="section-about">
+  <div class="section__inner">
+    {%- if _section.image -%}
+      <div class="section__image lazyload" data-sizes="auto" data-bgset="{{ _section.image | img_url: '1024x' }} 1024w, {{ _section.image | img_url: '1300x' }} 1300w, {{ _section.image | img_url: '1600x' }} 1600w, {{ _section.image | img_url: '1800x' }} 1800w, {{ _section.image | img_url: '2048x' }} 2048w"></div><!-- /.section__image -->
+    {%- endif -%}
+
+    <div class="section__content">
+      {%- if _section.discount_title != blank -%}
+        <blockquote class="discount-title mb-3">
+          {{ _section.discount_title | newline_to_br }}
+        </blockquote>
+      {%- endif -%}
+
+      {%- if _section.discount_subtitle != blank -%}
+          <p class="discount-subtitle">
+            {{ _section.discount_subtitle | newline_to_br }}
+          </p>
+        {%- endif -%}
+
+      <div class="custom-content-wrapper">
+        {%- if _section.text_1 != blank -%}
+          <p class="text-center">{{ _section.text_1 | newline_to_br }}</p>
+
+          {%- if _section.text_2 != blank -%}
+            <p class="text-center">{{ _section.text_2 | newline_to_br }}</p>
+
+            {%- if _section.text_3 != blank -%}
+              <p class="text-center">{{ _section.text_3 | newline_to_br }}</p>
+            {%- endif -%}
+          {%- endif -%}
+        {%- endif -%}
+      </div>
+
+      <a href="{{_section.btn_link}}" target="_blank" class="btn btn--solid mb-3 btn-get-student-discount-code" style="margin-top:20px">GET CODE & OPEN SITE</a>
+
+      <a class="mb-6" href="https://kassatex.com/pages/terms-and-conditions" target="_blank" style="font-size:.9375rem">Terms & conditions apply</a>
+      
+      {% if _section.student_discout_img != blank %}
+      <img class="mb-3" src="{{ _section.student_discout_img | img_url: 'x60' }}" alt="Student discount"/>
+      {% endif %}
+
+      <p class="font-small ">Having problems? <a class="link-bold" href="https://kassatex.com/pages/contact" target="_blank">Visit the support pages</a></p>
+    </div><!-- /.section__content -->
+  </div><!-- /.section__inner -->
+</section><!-- /.section-about -->
+
+{% schema %}
+{
+  "name": "Student Discount",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "discount_title",
+      "label": {
+        "en": "Discount Title"
+      }
+    },
+    {
+      "type": "text",
+      "id": "discount_subtitle",
+      "label": {
+        "en": "Discount Subtitle"
+      }
+    },
+    {
+      "type": "text",
+      "id": "text_1",
+      "label": {
+        "en": "Text 1"
+      }
+    },
+    {
+      "type": "text",
+      "id": "text_2",
+      "label": {
+        "en": "Text 2"
+      }
+    },
+    {
+      "type": "text",
+      "id": "text_3",
+      "label": {
+        "en": "Text 3"
+      }
+    },
+    {
+      "type": "text",
+      "id": "btn_link",
+      "label": {
+        "en": "Button link"
+      }
+    },
+    {
+      "type": "image_picker",
+      "id": "student_discout_img",
+      "label": {
+        "en": "Student discount image"
+      }
+    }
+  ]
+}
+{% endschema %}
+  

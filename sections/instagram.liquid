@@ -1,0 +1,41 @@
+{%- assign _section = section.settings -%}
+
+<section class="section-feeds">
+  <div class="shell">
+    {%- if _section.title != blank or _section.subtitle != blank -%}
+      <header class="section__head">
+        {%- if _section.title != blank -%}
+          <h6 class="section__title">{{ _section.title | newline_to_br }}</h6><!-- /.section__title -->
+        {%- endif -%}
+
+        {%- if _section.subtitle != blank -%}
+          <p>{{ _section.subtitle | newline_to_br }}</p>
+        {%- endif -%}
+      </header><!-- /.section__head -->
+    {%- endif -%}
+
+    <div class="section__body">
+      {% comment %}<div id="instafeed" class="insta-feed" data-columns="{{ _section.number_of_images }}" data-access_token="{{ _section.access_token }}"></div>
+      <div id="insta-feed"></div>
+      <!-- /#insta-feed -->{% endcomment %}
+    </div><!-- /.section__body -->
+  </div><!-- /.shell -->
+</section><!-- /.section-feeds -->
+
+{% schema %}
+{
+  "name": "InstaFeed Section",
+  "settings": [
+    {
+      "type": "textarea",
+      "id": "title",
+      "label": "Title"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Subtitle"
+    }
+  ]
+}
+{% endschema %}

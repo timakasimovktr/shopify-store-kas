@@ -1,0 +1,96 @@
+/* ------------------------------------------------------------ *\
+  Video
+\* ------------------------------------------------------------ */
+
+.video-holder {
+  overflow: hidden;
+  position: relative;
+  height: 0;
+  padding-bottom: 56.25%;
+  display: block;
+
+  &.intro__video {
+    $header-bar-height: 31.5px;
+  }
+
+
+  .video-holder__inner {
+    position: relative;
+    padding-bottom: 200%;
+    transform: translateY(-35.95%);
+  }
+
+  iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+  }
+
+  video {
+    width: 100%;
+  }
+
+  .btn-play {
+    .loading {
+      display: block;
+    }
+    .loaded {
+      display: none;
+    }
+  }
+  &.loaded {
+    .loading {
+      display: none;
+    }
+    .loaded {
+      display: block;
+    }
+  }
+  &.playing {
+    .video-holder__image {
+      visibility: hidden;
+      opacity: 0;
+    }
+  }
+
+  /* Modifiers */
+  &--alt {
+    .video-holder__image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 1;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center center;
+      background-repeat: no-repeat;
+      transition: opacity 0.3s 0.5s, visibility 0.3s 0.5s;
+      
+      &.is-hidden {
+        visibility: hidden;
+        opacity: 0;
+      }
+
+      span {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        transition: opacity 0.3s;
+        cursor: pointer;
+
+        &:hover {
+          opacity: 0.4;
+        }
+      }
+    }
+
+    iframe {
+      pointer-events: initial;
+    }
+  }
+}

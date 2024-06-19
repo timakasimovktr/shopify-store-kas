@@ -1,0 +1,1113 @@
+@font-face {
+  font-family: 'effra', sans-serif;
+  src: url('Effra-Regular.woff2') format('woff2'), url('Effra-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'effra', sans-serif;
+  src: url('EffraLight-Regular.woff2') format('woff2'), url('EffraLight-Regular.woff') format('woff');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Vanitas';
+  src: url('Vanitas-Bold.woff2') format('woff2'), url('Vanitas-Bold.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Vanitas';
+  src: url('Vanitas-Regular.woff2') format('woff2'), url('Vanitas-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+$min: min-width;
+$max: max-width;
+$small: 480px;
+$medium: 768px;
+$large: 1024px;
+$theme-font-vanitas:'Vanitas';
+$theme-font-effra:'effra',
+sans-serif;
+
+/* Colors Variable Start */
+
+$colorBlack: #000;
+$colorWhite: #fff;
+
+/* Colors Variable End */
+.template-refer{
+  .wrapper{
+    .main{
+      .shell{
+        .subscribe-simple{
+          margin: 0 40px 0;
+        }
+      }
+    }
+  }
+}
+.swell-kassa-rewards {
+  img {
+    width: 100%;
+    height: 100%;
+    object-position: center top;
+    vertical-align: -webkit-baseline-middle;
+    object-fit: cover;
+  }
+  .swell-desktop {
+    display: none;
+    @media ($min: $medium) {
+      display: block;
+    }
+  }
+  .swell-mobile {
+    display: block;
+    @media ($min: $medium) {
+      display: none;
+    }
+  }
+  .swell-container {
+    max-width: 1190px;
+    margin: 0 auto;
+    padding: 0 10px;
+  }
+  a {
+    text-decoration: none;
+    cursor: pointer;
+  }
+  ul {
+    margin: 0;
+    padding: 0;
+  }
+  li {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+  /* Generic Buttons Code Start */
+  .swell-link-list {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    align-items: center;
+    .swell-link {
+      max-width: 160px;
+      width: 100%;
+      position: relative;
+      @media ($min: $small) {
+        max-width: 200px;
+      }
+      @media ($min: $medium) {
+        flex: 1;
+        max-width: 118px;
+      }
+      a,
+      .swell-link-history {
+        font-family: $theme-font-effra;
+        font-size: 13px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: 0.2px;
+        text-align: center;
+        color: #ffffff;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        text-decoration: none;
+        text-transform: capitalize;
+        margin-bottom: 0;
+        background-color: #646464;
+        border: solid 1px #646464;
+        min-height: 40px;
+        @media ($min: $small) {
+          font-size: 17px;
+          min-height: 45px;
+        }
+        @media ($min: $medium) {
+          font-size: 13px;
+          min-height: 35px;
+        }
+        &:hover {
+          opacity: .7;
+        }
+      }
+    }
+  }
+  /* Generic Buttons Code End */
+  .swell-heading {
+    font-family: $theme-font-vanitas;
+    font-size: 30px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color: #000000;
+    margin: 0;
+    margin-bottom: 15px;
+    text-transform: capitalize;
+    @media ($min: $small) {
+      font-size: 35px;
+      margin-bottom: 12px;
+    }
+    @media ($min: $medium) {
+      font-size: 25px;
+      margin: 0;
+      margin-bottom: 30px;
+    }
+  }
+  /*generic code ends */
+  &.trade-logged-in {
+    .swell-trade-header {
+      margin-bottom: 15px;
+      @media ($min: $small) {
+        margin-bottom: 20px;
+      }
+      @media ($min: $medium) {
+        margin-bottom: 50px;
+      }
+      .swell-trade-image-holder {
+        position: relative;
+        .trade-heading {
+          font-family: $theme-font-vanitas;
+          font-size: 40px;
+          font-weight: bold;
+          font-stretch: normal;
+          font-style: normal;
+          line-height: normal;
+          letter-spacing: normal;
+          text-align: right;
+          color: #000000;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          text-transform: capitalize;
+          position: unset;
+          padding: 40px 0 0;
+          @media ($min: $small) {
+            font-size: 47px;
+            padding: 50px 0 0;
+          }
+          @media ($min: $medium) {
+            position: absolute;
+            top: 0;
+            left: 0;
+            padding: 0;
+            right: 0;
+            bottom: 0;
+            font-size: 42px;
+          }
+        }
+      }
+    }
+    .how-it-work {
+      margin-bottom: 0;
+      @media ($min: $medium) {
+        margin-bottom: 30px;
+      }
+      .yotpo-widget-my-rewards-widget {
+        .yotpo-background {
+          .yotpo-logged-in-view {
+            border: 0;
+          }
+        }
+      }
+    }
+    .vip-trade-benefits {
+      margin-bottom: 20px;
+      @media ($min: $small) {
+        margin-bottom: 30px;
+      }
+      @media ($min: $medium) {
+        margin-bottom: 70px;
+      }
+      .vip-trade-benefits-holder {
+        display: flex;
+        flex-direction: column;
+        @media($min: $medium) {
+          flex-direction: row;
+        }
+        .swell-trade-image {
+          flex-basis: 50%;
+        }
+        .vip-trade-sidebar-holder {
+          flex-basis: 50%;
+          .swell-image {
+            display: flex;
+            height: 100%;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 35px 0;
+            @media($min: $small) {
+              padding: 45px 0;
+            }
+            @media($min:$medium) {
+              padding: 10px 0;
+            }
+            img {
+              max-width: 450px;
+              @media($min: $medium) {
+                max-width: 260px;
+              }
+              @media($min:$large) {
+                max-width: 350px;
+              }
+              @media($min:1200px) {
+                max-width: 51%;
+              }
+            }
+            .vip-trade-sidebar {
+              position: unset;
+              width: 100%;
+              @media($min: $medium) {
+                position: absolute;
+                left: 68px;
+                width: auto;
+                left: 13px;
+              }
+              @media($min:$large) {
+                left: 35px;
+              }
+              @media($min:1200px) {
+                left: 50px;
+              }
+              .benefits-text {
+                font-family: $theme-font-vanitas;
+                font-size: 30px;
+                font-weight: bold;
+                font-stretch: normal;
+                font-style: normal;
+                line-height: normal;
+                letter-spacing: normal;
+                text-align: center;
+                color: #000000;
+                margin: 0;
+                margin-bottom: 30px;
+                @media($min: $small) {
+                  font-size: 35px;
+                  margin-bottom: 40px;
+                }
+                @media($min:$medium) {
+                  font-size: 25px;
+                  text-align: left;
+                  margin-bottom: 10px;
+                }
+                @media($min:$large) {
+                  margin-bottom: 50px;
+                }
+              }
+              .list-holder {
+                width: 100%;
+                max-width: 292px;
+                margin: 0 auto;
+                @media($min: $small) {
+                  max-width: 440px;
+                }
+                @media($min:$medium) {
+                  max-width: 100%;
+                  margin: 0;
+                }
+                li {
+                  font-family: $theme-font-effra;
+                  font-size: 12px;
+                  font-weight: normal;
+                  font-stretch: normal;
+                  font-style: normal;
+                  line-height: 1.67;
+                  letter-spacing: 0.24px;
+                  text-align: left;
+                  color: #000000;
+                  @media($min: $small) {
+                    font-size: 16px;
+                  }
+                  @media($min:$medium) {
+                    line-height: 2.67;
+                    letter-spacing: 0.15px;
+                    font-size: 12.5px;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    .redemptions {
+      .yotpo-widget-visual-redemption-widget {
+        .yotpo-background {
+          .yotpo-tile-wrapper {
+            .yotpo-tile {
+              .yotpo-tile-box {
+                @media(max-width: 767px) {
+                  padding-bottom: 0 !important;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    .swell-products {
+      .yotpo-widget-products-redemption {
+        .yotpo-widget-products-redemption-container {
+          @media(max-width: 767px) {
+            padding-bottom: 20px !important;
+          }
+          .yotpo-products-container {
+            @media(max-width: 767px) {
+              margin-bottom: 0 !important;
+            }
+          }
+        }
+      }
+    }
+  }
+  &.account {
+    .swell-products {
+      .yotpo-widget-products-redemption {
+        .yotpo-widget-products-redemption-container {
+          @media(min-width: 768px) {
+            padding-bottom: 80px !important;
+          }
+        }
+      }
+    }
+    .how-it-work {
+      @media(max-width: 479px) {
+        margin-bottom: 60px;
+      }
+      @media(max-width:767px) {
+        margin-bottom: 70px;
+      }
+    }
+    .swell-products {
+      .yotpo-widget-products-redemption {
+        .yotpo-widget-products-redemption-container {
+          @media(max-width: 767px) {
+            padding-bottom: 20px !important;
+          }
+          .yotpo-products-container {
+            @media(max-width: 767px) {
+              margin-bottom: 0 !important;
+            }
+          }
+        }
+      }
+    }
+    .redemptions {
+      .yotpo-widget-visual-redemption-widget {
+        .yotpo-background {
+          .yotpo-tile-wrapper {
+            .yotpo-tile {
+              .yotpo-tile-box {
+                @media(max-width: 767px) {
+                  padding-bottom: 0 !important;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  .banner {
+    background-size: cover;
+    background-position: top center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 15px;
+    border: 0;
+    height: auto;
+    background-color: transparent;
+    position: relative;
+    @media($min: $small) {
+      margin-bottom: 0;
+    }
+    @media($min:$medium) {
+      background-image: url(swell-banner-desktop.jpg);
+      min-height: 36vh;
+      flex-direction: row;
+      margin-bottom: 40px;
+      position: unset;
+    }
+    @media($min:900px) {
+      min-height: 43vh;
+    }
+    @media($min:$large) {
+      min-height: 66vh;
+    }
+    @media($min:1920px) {
+      min-height: 104vh;
+    }
+    @media only screen and (min-width: 768px) and (max-width: 1024px) and (min-device-height: 892px) and (max-device-height: 895px) and (-webkit-min-device-pixel-ratio: 1.5) {
+      min-height: 28vh;
+    }
+    @media only screen and (min-width: 1024px) and (max-width: 1199px) and (min-device-height: 892px) and (max-device-height: 895px) and (-webkit-min-device-pixel-ratio: 1.5) {
+      min-height: 37vh;
+    }
+    @media only screen and (min-width: 1200px) and (max-width: 1499px) and (min-device-height: 892px) and (max-device-height: 895px) and (-webkit-min-device-pixel-ratio: 1.5) {
+      min-height: 44vh;
+    }
+    @media only screen and (min-width: 1500px) and (max-width: 1650px) and (min-device-height: 892px) and (max-device-height: 895px) and (-webkit-min-device-pixel-ratio: 1.5) {
+      min-height: 55vh;
+    }
+    @media only screen and (min-width: 1920px) and (max-width: 2652px) and (min-device-height: 1160px) and (max-device-height: 1165px) and (-webkit-min-device-pixel-ratio: 1.5) {
+      min-height: 70vh;
+    }
+    @media only screen and (min-width: 1024px) and (max-width: 1500px) and (min-device-height: 1160px) and (max-device-height: 1165px) and (-webkit-min-device-pixel-ratio: 1.5) {
+      min-height: 29vh;
+    }
+    @media only screen and (min-width: 1501px) and (max-width: 1800px) and (min-device-height: 1160px) and (max-device-height: 1165px) and (-webkit-min-device-pixel-ratio: 1.5) {
+      min-height: 42vh;
+    }
+    @media only screen and (min-width: 1801px) and (max-width: 2000px) and (min-device-height: 1160px) and (max-device-height: 1165px) and (-webkit-min-device-pixel-ratio: 1.5) {
+      min-height: 51vh;
+    }
+    @media only screen and (min-width: 2001px) and (max-width: 2400px) and (min-device-height: 1160px) and (max-device-height: 1165px) and (-webkit-min-device-pixel-ratio: 1.5) {
+      min-height: 56vh;
+    }
+    @media only screen and (min-width: 768px) and (max-width: 1023px) and (min-device-height: 1160px) and (max-device-height: 1165px) and (-webkit-min-device-pixel-ratio: 1.5) {
+      min-height: 22vh;
+    }
+  }
+  .caption-content-holder {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin: 0 auto;
+    height: 100%;
+    padding: 40px 0;
+    @media($min: $small) {
+      padding: 50px 0;
+    }
+    @media($min: $medium) {
+      padding: 0 0 30px 0;
+      height: auto;
+      background-color: transparent;
+      align-items: center;
+      max-width: 680px;
+      margin-bottom: 0;
+    }
+    @media($min:$large) {
+      padding: 0 0 30px 0;
+      max-width: 1150px;
+    }
+    @media($min:1400px) {
+      max-width: 1600px;
+      padding: 0 90px;
+    }
+    .caption-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      @media($min: $medium) {
+        align-items: center;
+        width: auto;
+        position: unset;
+      }
+      .banner-header {
+        font-family: $theme-font-vanitas;
+        font-size: 38px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        text-align: center;
+        color: #000000;
+        margin: 0;
+        margin-bottom: 5px;
+        text-transform: inherit;
+        @media($min: $small) {
+          font-size: 53px;
+          margin-bottom: 5px;
+        }
+        @media($min:$medium) {
+          font-size: 45px;
+          text-align: right;
+          max-width: 100%;
+          margin-bottom: 10px;
+        }
+        @media($min:$large) {
+          font-size: 48px;
+        }
+      }
+      .banner-text {
+        font-family: $theme-font-vanitas;
+        font-size: 14px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: 0.5px;
+        text-align: center;
+        color: #000000;
+        max-width: 275px;
+        @media($min: $small) {
+          font-size: 19px;
+          max-width: 365px;
+        }
+        @media($min:$medium) {
+          font-size: 14px;
+          text-align: right;
+          max-width: 605px;
+        }
+        @media($min:$large) {
+          font-size: 16px;
+        }
+      }
+    }
+  }
+  /*banner section ends*/
+  .swell-rewards-refer {
+    max-width: 1000px;
+    margin: 0 auto;
+    margin-bottom: 5px;
+    @media(min-width: 480px) {
+      margin-bottom: 10px;
+    }
+    @media(min-width: 768px) {
+      margin-bottom: 65px;
+    }
+    .swell-refer {
+      .yotpo-widget-referral-widget {
+        .yotpo-background {
+          .yotpo-left-align-image {
+            content: url(swell-rewards-refer.png);
+          }
+        }
+      }
+    }
+  }
+  .vip-table-section {
+    max-width: 1620px;
+    text-align: center;
+    width: 100%;
+    margin: 0 auto;
+    padding-bottom: 60px;
+    @media(min-width: 480px) {
+      padding-bottom: 70px;
+    }
+    &.logged-in {
+      @media(min-width: 480px) {
+        padding-bottom: 60px;
+      }
+      .swell-container {
+        .swell-heading {
+          margin-bottom: 70px;
+          @media($min: $small) {
+            margin-bottom: 80px;
+          }
+          @media($min: $medium) {
+            margin-bottom: 60px;
+          }
+        }
+        .swell-tier-table {
+          .swell-tier-table-header {
+            .swell-tier-list {
+              .tier-list {
+                @media($max: 479px) {
+                  padding: 0 5px;
+                }
+                &.tier-name {
+                  @media($min: $medium) {
+                    min-height: 60px !important;
+                    padding-top: 5px;
+                  }
+                  @media only screen 
+                  and (device-width : 375px) 
+                  and (device-height : 812px) 
+                  and (-webkit-device-pixel-ratio : 3) {
+                    min-height:77px !important;
+                  }
+                  @media only screen 
+                  and (device-width : 414px) 
+                  and (device-height : 896px) 
+                  and (-webkit-device-pixel-ratio : 3) { 
+                    min-height:77px !important;
+                  }
+                }
+              }
+            }
+          }
+          .swell-tier-table-body {
+            .swell-tier-list {
+              &.tier-active {
+                background-color: #ebebeb;
+              }
+              .tier-list {
+                &.tier-name {
+                  @media($min: $medium) {
+                    min-height: 30px;
+                    padding-top: 5px;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    .swell-container {
+      max-width: 850px;
+      padding: 0 5px;
+      @media($min: $small) {
+        padding: 0 10px;
+      }
+      .swell-heading {
+        margin-bottom: 30px;
+        text-transform: inherit;
+        @media($min: $small) {
+          margin-bottom: 40px;
+        }
+        @media($min:$medium) {
+          margin-bottom: 35px;
+        }
+      }
+      .swell-tier-table {
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        padding: 0 5px;
+        margin: 0 auto;
+        max-width: 310px;
+        @media($min: $small) {
+          max-width: 450px;
+        }
+        @media($min: $medium) {
+          padding: 0 10px;
+          max-width: 100%;
+        }
+        .swell-tier-table-header {
+          flex: 1;
+          text-align: left;
+          margin-top: 30px;
+          max-width: 100%;
+          @media($min: $medium) {
+            flex: 0.67;
+            width: auto;
+          }
+          .swell-tier-list {
+            border-right: 1px solid #e4e3e3;
+            .tier-list {
+              display: flex;
+              align-items: center;
+              @media ($min: $medium) {
+                padding-left: 15px;
+              }
+              &.tier-name {
+                border-bottom: 1px solid #e4e3e3;
+                max-width: 100%;
+                align-items: center;
+                min-height: 75px;
+                @media ($min: $small) {
+                  min-height: 90px;
+                }
+                @media ($min: $medium) {
+                  min-height: 56px;
+                }
+              }
+            }
+          }
+          @media ($min: $medium) {
+            margin-top: 0;
+          }
+        }
+        .swell-tier-table-body {
+          display: flex;
+          margin-top: 30px;
+          @media($min: $medium) {
+            margin-top: 0;
+            flex: 1;
+            width: auto;
+          }
+          .swell-tier-list {
+            flex: 1;
+            border-right: 1px solid #e4e3e3;
+            &:last-child{
+              border-right:0;
+            }
+            .tier-list {
+              display: flex;
+              text-align: center;
+              align-items: center;
+              justify-content: center;
+              @media($min: $medium) {
+                text-align: left;
+              }
+            }
+          }
+        }
+        .swell-tier-list {
+          position: relative;
+          .tier-list {
+            padding: 0px 0px;
+            padding-left: 0px;
+            min-height: 55px;
+            font-family: $theme-font-effra;
+            font-size: 12px;
+            font-weight: normal;
+            font-stretch: normal;
+            font-style: normal;
+            line-height: 1.53;
+            letter-spacing: 0.15px;
+            text-align: left;
+            color: #000000;
+            text-transform: capitalize;
+            border-bottom: 1px solid #e4e3e3;
+            min-height: 60px;
+            position: relative;
+            @media ($min: $small) {
+              font-size: 16px;
+              min-height: 65px;
+            }
+            @media ($min: $medium) {
+              padding-left: 20px;
+              line-height: 2;
+              padding: 0 5px;
+              font-size: 12px;
+              min-height: 52px;
+            }
+            &:last-child{
+              border-bottom: 0;
+            }
+            .circle {
+              background-color: #000;
+              width: 6px;
+              height: 6px;
+              border-radius: 100%;
+            }
+            &.tier-status {
+              font-family: $theme-font-effra;
+              font-size: 11px;
+              font-weight: normal;
+              position: absolute;
+              font-stretch: normal;
+              font-style: normal;
+              line-height: normal;
+              letter-spacing: 0.15px;
+              text-align: center;
+              color: #000000;
+              border: 0;
+              width: 100%;
+              top: -50px;
+              @media($min: $small) {
+                font-size: 15px;
+                top: -60px;
+              }
+              @media($min:$medium) {
+                font-size: 12.5px;
+                min-height: 20px;
+                top: -25px;
+              }
+            }
+            &.tier-value {
+              font-family: $theme-font-effra;
+              font-size: 12px;
+              font-weight: normal;
+              font-stretch: normal;
+              font-style: normal;
+              line-height: normal;
+              letter-spacing: 0.15px;
+              text-align: center;
+              color: #000000;
+              padding: 0;
+              display: flex;
+              align-items: flex-start;
+              justify-content: center;
+              min-height: 30px;
+              border-bottom: 1px solid #e4e3e3;
+              @media ($max: 1023px) {
+                font-size: 13px;
+              }
+              @media ($max: 767px) {
+                min-height: 42px;
+                align-items: center;
+                font-size: 14px;
+                padding-bottom: 5px;
+              }
+              @media ($max: 479px) {
+                font-size: 11px;
+                min-height: 37px;
+              }
+            }
+            &.tier-name {
+              font-family: $theme-font-effra;
+              font-size: 16px;
+              font-weight: normal;
+              font-stretch: normal;
+              font-style: normal;
+              line-height: normal;
+              letter-spacing: normal;
+              text-align: center;
+              color: #000000;
+              padding-top: 0;
+              border: 0;
+              align-items: flex-end;
+              text-transform: capitalize;
+              min-height: 36px;
+              @media ($min: $small) {
+                font-size: 20px;
+                min-height: 40px;
+                max-width: 100px;
+              }
+              @media ($min: $medium) {
+                font-size: 16px;
+                text-align: left;
+                align-items: flex-start;
+                min-height: 26px;
+                padding-top: 0;
+                max-width: 100%;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  /*tier table section ends*/
+  .swell-post-checkout {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 0 5px;
+    .checkout-heading {
+      position: relative;
+      .swell-referral-back-link {
+        top: 0;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+        @media(min-width: 768px) {
+          top: -19px;
+        }
+      }
+      .swell-post-checkout-heading {
+        color: #fff;
+        padding-top: 30px;
+        text-align: center;
+        margin: 0;
+        font-family: 'effra', sans-serif !important;
+        font-size: 24px !important;
+        font-weight: normal !important;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        text-align: center;
+        color: #ffffff !important;
+        margin-bottom: 15px;
+        text-transform: uppercase;
+        @media(min-width: 480px) {
+          font-size: 28px !important;
+        }
+        @media(min-width: 768px) {
+          font-size: 22px !important;
+          margin-bottom: 5px;
+          padding-top: 10px;
+        }
+      }
+    }
+    .swell-post-checkout-holder {
+      width: 100%;
+      margin: 0 auto;
+      text-align: center;
+      min-height: 500px;
+      max-height: 500px;
+      overflow-y: scroll;
+      @media($min: $medium) {
+        max-width: 900px;
+        min-height: unset;
+        max-height: unset;
+        overflow-y: unset;
+      }
+      .yotpo-widget-referral-widget {
+        width: 100%;
+        .yotpo-background {
+          align-items: center !important;
+          .yotpo-left-align-image {
+            content: url(swell-popup-mbl.png);
+            @media($min: $medium) {
+              content: url(swell-popup.png);
+            }
+          }
+          .yotpo-tile-wrapper {
+            @media(max-width: 479px) {
+              padding: 50px 2px !important;
+            }
+            .yotpo-tile {
+              .yotpo-tile-wrapper {
+                .yotpo-tabs-widget {
+                  .yotpo-tabs-content {
+                    .yotpo-lower-line-tabs {
+                      .yotpo-lower-line-tab {
+                        &:nth-child(2) {
+                          display: none;
+                        }
+                        &.yotpo-tab-active {
+                          border-bottom: 0 !important;
+                        }
+                      }
+                    }
+                  }
+                  .yotpo-tab-details {
+                    .yotpo-tile-box {
+                      .yotpo-email-view {
+                        .yotpo-title-text {
+                          @media(max-width: 479px) {
+                            font-size: 34px !important;
+                          }
+                        }
+                        .yotpo-description-text {
+                          @media(max-width: 479px) {
+                            font-size: 12px !important;
+                          }
+                        }
+                      }
+                    }
+                    .yotpo-referral-history {
+                      .yotpo-referral-history-explanation-container {
+                        .yotpo-referral-history-redeem-text {
+                          @media(max-width: 479px) {
+                            padding: 8px 0 0 !important;
+                          }
+                          @media(max-width: 767px) {
+                            padding: 3px 0 0 !important;
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.swell-referral-back-link {
+  width: 1.5em;
+  height: 1.5em;
+  max-width: 18px;
+  max-height: 18px;
+  display: block;
+  vertical-align: middle;
+  margin-left: auto;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  cursor: pointer;
+  &:after,
+  &:before {
+    background: $colorWhite;
+    content: "";
+    height: 2px;
+    max-width: calc(18px * 1.414);
+    position: absolute;
+    top: 0;
+    transition: 0.05s ease-in-out background-color;
+    width: calc(1.5em * 1.414);
+  }
+  &:before {
+    left: 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+    -webkit-transform-origin: left;
+    -ms-transform-origin: left;
+    transform-origin: left;
+  }
+  &:after {
+    right: 0;
+    -webkit-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+    -webkit-transform-origin: right;
+    -ms-transform-origin: right;
+    transform-origin: right;
+  }
+  @media ($min: $small) {
+    width: 1em;
+    height: 1em;
+    max-width: 20px;
+    max-height: 20px;
+    &:after,
+    &:before {
+      max-width: calc(20px * 1.414);
+      width: calc(1em * 1.414);
+    }
+  }
+}
+
+
+.rangeslider__fill {
+  background: #646464 !important;
+}
+.rangeslider--horizontal {
+  height: 10px;
+  margin-bottom: 30px;
+}
+.rangeslider__handle {
+  width: 25px;
+  height: 25px;
+}
+.rangeslider--horizontal {
+  height: 10px !important;
+  .rangeslider__handle {
+    top: -8px!important;
+    width: 30px !important;
+    height: 30px !important;
+  }
+}
+.swell-button {
+  height: 40px;
+  float: right;
+}
+.redeem-credits-title, .redeem-content {
+  color: #000;
+  font-size: 14px;
+  margin-bottom: 8px;
+  display: block;
+}
+.redeem-credits-title {
+  margin-bottom: 10px;
+}
+.footer-holder{
+  display: flex;
+  justify-content: space-between;
+}
+

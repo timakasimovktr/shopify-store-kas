@@ -1,0 +1,13 @@
+{% assign item = line_item | default: item %}
+
+<span class="gs__cart-properties">
+{% if item.properties._gs_bundle_contents %}
+<span data-gs-trans="global.bundle_contents"></span><br/>
+<ul class="gs__bundle-contents">
+{% for itemName in item.properties._gs_bundle_contents %}
+  <li>{{ itemName }}</li>
+{% endfor %}
+</ul>
+{% endif %}
+</span>
+    

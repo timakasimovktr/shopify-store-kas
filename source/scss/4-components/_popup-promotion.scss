@@ -1,0 +1,315 @@
+.popup-promotion {
+  position: fixed;
+  z-index: 10000;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  // visibility: hidden;
+  // opacity: 0;
+  display: none;
+  transition: 0.5s all ease-in-out;
+  &.active {
+    visibility: visible;
+    opacity: 1;
+  }
+  &.small-popup {
+    background: #fffc;
+  }
+}
+.popup-promotion--inner {
+  position: relative;
+  background: transparent;
+  &.small-popup {
+    max-width: 1000px;
+    padding: 0 30px;
+    height: 600px;
+    margin: auto;
+    margin-top: calc((100vh - 600px) / 2);
+    @media (max-height: 640px) {
+      margin-top:20px;
+      height: calc((100vh - 40px) / 2);
+    }
+    .popup-promotion--logo {
+      width: 155px;
+      margin: 30px auto;
+    }
+    .popup-promotion--close {
+      width: 20px;
+      height: 20px;
+      top: 30px;
+      svg {
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    .popup-promotion--detail {
+      font-size: 12px;
+      padding: 5px 0;
+    }
+    .popup-promotion--title {
+      font-size: 48px;
+      max-width: 360px;
+      margin: 30px auto 20px;
+    }
+    .popup-promotion--embed_form {
+      margin: 30px auto 25px;
+    }
+
+    .popup-promotion--result-header {
+      font-size: 48px;
+    }
+    .popup-promotion--result-code {
+      span {
+        padding: 15px 0;
+      }
+    }
+    .popup-promotion--result-btn {
+      padding-top: 50px;
+      a {
+        max-width: 320px;
+      }
+    }
+  }
+}
+.popup-promotion--result-announcement {
+  display: none;
+}
+.popup-promotion--image-wrapper {
+  display: inline-block;
+  float: left;
+  background-size: auto 100%;
+  background-position: center;
+  background-color: #fff;
+}
+.popup-promotion--content-wrapper {
+  display: inline-block;
+  position: relative;
+  background-color: #fff;
+  .popup-promotion--content {
+    opacity: 1;
+    visibility: visible;
+    transition: 0.2s all;
+  }
+  .popup-promotion--result {
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.3s all;
+  }
+  &.promotion-result {
+    .popup-promotion--content {
+      opacity: 0;
+      visibility: hidden;    
+    }
+    .popup-promotion--result {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+}
+.popup-promotion--result {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
+  text-align: center;
+}
+.popup-promotion--result-subheader {
+  color: #828282;
+  font-size: 16px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+.popup-promotion--result-header {
+  font-size: 68px;
+  font-weight: 300;
+  line-height: 1;
+  color: #333333;
+}
+.popup-promotion--result-code {
+  padding-top: 30px;
+  span {
+    display: block;
+    max-width: 260px;
+    margin: auto;
+    padding: 20px 0;
+    color: #333333;
+    font-size: 16px;
+    background-image: url("{{ 'dashed.png' | asset_url }}");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+  }
+}
+.popup-promotion--result-btn {
+  padding-top: 80px;
+  a {
+    display: block;
+    text-align: center;
+    max-width: 350px;
+    padding: 15px;
+    margin: auto;
+    background: #828282;
+    color: #fff;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 14px;
+    line-height: 1.4;
+    letter-spacing: 1px;
+  }
+}
+.popup-promotion--close {
+  position: absolute;
+  top: 40px;
+  right: 40px;
+  width: 22px;
+  height: 22px;
+  color: #000;
+  cursor: pointer;
+}
+.popup-promotion--logo {
+  width: 260px;
+  margin: 40px auto;
+}
+.popup-promotion--detail {
+  text-transform: uppercase;
+  color: #828282;
+  max-width: 400px;
+  margin: auto;
+  padding: 25px 0;
+  letter-spacing: 1.69231px;
+  font-size: 16px;
+  text-align: center;
+  line-height: 1.43;
+}
+.popup-promotion--title {
+  font-size: 68px;
+  text-transform: capitalize;
+  font-weight: 300;
+  text-align: center;
+  line-height: 1.2;
+  max-width: 490px;
+  margin: 0 auto 20px;
+  color: #333;
+}
+.popup-promotion--subtitle {
+  font-size: 16px;
+  text-transform: uppercase;
+  text-align: center;
+  color: #333;
+}
+.popup-promotion--embed_form {
+  max-width: 350px;
+  margin: 60px auto 40px;
+
+  input[type='email'] {
+    display: block;
+    width: 100%;
+    border: 1px solid #BDBBBD;
+    padding: 11px 17px;
+    font-size: 14px;
+    line-height: 20px;
+    text-align: center;
+    margin-bottom: 12px;
+  }
+  .subscribe__btn {
+    display: block;
+    background: #828282;
+    color: #fff;
+    width: 100%;
+    outline: 0;
+    box-shadow: none;
+    border: none;
+    text-align: center;
+    padding: 12px 15px;
+    font-size: 14px;
+    line-height: 20px;
+    text-transform: uppercase;
+  }
+}
+.popup-promotion--cancel-wrapper {
+  text-align: center;
+  .popup-promotion--cancel {
+    border-bottom: 2px solid;
+    color: #333;
+    text-decoration: none;
+    font-size: 16px;
+    text-transform: uppercase;
+    letter-spacing: 1.14px;
+    font-weight: 500;
+    padding-bottom: 5px;
+  }
+}
+
+@media (max-width: #{$responsive-xs}) {
+  .popup-promotion--inner {
+    padding: 0 20px;
+    &.small-popup {
+      height: 100vh;
+      margin: 0;
+      padding: 0 20px;
+    }
+    &, &.small-popup {
+      .popup-promotion--image-wrapper {
+        display: block;
+        float: none;
+        margin: 0 -20px;
+        width: calc(100% + 40px);
+      }
+      .popup-promotion--content-wrapper {
+        display: block;
+        position: absolute;
+        top: 50%;
+        max-width: 100%;
+        width: calc(100% - 40px);
+        height: auto;
+        padding: 20px 20px 40px;
+        transform: translateY(-50%);
+        background: #ffffffe6;
+      }
+      .popup-promotion--close {
+        top: 20px;
+        right: 20px;
+        width: 18px;
+        height: 18px;
+        svg {
+          width: 100%;
+          height: 100%;
+        }
+      }
+      .popup-promotion--logo {
+        width: 180px;
+        margin: 20px auto;
+      }
+      .popup-promotion--detail {
+        padding: 10px 0;
+        font-size: 15px;
+      }
+      .popup-promotion--title {
+        font-size: 35px;
+        margin: 0;
+        margin-bottom: 10px;
+      }
+      .popup-promotion--embed_form {
+        margin: 20px auto 10px;
+      }
+      .popup-promotion--content-wrapper {
+        .popup-promotion--result {
+          width: calc(100% - 40px);
+        }
+      }
+      .popup-promotion--result-header {
+        font-size: 35px;
+        margin: 10px 0;
+      }
+      .popup-promotion--result-code {
+        padding-top: 10px;
+        span {
+          padding: 15px 0;
+        }
+      }
+      .popup-promotion--result-btn {
+        padding-top: 25px;
+      }
+    }
+  }
+}

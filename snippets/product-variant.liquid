@@ -1,0 +1,67 @@
+{%- assign current_collection = collection | default: current_product.collections[0] -%}
+
+{%- assign has_diabledhover_tag = false -%}
+{%- if current_product.tags.size > 0 -%}
+  {%- for tag in current_product.tags -%}
+    {%- if tag == 'plp:disabledhover' -%}
+      {%- assign has_diabledhover_tag = true -%}
+    {%- endif -%}
+  {%- endfor -%}
+{%- endif -%}
+
+<div class="product product--variant {{additionalClasses}}" style="display: none;" data-index="{{ loopIndex }}" data-fabric="" data-color="{{ current_variant.option1 | downcase }}" data-size="{{ current_variant.option2 }}" data-weight="{{ current_variant.weight }}" data-price="{{ current_variant.price }}">
+  <figure class="product__image {%if has_diabledhover_tag == false %}enabledhover_tag{% endif %}">
+    <a  href="{{ current_variant.url }}">
+      {%- if current_product.tags.size > 0 -%}
+        {%- assign product_tags_string = current_product.tags | join: ',' -%}
+
+        {% comment %}{%- if product_tags_string contains 'badge:' -%}
+          {%- assign badges = '' -%}
+          {%- for tag in current_product.tags -%}
+            {%- if tag contains 'badge:' -%} 
+              {%- capture badges_html -%}
+                {% if forloop.index > 1 and forloop.index != forloop.last %}, {% endif %} {{ tag | replace: 'badge:', '' }}
+              {%- endcapture -%}
+
+              {%- assign badges = badges | append: badges_html -%}
+            {%- endif -%}
+          {%- endfor -%}
+
+          <span class="product__badges">{{badges}}</span>
+        {%- endif -%}{% endcomment %}
+
+        {%- for tag in current_product.tags -%}
+          
+          {%- if tag == 'plp:disabledhover' -%}
+            {%- assign has_diabledhover_tag = true -%}
+          {%- endif -%}
+
+        {%- endfor -%}
+
+      {%- endif -%}
+
+      {%- if current_variant.image != blank -%}
+        <div class="product__image-inner lazyload" data-sizes="auto" data-bgset="{{ current_variant.image.src | img_url: '180x' }} 180w,{{ current_variant.image.src | img_url: '360x' }} 360w,{{ current_variant.image.src | img_url: '540x' }} 540w,{{ current_variant.image.src | img_url: '720x' }} 720w,{{ current_variant.image.src | img_url: '886x' }} 886w"></div>
+      {%- endif -%}
+
+      {%- if current_product.images[0] != blank -%}
+        <div class="product__image-inner lazyload" data-sizes="auto" data-bgset="{{ current_product.images[0].src | img_url: '180x' }} 180w,{{ current_product.images[0].src | img_url: '360x' }} 360w,{{ current_product.images[0].src | img_url: '540x' }} 540w,{{ current_product.images[0].src | img_url: '720x' }} 720w,{{ current_product.images[0].src | img_url: '886x' }} 886w"></div>
+
+        <div class="product__image-inner product__image-inner--hover"></div>
+      {%- endif -%}
+    </a>
+
+    <a href="#" class="btn btn--white product__btn js-expand-form">{{ 'collections.general.quick_add' | t }}</a>
+
+		{%- include 'form-add-simple' with hide_for_mobile: hide_form_for_mobile -%}
+  </figure><!-- /.product__image -->
+
+  <div class="product__content">
+    <h6 class="product__title">{{ current_product.title | append: ' - ' | append: current_variant.title }}</h6><!-- /.product__title -->
+
+    <p class="product__price">
+      {{ current_variant.price | money }}
+    </p><!-- /.product__price -->
+
+  </div><!-- /.product__content -->
+</div><!-- /.product -->

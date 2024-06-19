@@ -1,0 +1,54 @@
+{%- for first_level_link in dropdown_links -%}
+  {%- assign dropdown_handle = first_level_link.title | handle -%}
+  {%- assign second_level_links = linklists[dropdown_handle].links -%}
+
+  {%- assign dropdown_classes = '' -%}
+
+  {%- if first_level_link.active -%}
+    {%- assign dropdown_classes = dropdown_classes | append: class_current -%}
+  {%- endif -%}
+
+  {%- if second_level_links.size > 0 -%}
+    {%- assign dropdown_classes = dropdown_classes | append: ' ' | append: class_has_children -%}
+  {%- endif -%}
+
+  <li {% if dropdown_classes != empty %} class="{{ dropdown_classes }}" {% endif %}>
+    <a href="#" class="first_level">{{ first_level_link.title }}</a>
+
+    {%- if second_level_links.size > 0 -%}
+      <div class="nav__dropdown">
+        <ul>
+          {%- for second_link in second_level_links -%}
+            {% assign collection_image = '' %}
+            {% assign banner_secondary_img = second_link.object.metafields.sf_banners.banner_1_banner_secondary %}
+
+            {% if banner_secondary_img != blank %}
+            {% assign collection_image = banner_secondary_img %}
+            {% else %}
+              {%- if second_link.object.image -%}
+                {%- assign collection_image = second_link.object.image | img_url: 'x650' -%}
+              {%- else -%}
+                {% assign obj_image = second_link.object.metafields.sf_basic.image %}
+                {% if obj_image %}
+                  {%- assign obj_image = obj_image | replace: '.jpg', '_x650.jpg' -%}
+                  {% assign collection_image = obj_image %}
+                {% endif %}
+              {%- endif -%}
+            {% endif %}
+            
+            <li {% if second_link.active %} class="{{ class_current }}" {% endif %}>
+              {% assign _title = second_link.title | handleize | default: second_link.object.handle%}
+              {% assign collection = collections[_title] %}
+
+              {% if collection == blank %}
+                {% assign _title = second_link.title | replace: '&', 'and' | handleize | default: second_link.object.handle %}
+              {% endif %}
+
+              <a href="{{second_link.url}}" data-mobile-link="{{ _title }}" data-image="{{collection_image}}">{{second_link.title}}</a>
+            </li>
+          {%- endfor -%}
+        </ul>
+      </div><!-- /.nav__dropdown -->
+    {%- endif -%}
+  </li>
+{%- endfor -%}

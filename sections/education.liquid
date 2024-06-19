@@ -1,0 +1,129 @@
+{%- assign _section = section.settings -%}
+{%- assign _blocks = section.blocks -%}
+
+{%- if _blocks.size > 0 -%}
+  <section class="section-blocks">
+    <div class="shell">
+      {%- if _section.title != blank -%}
+        <header class="section__head">
+          <h4 class="section__title">{{ _section.title | newline_to_br }}</h4><!-- /.section__title -->
+        </header><!-- /.section__head -->
+      {%- endif -%}
+
+      <div class="section__body">
+        <div class="blocks">
+          {%- for block in _blocks -%}
+            {%- assign current_block = block.settings -%}
+
+            <div class="block">
+              {%- if current_block.title != blank -%}
+                <header class="block__head js-accordion-head visible-xs-block">
+                  <h2 class="block__title">{{ current_block.title | newline_to_br }}</h2><!-- /.block__title -->
+                </header><!-- /.block__head -->
+              {%- endif -%}
+
+              <div class="block__inner js-accordion-body">
+                {%- if current_block.image != blank -%}
+                  <div class="block__image" style="background-image: url({{ current_block.image | img_url: '740x' }});"></div><!-- /.block__image -->
+                {%- endif -%}
+
+                <div class="block__content">
+                  {%- if current_block.title != blank -%}
+                    <h2 class="block__title">{{ current_block.title | newline_to_br }}</h2><!-- /.block__title -->
+                  {%- endif -%}
+
+                  {%- if current_block.content != blank -%}
+                    <p>{{ current_block.content | newline_to_br }}</p>
+                  {%- endif -%}
+
+                  {%- if current_block.item_1 != blank or current_block.item_2 != blank or current_block.item_3 != blank or current_block.item_4 != blank -%}
+                    <ul>
+                      {%- for i in (1..4) -%}
+                        {%- assign current_item = 'item_' | append: i -%}
+                        {%- assign current_item = current_block[current_item] | replace: '<p>', '' | replace: '</p>', '' -%}
+
+                        <li>
+                          {{ current_item | newline_to_br }}
+                        </li>
+                      {%- endfor -%}
+                    </ul>
+                  {%- endif -%}
+
+                  {%- if current_block.button_text != blank and current_block.button_url != blank -%}
+                    <a href="{{ current_block.button_url }}" class="btn btn--block btn--dark">{{ current_block.button_text }}</a>
+                  {%- endif -%}
+                </div><!-- /.block__content -->
+              </div><!-- /.block__inner -->
+            </div><!-- /.block -->
+          {%- endfor -%}
+        </div><!-- /.blocks -->
+      </div><!-- /.section__body -->
+    </div><!-- /.shell -->
+  </section><!-- /.section-blocks -->
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Education",
+  "settings": [
+    {
+      "type": "textarea",
+      "id": "title",
+      "label": "Title"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "block",
+      "name": "Block",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "textarea",
+          "id": "content",
+          "label": "Content"
+        },
+        {
+          "type": "richtext",
+          "id": "item_1",
+          "label": "List item 1"
+        },
+        {
+          "type": "richtext",
+          "id": "item_2",
+          "label": "List item 2"
+        },
+        {
+          "type": "richtext",
+          "id": "item_3",
+          "label": "List item 3"
+        },
+        {
+          "type": "richtext",
+          "id": "item_4",
+          "label": "List item 4"
+        },
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "Button text"
+        },
+        {
+          "type": "url",
+          "id": "button_url",
+          "label": "Button URL"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

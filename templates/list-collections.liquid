@@ -1,0 +1,47 @@
+<section class="section-collections section-collections--alt">
+	<div class="shell">
+		<div class="section__body">
+      <div class="section__entry">
+        <h3 class="section__title">{{ 'collections.general.title' | t }}</h3>
+      </div><!-- /.section__entry -->
+		</div><!-- /.section__body -->
+
+    <div class="collections">
+			{% for collection in collections %}
+				{% unless collection.handle == 'frontpage' %}
+					{%- capture collection_image -%}
+						{%- if collection.image -%}
+							{{- collection.image | img_url: 'large' -}}
+						{%- else -%}
+							{{- collection.products[0].featured_image | img_url: 'large' -}}
+						{%- endif -%}
+					{%- endcapture -%}
+
+					<div class="collection">
+						<div class="collection__image" style="background-image: url({{ collection_image }}); "></div><!-- /.collection__image -->
+
+						<div class="collection__content">
+							<div class="collection__entry">
+								<h2 class="collection__title">{{ collection.title }}</h2><!-- /.collection__title -->
+
+								{%- if collection.description -%}
+									{%- if collection.description contains '<p>' -%}
+										{{ collection.description }}
+									{%- else -%}
+										<p>{{ collection.description }}</p>
+									{%- endif -%}
+								{%- endif -%}
+
+								<a  href="{{ collection.url }}" class="btn btn--link">
+				                  {{ 'collections.general.view' | t }} {{ collection.title }}
+
+				                  {%- include 'icons' with icon: 'arrow-right' -%}
+				                </a>
+							</div><!-- /.collection__entry -->
+						</div><!-- /.collection__content -->
+					</div>
+				{% endunless %}
+			{% endfor %}
+		</div>
+	</div><!-- /.shell -->
+</section><!-- /.section-collections -->

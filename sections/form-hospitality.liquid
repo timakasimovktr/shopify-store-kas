@@ -1,0 +1,70 @@
+{%- assign _settings = section.settings -%}
+
+{% form 'contact', class: 'form form--default form-contacts' %}
+
+  <div class="form__body">
+
+    {% if form.errors %}
+      <div class="form__notice error">
+        {{ form.errors | default_errors }}
+      </div><!-- /.form-notice -->
+    {% endif %}<a href="#"></a>
+
+    {% if form.posted_successfully? %}
+      <div class="form__notice success">
+        {{ 'contact.form.post_success' | t }}
+      </div><!-- /.form__notice -->
+    {% endif %}
+
+    <div class="form__body">
+      <div class="form__row">
+        <label for="field-contact-name" class="form__label">{{ 'contact.form.name' | t }}</label>
+
+        <input type="text" id="field-contact-name" class="field" name="contact[name]" placeholder="{{ 'contact.form.name' | t }}" autocapitalize="words" value="" required>
+      </div><!-- /.form__row -->
+
+      <div class="form__row">
+        <label for="field-contact-email" class="form__label">{{ 'contact.form.email' | t }}</label>
+
+        <input type="email" id="field-contact-email" class="field" name="contact[email]" placeholder="{{ 'contact.form.email' | t }}" autocorrect="off" autocapitalize="off" value="" required>
+      </div><!-- /.form__row -->
+
+      <div class="form__row">
+        <label for="field-phone" class="form__label">{{ 'contact.form.phone' | t }}</label>
+
+        <div class="form__controls">
+          <input type="text" class="field" name="contact[phone]" id="field-phone" value="" placeholder="{{ 'contact.form.phone' | t }}" />
+        </div><!-- /.form__controls -->
+      </div><!-- /.form__row -->
+
+      <div class="form__row">
+        <label for="field-contact-message" class="form__label">{{ 'contact.form.message' | t }}</label>
+
+        <textarea rows="10" id="field-contact-message" class="textarea" name="contact[body]" placeholder="{{ 'contact.form.message' | t }}" required></textarea>
+      </div><!-- /.form__row -->
+    </div><!-- /.form__body -->
+
+    <div class="form__actions">
+      <input type="submit" class="form__btn btn btn--block" value="{{ 'contact.form.send' | t }}" >
+    </div><!-- /.form__actions -->
+  </div><!-- /.form__body -->
+{% endform %}
+
+{% schema %}
+{
+  "name": "Hospitality",
+  "settings": [
+    {
+      "type": "text",
+      "id": "subject",
+      "label": "Email Subject",
+      "default": "Hospitality"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hospitality"
+    }
+  ]
+}
+{% endschema %}

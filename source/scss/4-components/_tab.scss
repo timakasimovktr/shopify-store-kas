@@ -1,0 +1,475 @@
+/* ------------------------------------------------------------ *\
+  Tabs
+\* ------------------------------------------------------------ */
+
+.tabs {
+  .tabs__head {
+    margin-bottom: 29px;
+  }
+
+  .tabs__nav ul {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .tabs__nav li {
+    margin: 0 26px;
+    font-size: 14px;
+    line-height: 2.14;
+    letter-spacing: 0.15em;
+    font-weight: 400;
+    text-transform: uppercase;
+  }
+
+  .tabs__nav a {
+    overflow: hidden;
+    position: relative;
+    display: block;
+    color: #3f3f3f;
+    text-decoration: none;
+
+    &:before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background-color: #000000;
+      transition: background 0.3s;
+      transition: width 0.3s;
+    }
+  }
+
+  .tabs__nav .current a:before,
+  .tabs__nav li:hover a:before {
+    width: 100%;
+  }
+
+  .tabs__body {
+    position: relative;
+  }
+
+  .tab {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s, visibility 0.5s;
+
+    &.current {
+      visibility: visible;
+      position: relative;
+      top: auto;
+      left: auto;
+      z-index: 1;
+      opacity: 1;
+    }
+  }
+
+  /* Tablet Portrait */
+
+  @media (max-width: #{$responsive-sm}) {
+    .tabs__nav li {
+      margin: 0 10px;
+      font-size: 12px;
+    }
+  }
+
+  /* Mobile */
+
+  @media (max-width: #{$responsive-xs}) {
+    .tabs__head {
+      margin-bottom: 0;
+    }
+
+    .tabs__nav ul {
+      margin: 0 -10px;
+    }
+
+    .tabs__nav li {
+      margin-bottom: 20px;
+      font-size: 14px;
+      letter-spacing: 0.15em;
+    }
+  }
+}
+
+/* ------------------------------------------------------------ *\
+  Tabs Sizes
+\* ------------------------------------------------------------ */
+
+.tabs-sizes {
+  .tabs__head {
+    margin-bottom: 36px;
+  }
+
+  .tabs__nav ul {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    list-style: none outside none;
+    border-collapse: collapse;
+
+    li {
+      border: 1px solid #8d8b8e;
+      font-size: 8px;
+      line-height: 1.38;
+      font-weight: 400;
+      color: #3f3f3f;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      text-align: center;
+      opacity: 0.4;
+      transition: opacity 0.3s;
+      width: auto;
+
+      @media (max-width: #{$responsive-sm}){
+        width: 100%;
+      }
+
+      &:hover,
+      &.current {
+        opacity: 1;
+      }
+
+      &.show-as-first-tab {
+        order: -1;
+      }
+    }
+
+    a {
+      display: block;
+      min-width: 184px;
+      padding: 9px;
+      text-decoration: none;
+      font-size: 12px;
+    }
+  }
+
+  .tabs__dropdown {
+    overflow: hidden;
+    position: relative;
+    display: block;
+    width: 100%;
+    padding: 5px 50px 5px 29px;
+    border: 1px solid #bdbbbd;
+    font-size: 14px;
+    line-height: 2;
+    color: #3f3f3f;
+    white-space: nowrap;
+    text-transform: uppercase;
+    text-overflow: ellipsis;
+
+    &:after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      right: 31px;
+      width: 10px;
+      height: 4px;
+      background: url("{{ 'dropdown-arrow.png' | asset_url }}") 0 0 no-repeat;
+      background-size: 100% 100%;
+      transform: translateY(-50%);
+    }
+  }
+
+  .tabs__body {
+    max-width: 796px;
+    margin: 0 auto;
+  }
+
+  .tab {
+    display: none;
+
+    &.current {
+      display: block;
+    }
+
+    .tab__image {
+      margin: 0 auto;
+      text-align: center;
+
+      img {
+        width: 314px;
+        height: auto;
+        margin: 0 auto 6px;
+      }
+
+      figcaption {
+        font-size: 18px;
+        line-height: 1.44;
+        letter-spacing: 0.03em;
+        font-weight: 300;
+      }
+
+      + table {
+        margin-top: 30px;
+      }
+    }
+
+    > img,
+    figure,
+    p:first-child {
+      max-width: 680px;
+      width: 100%;
+      margin: 0 auto 33px;
+    }
+
+    > ul {
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: space-between;
+      list-style: none outside none;
+      margin: 0 -10px;
+
+      li {
+        width: 250px;
+        margin: 0 10px 25px;
+      }
+
+      img {
+        width: 100%;
+        height: auto;
+        border: 1px solid #e1dfdf;
+        margin-bottom: 14px;
+      }
+
+      h6 {
+        margin-bottom: 3px;
+        font-size: 16px;
+        font-weight: 400;
+        letter-spacing: 0.09em;
+        text-transform: uppercase;
+
+        &:first-child:before {
+          content: '';
+          display: block;
+          height: 165px;
+          border: 1px solid #e1dfdf;
+          margin-bottom: 14px;
+        }
+      }
+
+      p {
+        font-size: 14px;
+        line-height: 1.29;
+        font-weight: 300;
+        letter-spacing: 0.04em;
+      }
+    }
+
+    > table {
+      margin-top: 93px;
+      border: 1px solid #e1dfdf;
+      border-collapse: collapse;
+
+      tr:first-child {
+        background-color: #f5f5f5;
+
+        td {
+          padding: 9px;
+          border-color: #f5f5f5;
+          font-size: 16px;
+          line-height: 1.35;
+          text-transform: uppercase;
+        }
+
+        td + td {
+          border-left-color: #fff;
+        }
+      }
+
+      tr + tr {
+        td:first-child {
+          font-size: 14px;
+          line-height: 2.14;
+          color: #3f3f3f;
+          letter-spacing: 0.025em;
+          font-weight: 400;
+        }
+
+        td {
+          font-size: 18px;
+          line-height: 1.44;
+          font-weight: 300;
+        }
+      }
+
+      td {
+        padding: 5px;
+        border: 1px solid #e1dfdf;
+        text-align: center;
+      }
+    }
+
+    > ol {
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin: 0 -10px;
+      list-style: none outside none;
+      counter-reset: numbers;
+
+      li {
+        width: 310px;
+        margin: 0 10px 32px;
+        counter-increment: numbers;
+        font-size: 14px;
+        line-height: 1.29;
+        font-weight: 300;
+        letter-spacing: 0.035em;
+      }
+
+      h6 {
+        font-size: 16px;
+        line-height: 1.31;
+        letter-spacing: 0.09em;
+        font-weight: 400;
+        text-transform: uppercase;
+        margin-bottom: 6px;
+      }
+
+      h6:before {
+        content: counter(numbers);
+        padding-right: 10px;
+      }
+    }
+
+    @media (max-width: #{$responsive-xs}) {
+      padding-bottom: 120px;
+    }
+  }
+
+  .tab--guide {
+    & > div {
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: space-between;
+      align-items: flex-start;
+
+      & > div {
+        width: 310px;
+        margin: 0 10px 32px;
+        font-size: 14px;
+        line-height: 1.29;
+        font-weight: 300;
+        letter-spacing: 0.035em;
+      }
+    }
+  }
+
+  .tab--pillow {
+    & > ol {
+      justify-content: start;
+
+      li {
+        width: 30%;
+        margin-left: 1.65%;
+        margin-right: 1.65%;
+
+        > div {
+          height: 180px;
+          display: table-cell;
+          vertical-align: middle;
+        }
+      }
+
+      h6 {
+        &:before {
+          content: "";
+          padding-right: 0;
+        }
+      }
+    }
+  }
+
+  /* Tablet Portrait */
+
+  @media (max-width: #{$responsive-sm}) {
+    .tab {
+      > ul {
+        justify-content: center;
+      }
+    }
+  }
+
+  /* Mobile */
+
+  @media (max-width: #{$responsive-xs}) {
+    .tabs__head {
+      margin-bottom: 44px;
+    }
+
+    .tabs__nav {
+      display: none;
+
+      a {
+        width: 100%;
+      }
+    }
+
+    .tab {
+      > table {
+        margin-top: 0;
+
+        tr:first-child td {
+          font-size: 18px;
+        }
+
+        tr + tr {
+          td:first-child {
+            font-size: 12px;
+          }
+
+          td + td {
+            font-size: 12px;
+            line-height: 2.17;
+          }
+        }
+
+        td {
+          padding-left: 0;
+          padding-right: 0;
+        }
+      }
+
+      > ol {
+        li {
+          width: 100%;
+          margin-bottom: 24px;
+          font-size: 14px;
+          line-height: 1.29;
+        }
+
+        h6 {
+          margin-bottom: 3px;
+        }
+      }
+
+      > ul {
+        > li {
+          width: 330px;
+          max-width: 100%;
+        }
+      }
+    }
+
+    .tab--guide {
+      & > div {
+        & > div {
+          width: 100%;
+          margin-bottom: 24px;
+          font-size: 14px;
+          line-height: 1.29;
+        }
+      }
+    }
+  }
+}

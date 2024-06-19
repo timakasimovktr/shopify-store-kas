@@ -1,0 +1,76 @@
+<section class="section-default">
+	<div class="shell">
+		<div class="section__inner section__inner--alt">
+			{%- include 'account-aside' -%}
+
+			<div class="section__content">
+				<h2 class="visible-xs-block">Hi {{ customer.first_name }},</h2>
+
+				<h5 class="section__title">{{ 'customer.account.title' | t }}</h5>
+
+				<ul>
+					<li>{{ customer.name }}</li>
+
+					<li>{{ customer.email }}</li>
+				</ul>
+			</div><!-- /.section__content -->
+		</div><!-- /.section__inner section__inner--alt -->
+	</div><!-- /.shell -->
+</section><!-- /.section-default -->
+<div class="swell-kassa-rewards trade-logged-in">
+	<div class="how-it-work">
+		<div class="yotpo-widget-instance" data-yotpo-instance-id="4113">
+		</div>
+	</div>
+	<!-- how it work section ends -->
+	<div class="vip-trade-benefits">
+		<div class="vip-trade-benefits-holder">
+			<div class="swell-trade-image">
+				<img src="{{ 'swell-trade-benefits.png' | asset_url }}">
+			</div>
+			<div class="vip-trade-sidebar-holder">
+				<div class="swell-image">
+					<img class="swell-desktop" src="{{ 'swell-tier-sidebar.png' | asset_url }}">
+					<div class="vip-trade-sidebar">
+						<div class="benefits-text">
+							Benefits
+						</div>
+						<ul class="list-holder">
+							<li>-30% off MSRP's</li>
+							<li>- Free swatches</li>
+							<li>- Free ground shipping</li>
+							<li>- International shipping available for an additional cost</li>
+							<li>- Priority processing</li>
+							<li>- Monogramming/customization available in-house</li>
+							<li>- Access to exclusive collections</li>
+							<li>- Free returns/exchanges within 60 days </li>
+							<li>- Access to our NYC Showroom (by appointment only)</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="redemptions {%if customer%} logged-in {% endif %}">
+		<div class="yotpo-widget-instance" data-yotpo-instance-id="4109">
+		</div>
+	</div>
+	<!-- redemption section ends -->
+	<div class="swell-products">
+		<div class="yotpo-widget-instance" data-yotpo-instance-id="5737"></div>
+	</div>
+	<div class="swell-rewards-refer">
+		<div class="swell-refer">
+			<div class="yotpo-widget-instance" data-yotpo-instance-id="1336" customer-email-view-input-placeholder='Your email'
+			customer-email-view-label-text='Enter your email to get started.'
+			referral-views-friends-input-placeholder='enter multiple emails, separated by commas.'
+			referral-email-view-label-text='Enter your friend’s email address:'
+			on-referral-submit="onReferralSuccess(eventDetails)"
+			share-copy-link-text="Copy Link"
+			share-link-copied-text="Copied"
+			share-facebook-button-text="Facebook"
+			share-facebook-messenger-button-text="Messenger"
+			share-twitter-button-text="Twitter"></div>
+		</div>
+	</div>
+</div>

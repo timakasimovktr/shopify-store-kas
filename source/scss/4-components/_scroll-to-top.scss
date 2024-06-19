@@ -1,0 +1,28 @@
+/* ------------------------------------------------------------ *\
+  Scroll To Top
+\* ------------------------------------------------------------ */
+
+.scroll-to-top {
+  position: fixed;
+  top: 50%;
+  right: 21px;
+  z-index: 999;
+  display: none;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+  border: 1px solid #000;
+  background-color: #fff;
+  transition: opacity 0.3s;
+  text-align: center;
+
+  &:hover {
+    opacity: 0.6;
+  }
+
+  .ico-arrow-up {
+    margin-top: 16px;
+  }
+}

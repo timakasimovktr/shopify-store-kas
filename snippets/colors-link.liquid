@@ -1,0 +1,105 @@
+{%- assign _collection = _collection | default: collection | default: _product.collections[0] -%}
+
+{% for option in _product.options_with_values %}
+  {% assign option_name = option.name | handle %}
+
+  {% if option_name == 'color' %}
+    {% assign discontinued_colors = '' %}
+    {% for tag in _product.tags %}
+      {% if tag contains 'discontinued:color:' %}
+        {% assign discontinued_color_handle = tag | remove: 'discontinued:color:' | handle %}
+
+        {% assign discontinued_colors = discontinued_colors | append: discontinued_color_handle | append: '~' %}
+      {% endif %}
+    {% endfor %}
+    {% assign discontinued_colors = discontinued_colors | split: '~' %}
+
+      {% assign color_sizes = option.values | size %}
+      {%- if searchedOptionValue != blank -%}
+        {% assign _searchedOptionValues = searchedOptionValue | split: '(' %}
+        {% assign _searchedOptionValue = _searchedOptionValues[0] | trim %}
+        <div class="list-colors--selected">{{_searchedOptionValue}}</div>
+      {%- else -%}
+        <div class="list-colors--selected"></div>
+      {%- endif -%}
+
+      <div class="list-colors-available" data-url="{{ _product.url | within: current_collection }}">
+        {%- if color_sizes == 1 -%}
+          {{ 'products.product.available_one_color' | t }}
+        {%- else -%}
+          {{ 'products.product.available_colors' | t }}
+        {%- endif -%}
+      </div>
+
+      <ul class="list-colors product__colors">
+        {% for value in option.values %}
+          {% assign value_handle = value | handle %}
+
+          {% assign color_is_disabled = false %}
+          {% for discontinued_color in discontinued_colors %}
+            {% if discontinued_color == value_handle %}
+              {% assign color_is_disabled = true %}
+              {% break %}
+            {% endif %}
+          {% endfor %}
+
+          {% if color_is_disabled %}
+            {% continue %}
+          {% endif %}
+
+          {%- assign current_class = '' -%}
+
+          {%- assign option_image = '' -%}
+          {%- assign option_image_index = 0 -%}
+
+          {%- assign variant_url = '' -%}
+
+          {%- if searchedOptionValue != blank and searchedOptionValue == value -%}
+            {%- assign current_class = 'current' -%}
+          {%- endif -%}
+
+          {%- for image in _product.images -%}
+            {%- assign image_alt_handle = image.alt | handle -%}
+
+            {%- if image_alt_handle contains value_handle and option_image_index == 0 -%}
+              {%- assign option_image = image | img_url: '480x' -%}
+              {%- assign option_image_index = 1 -%}
+            {%- endif -%}
+
+            {%- if forloop.last and option_image_index == 0 -%}
+              {%- assign option_image = image | img_url: '480x' -%}
+            {%- endif -%}
+          {%- endfor -%}
+
+          {%- for _variant in _product.variants -%}
+            {%- for option in _variant.options -%}
+              {%- assign option_handle = option | handle -%}
+
+              {%- if option_handle == value_handle -%}
+                {%- assign variant_url = _variant.url | within: _collection -%}
+              {%- endif -%}
+            {%- endfor -%}
+          {%- endfor -%}
+
+          {% assign cc = '' | default: '#ffffff' %}
+          {% for vc in vanityColors %}
+            {% assign _vc = vc | split: '|' %}
+            {% assign _cn = _vc[0] %}
+            {% assign _cc = _vc[1] %}
+            {% if _cn == value_handle %}
+              {% assign cc = _cc %}
+            {% endif %}
+          {% endfor %}
+
+          {% assign _values = value | split: '(' %}
+          {% assign _value = _values[0] | trim %}
+
+          <li {% if current_class != empty %} class="{{current_class}}" {% endif %}>
+            <a  data-href="{{variant_url}}" data-image="{{option_image}}" data-color-name="{{value_handle}}" data-color-text="{{_value}}" style="background-color: {{ cc }}">&nbsp;</a>
+            <img class="lazyload" data-src="{{option_image}}" style="display:none;" />
+          </li>
+        {% endfor %}
+      </ul>
+  {% endif %}
+{% endfor %}
+

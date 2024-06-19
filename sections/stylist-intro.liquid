@@ -1,0 +1,87 @@
+{%- assign introImgWithoutFilter = section.settings.image -%}
+{% if introImgWithoutFilter != blank %}
+{%- assign introImg = introImgWithoutFilter | image_url -%}
+{% endif %}
+<div class="intro-collection stylist {% unless introImg %} intro-collection--without-image {% endunless %}">
+    {%- if introImg -%}
+        <div class="intro__image lazyload" data-bg="{{introImg}}"></div>
+        {%- assign index_fields = index_fields | plus: 1 -%}
+    {%- endif -%}
+</div>
+<div class="intro__content">
+  <span class="font-300 tk-effra font-lighter">{{section.settings.subtitle}}</span>
+  <h1 class="section-title font-lighter">{{section.settings.title}}</h1>
+  <p class="font-300 tk-effra font-lighter">{{section.settings.content}}</p> 
+</div>
+{% stylesheet %}
+.intro-collection.stylist {
+	min-height:23vw !important;
+}
+.intro__content {
+	text-align: center;
+}
+.intro__content span {
+    display: block;
+    height: auto;
+    min-height: auto;
+    font-size: 16px;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+}
+.intro__content .section-title {
+    font-family: Vanitas; 
+    font-weight: 700;
+    margin-top: 50px;
+    margin-bottom: 34px;
+    font-size: 45px;
+    line-height: 1.2;
+    text-transform: initial;
+    letter-spacing: 0.5px;
+}
+.intro__content p {
+    max-width: 500px;
+    margin: auto auto 1.2vw;
+    line-height: 1.3;
+    font-size: 22px;
+}
+@media (max-width: 767px){
+    .intro__content span { font-size: 12px }
+    .banner .banner__title { font-size: 35px }
+    .intro__content p {
+        max-width: 70vw;
+        font-size: 16px
+    }
+}
+{% endstylesheet %}
+{% schema %}
+{   
+    "name": "Page Intro",
+    "class": "section-header",
+    "tag": "section",
+    "settings": [
+        {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+        },
+        {
+            "type": "text",
+            "id": "subtitle",
+            "label": "Subtitle",
+            "default": "YOUR DESIGN DESTINATION"
+        },
+        {
+            "type": "text",
+            "id": "title",
+            "label": "Title",
+            "default": "Kassatex Design Stylists"
+        },
+        {
+            "type": "text",
+            "id": "content",
+            "label": "Content",
+            "default": "insert text here"
+        }
+    ]
+}
+{% endschema %}

@@ -1,0 +1,361 @@
+{
+  "general": {
+    "meta": {
+      "tags": "Tagged \"{{ tags }}\"",
+      "page": "Page {{ page }}"
+    },
+    "header": {
+      "blog_link_text": "Blog",
+      "login_link_text": "Login",
+      "account_link_text": "Account"
+    },
+    "404": {
+      "title": "404 Page Not Found",
+      "subtext_html": "The page you requested does not exist. Click <a href=\"\/collections\/all\">here<\/a> to continue shopping."
+    },
+    "password_page": {
+      "opening_soon": "Opening Soon",
+      "spread_the_word": "Spread the word:",
+      "login_form_heading": "Enter store using password:",
+      "login_form_password_label": "Password",
+      "login_form_password_placeholder": "Your password",
+      "login_form_submit": "Enter",
+      "signup_form_heading": "Find out when we open:",
+      "signup_form_email_label": "Email",
+      "signup_form_email_placeholder": "Your email",
+      "signup_form_submit": "Submit",
+      "signup_form_success": "We will send you an email right before we open!",
+      "admin_link_html": "Are you the store owner? <a href=\"\/admin\" class=\"text-link\">Log in here<\/a>",
+      "password_link": "Enter using password",
+      "powered_by_shopify_html": "This shop will be powered by {{ shopify }}",
+      "close": "Close (Esc)"
+    },
+    "breadcrumbs": {
+      "home": "Home",
+      "home_link_title": "Back to the frontpage"
+    },
+    "pagination": {
+      "first": "First",
+      "last": "Last",
+      "previous": "Previous",
+      "next": "Next",
+      "label": "{{ current_page }} of {{ pages }}"
+    },
+    "newsletter_form": {
+      "label": "Email",
+      "newsletter_email": "Enter Your Email Address",
+      "label2": "Birthday",
+      "newsletter_birthday": "Enter your birthday: MM\/DD\/YYYY",
+      "submit": "&rarr;",
+      "newsletter_message": "Thank for your subscribe"
+    },
+    "search": {
+      "no_results_html": "Your search for \"{{ terms }}\" did not find any results.",
+      "results_for_html": "Your search for \"{{ terms }}\" revealed the following:",
+      "title": "Search for products on our site",
+      "placeholder": "Search",
+      "submit": "Search"
+    },
+    "social": {
+      "share_on_facebook": "Share",
+      "share_on_twitter": "Tweet",
+      "share_on_pinterest": "Pin it",
+      "share_on_fancy": "Fancy"
+    }
+  },
+  "blogs": {
+    "article": {
+      "older_post": "Older Post",
+      "newer_post": "Newer Post",
+      "tags": "Tags",
+      "posted_on_date": "Posted on {{ date }}",
+      "comment_meta_html": "{{ author }} on {{ date }}",
+      "read_more": "Read more"
+    },
+    "comments": {
+      "title": "Leave a comment",
+      "name": "Name",
+      "email": "Email",
+      "message": "Message",
+      "post": "Post comment",
+      "moderated": "Please note, comments must be approved before they are published",
+      "success_moderated": "Your comment was posted successfully. We will publish it in a little while, as our blog is moderated.",
+      "success": "Your comment was posted successfully! Thank you!"
+    }
+  },
+  "cart": {
+    "general": {
+      "title": "Your Cart",
+      "remove": "Remove",
+      "note": "Special instructions for seller",
+      "additional_savings": "Additional savings",
+      "subtotal": "Subtotal: ",
+      "savings_html": "You're saving {{ price }}",
+      "shipping_at_checkout": "Shipping, taxes, and discounts will be calculated at checkout.",
+      "update": "Update Cart",
+      "checkout": "Checkout",
+      "empty": "Your cart is currently empty.",
+      "continue_btn": "Continue shopping",
+      "viewcart_btn": "View cart",
+      "continue_browsing_html": "Continue browsing <a href=\"\/\">here<\/a>.",
+      "message_shipping_left": "You are {{price}} away from free shipping!",
+      "message_shipping": "Free delivery",
+      "included_title": "Includes",
+      "giftbox_lineitem_message": "{{ counts }} Giftboxs are available.",
+      "no_gift_wrap_allowed": "Not eligible for gift wrapping"
+    },
+    "label": {
+      "name": "Item",
+      "price": "Price",
+      "quantity": "Quantity",
+      "total": "Total",
+      "add_note": "Add a note to your order"
+    }
+  },
+  "checkout": {
+    "shipping_method_message_html": "Orders placed after 8:00 am EST will be processed on the next business day. Please allow 2-3 business days for monogram orders and orders shipping via ground to be processed.<br><br>International shipments are subject to additional customs duties and taxes."
+  },
+  "collections": {
+    "general": {
+      "title": "Collections",
+      "no_matches": "Sorry, there are no products in this collection",
+      "link_title": "Browse our {{ title }} collection",
+      "quick_add": "+ quick add",
+      "from": "from",
+      "view": "view all "
+    },
+    "sorting": {
+      "title": "Sort by",
+      "browse": "Browse by",
+      "all_tags": "All",
+      "featured": "Featured",
+      "best_selling": "Best Selling",
+      "az": "Alphabetically, A-Z",
+      "za": "Alphabetically, Z-A",
+      "price_ascending": "Price, low to high",
+      "price_descending": "Price, high to low",
+      "date_descending": "Date, new to old",
+      "date_ascending": "Date, old to new"
+    }
+  },
+  "contact": {
+    "form": {
+      "name": "Name",
+      "first_name": "First Name",
+      "last_name": "Last Name",
+      "email": "Enter your e-mail",
+      "subject": "Subject",
+      "message": "Message",
+      "phone": "Phone",
+      "send": "Send",
+      "post_success": "Thanks for contacting us. We'll get back to you as soon as possible."
+    }
+  },
+  "customer": {
+    "general": {
+      "my_profile": "My profile",
+      "address_book": "Address book",
+      "orders": "Order history"
+    },
+    "account": {
+      "title": "MY INFO",
+      "details": "Account Details",
+      "view_addresses": "View Addresses",
+      "return": "Return to Account Details"
+    },
+    "activate_account": {
+      "title": "Activate Account",
+      "subtext": "Create your password to activate your account.",
+      "password": "Password",
+      "password_confirm": "Confirm Password",
+      "submit": "Activate Account",
+      "cancel": "Decline Invitation"
+    },
+    "addresses": {
+      "title": "Your Addresses",
+      "default": "set as primary",
+      "add_new": "Add a New Address",
+      "edit_address": "Edit address",
+      "first_name": "First Name",
+      "last_name": "Last Name",
+      "company": "Company",
+      "address1": "Address Line 1",
+      "address2": "Address Line 2",
+      "city": "City",
+      "country": "Country",
+      "province": "Province",
+      "zip": "Zip",
+      "phone": "Phone (Optional)",
+      "set_default": "Set as default address",
+      "add": "Add Address",
+      "update": "Update Address",
+      "cancel": "Cancel",
+      "edit": "Edit",
+      "delete": "Delete",
+      "delete_confirm": "Are you sure you wish to delete this address?"
+    },
+    "login": {
+      "title": "Sign in",
+      "title2": "Login",
+      "interior_signup": "Sign up Below",
+      "interior_signup_subtitle": "Already have an account?",
+      "interior_signin": "Login Here",
+      "subtitle": "sign in with email",
+      "subtitle2": "Don't have an account?",
+      "social_title": "sign in with your social account",
+      "email": "Enter your e-mail",
+      "password": "Enter your password",
+      "forgot_password": "Forgot your password?",
+      "sign_in": "Sign In",
+      "cancel": "Return to Store",
+      "guest_title": "Continue as a guest",
+      "guest_continue": "Continue"
+    },
+    "orders": {
+      "title": "Order History",
+      "order_number": "Order number",
+      "date": "Date",
+      "payment_status": "amount",
+      "fulfillment_status": "Tracking number",
+      "total": "Total",
+      "none": "We don't see any orders associated with your account."
+    },
+    "order": {
+      "title": "Order {{ name }}",
+      "date": "Placed on {{ date }}",
+      "cancelled": "Order Cancelled on {{ date }}",
+      "cancelled_reason": "Reason: {{ reason }}",
+      "billing_address": "Billing address",
+      "payment_status": "Payment Status",
+      "shipping_address": "Shipping Address",
+      "fulfillment_status": "Fulfillment Status",
+      "discount": "Discount",
+      "shipping": "Shipping",
+      "tax": "Tax",
+      "product": "Item",
+      "sku": "SKU",
+      "price": "Price",
+      "quantity": "Quantity",
+      "total": "Total",
+      "fulfilled_at": "Fulfilled {{ date }}",
+      "subtotal": "Subtotal"
+    },
+    "recover_password": {
+      "title": "Reset your password",
+      "email": "Email",
+      "submit": "Submit",
+      "cancel": "Cancel",
+      "subtext": "We will send you an email to reset your password.",
+      "success": "We've sent you an email with a link to update your password."
+    },
+    "reset_password": {
+      "title": "Reset account password",
+      "subtext": "Enter a new password for {{ email }}",
+      "password": "Password",
+      "password_confirm": "Confirm Password",
+      "submit": "Reset Password"
+    },
+    "register": {
+      "title": "New to this?",
+      "subtitle": "create an account for faster checkout.",
+      "first_name": "First Name",
+      "last_name": "Last Name",
+      "email": "Enter your e-mail",
+      "company": "Company Name",
+      "birthday": "Birthday",
+      "birthday_placeholder": "Enter your birthday (DD\/MM\/YY)",
+      "password": "Password",
+      "password-2": "Confirm password",
+      "submit": "create your account",
+      "subscribe_text": "Sign up to receive Kassatex newsletters",
+      "error_password": "Invalid confirm password",
+      "cancel": "Return to Store",
+      "website": "Website (Optional)",
+      "submit_form": "Submit Form",
+      "error_certificate": "Please upload Resale Certificate"
+    }
+  },
+  "home_page": {
+    "sections": {
+      "frontpage_title": "Featured Items",
+      "view_product": "View Product",
+      "from": "From"
+    },
+    "onboarding": {
+      "modal_title": "Almost there...",
+      "no_products_html": "You have no products in your Frontpage collection. This placeholder will appear until you <a href=\"\/admin\/collections?tutorial=Frontpage\">add a product to this collection<\/a>.",
+      "no_products_collection": "There are no products yet, but once you begin adding them they will show up here regardless if they are in a collection.",
+      "add_product": "Add a Product",
+      "product_title": "Example Product Title"
+    }
+  },
+  "layout": {
+    "navigation": {
+      "menu": "Menu"
+    },
+    "cart": {
+      "title": "Cart"
+    },
+    "customer": {
+      "account": "My Account",
+      "log_out": "Sign Out",
+      "log_in": "Log in",
+      "create_account": "Create account",
+      "create_account2": "Sign up here.",
+      "or": "or"
+    },
+    "footer": {
+      "blog_title": "Latest News",
+      "linklist_title": "Quick Links",
+      "social_title": "Follow Us",
+      "social_platform": "{{ name }} on {{ platform }}",
+      "contact_title": "Contact Us",
+      "newsletter_title": "Newsletter",
+      "newsletter_caption": "Sign up for the latest news, offers and styles",
+      "copyright": "Copyright"
+    }
+  },
+  "products": {
+    "general": {
+      "from_html": "From {{ price }}",
+      "related_products_title": "You may also like",
+      "size_guide": "Size Guide",
+      "size_label": "Size",
+      "included_title": "Whats Included",
+      "promo_text": "60 Day Trial + Free Shipping",
+      "complete_the_look": "Complete the look"
+    },
+    "product": {
+      "sold_out": "Sold Out",
+      "sale": "Sale",
+      "unavailable": "Unavailable",
+      "compare_at": "Compare at",
+      "quantity": "Quantity",
+      "add_to_cart": "Add to Cart",
+      "out_of_stock": "Out of Stock",
+      "view_cart": "View cart",
+      "continue_shopping": "Continue shopping",
+      "available_colors": "{{counts}} Colors Available",
+      "available_one_color": "1 Color Available",
+      "select_a_size": "SELECT A SIZE",
+      "pre_order": "Pre-Order",
+      "preorder_message_html": "Pre-Orders are paid for at the time of purchase. <br \/>Expected shipping date {{ date }}."
+    }
+  },
+  "gift_cards": {
+    "issued": {
+      "title": "Here's your {{ value }} gift card for {{ shop }}!",
+      "subtext": "Here's your gift card!",
+      "disabled": "Disabled",
+      "expired": "Expired on {{ expiry }}",
+      "active": "Expires on {{ expiry }}",
+      "redeem": "Use this code at checkout to redeem your gift card",
+      "shop_link": "Start shopping",
+      "print": "Print",
+      "add_to_apple_wallet": "Add to Apple Wallet"
+    }
+  },
+  "date_formats": {
+    "month_day_year": "%B %d, %Y"
+  }
+}

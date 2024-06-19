@@ -1,0 +1,24 @@
+{% if checkout.order.created_at %}
+<div class="swell-kassa-rewards">
+<div class="swell-post-checkout">
+  <div class="checkout-heading text-center">
+    <span class="swell-referral-back-link"></span>
+    <h3 class="swell-post-checkout-heading">Thanks for Shopping!</h3>
+  </div>
+  <div class="swell-post-checkout-holder">
+    <div class="swell-refer">
+      <div class="yotpo-widget-instance" data-yotpo-instance-id="1336" customer-email-view-input-placeholder='Your email'
+      customer-email-view-label-text='Enter your email to get started.'
+      referral-views-friends-input-placeholder='enter multiple emails, separated by commas.'
+      referral-email-view-label-text='Enter your friend’s email address:'
+      on-referral-submit="onReferralSuccess(eventDetails)"
+      share-copy-link-text="Copy Link"
+      share-link-copied-text="Copied"
+      share-facebook-button-text="Facebook"
+      share-facebook-messenger-button-text="Messenger"
+      share-twitter-button-text="Twitter"></div>
+    </div>
+  </div>
+</div>
+</div>
+{% endif %}

@@ -1,0 +1,287 @@
+<style>
+.cart .cart__inner-giftbox {
+  padding: 21px 20px 16px;
+  border-top: 1px solid #e8e7e7;
+  text-align: left; 
+  position: relative;
+}
+
+@media (max-width: 375px) {
+  .cart .cart__inner-giftbox{
+    padding: 15px;
+  }
+}
+
+.cart .cart__inner-giftbox p {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  font-size: 14px;
+}
+
+@media (max-width: 375px) {
+  .cart .cart__inner-giftbox p {
+    font-size: 13px;
+ }
+}
+
+.cart .cart__inner-giftbox label {
+  order: 2;
+}
+
+@media (max-width: 375px) {
+  .cart .cart__inner-giftbox label{
+    padding: 0 13px;
+  }
+}
+
+.cart .cart__inner-giftbox h5 {
+  text-transform: capitalize;
+  margin-bottom: 0.25rem;
+  max-width: 80%;
+}
+
+.cart .cart__inner-giftbox .gift-msg-delete {
+  height: 12px;
+  width: 12px;
+  position: absolute;
+  right: 30px;
+  top: 25px;
+  cursor: pointer;
+}
+
+.cart__inner-message{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 0rem;
+}
+
+.cart__inner-message > div > span:not(:last-of-type){
+  margin-right: 10px;
+}
+
+@media (max-width: 375px) {
+  .cart__inner-message > div > span{
+    font-size: 13px;
+ }
+}
+
+.cart__inner-message > div > span{
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.default_cursor{
+  cursor: default!important;
+}
+
+.check {
+    position: relative;
+}
+
+.check input {
+    visibility: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+}
+
+.check label:before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 16px;
+    height: 16px;
+    border: 1px solid #636363;
+    transform: translateY(-50%);
+}
+
+.check input:checked+label:before{
+  background: #fff url({{'ico-check.png' | asset_img_url: '20x' }}) 50% no-repeat;
+    background-size: 12px 10px;
+}
+
+.check_input{
+  position: relative!important;
+}
+
+.ml-07{
+  margin-left: 0.7rem;
+}
+
+.mr-2{
+  margin-right: 1.5rem;
+}
+
+.hidden{
+  visibility: hidden;
+}
+
+.add_message{
+    display: flex;
+    justify-content: space-between;
+}
+
+.add_message > div > span {
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.add_message > div > span:not(:last-of-type) {
+  margin-right: 10px;
+}
+
+.action_group .fa-spinner{
+  color: #403434;
+  position: absolute;
+  top: 40%;
+  right: 20px;;
+}
+
+.giftbox-content .active{
+  display: block;
+}
+.giftbox-content .hidden{
+  display: none;
+}
+
+
+</style>
+
+<div class="cart__inner-giftbox">
+  {%if cart.note == blank %}
+    <div class="check add_message active" id="add_message">
+      <p class="">
+        <input class="open-gift-message check_input form__label" type="checkbox" id="gift-message">
+        <label class= "ml-07 add_message_label" for="gift-message">Add a gift message</label>
+      </p>
+      <div class="hidden" id="action_btn">
+        <span class="gift-msg-edit">Edit</span>
+        <span class="delete">Remove</span>
+      </div>
+    </div>
+    
+    <div class="cart__inner-message hidden" id="edit_message">
+      <div class="check">
+        <p class="">
+          <input class="default_cursor check_input" id="gift-message-2" type="checkbox" onclick="return false" checked>
+          <label class="default_cursor ml-07" for="default_cursor">{{'Your gift message is saved'}}</label>
+        </p>
+      </div>
+      <div class="action_group">
+        <span id= "gift-msg-edit" class="gift-msg-edit">Edit</span>
+        <span class="delete gift-delete" id="gift-msg-delete">Remove</span>
+        <i class="fa fa-spinner fa-spin hidden" id="spinner" ></i>
+      </div>
+    </div>
+  {% else %}
+      <div class="cart__inner-message">
+        <div class="check">
+          <p class="">
+            <input class="default_cursor check_input" id="gift-message-2" type="checkbox" onclick="return false" checked>
+            <label class="default_cursor ml-07" for="default_cursor">{{'Your gift message is saved'}}</label>
+          </p>
+        </div>
+        <div class="action_group">
+          <span id= "gift-msg-edit" class="gift-msg-edit">Edit</span>
+          <span class="delete gift-delete" id="gift-msg-delete">Remove</span>
+          <i class="fa fa-spinner fa-spin hidden" id="spinner" ></i>
+        </div>
+      </div>
+  {% endif %} 
+</div>
+
+<script>
+  var add_message = document.getElementById("add_message");
+  var edit_message = document.getElementById("edit_message");
+  var save = document.querySelectorAll('[data-save]');
+  for (let i = 0; i < save.length; i++) {
+    save[i].addEventListener("click", function () {
+      add_message.classList.remove("active");
+      add_message.classList.add("hidden");
+      edit_message.classList.add("active");
+      edit_message.classList.remove("hidden");
+    })
+  }
+
+  function check_script_loaded(glob_var) {
+    if (typeof(glob_var) !== 'undefined') {
+      var gmPanel = $('.cart__inner-giftmessage');
+      $(document).on('click', '#gift-message', function(e) {
+        gmPanel.addClass('active');
+      });
+
+      var gmPanel = $('.cart__inner-giftmessage');
+      var gift_message = document.getElementById("gift-message")
+      $(document).on('click', '.gift-msg-close', function() {
+        if (gift_message){
+          gift_message.checked = false;
+        }
+        gmPanel.removeClass('active');
+      });
+
+      $('textarea').keyup(updateCount);
+      $('textarea').keydown(updateCount);
+      function updateCount() {
+        var cs = $(this).val().length;
+        $('.char_count').text(cs);
+      }
+    } else {
+        check_script_loaded(glob_var)
+    }
+  }
+
+  window.addEventListener('load', function() {
+    setTimeout(function() {
+      check_script_loaded($);
+    },400);
+  });
+
+</script>
+
+<script>
+  function script_load(){
+  var gmPanel = $('.cart__inner-giftmessage')
+  $(document).on('click', '.open-gift-message', function(){
+    var msg = '{{cart.note }}'
+    if (!msg){
+      gmPanel.addClass('active');  
+    }
+  });
+
+  
+
+  $(document).on('click', '.close', function(){
+    var gift_message_2 = document.getElementById("gift-message-2")
+    var gift_message = document.getElementById("gift-message")
+    gmPanel.removeClass('active');
+
+    if (gift_message_2){
+      document.getElementById("gift-message-2").checked = true;
+    }
+    else{
+      gift_message.checked = false;
+    }
+  });
+
+  $(document).on('click', '#gift-msg-edit', function(e){
+    gmPanel.addClass('active');
+    // $('textarea').val(msg);
+  });
+
+  $('textarea').keyup(updateCount);
+  $('textarea').keydown(updateCount);
+  function updateCount() {
+    var cs = $(this).val().length;
+    $('#char_count').text(cs);
+  }
+}
+onDocumentReady(() =>  script_load());
+</script>

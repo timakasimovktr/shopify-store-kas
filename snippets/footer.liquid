@@ -1,0 +1,146 @@
+{%- assign currency_available = false -%}
+{%- assign footer_inner_class = "footer__inner" -%}
+{%- if settings.is_included_currency_selector and settings.available_currencies -%}
+  {%- assign currency_available = true -%}
+  {%- assign footer_inner_class = footer_inner_class | append: ' included_currency' -%}
+{%- endif -%}
+
+<footer class="footer">
+  <div class="">
+    <div class="{{ footer_inner_class }}">
+      <div class="footer__aside">
+        <div class="footer__cols">
+          {%- if settings.widget_1 != blank -%}
+            <div class="footer__col">
+              {%- if settings.title_1 != blank -%}
+                <h6>{{ settings.title_1 | newline_to_br }}</h6>
+              {%- endif -%}
+
+              {%- include 'footer-widget' with menu_handle: settings.widget_1 -%}
+            </div><!-- /.footer__col -->
+          {%- endif -%}
+
+          {%- if settings.widget_2 != blank or settings.widget_3 != blank -%}
+            <div class="footer__col">
+              {%- if settings.title_2 != blank and settings.widget_2 != blank -%}
+                <h6>{{ settings.title_2 | newline_to_br }}</h6>
+              {%- endif -%}
+
+              {%- include 'footer-widget' with menu_handle: settings.widget_2 -%}
+
+              {%- if settings.title_3 != blank and settings.widget_3 != blank -%}
+                <h6>{{ settings.title_3 | newline_to_br }}</h6>
+              {%- endif -%}
+
+              {%- include 'footer-widget' with menu_handle: settings.widget_3 -%}
+            </div><!-- /.footer__col -->
+          {%- endif -%}
+        </div><!-- /.footer__cols -->
+      </div><!-- /.footer__aside -->
+
+      {%- if currency_available -%}
+        {%- include 'footer-currency-selector' with custom_class: ' hidden-xs hidden-sm', select_id:"gip_currency_select" -%}
+      {%- endif -%}
+
+      {%- if settings.contact_email != blank or settings.contact_phone != blank or settings.contact_link != blank -%}
+        <div class="footer__aside">
+          {%- if currency_available -%}
+            {%- include 'footer-currency-selector' with custom_class: ' visible-sm-flex visible-xs-flex' select_id:"gip_currency_select" -%}
+          {%- endif -%}
+          <div class="contacts">
+            {%- if settings.contact_title != blank -%}
+              <h6>{{ settings.contact_title | newline_to_br }}</h6>
+            {%- endif -%}
+
+            {%- if settings.contact_content != blank -%}
+              <p>{{ settings.contact_content | newline_to_br }}</p>
+            {%- endif -%}
+
+            <ul class="list-contacts">
+              {%- if settings.contact_phone != blank -%}
+                {%- assign phone_handle = settings.contact_phone | replace: '.', '' | replace: '/', '' | replace: ' ', '' | replace: '\', '' | replace: '-', '' | replace: '_', '' | replace: '(', '' | replace: ')', '' -%}
+
+                <li>
+                  <a  href="tel:{{phone_handle}}">
+                    <i class="ico-phone"></i>
+
+                    {%- if settings.contact_phone_title != blank -%}
+                      <span>{{ settings.contact_phone_title }}</span>
+                    {%- endif -%}
+                  </a>
+                </li>
+              {%- endif -%}
+
+              {%- if settings.contact_email != blank -%}
+                <li>
+                  <a  href="mailto:{{settings.contact_email}}">
+                    <i class="ico-envelope"></i>
+
+                    {%- if settings.contact_email_title != blank -%}
+                      <span>{{ settings.contact_email_title }}</span>
+                    {%- endif -%}
+                  </a>
+                </li>
+              {%- endif -%}
+
+              {%- if settings.contact_link != blank -%}
+                <li>
+                  <a  href="{{settings.contact_link}}">
+                    <i class="ico-shop"></i>
+
+                    {%- if settings.contact_link_title != blank -%}
+                      <span>{{ settings.contact_link_title }}</span>
+                    {%- endif -%}
+                  </a>
+                </li>
+              {%- endif -%}
+            </ul><!-- /.list-contacts -->
+          </div><!-- /.contacts -->
+        </div><!-- /.footer__aside -->
+      {%- endif -%}
+    </div><!-- /.footer__inner -->
+
+    <div class="footer__content">
+      {%- include 'socials' with additionalClasses: 'footer__socials' -%}
+
+      {%- assign footer_menu = settings.footer_nav | default: 'footer' -%}
+      {%- assign footer_menu_links = linklists[footer_menu].links -%}
+
+      <nav class="footer__nav">
+        <ul>
+          {%- for link in footer_menu_links -%}
+            <li {% if link.active %} class="current" {% endif %}>
+              <a href="{{link.url}}">{{link.title}}</a>
+            </li>
+          {%- endfor -%}
+
+          {%- if settings.copyright != blank -%}
+            <li>
+              <p class="copyright">{{ settings.copyright }}</p><!-- /.copyright -->
+            </li>
+          {%- endif -%}
+        </ul>
+      </nav><!-- /.footer__nav -->
+    </div><!-- /.footer__content -->
+    
+    {%- if settings.disclaimer_content != blank -%}
+      <div class="footer__inner footer__content-disclaimer" style="text-align:center; justify-content: center;">
+        <p><small>{{ settings.disclaimer_content}}</small></p>
+      </div><!-- /.footer__content-disclaimer-->
+    {%- endif -%}
+
+  </div><!-- /.shell -->
+</footer><!-- /.footer -->
+
+<script id="monogram-message">
+  window.message = window.message || [];
+  window.message.push({"monogram": "{{settings.customizer_message}}"});
+</script>
+
+<div class="slider-zoom-popup">
+  <span class="slider-zoom-popup-close">
+    <svg class="" height="36" viewBox="0 0 36 36" width="36"><path d="M19.414 18l4.243 4.243a1 1 0 0 1-1.414 1.414L18 19.414l-4.243 4.243a1 1 0 0 1-1.414-1.414L16.586 18l-4.243-4.243a1 1 0 0 1 1.414-1.414L18 16.586l4.243-4.243a1 1 0 0 1 1.414 1.414L19.414 18z" fill-rule="evenodd"></path></svg>
+  </span>
+  <img src="" />
+</div>
+

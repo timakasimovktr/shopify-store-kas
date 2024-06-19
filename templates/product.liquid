@@ -1,0 +1,307 @@
+{%- assign current_variant = product.selected_or_first_available_variant -%}
+
+{% comment %}{%- capture product_colors -%}
+  {%- section 'colors' -%}
+{%- endcapture -%}{% endcomment %}
+<script>
+  var disabledSizesforColors = [], disabledSizesForColorsFromProduct;
+
+  function handleize(str){
+    var handle;
+    if(!str){
+      return str;
+    }
+
+    handle = str.replace(/\W+/g, "-");
+
+    while(handle.endsWith('-')){
+      handle = handle.substring(0, handle.length-1);
+    }
+
+    return handle.toLowerCase();
+  }
+  
+  {% if product.metafields.product.disabledSizesForColors != blank %}
+    disabledSizesForColorsFromProduct = JSON.parse(`{{ product.metafields.product.disabledSizesForColors }}`);
+
+    disabledSizesForColorsFromProduct.forEach(function(dsfp){
+      disabledSizesforColors.push({
+        color: handleize(dsfp.color),
+        disabledSize: handleize(dsfp.disabledSize)
+      });
+    });
+  {% endif %}
+</script>
+
+{%- assign product_colors = product.options_with_values[0].values -%}
+
+{%- assign current_collection = collection | default: product.collections[0] -%}
+
+{% assign vanity_colors_all = shop.metafields.sf_color_code.colors | newline_to_br | strip_newlines | replace: "<br />", "," %}
+{%- assign vanity_colors_all = vanity_colors_all | split: ',' | compact -%}
+{% assign new_vc_item_all = '' %}
+{% for _vanity_color in vanity_colors_all %}
+  {% assign _vanity_color_item = _vanity_color | split: '|' %}
+  {% assign _item_handle = _vanity_color_item[0] | handle %}
+  {% assign new_vc_item_all = new_vc_item_all | append: _item_handle | append: '|' | append: _vanity_color_item[1] | append: ',' %}
+{% endfor %}
+{%- assign vanity_colors_all = new_vc_item_all | split: ',' | compact -%}
+
+{%- assign available_sizes = '' -%}
+{%- assign active_promo = false -%}
+
+{%- assign is_preorder = false -%}
+
+{%- for tag in product.tags -%}
+  
+  {%- assign tag_handle = tag | downcase -%}
+  
+  {%- if tag contains 'sizeguide:' -%}
+    {%- assign page_handle = tag | replace: 'sizeguide:', '' -%}
+
+    {%- assign available_sizes = available_sizes | append: page_handle | append: '@@@' -%}
+  {%- endif -%}
+
+  {%- if tag contains 'promo' -%}
+    {%- assign active_promo = true -%}
+  {%- endif -%}
+
+  {%- if tag_handle contains 'pre-order' -%}
+    {%- assign preorder_date = tag_handle | remove: 'pre-order:' -%}
+    {%- assign is_preorder = true -%}
+  {%- endif -%}
+{%- endfor -%}
+
+{%- assign promo_switch = shop.metafields.sf_promo.active_promo -%}
+
+{%- assign available_sizes = available_sizes | split: '@@@' -%}
+
+
+{% comment %}bundled product{% endcomment %}
+{%- assign bundleFirstAvailable = true -%}
+{%- if product.metafields.sf_included_products.size > 0 -%}
+  {%- assign bundleFirstPrice = 0 -%}
+  {%- assign bundleFirstComparePrice = 0 -%}
+  {%- assign totalIncludedCnts = 0 -%}
+  {%- assign totalMatchedCnts = 0 -%}
+  {%- for i in (1..8) -%}
+    {%- assign included_product_string = 'product_' | append: i | append: '_product' -%}
+    {%- assign included_one_color_string = 'product_' | append: i | append: '_only_one_variant' -%}
+    {%- assign included_color_name_string = 'product_' | append: i | append: '_color_name' -%}
+    {%- assign included_product = all_products[product.metafields.sf_included_products[included_product_string]] -%}
+    {%- assign included_one_color = product.metafields.sf_included_products[included_one_color_string] -%}
+    {%- assign included_color_name = product.metafields.sf_included_products[included_color_name_string] -%}
+
+    {%- unless included_product.empty? -%}
+
+      {% assign _one_color_name = '' %}
+      {% if included_one_color == 1 %}
+        {% if included_color_name != blank %}
+          {% assign _one_color_name = included_color_name | handle %}
+        {% else %}
+          {% assign _one_color_name = included_product.variants[0].options[0] | handle %}
+        {% endif %}
+      {% endif %}
+
+      {%- assign totalIncludedCnts = totalIncludedCnts | plus: 1 -%}
+      {%- for _included_variant in included_product.variants -%}
+        {%- assign same_variant = true -%}
+        {% assign _included_variant_option1 = _included_variant.option1 | handle %}
+        {%- if _included_variant.option1 == current_variant.option1 or _included_variant_option1 == _one_color_name -%}
+          {%- if _included_variant.option2 -%}
+            {%- if _included_variant.option2 != current_variant.option2 -%}
+              {%- assign same_variant = false -%}
+            {%- endif -%}
+          {%- endif -%}
+        {%- else -%}
+          {%- assign same_variant = false -%}
+        {%- endif -%}
+
+        {%- if same_variant -%}
+          {% unless _included_variant.available %}
+            {%- assign bundleFirstAvailable = false -%}
+          {% endunless %}
+
+          {%- assign bundleFirstPrice = bundleFirstPrice | plus: _included_variant.price -%}
+          {%- if _included_variant.compare_at_price != blank -%}
+            {%- assign bundleFirstComparePrice = bundleFirstComparePrice | plus: _included_variant.compare_at_price -%}
+          {%- else -%}
+            {%- assign bundleFirstComparePrice = bundleFirstComparePrice | plus: _included_variant.price -%}
+          {%- endif -%}
+
+          {%- assign totalMatchedCnts = totalMatchedCnts | plus: 1 -%}
+        {%- endif -%}
+      {%- endfor -%}
+    {%- endunless -%}
+  {%- endfor -%}
+
+  {%- if totalIncludedCnts > totalMatchedCnts -%}
+    {%- assign bundleFirstAvailable = false -%}
+  {%- endif -%}
+{%- else -%}
+  {% unless current_variant.available %}
+    {%- assign bundleFirstAvailable = false -%}
+  {% endunless %}
+{%- endif -%}
+
+{% assign disableReview = product.metafields.sf_yotpo.disable %}
+
+<section class="section-product">
+  <div class="shell normal-product-layout">
+    <div class="section__inner">
+      {%- include 'product-sliders' -%}
+
+      <div class="section__content">
+        <h4 class="section__title">{{ product.title }}</h4><!-- /.section__title -->
+
+        {%- if active_promo and promo_switch == 1 -%}
+          {%- assign saving_text = shop.metafields.sf_promo.promo_savings -%}
+        {%- endif -%}
+
+        {%- if product.metafields.sf_included_products.size > 0 -%}
+          {%- if bundleFirstAvailable -%}
+            <p class="section__price">{{ bundleFirstPrice | money }} {%- if bundleFirstComparePrice > bundleFirstPrice -%} <del>{{ bundleFirstComparePrice | money }}</del> {%- endif -%} {%- if saving_text -%} <span class="section__saving-text">{{ saving_text }}</span> {%- endif -%}</p><!-- /.section__price -->
+          {%- else -%}
+            <p class="section__price">{{ current_variant.price | money }} {%- if current_variant.compare_at_price > current_variant.price -%} <del>{{ current_variant.compare_at_price | money }}</del> {%- endif -%} {%- if saving_text -%} <span class="section__saving-text">{{ saving_text }}</span> {%- endif -%}</p><!-- /.section__price -->
+          {%- endif -%}
+        {%- else -%}
+          <p class="section__price">{{ current_variant.price | money }} {%- if current_variant.compare_at_price > current_variant.price -%} <del>{{ current_variant.compare_at_price | money }}</del> {%- endif -%} {%- if saving_text -%} <span class="section__saving-text">{{ saving_text }}</span> {%- endif -%}</p><!-- /.section__price -->
+        {%- endif -%}
+
+        {% if disableReview != 1 %}
+          <div class="yotpo bottomLine" data-product-id="{{ product.id }}"></div>
+        {% endif %}
+
+        <div class="afterpay-wrapper"></div>
+
+        {%- include 'form-add-product' with vanityColors: vanity_colors_all, bundleFirstAvailable: bundleFirstAvailable, currentVariant: current_variant, currentCollection: current_collection -%}
+
+        {%- if active_promo and promo_switch == 1 -%}
+          {%- assign promo_text = shop.metafields.sf_promo.promo_text -%}
+
+          <p class="section__message">{%- if promo_text -%} {{ promo_text }} {%- else -%} {{ 'products.general.promo_text' | t }} {%- endif -%}</p><!-- /.section__message -->
+        {%- endif -%}
+
+        <div class="section__entry visible-xs-block">
+          {%- if product.description contains '</' -%}
+            {{ product.description }}
+          {%- else -%}
+            <p>{{ product.description }}</p>
+          {%- endif -%}
+        </div><!-- /.section__entry -->
+
+        {%- include 'product-accordions' -%}
+      </div><!-- /.section__content -->
+    </div><!-- /.section__inner -->
+  </div><!-- /.shell -->
+
+  {%- for tag in product.tags -%}
+    {%- if tag contains 'customizer' -%}
+      {%- section 'customizer' -%}
+    {%- endif -%}
+  {%- endfor -%}
+
+</section><!-- /.section-product -->
+
+{%- include 'included-products' -%}
+
+{% assign review_items = product.metafields.sf_review_items %}
+
+{%- assign below_review_items = false -%}
+{%- if review_items.size > 0 -%}
+  {%- assign below_review_items = true -%}
+{%- endif -%}
+
+{%- include 'complete-the-look' with vanityColors: vanity_colors_all, below_review_items: below_review_items -%}
+
+{%- if below_review_items -%}
+  {%- include 'review-product' -%}
+{%- endif -%}
+
+
+{%- assign show_video = product.metafields.sf_video.show_video -%}
+
+{%- if show_video == 1 -%}
+  {%- include 'product-video' -%}
+{%- endif -%}
+
+{%- include 'best-sleep' -%}
+
+{%- include 'related-products' with vanityColors: vanity_colors_all -%}
+
+<section class="section-reviews">
+  <div class="shell">
+    <div class="section__inner">
+      <h2>Customer Reviews</h2>
+    </div>
+    <div id="shopify-product-reviews" class="reviews" data-id="{{product.id}}">{{ product.metafields.spr.reviews }}</div>
+  </div><!-- /.shell -->
+</section><!-- /.section-reviews -->
+
+{%- if available_sizes.size > 0 -%}
+  {%- include 'product-size-chart' -%}
+{%- endif -%}
+
+<script type="text/javascript" src="https://static-us.afterpay.com/javascript/present-afterpay.js"></script>
+
+
+<script src="{{'products.min.js' | asset_url}}" defer></script>
+
+<script type="text/javascript">
+
+  function check_script_afterPay(glob_var) {
+      if(typeof(glob_var) !== 'undefined') {
+        var product_price = {{ current_variant.price }};
+        new presentAfterpay(apConfig).init();
+        if ((product_price < 3500) || (product_price > 120000)) {
+          window.updateAfterpayTemplate(false);
+        } else {
+          window.updateAfterpayTemplate(true, "{{ current_variant.price | divided_by: 4 | money }}");
+        }
+      } else {
+        setTimeout(function() {
+          check_script_afterPay(glob_var)
+        }, 100);
+      }
+  }
+
+  onDocumentReady(() =>  check_script_afterPay($));
+
+</script>
+
+<style type="text/css">
+  #afterpay-modal-modal {
+    padding: 20px;
+  }
+  .c-afterpay-info-modal-annotation__p {
+    padding-top: 20px;
+  }
+  /*to prevent delay on color loading*/
+  .vanilla{background-color: #fcf7c4;}.sand-sardinia{background-color: #7f7a77;}.sand{background-color: #d1b085;}.oatmeal{background-color: #e2dece;}.natural{background-color: #ede4c7;}.mist{background-color: #c9bead;}.ivory-tusk{background-color: #f2e9d5;}.ivory{background-color: #f9f6e0;}.ecru-tan{background-color: #ede4d5;}.ecru{background-color: #f2eccb;}.cream{background-color: #ede2dc;}.cobblestone{background-color: #bca78b;}.chalk{background-color: #edddc2;}.buttercream{background-color: #F4F3E8;}.bisque-framed-stripe-rug{background-color: #c4a97b;}.bisque{background-color: #efe7cb;}.avena{background-color: #cec3b5;}.latte-hammam{background-color: #EBE9D1;}.yellow-sardinia{background-color: #EDD468;}.yellow-bodrum{background-color: #F4F39A;}.yellow{background-color: #EFEC4C;}.sunshine{background-color: #F7E245;}.sunflower{background-color: #D3B63F;}.lemon{background-color: #FFF1C8;}.blonde-yellow{background-color: #F7EAD2;}.acid-yellow-powder-blue{background-color: #ECF24D;}.orange{background-color: #EA9948;}.coral-mancora{background-color: #CC4D37;}.white-linen-sc{background-color: #bcb193;}.stone{background-color: #b2a489;}.mink{background-color: #89775f;}.marble-tan{background-color: #c1b399;}.linen{background-color: #cec2a7;}.latte{background-color: #ccbc96;}.flax{background-color: #afa585;}.dune{background-color: #e5cea2;}.champagne{background-color: #bab182;}.cedar{background-color: #baaf98;}.brown{background-color: #6b3f24;}.white-navy-paradis{background-color: #4a6f99;}.white-taupe-paradis{background-color: #CCCAC5;}.white-indigo{background-color: #0b3963;}.washed-indigo{background-color: #2b3b63;}.turquoise{background-color: #1ccec5;}.stonewash-blue{background-color: #2b4256;}.skylight-blue{background-color: #80BEE5;}.sky-light{background-color: #A1C9C0;}.seaglass{background-color: #C2E7E8;}.royal-blue{background-color: #2042B2;}.riviera-blue{background-color: #5779b6;}.raindrop{background-color: #D5E4E8;}.persian-blue{background-color: #2647A0;}.periwinkle{background-color: #7D99D8;}.navy-sardinia{background-color: #8696A8;}.navy{background-color: #000080;}.multi-bodrum{background-color: #74A8A5;}.maldive-blue{background-color: #88C9C9;}.light-blue{background-color: #A5D0EF;}.ink{background-color: #3D5691;}.indigo-blue-diamond-rug{background-color: #082D51;}.indigo-blue{background-color: #7085A5;}.indigo-francesca{background-color: #294A72;}.indigo{background-color: #29417A;}.ice-blue-lorimer{background-color: #DBECF9;}.ice-blue{background-color: #8FD3C8;}.freshwater-blue{background-color: #F2FFFD;}.french-blue{background-color: #B4E6EA;}.dark-indigo-montauk{background-color: #697E87;}.cielo{background-color: #D0DDE8;}.celest-blue{background-color: #8AB3CE;}.blue-bee-waffle-robe{background-color: #BAD4E0;}.blue-strada{background-color: #7ACEE2;}.blue-contour{background-color: #B0E1E5;}.blue-bambini-rug{background-color: #587ADD;}.blue{background-color: #C7D7D8;}.batik-blue{background-color: #3E5184;}.baltic-blue{background-color: #5983A0;}.aquamarine{background-color: #8AC8DB;}.aqua-blush{background-color: #B3DADD;}.aqua-montauk{background-color: #4AC5DB;}.aqua-bodrum{background-color: #9FD6E0;}.aqua-bambini-rug{background-color: #83E0EA;}.aqua{background-color: #00B2FF;}.baby-blue{background-color: #98ACF7;}.poppy-coral{background-color: #F78B6A;}.coral-cabana-stripe{background-color: #E2594F;}.lime-green{background-color: #8BDB67;}.green-bambini-rug{background-color: #88EA81;}.celery{background-color: #CAEFB3;}.misty-sage{background-color: #B9CEB7;}.black{background-color: #000000;}.beluga{background-color: #414042;}.violet-bambini-rug{background-color: #A980CE;}.lavender{background-color: #CEABD3;}.aubergine{background-color: #7F2263;}.white-taupe-paradis{background-color: #CCCAC5;}.taupe-mancora{background-color: #C1BCB6;}.taupe-foglia{background-color: #BFB09E;}.taupe{background-color: #D6C8B6;}.powder-pink{background-color: #FCEAEB;}.pink-bee-waffle-robe{background-color: #EDD5D5;}.pink-kids-contour{background-color: #EDC9C4;}.peach-morning-mist{background-color: #F7AAA8;}.pale-pink{background-color: #F7D2D6;}.multi-pareo{background-color: #FCA899;}.magnolia{background-color: #E0CCCC;}.dusty-rose{background-color: #F7DFD7;}.dusty-coral-mint{background-color: #D86C79;}.coral-rose{background-color: #E2594F;}.coral{background-color: #ED9393;}.dark-coral{background-color: #D86C79;}.blush{background-color: #FCB4B0;}.white-white{background-color: #e5e5e5;}.white-charcoal{background-color: #4a4c49;}.white-bisque{background-color: #cc8d57;}.white-bee-waffle-robe{background-color: #d1d1d1;}.white-dusty-pink{background-color: #fce3f4;}.white-black{background-color: #505050;}.white-ash{background-color: #a3a7a8;}.white{background-color: #F4F4F4;}.white-grey-cartagena{background-color: #c9c7c5;}.titanium{background-color: #8e8e8e;}.steel{background-color: #9b9792;}.silver-sage{background-color: #abb4bc;}.silver{background-color: #c9c7c7;}.platinum{background-color: #d4d4d6;}.pewter{background-color: #9ba0a0;}.light-grey-charcoal{background-color: #b2b8ba;}.light-grey-burnt-coral{background-color: #a55b4a;}.grey-white{background-color: #cccccc;}.grey-montauk{background-color: #adadad;}.grey-francesca{background-color: #5e5e5e;}.grey-foglia{background-color: #776f71;}.grey-corvina{background-color: #c9c9c9;}.grey{background-color: #707477;}.fog-grey{background-color: #c0c5c6;}.flax-coverlets{background-color: #aaa79d;}.dolphin-grey-cobblestone{background-color: #bfbdb5;}.dolphin-grey{background-color: #b2b2b2;}.dark-grey{background-color: #565656;}.coal{background-color: #646566;}.charcoal-mancora{background-color: #454747;}.charcoal-hammam{background-color: #564e4e;}.charcoal{background-color: #818284;}.anthracite{background-color: #43434f;}.aluminum{background-color: #999999;}.cool{background-color: #57BCDB;}.coral-holbox{background-color: #F7D5D5;}.aqua-holbox{background-color: #DCF5FB;}.black-pink{background-color: #000000;}.paprika{background-color: #B74A39;}.white-taupe-granada{background-color: #EDE8DC;}.white-grey-granada{background-color: #8F8E8C;}.white-pink{background-color: #ffffff;}.blue-stripe-red{background-color: #6D97DC;}.pink-grey{background-color: #EECDE2;}.navy-white{background-color: #142D55;}.grey-madrid{background-color: #b8b9c1;}.pink-bambini-rug{background-color: #DF6992;}.brown-dark-brown{background-color: #9b8776;}.charcoal-light-grey{background-color: #5F5F5F;}.light-grey{background-color: #D0D0D0;}.black-white-daniela{background-color: #000000;}.mushroom{background-color: #A49F99;}.angora{background-color: #FAF7F3;}.navy-diamond-quilt-bath-mats{background-color: #0D2E55;}.coral-kyoto{background-color: #FF8970;}.green-jungle{background-color: #A8DE84;}.blue-bodrum{background-color: #8EB5BD;}.pink{background-color: #eacbc8;}.water-blue-mateo{background-color: #708CBA  ;}.concrete-grey-mateo{background-color: #585652;}.grey-white-antonia{background-color: #CDCDCD;}.ecru-grey-color-block{background-color: #B7B7B7;}.ecru-linen-color-block{background-color: #C0AEA2;}.bone-spa{background-color: #F1EFE8;}.seafoam-frame-stripe{background-color: #BCD8D4;}.gingham-pink{background-color: #bfe2fc;}.topaz-blue{background-color: #83ABB9;}.pebble-grey{background-color: #818487;}.ash{background-color: #E6DFD8;}.charcoal-cable-knit{background-color: #4F4D4C;}.light-grey-cable-knit{background-color: #BFBFBF;}.taupe-cable-knit{background-color: #726352;}.amber{background-color: #7F4118;}.tan{background-color: #C8AE92;}.multi{background-color: #D3DABD;}.charcoal-tabletop{background-color:  #414141;}.dusty-pink-tabletop{background-color: #C2A2AB;}.indigo-blue-tabletop{background-color: #394863;}.pale-grey-tabletop{background-color: #DEDEDE;}.taupe-tabletop{background-color: #CDC9C0;}.stripe-tabletop{background-color: #464647;}.gold{background-color: #e9d7b3;}.black-brown{background-color: #4b4840;}.blue-alameda{background-color: #00519A;}.aqua-rodeo{background-color: #A1DFE8;}.red{background-color: #E72317;}.leopard{background-color: #C1A270;}.grey-dalia{background-color: #B9B9B9;}.anthracite-prestige{background-color: #BDAEA9;}.stone-prestige{background-color: #E3B8B0;}.celery-prestige{background-color: #EFF0CF;}.latte-hammam{background-color: #EBE8D6;}.marble-tan-chalet{background-color: #CBB1A9;}.anthracite-diamondquilt{background-color: #A29591;}.freshwater-blue-amagansett{background-color: #E3F1F3;}.anthracite-prestigemat{background-color: #988C99;}.marble-tan-athensrug{background-color: #E1D3C1;}.chalk-athensrug{background-color: #FDFDE0;}.grey-kidshooded{background-color: #E0E0E0;}.navy-cable{background-color: #234C85;}.mink-strada{background-color: #CAB179;}.linen-linenbamboo{background-color: #CBC2C2;}.white-indigo-cartagena{background-color: #6D8DC3;}.grey-coimbra{background-color: #D6D5D5;}.light-grey-diamante{background-color: #CBC2B9;}.grey-madrid{background-color: #BDC0CA;}.linen-bamboopillow{background-color: #E0DEE2;}.taupe-mancora{background-color: #E3C9B3;}.white-navy-paradisthrow{background-color: #9D9EAD;}.white-grey-granada{background-color: #CAC5C4;}.steel-vintageluxe{background-color: #DCDCE4;}.grey-hotel{background-color: #DBDBDA;}.steel-contempo{background-color: #DCDCE4;}.grey-pique{background-color: #B6B6C0;}.navy-cabana{background-color: #272769;}.yellow-cabana{background-color: #ECC123;}.coral-cabana{background-color: #FC3C5D;}.navy-sardinia{background-color: #CACAD4;}.yellow-sardinia{background-color: #FFE0B5;}.lemon-capri{background-color: #FFB900;}.navy-capri{background-color: #02012A;}.navy-cabanaround{background-color: #1B2E53;}.poppy-coral-cabanaround{background-color: #FC3C3C;}.yellow-bodrum{background-color: #FFEFC4;}.yellow-malibu{background-color: #FFFFC3;}.navy-malibu{background-color: #8E91AB;}.blue-malibu{background-color: #94AFFF;}.grey-malibu{background-color: #B1B7C8 ;}.blue-ibiza{background-color: #BFD0FF ;}.grey-ibiza{background-color: #B9C2DB;}.blue-cabanahotel{background-color: #80A1FF;}.grey-cabanahotel{background-color: #BFC5D6;}.navy-cabanahotel{background-color: #7084A4;}.blush-brentwood{background-color: #FFC1C4;}.burgundy-brentwood{background-color: #84525D;}.mustard-brentwood{background-color: #E4CD8E;}.olive-brentwood{background-color: #6C916C;}.blue-oxford{background-color:  #566179;}.grey-oxford{background-color:  #9B9B9B;}.linen-merino{background-color: #C8AC9A;}.mustard-merino{background-color: #C87B2F;}.navy-merino{background-color:  #313E60;}.blue-peshtemal{background-color:  #638BBB;}.grey-peshtemal{background-color: #C5C5C5;}.taupe-peshtemal{background-color:  #CEBBA7;}.ivory-lima{background-color:  #F5F0E1;}.grey-lima{background-color:  #B8B8B8;}.taupe-lima{background-color:  #9E8C7A;}.blue-marco{background-color:  #C1D7E5;}.burnt-sienna-marco{background-color:  #D7ACB1;}.charcoal-marco{background-color:  #939393;}.taupe-marco{background-color:  #CBB8B0;}.taupe-sullivan{background-color:  #CBB8B0;}.grey-sullivan{background-color:  #9F9F9F;}.burnt-sienna-sullivan{background-color:  #D7ACB1;}.sterling-blue-sullivan{background-color:  #C1D7E5;}.light-grey-turkish-cotton{background-color: #BDBDBD;}.slate-waffle{background-color: #1E4E6A;}.linen-waffle{background-color: #D9C3A6;}
+</style>
+
+<script type="text/javascript">
+  var cartbtn_status = {
+    "add_to_cart": "{{ 'products.product.add_to_cart' | t }}",
+    "out_of_stock": "{{ 'products.product.out_of_stock' | t }}",
+    "pre_order": "{{ 'products.product.pre_order' | t }}"
+  };
+
+  var is_preorder = {{ is_preorder }};
+
+  window.current_variant_id = {{ current_variant.id }};
+</script>
+
+{% if disableReview != 1 %}
+  <div class="yotpo yotpo-main-widget" 
+    data-product-id="{{ product.id }}"
+    data-price="{{ variant.price | money_without_currency }}"
+    data-currency="{{ shop.currency }}" 
+    data-name="{{ product.title | escape }}" 
+    data-url="{{ shop.url }}{{ product.url }}" 
+    data-image-url="{{ product.featured_image | product_img_url: "large" |replace: '?', '%3F' | replace: '&','%26'}}" 
+    data-description="{{ product.description | escape }}"> 
+  </div>
+{% endif %}
+
+{% render 'related-products-app' %}

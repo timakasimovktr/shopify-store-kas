@@ -1,0 +1,192 @@
+{%- assign _section = section.settings -%}
+{%- if _section.popup_enabled -%}
+  <div class="popup-promotion full-width">
+    <div class="popup-promotion--inner">
+      <div class="half-width full-height popup-promotion--image-wrapper" {% if _section.image != blank %}style="background-image: url({{ _section.image | img_url: 'master' }})"{% endif %}>
+      </div>
+      <div class="half-width full-height popup-promotion--content-wrapper">
+        <div class="popup-promotion--close">
+          {%- include 'icons' with icon: 'icon-close' -%}
+        </div>
+        {%- if _section.logo != blank -%}
+          <div class="popup-promotion--logo">
+            <img src="{{ _section.logo | img_url: 'master' }}" class="full-width">
+          </div>
+        {%- endif -%}
+        <div class="popup-promotion--content">
+          {%- if _section.detail != blank -%}
+            <div class="popup-promotion--detail">
+              {{ _section.detail }}
+            </div>
+          {%- endif -%}
+          {%- if _section.title != blank -%}
+            <div class="popup-promotion--title">
+              {{ _section.title }}
+            </div>
+          {%- endif -%}
+          {%- if _section.subtitle != blank -%}
+            <div class="popup-promotion--subtitle">
+              {{ _section.subtitle }}
+            </div>
+          {%- endif -%}
+          {%- if _section.embed_form != blank -%}
+            <div class="popup-promotion--embed_form">
+              {%- include 'subscribe' with embed_form: _section.embed_form, index: 3, placeholder_text: _section.placeholder_text, submit_btn_text: _section.embed_form_btn_text, custom_class: "promotion-popup" -%}
+            </div>
+          {%- endif -%}
+
+          {%- if _section.cancel_btn_text != blank -%}
+            <div class="popup-promotion--cancel-wrapper">
+              <a href="#" class="popup-promotion--cancel">
+                {{ _section.cancel_btn_text }}
+              </a>
+            </div>
+          {%- endif -%}
+        </div>
+        <div class="popup-promotion--result">
+          {%- if _section.result_subheader != blank -%}
+            <div class="popup-promotion--result-subheader">
+              {{ _section.result_subheader }}
+            </div>
+          {%- endif -%}
+          {%- if _section.result_header != blank -%}
+            <div class="popup-promotion--result-header">
+              {{ _section.result_header }}
+            </div>
+          {%- endif -%}
+          {%- if _section.result_code != blank -%}
+            <div class="popup-promotion--result-code">
+              <span>
+                {{ _section.result_code }}
+              </span>
+            </div>
+          {%- endif -%}
+          {%- if _section.result_btn_text != blank and _section.result_btn_url != blank -%}
+            <div class="popup-promotion--result-btn">
+              <a href="{{ _section.result_btn_url }}">
+                {{ _section.result_btn_text }}
+              </a>
+            </div>
+          {%- endif -%}
+          {% comment %} Promo Result in Announcement Bar {% endcomment %}
+            {%- if _section.result_in_announcement != blank and _section.result_code != blank -%}
+              <div class="popup-promotion--result-announcement">
+                {%- assign use_code = '<span class="use_code">' | append: 'Use Code <span>' | append: _section.result_code | append: '</span></span>' | append: '</p>' -%}
+                {{ _section.result_in_announcement | replace: '</p><p>', '' | replace: '</p>', use_code 
+                  | replace: '<em><strong>', '<span class="money">'
+                  | replace: '<strong><em>', '<span class="money">'
+                  | replace: '</strong></em>', '</span>'
+                  | replace: '</em></strong>', '</span>'
+                }}
+              </div>
+            {%- endif -%}
+        </div>
+      </div>
+    </div>
+  </div>
+{%- endif -%}
+{% schema %}
+{
+  "name": "Pomotion Popup",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "popup_enabled",
+      "label": "Popup enabled",
+      "default": false
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Popup Image"
+    },
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Content Logo"
+    },
+    {
+      "type": "richtext",
+      "id": "detail",
+      "label": "Detail"
+    },
+    {
+      "type": "textarea",
+      "id": "title",
+      "label": "Title"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Sub Title"
+    },
+    {
+      "type": "text",
+      "id": "embed_form",
+      "label": "List ID",
+      "info": "Please, use Klaviyo and add list ID"
+    },
+    {
+      "type": "text",
+      "id": "placeholder_text",
+      "label": "Form Placeholder Text",
+      "default": "Enter your email"
+    },
+    {
+      "type": "text",
+      "id": "embed_form_btn_text",
+      "label": "Form Button Text",
+      "default": "Claim $25"
+    },
+    {
+      "type": "text",
+      "id": "cancel_btn_text",
+      "label": "Cancel Button Text",
+      "default": "No Thanks"
+    },
+    {
+      "type": "header",
+      "content": "Result"
+    },
+    {
+      "type": "text",
+      "id": "result_subheader",
+      "label": "Result Sub Header",
+      "default": "Well Done"
+    },
+    {
+      "type": "text",
+      "id": "result_header",
+      "label": "Result Header",
+      "default": "Here’s Your $25"
+    },
+    {
+      "type": "text",
+      "id": "result_code",
+      "label": "Result Code",
+      "default": "CMDJSNJ73"
+    },
+    {
+      "type": "text",
+      "id": "result_btn_text",
+      "label": "Result Button Text",
+      "default": "Keep Shopping"
+    },
+    {
+      "type": "url",
+      "id": "result_btn_url",
+      "label": "Result Button Url",
+      "default": "/collections/all"
+    },
+    {
+      "type": "richtext",
+      "id": "result_in_announcement",
+      "label": "Result Text in Announcement Bar"
+    }
+  ]
+}
+{% endschema %}

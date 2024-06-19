@@ -1,0 +1,107 @@
+{%- assign _section = section.settings -%}
+{%- assign _blocks = section.blocks -%}
+
+{%- if _blocks.size > 0 -%}
+  <section class="section-press">
+    <div class="shell">
+      <header class="section__head">
+        {%- if _section.title != blank -%}
+          <h1 class="section__title">{{ _section.title | newline_to_br }}</h1><!-- /.section__title -->
+        {%- endif -%}
+
+        {%- if _section.subtitle != blank -%}
+          <h5 class="section__subtitle">{{ _section.subtitle | newline_to_br }}</h5><!-- /.section__subtitle -->
+        {%- endif -%}
+      </header><!-- /.section__head -->
+
+      <div class="section__body">
+        <div class="press-items">
+          {%- for block in _blocks -%}
+            {%- assign current_block = block.settings -%}
+
+            <div class="press-item">
+              {%- if current_block.url != blank -%}
+                <a href="{{ current_block.url }}">
+              {%- endif -%}
+
+              {%- if current_block.image != blank -%}
+                <figure class="press-item__image">
+                  <img src="{{ current_block.image | img_url: '540x' }}" alt="" />
+                </figure><!-- /.press-item__image -->
+              {%- endif -%}
+
+                <div class="press-item__content">
+                  {%- if current_block.title != blank -%}
+                    <h6 class="press-item__title">{{ current_block.title | newline_to_br }}</h6><!-- /.press-item__title -->
+                  {%- endif -%}
+
+                  {%- if current_block.content != blank -%}
+                    <p>{{ current_block.content | newline_to_br }}</p>
+                  {%- endif -%}
+
+                  {%- if current_block.meta != blank -%}
+                    <span class="press-item__meta">{{ current_block.meta }}</span>
+                  {%- endif -%}
+                </div><!-- /.press-item__content -->
+
+              {%- if current_block.url != blank -%}
+                </a>
+              {%- endif -%}
+            </div><!-- /.press-item -->
+          {%- endfor -%}
+        </div><!-- /.press-items -->
+      </div><!-- /.section__body -->
+    </div><!-- /.shell -->
+  </section><!-- /.section-press -->
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Press",
+  "settings": [
+    {
+      "type": "textarea",
+      "id": "title",
+      "label": "Title"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Subtitle"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "press",
+      "name": "Press",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "textarea",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "textarea",
+          "id": "content",
+          "label": "Content"
+        },
+        {
+          "type": "text",
+          "id": "meta",
+          "label": "Published at date"
+        },
+        {
+          "type": "url",
+          "id": "url",
+          "label": "Press URL"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

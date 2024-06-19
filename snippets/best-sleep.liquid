@@ -1,0 +1,47 @@
+{%- assign best_sleep_is_show = product.metafields.sf_best_sleep.is_show -%}
+
+{%- if best_sleep_is_show == 1 -%}
+  {%- assign best_sleep_image = product.metafields.sf_best_sleep.image -%}
+  {%- assign best_sleep_title = product.metafields.sf_best_sleep.title -%}
+  {%- assign best_sleep_detail = product.metafields.sf_best_sleep.detail -%}
+  {%- assign best_sleep_button_text = product.metafields.sf_best_sleep.button_text -%}
+  {%- assign best_sleep_button_url = product.metafields.sf_best_sleep.button_url -%}
+  {%- assign best_sleep_is_sleepicon = product.metafields.sf_best_sleep.is_sleepicon -%}
+
+  <div class="subscribe product-best-sleep">
+    <div class="shell">
+      <div class="subscribe__inner">
+        {%- if best_sleep_title != blank -%}
+          <h2 class="visible-xs-block">{{ best_sleep_title | newline_to_br }}</h2>
+        {%- endif -%}
+
+        {%- if best_sleep_image != blank -%}
+          <div class="subscribe__image lazyload" data-sizes="auto" data-bgset="{{ best_sleep_image }}"></div><!-- /.subscribe__image -->
+        {%- endif -%}
+
+        <div class="subscribe__content">
+          {%- if best_sleep_title != blank -%}
+            <h2 class="hidden-xs">{{ best_sleep_title | newline_to_br }}</h2>
+          {%- endif -%}
+
+          {%- if best_sleep_detail != blank -%}
+            <h4>{{ best_sleep_detail | newline_to_br }}</h4>
+          {%- endif -%}
+
+          {%- if best_sleep_button_text != blank and best_sleep_button_url != blank -%}
+            <a  href="{{ best_sleep_button_url }}" class="btn btn--link">
+              {{ best_sleep_button_text }}
+
+              {%- include 'icons' with icon: 'arrow-right' -%}
+            </a>
+          {%- endif -%}
+          {%- if best_sleep_is_sleepicon == 1 -%}
+            <div class="sleepicon">
+              {%- include 'icons' with icon: 'sleepicon' -%}
+            </div>
+          {%- endif -%}
+        </div><!-- /.subscribe__content -->
+      </div><!-- /.subscribe__inner -->
+    </div><!-- /.shell -->
+  </div><!-- /.subscribe -->
+{%- endif -%}

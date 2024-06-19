@@ -1,0 +1,257 @@
+{% capture theme_title %}
+	{{ page_title }}{% if current_tags %} &ndash; tagged "{{ current_tags | join: ', ' }}"{% endif %}{% if paginate and current_page != 1 %} &ndash; Page {{ current_page }}{% endif %}{% unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless %}
+{% endcapture %}
+
+{% capture theme_styles %}
+	<!-- Script to avoid render blocking -->
+	<script>
+    function loadjscssFile(fileName, fileType) {
+		  var fileTag = '';
+
+		  if (fileType == "js") { //if filename is a external JavaScript file
+		    fileTag = document.createElement('script');
+		    fileTag.setAttribute("type", "text/javascript");
+		    fileTag.setAttribute("src", fileName);
+		  } else if (fileType == "css") { //if filename is an external CSS file
+		    fileTag = document.createElement("link");
+		    fileTag.setAttribute("rel", "stylesheet");
+		    fileTag.setAttribute("type", "text/css");
+		    fileTag.setAttribute("href", fileName);
+		  }
+
+		  if (typeof fileTag != "undefined") {
+		    document.getElementsByTagName("head")[0].appendChild(fileTag);
+		  }
+		}
+      
+		loadjscssFile('{{ 'bundle.min.css' | asset_url }}', 'css');
+		loadjscssFile('{{ 'product-bundle.min.scss.css' | asset_url }}', 'css');
+		loadjscssFile('{{ 'colors.min.scss.css' | asset_url }}', 'css');
+	</script>
+	<!-- end of Script to avoid render blocking -->
+	
+{% endcapture %}
+
+{% capture theme_scripts %}
+  <!-- Klaviyo Speed Optimization -->
+  <script defer type="text/javascript" src="//www.klaviyo.com/media/js/public/klaviyo_subscribe.js"></script>
+  <!-- end of Klaviyo Speed Optimization -->
+	
+	<!-- Bundle Speed Optimization -->
+	<script defer type="text/javascript" src="{{ 'bundle.min.js' | asset_url }}"></script>
+	<script defer type="text/javascript" src="{{ 'products-bundle.min.js' | asset_url }}"></script>
+	<script defer type="text/javascript">
+		document.addEventListener('DOMContentLoaded', function() {
+	    $(document).on('change ', '.js-counter-field-bundle', function() {
+				const $el = $(this)[0]
+	    	var bundleQty = parseInt($(this).val());
+			  var $bundleContainer = $(this).closest('.bundle-container');
+				var variantIdsData = $(this).parent().data("variant-id");
+	    	var variantIds = [];
+				if(variantIdsData && variantIdsData.toString().includes(',')){
+					variantIds = variantIdsData.split(",");
+				} else if(variantIdsData){
+					variantIds = [variantIdsData];
+				}
+
+			  var items = variantIds.map(function(varId){
+          let $bundledProduct = $bundleContainer.find(`.product[data-variant-id="${varId}"]`);
+          return {
+            id: varId,
+            quantity: getBundledItemInitialQty($bundledProduct) * bundleQty,
+            properties: getItemProperties($bundledProduct, bundleQty)
+          };
+			  });
+				
+				let monoInput;
+				const monogramId = $bundleContainer.find(`.product[data-monogram]`)
+				let monogramVariantId;
+				let oldQuantity = $el.dataset.prevVale;
+				let oldMonoQuantity = 0;
+				let monogramQuantity;
+				const inputWithMonoQuantity = $bundleContainer.find('input.property-monogramQuantity')
+				if(inputWithMonoQuantity.length > 0) monogramQuantity = inputWithMonoQuantity[0].value || 1
+
+				let itemsCopy = variantIds.map(function(varId){
+					let $bundledProduct = $bundleContainer.find(`.product[data-variant-id="${varId}"]`);
+					return {
+						id: varId,
+						quantity: oldQuantity,
+						properties: getItemProperties($bundledProduct, oldQuantity)
+					};
+				});
+				if(monogramId.length > 0) {
+					monogramVariantId = monogramId[0].dataset.monogram
+					monoInput = $(document).find(`.cart .product[data-variant-id="${monogramVariantId}"] .js-counter-field`)[0]
+					if(monoInput) oldMonoQuantity = monoInput.dataset.prevVale || 0;
+					if(monogramVariantId) {
+						variantIds.push(monogramVariantId)
+						itemsCopy.push({
+							id: monogramVariantId,
+							quantity: oldQuantity * monogramQuantity
+						})
+					}
+				}
+
+
+			  deleteBundledItems(variantIds).then(function(){
+          if(bundleQty > 0){
+            addProductsToCart(items)
+            .then(async () => {
+							if (monogramVariantId) {
+								monoInput.setAttribute('data-prev-vale', monogramQuantity * bundleQty);
+								$el.setAttribute('data-prev-vale', bundleQty);
+								await addProductsToCart([{
+									id: monogramVariantId,
+									quantity: calculateMonoQuantity(+oldMonoQuantity, (oldQuantity * monogramQuantity), (monogramQuantity * bundleQty))
+								}])
+							}
+							$bundleContainer.find('.cart-error-description').text("")
+							onCartChange()
+						})
+            .fail((data) => {
+							addProductsToCart(itemsCopy)
+							onCartChangeFail(data, $bundleContainer)
+						});
+          } else {
+            onCartChange();
+          }
+        }).fail(onCartChangeFail);
+	    });
+	  });
+
+		function calculateMonoQuantity(oldMonoQ, oldEstMonoQ, newMonoQ) {
+			return (oldMonoQ - oldEstMonoQ) + newMonoQ;
+		}
+
+    function addProductsToCart(items) {
+      return $.ajax({
+        url: '/cart/add.js',
+        type: 'POST',
+        dataType: 'json',
+        data: JSON.stringify({
+          items: items
+        }),
+        contentType: "application/json"
+      });
+    }
+
+    function deleteBundledItems(variantIds){
+      var updates = {};
+      variantIds.forEach(function(varId, i){
+			  updates[varId] = 0;
+		  });
+
+			return $.ajax({
+				url: '/cart/update.js',
+				type: 'POST',
+				dataType: 'json',
+				data: JSON.stringify({ updates: updates }),
+				contentType: "application/json"
+			})
+	  }
+
+	  function getBundledItemInitialQty($bundledProduct){
+		  return parseInt($bundledProduct.find('.property-initialQty').val());
+	  }
+
+	  function getItemProperties($bundledProduct, bundleQty){
+      const bundleUnitPrice = $bundledProduct.find('input.property-bundleUnitPrice').val();
+      const bundleUnitDiscount = $bundledProduct.find('input.property-bundleUnitDiscount').val();
+			var productsInBundle = $bundledProduct.find('input.property-productsInBundle').val();
+
+			if(productsInBundle && productsInBundle.includes(',')){
+				productsInBundle = productsInBundle.split(',').map(id => parseInt(id));
+			} else if(productsInBundle) {
+				productsInBundle = [parseInt(productsInBundle)];
+			}
+
+		  return {
+				'addedAsBundle': $bundledProduct.find('input.property-addedAsBundle').val(),
+				'bundle': $bundledProduct.find('input.property-bundle').val(),
+				'productsInBundle': productsInBundle,
+				'discountAmount': $bundledProduct.find('input.property-discountAmount').val(),
+				'bundleUnitPrice': bundleUnitPrice,
+				'bundleUnitDiscount': bundleUnitDiscount,
+				'bundleRealPrice': bundleUnitPrice * bundleQty,
+				'bundleDiscountedPrice': bundleUnitPrice * bundleQty - bundleUnitDiscount * bundleQty,
+				'bundleImage': $bundledProduct.find('input.property-bundleImage').val(),
+				'bundleUrl': $bundledProduct.find('input.property-bundleUrl').val(),
+				'hasBundleTag': $bundledProduct.find('input.property-hasBundleTag').val(),
+				'quantity': bundleQty,
+				'redirect_url': $bundledProduct.find('input.property-redirect_url').val(),
+				'initialQty': $bundledProduct.find('input.property-initialQty').val(),
+				"MonogramQuantity": $bundledProduct.find('input.property-monogramQuantity').val(),
+				"Monogram Text": $bundledProduct.find('input.property-monogramText').val(),
+				"Monogram Font": $bundledProduct.find('input.property-monogramFont').val(),
+				"Monogram Color": $bundledProduct.find('input.property-monogramColor').val(),
+				"Monogram Place": $bundledProduct.find('input.property-monogramPlace').val()
+		  }
+	  }
+  
+	  function onCartChange(){
+		  $.ajax({
+				url: '/cart',
+				success: function(response) {
+					var $cartDropdown = $('.cart .cart__inner');
+					var $response = $(response);
+					var $result = $response.find('.main > .hidden > form').length
+					? $response.find('.main > .hidden > form')
+					: $response.find('.main > .hidden > .cart-empty');
+	
+					$cartDropdown.find('form, .cart-empty').remove();
+					$result.appendTo($cartDropdown);
+					$cartDropdown.addClass('is-expanded');
+	
+					if(typeof $radioHolder != 'undefined') {
+					$radioHolder
+					.removeClass('is-active')
+					.find('input:checked')
+					.prop('checked', false);
+					}
+	
+					// update item counts in mini cart
+					var all_item_counts = 0;
+					$('.header__inner .cart__inner-body .product').each(function(i){
+            if($(this).css('display') != 'none') {
+              var _qty = $(this).find('input.counter__field').val();
+              all_item_counts += parseInt(_qty);
+            }
+					});
+	
+					if(all_item_counts > 0) {
+					  $('.cart .cart__link span').text(all_item_counts);
+					} else {
+					  $('.cart .cart__link span').text('');
+					}
+	
+					$(".btn-add-bundle").removeClass("loading");
+					$(".btn-add-bundle").removeAttr("disabled");
+				}
+			});
+	  }
+ 
+	  function onCartChangeFail(data, container){
+      $(".error-container").show();
+      $(".error-container p").html("Error: " + JSON.parse(data.responseText).description);
+      $(".btn-add-bundle").removeClass("loading");
+			container.find('.cart-error-description').text("Error: " + JSON.parse(data.responseText).description)
+	  }
+ 
+	// -- Bundle End of Speed Optimization --
+  
+	if(window.location.search.indexOf('bouncex_welcome15') != -1)
+	{
+		localStorage.removeItem('discount_applied');
+		localStorage.removeItem('bouncex_welcome20');
+		window.localStorage.setItem('bouncex_welcome15', true);
+	}
+
+	if(window.location.search.indexOf('bouncex_welcome20') != -1)
+	{
+		localStorage.removeItem('discount_applied');
+		localStorage.removeItem('bouncex_welcome15');
+		window.localStorage.setItem('bouncex_welcome20', true);
+	}
+	</script>
+{% endcapture %}

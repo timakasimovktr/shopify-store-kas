@@ -1,0 +1,156 @@
+/* ------------------------------------------------------------ *\
+  Checkout
+\* ------------------------------------------------------------ */
+
+.display-table {
+  @media (max-width: 999px) {
+    .order-summary-toggle--show .order-summary-toggle__text--show,
+    .order-summary-toggle--hide .order-summary-toggle__text--hide {
+      font-size: 15px;
+    }
+
+    .total-recap__final-price {
+      font-size: 16px;
+    }
+  }
+
+  .logged-in-customer-information__avatar-wrapper {
+    display: none !important;
+  }
+}
+
+.section-default {
+  .form--login,
+  .form-guest-login {
+    margin-bottom: 47px;
+  }
+}
+
+h2.os-header__title, 
+h2.os-step__title,
+.os-order-number {
+  margin-bottom: 17px;
+  font-family: "effra", sans-serif;
+  font-size: 14px;
+  line-height: 1.31;
+  font-weight: 400;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.os-step__description {
+  font-size: 16px;
+  font-weight: 200 !important;
+
+  label {
+    font-weight: 200 !important;
+  }
+}
+
+.page--thank-you {
+  .main__content {
+    h2, h3 {
+      margin-bottom: 17px;
+      font-family: "effra", sans-serif;
+      font-size: 14px;
+      line-height: 1.31;
+      font-weight: 400;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+    }
+
+    .content-box__row {
+      padding: 0;
+      padding-top: 1.5rem;
+
+      &.content-box__row--no-padding {
+        display: none !important;
+      }
+
+      .os-step__title {
+        display: none;
+      }
+    }
+
+    .section__content__column--half:first-child,
+    .section__content__column--half:last-child {
+      font-size: 16px;
+      font-weight: 200;
+    }
+
+    .address,
+    .payment-method-list__item__info {
+      font-weight: 200;
+      font-size: 16px;
+    }
+
+    .step {
+      > .section {
+        padding-top: 0;
+      }
+    }
+
+    .content-box__row ~ .content-box__row {
+      border-top: 0;
+    }
+
+    .tracking-info {
+      border-top: 0;
+      
+      .tracking-info__number {
+        strong {
+          margin-bottom: 17px;
+          font-family: "effra", sans-serif;
+          font-size: 14px;
+          line-height: 1.31;
+          font-weight: 400;
+          letter-spacing: 0.09em;
+          text-transform: uppercase;
+          color: #333333;
+        }
+
+        p {
+          font-weight: 200;
+          font-size: 16px;
+        }
+      }
+    }
+  }
+}
+
+.checkout--body {
+  .order-summary-toggle {
+    display: none;
+  }
+
+  .product__description {
+    vertical-align: top;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+}
+
+.js {
+  .order-summary--is-collapsed {
+    height: auto;
+    visibility: visible;
+  }
+}
+
+.step__footer__previous-link {
+  margin-left: 0!important;
+}
+
+.product__image {
+  & .product-thumbnail__quantity {
+    top: -0.35em!important;
+  }
+}
+
+[data-product-id="1380239212609"] .monogram-message {
+  display: none;
+}
+
+#shipping-method-msg {
+  font-size: .813rem;
+}

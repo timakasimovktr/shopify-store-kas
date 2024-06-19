@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <style>
+    body {opacity: 0;}
+    .nav__dropdown > ul > li > a { color: #666!important; }
+    .list-colors--selected, .list-colors-available {font-weight: 300!important;}
+
+    .slickThumbsFixed {
+      left: 0 !important;
+    }
+
+    .template-search.search {
+      visibility: visible !important;
+    }
+    
+    .pdp-slider-container {
+      max-height: 750px !important;
+      max-width: 680px !important;
+      overflow: hidden !important;
+      background-color: #fff;
+    }
+    
+    .pdp-slider-thumbs-container {
+      max-width: 175px !important;
+      min-height: 152px !important;
+    }
+
+    .pdp-slider-container {
+      min-height: 300px;
+    }
+    
+    @media only screen and (min-width: 1024px) {
+      .pdp-slider-container {
+        min-height: 600px !important;
+      }
+    }
+    
+    .intro .slick-dots {
+      display: none !important;
+    }
+
+    img:not(.initial) {
+      transition: opacity 1s;
+    }
+
+    .slider h1 {
+      visibility: hidden;
+      transition: all 0.3s;
+    }
+    
+    img.initial,
+    img.loaded,
+    img.error,
+    img.lazy.loaded,
+    .lazyloaded,
+    .slider .slider__slide-image.lazy.loaded {
+      opacity: 1 !important;
+    }
+
+    img:not([src]) {
+      visibility: hidden;
+    }
+
+    .slider .slider__slide-image {
+      opacity: 0!important;
+      transition: opacity 1s;
+    }
+
+    .slider .slider__slide-image.lazyloaded {
+      opacity: 1!important;
+      transition: opacity 1s;
+    }
+
+    @media only screen and (min-width: 1024px) {
+      .section__image {
+        min-height: 570px;
+      }
+    }
+
+    @media screen and (max-width: 769px) {
+      .gift-box.gift-box-has br {display: none;}
+    } 
+
+    .cart-popup.cart, .search.is-expanded {
+      display: none;
+    }
+
+    .js-focus-visible .cart-popup.cart, 
+    .js-focus-visible .search.is-expanded,
+    .swym-ready .cart-popup.cart, 
+    .swym-ready .search.is-expanded{
+      display: block
+    }
+
+  </style>
+
+  {% include 'settings' %}
+  {% include 'head' %}
+
+  {{ content_for_header }}
+
+  {% if template contains 'search' %}
+  <meta name="robots" content="noindex">
+  {% endif %}
+
+  {%- capture robotsSection -%}
+  {% section 'robots' %}
+  {%- endcapture -%}
+  {{- robotsSection | replace: '<div id="shopify-section-robots" class="shopify-section">', '' | replace: '</div>', '' -}}
+
+  <script id="gointerpay_localize"
+  data-merchant_id="c0126abc-f008-42c2-8b3d-73cbe3809714"
+  data-currency_tag="yes"></script>
+
+  <script>(function(w,d,t,r,u){var f,n,i;w[u]=w[u]||[],f=function(){var o={ti:"5988896"};o.q=w[u],w[u]=new UET(o),w[u].push("pageLoad")},n=d.createElement(t),n.src=r,n.async=1,n.onload=n.onreadystatechange=function(){var s=this.readyState;s&&s!=="loaded"&&s!=="complete"||(f(),n.onload=n.onreadystatechange=null)},i=d.getElementsByTagName(t)[0],i.parentNode.insertBefore(n,i)})(window,document,"script","//bat.bing.com/bat.js","uetq");</script>
+
+  {% if template contains 'product' or template contains 'collection' %}
+  
+  {% if shop.url == "https://kassatex.com" %}
+    {% assign ENV_KEY = "gFf6bdYbKK6qYcSaB1NDm1lGTBIxQAOraA9ksSUY" %}
+  {% elsif shop.url == "https://kassatex-dev.myshopify.com" %} 
+    {% assign ENV_KEY = "CEsAZX3FB6hlNRtCJ3k7rw90AZanigRhLN8TbPON"%}
+  {% endif %}
+
+  <script type="text/javascript">
+    // Yotpo -- Speed Optimization Trick
+    (function e(){
+      var e = document.createElement("script");
+      e.type = "text/javascript",
+      e.async = true,
+      e.src = "//staticw2.yotpo.com/{{ENV_KEY}}/widget.js";
+      var t = document.getElementsByTagName("script")[0];
+      t.parentNode.insertBefore(e,t)
+    })();
+  </script>
+  
+  {% endif %}
+
+  <!-- slick carousel --> 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js" defer></script> 
+  <!-- end of slick --> 
+  
+  <!-- custom js  - Speed optimization --> 
+  <script src="{{'inline-general.js' | asset_url}}" defer></script>
+  <!-- end of custom js -->
+  <meta name="google-site-verification" content="Sn1Q8aNt4cp7xW7QH9mY11jeorlqwDI54tDRTwkYQFA" />
+  <meta name="p:domain_verify" content="fdbf67049f5f85f1aacb31bcc248024c"/>
+  
+  {% if template.name == 'product' and settings.holiday_gift_product == product.handle %}
+    <script>window.location.href = "{{shop.url}}"</script>
+  {% endif %}
+
+  {% if template contains 'refer' or template contains 'account' or template contains 'rewards' %}
+    <script src="https://cdn-widgetsrepository.yotpo.com/v1/loader/AG6u55frEuWmtg4iGLaMdQ" async></script>
+    {{ "swell-rewards.scss.css" | asset_url | stylesheet_tag }}
+    {{ "swell-rewards.js" | asset_url | script_tag }} 
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+  {% endif %}
+
+  <!-- Global site tag (gtag.js) - Google Ads: AW-869615667 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-869615667"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'AW-869615667', {'allow_enhanced_conversions': true});
+  </script>
+  
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4T2C7K0YVR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+  
+    gtag('config', 'G-4T2C7K0YVR');
+  </script>
+
+  <script src="//cdn.shopify.com/s/shopify/api.jquery.js" defer></script>
+    
+  {% if settings.holiday_is_active or settings.buyonegetone_is_active %}
+      <script src="{{'crypto-js.min.js' | asset_url}}" defer></script>
+  {% endif %}
+  
+  <link rel="stylesheet" href="{{ 'wishlist.scss.css' | asset_url}}" defer>
+  <script src="{{ 'wishlist.js' | asset_url}}" defer></script>
+
+  {% if page.handle == 'wishlist' %}
+    <script src="{{ 'wishlist-page.js' | asset_url}}" defer></script>
+  {% endif %}
+
+ {% render 'giftship' %} 
+</head>
+
+{% assign body_class = template | split: '/' | last | split: '.' | last  %}
+{% assign template_name = template.name %}
+
+{% if body_class contains 'blog' %}
+{% assign body_class = body_class | append : ' ' |  append: 'blog' %}
+{% elsif body_class contains 'article' %}
+{% assign body_class = body_class | append : ' ' |  append: 'blog single single-post' %}
+{% elsif body_class contains 'collection' %}
+{% assign body_class = body_class | append : ' ' |  append: 'archive' %}
+{% elsif body_class contains 'product' %}
+{% assign body_class = body_class | append : ' ' |  append: 'single single-product' %}
+{% elsif template contains 'customers' %}
+{% assign body_class = body_class | append : ' ' |  append: 'customer-templates' %}
+{% elsif request.path == '/challenge' %}
+{% assign body_class = body_class | append: 'challenge' %}
+{% endif %}
+
+{% if template.name contains 'cart' %}
+{% assign template_name = 'kassatex-cart' %}
+{% endif %}
+
+<script src="https://js.afterpay.com/afterpay-1.x.js" 
+       data-min="35.00" data-max="2000.00" async></script>
+
+<body class="template-{{ body_class }} {{template_name}}" data-is-user-logged-in="{% if customer %}true{% else %}false{% endif %}" data-template="{{ template }}">
+  {% if (shop.url contains 'kassatex-dev') and customer == nil and template != 'customers/login' %}
+    <script>window.location.href= '/account/login'</script>
+  {% endif %}
+  <script type="text/javascript" src="https://get.afterpay.com/r/javascript/present-afterpay.js" async ></script>
+  <script type="text/javascript">
+  const apConfig = {
+    'priceSelector': '.afterpay-wrapper',
+    'locale': 'en_US',            
+    'currency': 'USD',           
+    'afterpayLogoColor': 'black',
+    "textType": "none",
+    'minMaxThreshold': {          
+      'min': 3500, 
+      'max': 120000 
+    }, 
+    'hideInterestFree': true,
+    'payments': true,
+    'amount': '{{ current_variant.price | json }}'
+    };
+
+    const onDocumentReady = (callback) =>
+  document.readyState === "complete" || document.readyState === "interactive"
+    ? setTimeout(callback, 1)
+    : document.addEventListener("DOMContentLoaded", callback);
+
+</script>
+
+  <div class="wrapper">
+    {% section 'popup-promotion' %}
+    {% include 'header' %}
+    <main class="main">
+      {{ content_for_layout }}
+      <div class="shell">
+        <div class="subscribe-simple">
+          {%- if settings.title_desktop != blank -%}
+          <h2 class="subscribe--title">{{settings.title_desktop}}</h2>
+          {%- endif -%}
+          {%- if settings.subscribe_description != blank -%}
+          <p class="subscribe--desc">{{settings.subscribe_description}}</p><!-- /.visible-xs-block -->
+          {%- endif -%}
+          {%- include 'subscribe' with embed_form: settings.embed_form, index: 1 -%}
+        </div><!-- /.subscribe-simple -->
+      </div>
+    </main><!-- /.main -->
+    {% include 'footer' %}
+  </div><!-- /.wrapper -->
+
+  {% render 'products-available-color-traslations' %}
+
+  {%- section 'store-location-popup' -%}
+  {% include 'findify-tagging' %}
+  <!-- Persistent Cart -->
+  {% section 'bundles' %}
+  <!-- End Persistent Cart -->
+  
+  {{ scripts }}
+
+  <!--Findify script-->
+  <script id="findify-assets"></script>
+  <!-- End Findify script-->
+
+  <!--BeginCFFPersistentCartCart-->
+  {% if customer %}
+  <script>
+    window.cffCustomer = {
+      name: '{{customer.name}}',
+      email: '{{customer.email}}',
+      hasAccount: '{{customer.has_account}}',
+      id: '{{customer.id}}'
+    };
+  </script>
+  {% endif %}
+
+  <script>
+    window.cffPCLiquidPlaced = true
+  </script>
+
+  <!--EndCFFPersistentCartCart-->
+  
+  {% if template contains 'product' or page.handle == "wishlist" %}
+    <!-- Install-Back-in-Stock-in-Your-Shopify-Theme -->
+    <script src='https://a.klaviyo.com/media/js/onsite/onsite.js'></script>
+    <script>
+          var klaviyo = klaviyo || [];
+          klaviyo.init({
+              account: 'zFxB6d',
+              platform: 'shopify'
+          });
+          klaviyo.enable('backinstock',{ 
+            trigger: {
+                product_page_text: 'Sold Out! Notify Me',
+                product_page_class: 'btn btn--solid btn--block',
+                product_page_text_align: 'center',
+                product_page_margin: '0px',
+                replace_anchor: false
+            },
+            modal: {
+               headline: '{product_name}',
+               body_content: 'Register to receive a notification when this item comes back in stock.',
+               button_label: 'Notify me when available',
+               footer_content: '',
+               additional_styles: ".btn {border: 1px solid #bdbbbd; border-radius: 0; background: none; font-size: 14px; color: #55565a; font-weight: 500; letter-spacing: 0.072em; text-transform: uppercase;} .btn:hover {background-color: rgba(255, 255, 255, 0.3); opacity: 0.6;}",
+               drop_background_color: '#000',
+               background_color: '#fff',
+               text_color: '#222',
+               button_text_color: '#fff',
+               button_background_color: '#439fdb',
+               close_button_color: '#ccc',
+               error_background_color: '#fcd6d7',
+               error_text_color: '#C72E2F',
+               success_background_color: '#d3efcd',
+               success_text_color: '#1B9500'
+            }
+        });
+    </script>
+
+    <link rel="stylesheet" href="{{ 'klaviyo-custom-modal.scss.css' | asset_url }}">
+  {% endif %}
+
+  <noscript><img src="//bat.bing.com/action/0?ti=5988896&Ver=2" height="0" width="0" style="display:none; visibility: hidden;" /></noscript>
+
+  <style type="text/css">
+    
+    .yotpo .write-review .primary-color-btn:hover, .yotpo .write-review input[type="button"].primary-color-btn:hover {
+      background: none !important;
+      border: 1px solid #bdbbbd !important;
+      color: #55565a !important;
+      opacity: 0.55;
+    }
+
+    .yotpo-reviews-link {
+      display: flex;
+      margin-top: 5px;
+      align-items: center;
+    }
+
+    .yotpo-bottomline.pull-left.star-clickable {
+      align-items: center;
+    }
+    
+    .yotpo a {
+      color: #8d8b8e !important;
+    }
+    
+    .yotpo a:hover {
+      color: #8d8b8e !important;
+      opacity: 0.5;
+    }
+    
+    .section-product .yotpo-display-wrapper {
+      display: flex;
+    }
+    
+    .our-fav .products .product {
+      padding: 0 !important;
+    }
+
+    /* LOOP RETURNS STYLES    */
+    
+    /* get rid of extra add to cart */
+    .loop-returns-activated .other-add-to-cart-button{
+      display: none
+    }
+
+    /* get rid of help chat */
+    .loop-returns-activated .help-chat{
+      display: none
+    }
+
+    /* modify credit bar to work with mobile bottom drawer add to cart */
+    @media screen and (max-width: 960px) {
+      #LRS{
+        bottom: 2rem !important
+      }
+
+      .yotpo.bottomLine .yotpo-bottomline .yotpo-icon-empty-star, .yotpo.bottomline .yotpo-bottomline .yotpo-icon-empty-star, .yotpo.bottomLine .yotpo-bottomline .yotpo-icon-half-star, .yotpo.bottomline .yotpo-bottomline .yotpo-icon-half-star, .yotpo.bottomLine .yotpo-bottomline .yotpo-icon-star, .yotpo.bottomline .yotpo-bottomline .yotpo-icon-star, .yotpo .yotpo-modal-bottom-line .yotpo-bottomline .yotpo-icon-empty-star, .yotpo .yotpo-modal-bottom-line .yotpo-bottomline .yotpo-icon-half-star, .yotpo .yotpo-modal-bottom-line .yotpo-bottomline .yotpo-icon-star {
+        font-size: 13px!important;
+      }
+    }
+    
+    .loop-returns-activated .olark-launch-button {
+      margin-bottom: 80px !important;
+    }
+    
+    .loop-returns-activated .cart .cart__inner-actions .btn.btn--block.btn--solid::after  {
+      content: ' USING YOUR CREDIT';
+    }
+    
+    .loop-returns-activated .afterpay-paragraph {
+      display: none !important;
+    }
+    
+    .loop-returns-activated .afterpay-wrapper {
+      display: none !important;
+    }
+    
+    .loop-returns-activated #to_view_customizer {
+      display: none !important;
+    }
+    
+    .loop-returns-activated .cart__inner-giftbox {
+      display: none !important;
+    }
+    
+    .loop-returns-activated .gift-box {
+      visibility: hidden !important;
+    } 
+
+    .yotpo-drop-down-layout .yotpo-dropdown li.list-category:hover {
+        background-color: #f8f8f8!important;
+    }
+
+    .yotpo-drop-down-layout .yotpo-dropdown .list-category .selected-item,
+    .yotpo .yotpo-dropdown .list-category:hover a {
+        color: #333!important;
+}
+  </style>
+  
+  <script src="https://unpkg.com/@loophq/onstore-sdk@latest/dist/loop-onstore-sdk.js"></script>
+  <script>
+  	// Loop returns initialization
+	LoopOnstore.init({
+      key: "ac901f6b909ab664d6c9a6b917742b70a30427d1",
+      attach: "#checkout_button"
+    });
+  </script>
+  {% include 'swym-snippet' %}
+  {% render 'wunderkind-scripts' %}
+  
+  <script>(function(){ var s = document.createElement('script'), e = ! document.body ? document.querySelector('head') : document.body; s.src = 'https://acsbapp.com/apps/app/dist/js/app.js'; s.async = true; s.onload = function(){ acsbJS.init({ statementLink : '', footerHtml : '', hideMobile : false, hideTrigger : false, language : 'en', position : 'left', leadColor : '#404040', triggerColor : '#404040', triggerRadius : '50%', triggerPositionX : 'left', triggerPositionY : 'bottom', triggerIcon : 'wheels', triggerSize : 'medium', triggerOffsetX : 20, triggerOffsetY : 20, mobile : { triggerSize : 'small', triggerPositionX : 'right', triggerPositionY : 'center', triggerOffsetX : 10, triggerOffsetY : 0, triggerRadius : '50%' } }); }; e.appendChild(s);}());</script>
+  <script src="//assets.findify.io/kassatex.myshopify.com.min.js" async defer></script>
+  <script src="//cdn.codeblackbelt.com/js/modules/also-bought/main.min.js?shop=kassatex-dev.myshopify.com" defer></script>
+</body>
+</html>

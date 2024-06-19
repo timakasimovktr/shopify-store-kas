@@ -1,0 +1,50 @@
+{% comment %}
+  Push event to the dataLayer if user has tag trade
+  Needed for Trade Users for Wunderkind Email Sends Campaigns
+{% endcomment %}
+
+{% assign is_trade_user = false%}
+{% if customer %}
+  {% for tag in customer.tags %}
+    {% assign formatted_tag = tag | downcase %}
+    {% if formatted_tag == 'trade' %}
+      {% assign is_trade_user = true %}
+    {% endif %}
+  {% endfor %}
+{% endif %}
+
+{% if is_trade_user %}
+<script id="trade-user">
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({
+    "event": "tradeUserLogin",
+    "trade_user": '{{customer.email}}',
+  });
+</script>
+{% endif%}
+
+
+{% comment %}
+  Out of Stock Identification for Regular products. 
+  See Bundles on templates/product.bundle.liquid 
+  Script for Wunderkind Email Sends Campaigns
+{% endcomment %}
+
+{% if template contains 'product' %}
+  {% unless template contains 'bundle' %}
+    <script id="out-of-stock">
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push(
+      {%- for variant in product.variants -%}
+        {
+          "event": "stock",
+          "variant_id": "{{variant.id}}",
+          "stock_qty": "{{variant.inventory_quantity}}",
+          {% if variant.inventory_quantity > 0 %}"in_stock": true{% else %}"in_stock": false{% endif %}
+        }
+        {%- unless forloop.last -%},{%- endunless -%}
+      {%- endfor -%}
+      );
+    </script>
+  {% endunless %}
+{% endif%}

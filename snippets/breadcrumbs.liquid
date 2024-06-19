@@ -1,0 +1,34 @@
+{% assign separator = '/' %}
+
+{% unless divider == blank %}
+	{% assign separator = divider %}
+{% endunless %}
+
+<div class="breadcrumbs">
+	<a href="/" class="homepage-link" title="Back to the frontpage">Home</a>
+
+	{% if template contains "product" %}
+		<span>{{ separator }}</span>
+
+		{% if collection %}
+			{% if collection.handle %}
+					{% capture url %}/collections/{{ collection.handle }}{% endcapture %}
+					{{ collection.title | link_to: url }}
+				{% elsif collection.all_products_count > 0 and collection.products.first.type == collection.title %}
+					{{ collection.title | link_to_type }}
+				{% elsif collection.all_products_count > 0 and collection.products.first.vendor == collection.title %}
+					{{ collection.title | link_to_vendor }}
+				{% endif %}
+		{% else %}
+			{{ product.type | link_to_type }}
+		{% endif %}
+	{% elsif template == "article" %}</li>
+		<span>{{ separator }}</span>
+
+		{{ blog.title | link_to: blog.url }}
+	{% endif %}
+
+	<span>{{ separator }}</span>
+
+	<a href="#" class="current">{{ page_title }}</a>
+</div><!-- /.breadcrumbs -->

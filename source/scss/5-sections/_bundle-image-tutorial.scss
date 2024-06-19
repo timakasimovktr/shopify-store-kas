@@ -1,0 +1,108 @@
+/* ------------------------------------------------------------ *\
+  Bundle Image Tutorial
+\* ------------------------------------------------------------ */
+
+.bundle-image-content.bundle-image-tutorial {
+  border: none;
+  .items {
+    .item {
+      width: 52%;
+      a.btn {
+        margin-left: 0;
+        max-width: none;
+        display: inline-block;
+        width: auto;
+        padding-right: 18px;
+        font-size: 18px;
+        font-weight: 300;
+      }
+    }
+    .bic-content {
+      width: 48%;
+      text-align: center;
+      .bic-content--inner {
+        width: auto;
+        min-width: 320px;
+        max-width: 450px;
+        display: inline-block;
+      }
+    }
+  }
+  .bic-content--inner {
+    text-align: left;
+  }
+  .difference-page-section-title {
+    font-family: "Vanitas";
+    font-size: 48px;
+    letter-spacing: .5px;
+    text-transform: none;
+  }
+  .section__description {
+    font-family: "effra", sans-serif;
+    font-size: 18px;
+    font-weight: 300;
+    margin: 50px 0 40px;
+  }
+  .section__inner {
+    margin: 0 40px 4%;
+  }
+}
+
+@media (max-width: 939px) and (min-width: 768px) {
+  .bundle-image-content.bundle-image-tutorial {
+    .section__inner {
+      margin-left: 0;
+      margin-right: 0;
+    }
+    .difference-page-section-title {
+      font-size: 40px;
+    }
+    .section__description {
+      margin: 30px 0 25px;
+    }
+  }
+}
+
+@media (max-width: $responsive-xs) {
+  .bundle-image-content.bundle-image-tutorial {
+    .section__inner {
+      display: block;
+      margin: 0 18px;
+    }
+    .items {
+      .item {
+        width: 100%;
+        padding: 20px 0;
+        a.btn {
+          font-size: 16px;
+          margin: 0;
+          text-transform: capitalize;
+          svg {
+            width: 10px;
+            height: 10px;
+            margin-top: 2px;
+          }
+        }
+      }
+      .bic-content {
+        width: 100%;
+        margin: 0;
+        padding: 30px 0;
+        border-top: 1px solid #e2e0e0;
+        border-bottom: 1px solid #e2e0e0;
+        .bic-content--inner {
+          text-align: center;
+          display: block;
+          min-width: auto;
+        }
+      }
+    }
+    .difference-page-section-title {
+      font-size: 36px;
+    }
+    .section__description {
+      font-size: 12px;
+      margin: 30px 0;
+    }
+  }
+}

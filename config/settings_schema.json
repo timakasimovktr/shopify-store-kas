@@ -1,0 +1,658 @@
+[
+  {
+    "name": "theme_info",
+    "logo": "https:\/\/cdn.shopify.com\/s\/global\/branding\/shopify_logo_256x256.png",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Base Shopify Theme"
+      },
+      {
+        "type": "paragraph",
+        "content": "This theme is fully supported by Shopify. For support and customizations, contact [theme-support@shopify.com](mailto:theme-support@shopify.com?subject=Theme+Support)."
+      }
+    ]
+  },
+  {
+    "name": "Header",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Bar"
+      },
+      {
+        "type": "textarea",
+        "id": "bar_text",
+        "label": "Text"
+      },
+      {
+        "type": "header",
+        "content": "Logo"
+      },
+      {
+        "type": "image_picker",
+        "id": "logo",
+        "label": "Image"
+      },
+      {
+        "type": "radio",
+        "id": "logo_type",
+        "label": "Logo Type",
+        "options": [
+          {
+            "value": "grey",
+            "label": "Grey Logo"
+          },
+          {
+            "value": "white",
+            "label": "White Logo"
+          }
+        ],
+        "default": "grey",
+        "info": "If there's no uploaded logo, this will work."
+      },
+      {
+        "type": "header",
+        "content": "Navigation"
+      },
+      {
+        "type": "link_list",
+        "id": "nav",
+        "label": "Select navigation"
+      },
+      {
+        "type": "checkbox",
+        "id": "toggle_full_bleed",
+        "label": "Enable Full Bleed",
+        "default": true
+      },
+      {
+        "type": "header",
+        "content": "Blog link"
+      },
+      {
+        "type": "url",
+        "id": "blog_link",
+        "label": "Link"
+      },
+      {
+        "type": "header",
+        "content": "Favicon"
+      },
+      {
+        "type": "image_picker",
+        "id": "favicon",
+        "label": "Image"
+      }
+    ]
+  },
+  {
+    "name": "Login",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Box 1"
+      },
+      {
+        "type": "textarea",
+        "id": "box_title_1",
+        "label": "Title"
+      },
+      {
+        "type": "text",
+        "id": "box_btn_text_1",
+        "label": "Button text"
+      },
+      {
+        "type": "url",
+        "id": "box_btn_url_1",
+        "label": "Button URL"
+      },
+      {
+        "type": "header",
+        "content": "Box 2"
+      },
+      {
+        "type": "textarea",
+        "id": "box_title_2",
+        "label": "Title"
+      },
+      {
+        "type": "text",
+        "id": "box_btn_text_2",
+        "label": "Button text"
+      },
+      {
+        "type": "url",
+        "id": "box_btn_url_2",
+        "label": "Button URL"
+      }
+    ]
+  },
+  {
+    "name": "Footer",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Subscribe"
+      },
+      {
+        "type": "textarea",
+        "id": "title_desktop",
+        "label": "Title"
+      },
+      {
+        "type": "textarea",
+        "id": "subscribe_description",
+        "label": "Subscribe Description"
+      },
+      {
+        "type": "textarea",
+        "id": "title_mobile",
+        "label": "Title mobile"
+      },
+      {
+        "type": "textarea",
+        "id": "footer_subscribe_subtitle",
+        "label": "Sub Title"
+      },
+      {
+        "type": "text",
+        "id": "embed_form",
+        "label": "List ID",
+        "info": "Please, use Klaviyo and add list ID"
+      },
+      {
+        "type": "header",
+        "content": "Footer widgets"
+      },
+      {
+        "type": "checkbox",
+        "id": "is_included_currency_selector",
+        "label": "Include Currency Selector"
+      },
+      {
+        "type": "text",
+        "id": "title_currency_selector",
+        "label": "Title of the currency selector",
+        "default": "Currencies"
+      },
+      {
+        "type": "text",
+        "id": "available_currencies",
+        "label": "Available Currencies",
+        "info": "Recommended: 'USD, GBP, etc...' ",
+        "default": "USD"
+      },
+      {
+        "type": "textarea",
+        "id": "title_1",
+        "label": "Title widget 1"
+      },
+      {
+        "type": "link_list",
+        "id": "widget_1",
+        "label": "Widget 1 navigation"
+      },
+      {
+        "type": "textarea",
+        "id": "title_2",
+        "label": "Title widget 2"
+      },
+      {
+        "type": "link_list",
+        "id": "widget_2",
+        "label": "Widget 2 navigation"
+      },
+      {
+        "type": "textarea",
+        "id": "title_3",
+        "label": "Title widget 3"
+      },
+      {
+        "type": "link_list",
+        "id": "widget_3",
+        "label": "Widget 3 navigation"
+      },
+      {
+        "type": "header",
+        "content": "Contacts"
+      },
+      {
+        "type": "textarea",
+        "id": "contact_title",
+        "label": "Contact title"
+      },
+      {
+        "type": "textarea",
+        "id": "contact_content",
+        "label": "Contact content"
+      },
+      {
+        "type": "header",
+        "content": "Contacts phone"
+      },
+      {
+        "type": "text",
+        "id": "contact_phone",
+        "label": "Contact phone"
+      },
+      {
+        "type": "text",
+        "id": "contact_phone_title",
+        "label": "Contact phone text"
+      },
+      {
+        "type": "header",
+        "content": "Contacts email"
+      },
+      {
+        "type": "text",
+        "id": "contact_email",
+        "label": "Contact email",
+        "info": "Please, add valid email"
+      },
+      {
+        "type": "text",
+        "id": "contact_email_title",
+        "label": "Contact email text"
+      },
+      {
+        "type": "header",
+        "content": "Contacts link"
+      },
+      {
+        "type": "url",
+        "id": "contact_link",
+        "label": "Contact - visit shops"
+      },
+      {
+        "type": "text",
+        "id": "contact_link_title",
+        "label": "Contact shops text"
+      },
+      {
+        "type": "header",
+        "content": "Footer Navigation"
+      },
+      {
+        "type": "link_list",
+        "id": "footer_nav",
+        "label": "Select navigation"
+      },
+      {
+        "type": "header",
+        "content": "Copyright"
+      },
+      {
+        "type": "textarea",
+        "id": "copyright",
+        "label": "Text"
+      },
+      {
+        "type": "header",
+        "content": "Disclaimer"
+      },
+      {
+        "type": "richtext",
+        "id": "disclaimer_content",
+        "label": "Content"
+      }
+    ]
+  },
+  {
+    "name": "Search",
+    "settings": [
+      {
+        "type": "header",
+        "content": "No results message"
+      },
+      {
+        "type": "textarea",
+        "id": "message",
+        "label": "Text"
+      },
+      {
+        "type": "header",
+        "content": "No results collection"
+      },
+      {
+        "type": "collection",
+        "id": "search_collection",
+        "label": "Select collection"
+      }
+    ]
+  },
+  {
+    "name": "Cart",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Gift product"
+      },
+      {
+        "type": "product",
+        "id": "gift_product",
+        "label": "Select product"
+      },
+      {
+        "type": "textarea",
+        "id": "gift_title",
+        "label": "Title"
+      },
+      {
+        "type": "richtext",
+        "id": "gift_content",
+        "label": "Content"
+      },
+      {
+        "type": "richtext",
+        "id": "gift_content_no_point",
+        "label": "Content for no points"
+      },
+      {
+        "type": "text",
+        "id": "gift_btn",
+        "label": "Button text"
+      },
+      {
+        "type": "text",
+        "id": "gift_points",
+        "label": "Points per Gift"
+      },
+      {
+        "type": "header",
+        "content": "Free shipping"
+      },
+      {
+        "type": "text",
+        "id": "discount_price",
+        "label": "Insert minimum price for free shipping"
+      },
+      {
+        "type": "header",
+        "content": "Out of stock Handle"
+      },
+      {
+        "type": "checkbox",
+        "id": "is_out_handle",
+        "label": "Display Error Message",
+        "default": true
+      },
+      {
+        "type": "textarea",
+        "id": "cart_out_message",
+        "label": "Error message for the out of stock.",
+        "default": "You can't add more than is in stock"
+      },
+      {
+        "type": "color",
+        "id": "cart_out_color",
+        "label": "Message Color for the out of stock."
+      },
+      {
+        "type": "checkbox",
+        "id": "is_remain_stock_handle",
+        "label": "Display Remain stock",
+        "default": true
+      },
+      {
+        "type": "textarea",
+        "id": "cart_remain_message",
+        "label": "Message for the remains.",
+        "default": "Only <X> products left in stock"
+      },
+      {
+        "type": "color",
+        "id": "cart_remain_color",
+        "label": "Message Color for the remains."
+      },
+      {
+        "type": "header",
+        "content": "Free Gift - Holiday"
+      },
+      {
+        "type": "checkbox",
+        "id": "holiday_is_active",
+        "label": "Active"
+      },
+      {
+        "type": "product",
+        "id": "holiday_gift_product",
+        "label": "Gift Product"
+      },
+      {
+        "type": "text",
+        "id": "holiday_min_subtotal",
+        "label": "Minimum subtotal",
+        "default": "100"
+      },
+      {
+        "type": "text",
+        "id": "holiday_gift_desc_text",
+        "label": "Gift Description",
+        "default": "Enjoy your free gift!"
+      },
+      {
+        "type": "color",
+        "id": "holiday_gift_desc_color",
+        "label": "Gift Description Color",
+        "default": "#f07f77"
+      },
+      {
+        "type": "header",
+        "content": "Buy one - Get one"
+      },
+      {
+        "type": "checkbox",
+        "id": "buyonegetone_is_active",
+        "label": "Active"
+      },
+      {
+        "type": "text",
+        "id": "buyonegetone_collections_1",
+        "label": "Collections 1"
+      },
+      {
+        "type": "product",
+        "id": "buyonegetone_gift_product_1",
+        "label": "Gift Product 1"
+      },
+      {
+        "type": "text",
+        "id": "buyonegetone_collections_2",
+        "label": "Collections 2"
+      },
+      {
+        "type": "product",
+        "id": "buyonegetone_gift_product_2",
+        "label": "Gift Product 2"
+      },
+      {
+        "type": "text",
+        "id": "buyonegetone_collections_3",
+        "label": "Collections 3"
+      },
+      {
+        "type": "product",
+        "id": "buyonegetone_gift_product_3",
+        "label": "Gift Product 3"
+      },
+      {
+        "type": "range",
+        "id": "buyonegetone_gift_limit",
+        "label": "Gift Limit",
+        "min": 1,
+        "max": 10,
+        "default": 3
+      },
+      {
+        "type": "text",
+        "id": "buyonegetone_gift_desc_text",
+        "label": "Gift Description",
+        "default": "Enjoy your free gift!"
+      },
+      {
+        "type": "color",
+        "id": "buyonegetone_gift_desc_color",
+        "label": "Gift Description Color",
+        "default": "#f07f77"
+      }
+    ]
+  },
+  {
+    "name": "404",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "error_image",
+        "label": "Image"
+      },
+      {
+        "type": "textarea",
+        "id": "error_title",
+        "label": "Title"
+      },
+      {
+        "type": "textarea",
+        "id": "error_content",
+        "label": "Content"
+      },
+      {
+        "type": "text",
+        "id": "error_btn_text",
+        "label": "Button text"
+      },
+      {
+        "type": "url",
+        "id": "error_btn_url",
+        "label": "Button URL"
+      }
+    ]
+  },
+  {
+    "name": "Products",
+    "settings": [
+      {
+        "type": "range",
+        "id": "related_products",
+        "min": 1,
+        "max": 6,
+        "step": 1,
+        "label": "Number of related products",
+        "default": 3
+      }
+    ]
+  },
+  {
+    "name": "Contact",
+    "settings": [
+      {
+        "type": "textarea",
+        "id": "select_options",
+        "label": "Contact select options",
+        "info": "For new option break text to new line"
+      }
+    ]
+  },
+  {
+    "name": "Collection",
+    "settings": [
+      {
+        "type": "select",
+        "id": "products_per_page",
+        "label": "Products per page",
+        "options": [
+          {
+            "value": "12",
+            "label": "12"
+          },
+          {
+            "value": "15",
+            "label": "15"
+          },
+          {
+            "value": "18",
+            "label": "18"
+          },
+          {
+            "value": "21",
+            "label": "21"
+          },
+          {
+            "value": "24",
+            "label": "24"
+          }
+        ],
+        "default": "12"
+      }
+    ]
+  },
+  {
+    "name": "Social media",
+    "settings": [
+      {
+        "type": "text",
+        "id": "social_fa-facebook",
+        "label": "Facebook"
+      },
+      {
+        "type": "text",
+        "id": "social_fa-tiktok",
+        "label": "Tik Tok",
+        "default": "https://www.tiktok.com/@kassatexnewyork"
+      },
+      {
+        "type": "text",
+        "id": "social_fa-spotify",
+        "label": "Spotify",
+        "default": "https://open.spotify.com/user/py8e1zqcaqcb63zjcrbacgsct"
+      },
+      {
+        "type": "text",
+        "id": "social_fa-pinterest",
+        "label": "Pinterest"
+      },
+      {
+        "type": "text",
+        "id": "social_fa-instagram",
+        "label": "Instagram"
+      }
+    ]
+  },
+  {
+    "name": "Gift Card",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "gift_card_logo",
+        "label": "Logo"
+      },
+      {
+        "type": "text",
+        "id": "gift_card_title",
+        "label": "Title"
+      },
+      {
+        "type": "image_picker",
+        "id": "gift_card_image",
+        "label": "Image"
+      },
+      {
+        "type": "text",
+        "id": "gift_card_instructions",
+        "label": "Instructions"
+      }
+    ]
+  },
+  {
+    "name": "Monogram",
+    "settings": [
+      {
+        "type": "text",
+        "id": "customizer_message",
+        "label": "Message will appear below cancel button"
+      }
+    ]
+  }
+]

@@ -1,0 +1,11 @@
+/node_modules
+/package-lock.json
+/yarn.lock
+/shopify.zip
+/config.yml
+/theme.exe
+.DS_Store
+.DS_Store
+config.yml
+.vscode
+.idea
